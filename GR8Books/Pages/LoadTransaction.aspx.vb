@@ -12,7 +12,7 @@
 
     Public Sub LoadList()
         Dim Type As String = Request.QueryString("ID")
-        Dim query As String
+        Dim query As String = ""
         Dim filter As String = txtFilter.Text
         Select Case Type
             Case "SJ"
@@ -108,6 +108,21 @@
                         " 	    ELSE tblAPV.Status END LIKE '%" & filter & "%'   " & vbCrLf &
                         " ORDER BY tblAPV.TransID DESC"
                 SQL.FlushParams()
+                SQL.GetQuery(query)
+            Case "PC"
+                query = " SELECT  tblPC.TransID, PC_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks,  " & vbCrLf &
+                        " CASE WHEN View_PC_Balance.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
+                        " 	      WHEN tblPC.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	    ELSE tblPC.Status END AS Status  " & vbCrLf &
+                        " FROM     tblPC LEFT JOIN View_VCEMMaster " & vbCrLf &
+                        " ON	   tblPC.VCECode = View_VCEMMaster.Code   " & vbCrLf &
+                        " LEFT JOIN (SELECT TransID FROM View_PC_Balance) AS View_PC_Balance  " & vbCrLf &
+                        " ON	   tblPC.TransID = View_PC_Balance.TransID   " & vbCrLf &
+                        " WHERE PC_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR " & vbCrLf &
+                        " CASE WHEN View_PC_Balance.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
+                        " 	      WHEN tblPC.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	    ELSE tblPC.Status END LIKE '%" & filter & "%'   " & vbCrLf &
+                        " ORDER BY tblPC.TransID DESC"
                 SQL.GetQuery(query)
         End Select
         dgvList.DataSource = SQL.SQLDS

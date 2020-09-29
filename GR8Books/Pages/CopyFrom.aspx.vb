@@ -59,6 +59,27 @@
                         "  ORDER BY TransID DESC "
                 SQL.FlushParams()
                 SQL.GetQuery(query)
+            Case "PC"
+                query = "  SELECT   tblPC.TransID, tblPC.PC_No AS TransNo, REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, " & vbCrLf &
+                        " 		    Name, tblPC.Remarks, '' AS Reference, SUM(ISNULL(View_PC_Balance.Amount,0)) AS TotalAmount,  " & vbCrLf &
+                        "           CASE WHEN View_PC_Balance.TransID IS NOT NULL THEN  'Active'    " & vbCrLf &
+                        "                WHEN tblPC.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 		    ELSE tblPC.Status END AS Status  " & vbCrLf &
+                        "  FROM tblPC LEFT JOIN   " & vbCrLf &
+                        "  View_VCEMMaster ON tblPC .VCECode = View_VCEMMaster.Code   " & vbCrLf &
+                        "  LEFT JOIN   " & vbCrLf &
+                        "  View_PC_Balance ON tblPC.TransID = View_PC_Balance.TransID   " & vbCrLf &
+                        "  WHERE (tblPC.PC_No LIKE '%" & filter & "%' OR tblPC.Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%') " & vbCrLf &
+                        "  AND CASE WHEN View_PC_Balance.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
+                        " 	      WHEN tblPC.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	 ELSE tblPC.Status END = 'Active'  " & vbCrLf &
+                        "  GROUP BY tblPC.TransID, tblPC.PC_No, TransDate, Name, tblPC.Remarks,  " & vbCrLf &
+                        " 	   CASE WHEN View_PC_Balance.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
+                        " 	        WHEN tblPC.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	   ELSE tblPC.Status END  " & vbCrLf &
+                        "  ORDER BY TransID DESC "
+                SQL.FlushParams()
+                SQL.GetQuery(query)
             Case "CASHR"
                 query = "  SELECT   tblCA.TransID, tblCA.CA_No AS TransNo, REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, " & vbCrLf &
                         " 		    Name, tblCA.Remarks, '' AS Reference, SUM(ISNULL(View_CA_Return.Amount,0)) AS TotalAmount,  " & vbCrLf &
