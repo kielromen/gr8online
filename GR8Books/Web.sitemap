@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+	<siteMapNode url="Pages\Dashboard.aspx" title="Dashboard">
+		<siteMapNode url="Pages\CompanySetup.aspx" title="Company Setup" />
+		<siteMapNode url="Pages\ChartofAccount_Loadlist.aspx" title="Chart of Accounts" >
+			<siteMapNode url="Pages\ChartofAccounts.aspx" title="Chart of Account Management" ></siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\BankMasterfile_Loadlist.aspx" title="Bank Masterfile" >
+			<siteMapNode url="Pages\BankMasterfile_Management.aspx" title="Bank Masterfile Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\VendorManagement_View.aspx" title="Vendor List" >
+			<siteMapNode url="Pages\VendorManagement.aspx" title="Vendor Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\TaxSetup_Loadlist.aspx" title="Tax Setup List" >
+			<siteMapNode url="Pages\TaxSetup_Management.aspx" title="Tax Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\CustomerManagement_View.aspx" title="Customer List" >
+			<siteMapNode url="Pages\CustomerManagement.aspx" title="Customer Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\ItemMasterfile_Loadlist.aspx" title="Item List" >
+			<siteMapNode url="Pages\ItemMasterfile_Maintenance.aspx" title="Item Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\Branchcode_Entry.aspx" title="Branch Code List" >
+			<siteMapNode url="Pages\Branchcode_Maintenance.aspx" title="Branch Code Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\Collector_Loadlist.aspx" title="Collector List" >
+			<siteMapNode url="Pages\Collector_Management.aspx" title="Collector Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\Employee_LoadList.aspx" title="Employee List" >
+			<siteMapNode url="Pages\Employee_Management.aspx" title="Employee Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\MemberManagement_LoadList.aspx" title="Member List" >
+			<siteMapNode url="Pages\MemberManagement.aspx" title="Member Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\DisbursementType_Loadlist.aspx" title="Disbursement Type List" >
+			<siteMapNode url="Pages\DisbursementType_Maintenance.aspx" title="Disbursement Type Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\CashReceiptType_Loadlist.aspx" title="Cash Receipt Type List" >
+			<siteMapNode url="Pages\CashReceiptType_Maintenance.aspx" title="Cash Receipt Type Management"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\CashVoucher.aspx" title="Cash Voucher" />
+		<siteMapNode url="Pages\CheckVoucher.aspx" title="Check Voucher" />
+		<siteMapNode url="Pages\OfficialReceipt.aspx" title="Official Receipt" />
+		<siteMapNode url="Pages\AcknowledgementReceipt.aspx" title="Acknowledgement Receipt" />
+		<siteMapNode url="Pages\CollectionReceipt.aspx" title="Collection Receipt" />
+		<siteMapNode url="Pages\JournalVoucher.aspx" title="Journal Voucher" />
+		<siteMapNode url="Pages\SalesJournal.aspx" title="Sales Journal" />
+		<siteMapNode url="Pages\SalesInvoice.aspx" title="Sales Invoice" />
+		<siteMapNode url="Pages\SO_Entry.aspx" title="Sales Order" />
+		<siteMapNode url="Pages\DeliveryReceipt.aspx" title="Delivery Receipt" />
+		<siteMapNode url="Pages\JobOrder.aspx" title="Job Order" />
+		<siteMapNode url="Pages\ReceivingReport.aspx" title="Receiving Report" />
+		<siteMapNode url="Pages\PurchaseOrder.aspx" title="Purchase Order" />
+		<siteMapNode url="Pages\PurchaseJournal.aspx" title="Purchase Journal" />
+		<siteMapNode url="Pages\CreditMemo_Entry.aspx" title="Credit Memo" >
+			<siteMapNode url="Pages\CreditMemo_Maintenance.aspx" title="Credit Memo Maintenance"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\DebitMemo_Entry.aspx" title="Debit Memo" >
+			<siteMapNode url="Pages\DebitMemo_Maintenance.aspx" title="Debit Memo Maintenance"> </siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="Pages\Responsibility_Center.aspx" title="Responsibility Center" />
+		<siteMapNode url="Pages\AccountsPayableVoucher.aspx" title="Accounts Payable Voucher" >
+			<siteMapNode url="Pages\AccountsPayableVoucher_Loadlist.aspx" title="Accounts Payable Voucher List"> </siteMapNode>
+		</siteMapNode>
+	</siteMapNode>
+</siteMap>
