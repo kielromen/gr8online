@@ -2318,6 +2318,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CashVoucher._btnCopyFromPC">
+<summary>
+btnCopyFromPC control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CashVoucher._btnPrev">
 <summary>
 btnPrev control.
@@ -2879,6 +2888,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CheckVoucher._btnCopyFromCA">
 <summary>
 btnCopyFromCA control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CheckVoucher._btnCopyFromPC">
+<summary>
+btnCopyFromPC control.
 </summary>
 <remarks>
 Auto-generated field.
