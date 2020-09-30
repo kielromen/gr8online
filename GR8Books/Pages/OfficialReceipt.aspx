@@ -211,7 +211,7 @@
                 }
             });
 
-            $("#<%=btnCopyFromCA.ClientID%>").click(function (e) {
+            $("#<%=btnCopyFromCASHR.ClientID%>").click(function (e) {
                 e.preventDefault();
                 var Type = "CASHR";
                 var Url = "OfficialReceipt.aspx";
@@ -243,7 +243,7 @@
                     Copy From
                   </button>
                   <div class="dropdown-menu">
-                    <asp:Button Text="Cash Advance" ID="btnCopyFromCA" runat="server" class="dropdown-item" />
+                    <asp:Button Text="Cash Advance Liquidation" ID="btnCopyFromCASHR" runat="server" class="dropdown-item" />
                   </div>
                 </div>
                 <asp:Button Text="Prev" ID="btnPrev" runat="server" class="btn btn-primary" />

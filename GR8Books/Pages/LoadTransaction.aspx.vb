@@ -51,15 +51,15 @@
                 SQL.GetQuery(query)
             Case "CA"
                 query = " SELECT  tblCA.TransID, CA_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks,  " & vbCrLf &
-                        " CASE WHEN View_CA_Balance.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
+                        " CASE WHEN View_CA_Return.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
                         " 	      WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 	    ELSE tblCA.Status END AS Status  " & vbCrLf &
                         " FROM     tblCA LEFT JOIN View_VCEMMaster " & vbCrLf &
                         " ON	   tblCA.VCECode = View_VCEMMaster.Code   " & vbCrLf &
-                        " LEFT JOIN (SELECT TransID FROM View_CA_Balance) AS View_CA_Balance  " & vbCrLf &
-                        " ON	   tblCA.TransID = View_CA_Balance.TransID   " & vbCrLf &
+                        " LEFT JOIN (SELECT TransID FROM View_CA_Return) AS View_CA_Return  " & vbCrLf &
+                        " ON	   tblCA.CA_No = View_CA_Return.TransID   " & vbCrLf &
                         " WHERE CA_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR " & vbCrLf &
-                        " CASE WHEN View_CA_Balance.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
+                        " CASE WHEN View_CA_Return.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
                         " 	      WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 	    ELSE tblCA.Status END LIKE '%" & filter & "%'   " & vbCrLf &
                         " ORDER BY tblCA.TransID DESC"

@@ -51,6 +51,7 @@
                         <div class="list-group">
                             <a href="../Pages/Settings_TransactionID.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Transaction ID Setup</a>
                             <a href="../Pages/Settings_Tax.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Tax Setup</a>
+                            <a href="../Pages/Settings_CostCenter.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cost Center</a>
                         </div>
                     </div>  
                     

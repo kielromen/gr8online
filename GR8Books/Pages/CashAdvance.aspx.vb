@@ -248,11 +248,11 @@ Public Class CashAdvance
     Private Sub LoadTransaction(ByVal ID As String)
         Dim query As String
         query = " SELECT  tblCA.TransID, CA_No, tblCA.VCECode, Name, TransDate, Amount, CostID, Remarks, tblCA.AccountCode ,Accounttitle," & vbCrLf &
-                " CASE WHEN View_CA_Balance.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
+                " CASE WHEN View_CA_Return.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
                 " 	      WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
                 " 	    ELSE tblCA.Status END AS Status  " & vbCrLf &
                 " FROM    tblCA  " & vbCrLf &
-                " LEFT JOIN (SELECT TransID FROM View_CA_Balance) AS View_CA_Balance ON tblCA.TransID = View_CA_Balance.TransID " & vbCrLf &
+                " LEFT JOIN (SELECT TransID FROM View_CA_Return) AS View_CA_Return ON tblCA.CA_No = View_CA_Return.TransID " & vbCrLf &
                 " LEFT JOIN View_VCEMMaster ON tblCA.VCECode = View_VCEMMaster.Code " & vbCrLf &
                 " LEFT JOIN tblCOA ON tblCA.AccountCode = tblCOA.AccountCode " & vbCrLf &
                 " WHERE   tblCA.TransID = '" & ID & "' "

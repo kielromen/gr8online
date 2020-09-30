@@ -32,15 +32,32 @@
             });
         });
     </script>
+        <style type="text/css">
+     .hidden
+     {
+         display:none;
+     }
+    </style>
+
     <asp:Panel runat="server">
         <div class="row">
             <div class="col">
+                 <div class="row mt-4 justify-content-end">
+                    <div class="col-2 ">
+                     <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
+                     </div>
+                 </div>
+                 <br />
                 <asp:GridView ID="gvCollector" runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
                         <asp:BoundField DataField="Collector_Name" HeaderText="Collector Name" />
                         <asp:BoundField DataField="Area" HeaderText="Area" />
+                        <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                        <asp:BoundField DataField="DateModified" HeaderText="DateModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                        <asp:BoundField DataField="WhoCreated" HeaderText="WhoCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                        <asp:BoundField DataField="WhoModified" HeaderText="WhoModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                         <asp:BoundField DataField="Status" HeaderText="Status" />
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
@@ -63,10 +80,10 @@
                 </asp:GridView>
             </div>
         </div>
-        <div class="row mt-4 justify-content-end">
-            <div class="col-3 ">
-                <asp:Button ID="btnAdd" class="btnAdd btn btn-primary btn-block" Text="Add" runat="server" />
-            </div>
-        </div>
+         <div class="row mt-4 justify-content-end">
+           <div class="col-2 ">
+              <asp:Button ID="btnAdd" class="btnAdd btn btn-primary btn-block" Text="Add" runat="server" />
+           </div>
+       </div>
     </asp:Panel>
 </asp:Content>

@@ -1,4 +1,7 @@
-﻿Public Class ItemMasterfile_LoadList
+﻿Imports System.IO
+
+Imports ClosedXML.Excel
+Public Class ItemMasterfile_LoadList
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -52,5 +55,39 @@
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+        If dgvItemList.Rows.Count > 0 Then
+            'To Export all pages
+            dgvItemList.AllowPaging = False
+            Me.LoadItemList()
+
+            Dim dt As New DataTable("Itemlist")
+            For Each cell As TableCell In dgvItemList.HeaderRow.Cells
+                dt.Columns.Add(cell.Text)
+            Next
+            For Each row As GridViewRow In dgvItemList.Rows
+                dt.Rows.Add()
+                For i As Integer = 0 To row.Cells.Count - 1
+                    row.Cells(i).CssClass = "textmode"
+                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                Next
+            Next
+            Using wb As New XLWorkbook()
+                wb.Worksheets.Add(dt)
+                Response.Clear()
+                Response.Buffer = True
+                Response.Charset = ""
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                Response.AddHeader("content-disposition", "attachment;filename=Itemlist.xlsx")
+                Using MyMemoryStream As New MemoryStream()
+                    wb.SaveAs(MyMemoryStream)
+                    MyMemoryStream.WriteTo(Response.OutputStream)
+                    Response.Flush()
+                    Response.[End]()
+                End Using
+            End Using
+        End If
     End Sub
 End Class

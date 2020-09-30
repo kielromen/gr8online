@@ -31,7 +31,19 @@
             });
         });
      </script>
+        <style type="text/css">
+     .hidden
+     {
+         display:none;
+     }
+    </style>
     <asp:Panel runat="server">
+              <div class="row mt-4 justify-content-end">
+                 <div class="col-2 ">
+                    <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
+                 </div>
+             </div>
+             <br />
             <asp:GridView ID="gvCollectionType" runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>

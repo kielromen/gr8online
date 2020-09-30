@@ -1,4 +1,11 @@
-﻿Public Class BankMasterfile_LoadList
+﻿Imports System.IO
+Imports System.Data
+Imports System.Drawing
+Imports System.Data.SqlClient
+Imports System.Configuration
+Imports System.Web.Services
+Imports ClosedXML.Excel
+Public Class BankMasterfile_LoadList
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -13,10 +20,9 @@
 
     Public Sub LoadBankList()
         Dim query As String
-        query = " SELECT ID, Type,  Bank, Branch, tblBank.AccountCode, ISNULL(AccountTitle,'') as AccountTitle, AccountNumber, SeriesStart," &
-                              " SeriesEnd, SeriesDigits FROM tblBank" &
+        query = " SELECT * FROM tblBank" &
                               " LEFT JOIN" &
-                              " tblCOA ON" &
+                              " (SELECT AccountCode,AccountTitle FROM tblCOA) AS tblCOA  ON" &
                               " tblCOA.AccountCode = tblBank.AccountCode " &
                               " WHERE tblBank.Status = @Status"
         SQL.FlushParams()
@@ -40,6 +46,40 @@
             SQL.AddParam("@Status", "Inactive")
             SQL.ExecNonQuery(query)
             Response.Write("<script>alert('Removed successfully');window.location='BankMasterfile_Loadlist.aspx';</script>")
+        End If
+    End Sub
+
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+        If dgvBankList.Rows.Count > 0 Then
+            'To Export all pages
+            dgvBankList.AllowPaging = False
+            Me.LoadBankList()
+
+            Dim dt As New DataTable("Banklist")
+            For Each cell As TableCell In dgvBankList.HeaderRow.Cells
+                dt.Columns.Add(cell.Text)
+            Next
+            For Each row As GridViewRow In dgvBankList.Rows
+                dt.Rows.Add()
+                For i As Integer = 0 To row.Cells.Count - 1
+                    row.Cells(i).CssClass = "textmode"
+                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                Next
+            Next
+            Using wb As New XLWorkbook()
+                wb.Worksheets.Add(dt)
+                Response.Clear()
+                Response.Buffer = True
+                Response.Charset = ""
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                Response.AddHeader("content-disposition", "attachment;filename=Banklist.xlsx")
+                Using MyMemoryStream As New MemoryStream()
+                    wb.SaveAs(MyMemoryStream)
+                    MyMemoryStream.WriteTo(Response.OutputStream)
+                    Response.Flush()
+                    Response.[End]()
+                End Using
+            End Using
         End If
     End Sub
 End Class

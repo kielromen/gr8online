@@ -34,7 +34,20 @@
             });
         });
     </script>
+
+        <style type="text/css">
+     .hidden
+     {
+         display:none;
+     }
+    </style>
     <asp:Panel runat="server" ID="panelBank">
+        <div class="row mt-4 justify-content-end">
+            <div class="col-2 ">
+                <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
+            </div>
+        </div>
+        <br />
         <asp:GridView ID="dgvBankList" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
@@ -43,6 +56,14 @@
                 <asp:BoundField DataField="Bank" HeaderText="Bank" />
                 <asp:BoundField DataField="Branch" HeaderText="Branch" />
                 <asp:BoundField DataField="AccountNumber" HeaderText="AccountNumber" />
+                <asp:BoundField DataField="SeriesStart" HeaderText="SeriesStart" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="SeriesEnd" HeaderText="SeriesEnd" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="SeriesDigits" HeaderText="SeriesDigits" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Status" HeaderText="Status" />
+                <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="DateModified" HeaderText="DateModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoCreated" HeaderText="WhoCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoModified" HeaderText="WhoModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
                         <asp:Button ID="btnView" class="btnView" Text="View" runat="server" title='<%# Eval("ID") %>' />

@@ -1046,6 +1046,17 @@ Public Class CheckVoucher
                     txtRemarks.Text = SQL.SQLDR("Remarks").ToString
                     LoadCopyFromEntry(CopyFromID, Type)
                 End If
+            Case "CASHL"
+                query = " SELECT   TransID, CA_No AS TransNo, VCECode, VCEName, Remarks" &
+                        " FROM     View_CA_Return " &
+                        " WHERE TransID  ='" & CopyFromID & "' "
+                SQL.ReadQuery(query)
+                If SQL.SQLDR.Read Then
+                    txtCode.Text = SQL.SQLDR("VCECode").ToString
+                    txtName.Text = SQL.SQLDR("VCEName").ToString
+                    txtRemarks.Text = SQL.SQLDR("Remarks").ToString
+                    LoadCopyFromEntry(CopyFromID, Type)
+                End If
         End Select
 
     End Sub
@@ -1066,6 +1077,11 @@ Public Class CheckVoucher
             Case "PC"
                 query = " SELECT TransID, PC_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
                         " FROM  View_PC_Balance " &
+                        " WHERE TransID  ='" & CopyFromID & "' "
+                SQL.ReadQuery(query)
+            Case "CASHL"
+                query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount * -1 AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
+                        " FROM  View_CA_Return " &
                         " WHERE TransID  ='" & CopyFromID & "' "
                 SQL.ReadQuery(query)
         End Select
