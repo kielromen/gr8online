@@ -57,7 +57,7 @@
                         $(".txtCompany_Name").prop("readonly", true);
                         return;
                     }
-                 });
+                });
             });
 
 
@@ -142,7 +142,7 @@
             </div>
         </div>
         <div class="row mb-2">
-             <div class="col-sm">
+             <div class="col-sm-6">
                 <div class="row">
                     <div class="col-3 my-auto">
                         <asp:Label Text="General type:" runat="server" />
@@ -211,6 +211,34 @@
                         <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator13" runat="Server" ControlToValidate="ddlRDO" InitialValue="--Select RDO--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
+            </div>      
+        </div>
+         <div class="row mb-2">
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Fiscal/Calendar Year:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:DropDownList ID="ddlYear" runat="server" AutoPostBack="true" OnSelectedIndexChanged="LoadPeriod" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator18" runat="Server" ControlToValidate="ddlYear" InitialValue="--Select Fiscal/Calendar Year--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>       
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="From-To Date:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="dtpFromDate" TextMode="Date" Autopostback="true" class="dtpFromDate form-control" runat="server"  />
+                        <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator19" InitialValue="mm/dd/yyyy" runat="Server" ControlToValidate="dtpFromDate" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                     <div class="col">
+                        <asp:TextBox ID="dtpToDate" TextMode="Date" class="dtpToDate form-control" runat="server"  />
+                        <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator21" InitialValue="mm/dd/yyyy" runat="Server" ControlToValidate="dtpToDate" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                     </div>
+                </div> 
             </div>      
         </div>
         <%--Address--%>
