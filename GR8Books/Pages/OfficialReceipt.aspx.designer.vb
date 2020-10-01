@@ -86,13 +86,13 @@ Partial Public Class OfficialReceipt
     Protected WithEvents btnCopyFrom As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''btnCopyFromCA control.
+    '''btnCopyFromCASHR control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnCopyFromCA As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCopyFromCASHR As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnPrev control.

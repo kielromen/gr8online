@@ -1,4 +1,11 @@
-﻿Public Class Employee_Loadlist
+﻿Imports System.IO
+Imports System.Data
+Imports System.Drawing
+Imports System.Data.SqlClient
+Imports System.Configuration
+Imports System.Web.Services
+Imports ClosedXML.Excel
+Public Class Employee_Loadlist
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -13,7 +20,7 @@
 
     Public Sub Loadlist()
         Dim query As String
-        query = " SELECT Employee_Code, CONCAT(ISNULL(Last_Name, ''), ', ', ISNULL(First_Name, ''), ' ', ISNULL(Middle_Name, ''), ' ', ISNULL(Suffix_Name, '')) AS Employee_Name, CellphoneNo, Status FROM tblEmployee_Master " & vbCrLf &
+        query = " SELECT  CONCAT(ISNULL(Last_Name, ''), ', ', ISNULL(First_Name, ''), ' ', ISNULL(Middle_Name, ''), ' ', ISNULL(Suffix_Name, '')) AS Employee_Name, * FROM tblEmployee_Master " & vbCrLf &
                 " WHERE Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Status", "Active")
@@ -36,6 +43,40 @@
             SQL.AddParam("@Status", "Inactive")
             SQL.ExecNonQuery(query)
             Response.Write("<script>alert('Removed successfully');window.location='Employee_Loadlist.aspx';</script>")
+        End If
+    End Sub
+
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+        If gvEmployee.Rows.Count > 0 Then
+            'To Export all pages
+            gvEmployee.AllowPaging = False
+            Me.Loadlist()
+
+            Dim dt As New DataTable("Employeelist")
+            For Each cell As TableCell In gvEmployee.HeaderRow.Cells
+                dt.Columns.Add(cell.Text)
+            Next
+            For Each row As GridViewRow In gvEmployee.Rows
+                dt.Rows.Add()
+                For i As Integer = 0 To row.Cells.Count - 1
+                    row.Cells(i).CssClass = "textmode"
+                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                Next
+            Next
+            Using wb As New XLWorkbook()
+                wb.Worksheets.Add(dt)
+                Response.Clear()
+                Response.Buffer = True
+                Response.Charset = ""
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                Response.AddHeader("content-disposition", "attachment;filename=Employeelist.xlsx")
+                Using MyMemoryStream As New MemoryStream()
+                    wb.SaveAs(MyMemoryStream)
+                    MyMemoryStream.WriteTo(Response.OutputStream)
+                    Response.Flush()
+                    Response.[End]()
+                End Using
+            End Using
         End If
     End Sub
 End Class

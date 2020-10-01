@@ -31,27 +31,50 @@
             });
         });
     </script>
-<%--     <div class="alert alert-success alert-dismissible fade show" role="alert" id="alertSave" runat="server">
-        <strong>Record successfully saved!</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="Div1" runat="server">
-        <strong>Record successfully updated!</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>--%>
+    <style type="text/css">
+     .hidden
+     {
+         display:none;
+     }
+    </style>
+
     <asp:Panel runat="server">
+        <div class="row mt-4 justify-content-end">
+            <div class="col-2 ">
+                <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
+            </div>
+        </div>
+        <br />
         <asp:GridView ID="gvVendor" runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="Vendor_Code" HeaderText="Vendor Code" />
                 <asp:BoundField DataField="Vendor_Name" HeaderText="Vendor Name" />
+                <asp:BoundField DataField="TIN_No" HeaderText="TIN_No" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_Lot_Unit" HeaderText="Address_Lot_Unit" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_Blk_Bldg" HeaderText="Address_Blk_Bldg" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_Street" HeaderText="Address_Street" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_Subd" HeaderText="Address_Subd" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_Brgy" HeaderText="Address_Brgy" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />                
+                <asp:BoundField DataField="Address_Town_City" HeaderText="Address_Town_City" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_Province" HeaderText="Address_Province" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_Region" HeaderText="Address_Region" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Address_ZipCode" HeaderText="Address_ZipCode" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Contact_Person" HeaderText="Contact Person" />
+                <asp:BoundField DataField="Contact_Position" HeaderText="Contact_Position" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Contact_Telephone" HeaderText="Contact_Telephone" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Contact_Cellphone" HeaderText="Contact Cellphone" />
+                <asp:BoundField DataField="Contact_Fax" HeaderText="Contact_Fax" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Contact_Email" HeaderText="Contact_Email" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Contact_Website" HeaderText="Contact_Website" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Terms" HeaderText="Terms" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="CutOff" HeaderText="CutOff" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="VAT_Type" HeaderText="VAT_Type" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Status" HeaderText="Status" />
+                <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="DateModified" HeaderText="DateModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoCreated" HeaderText="WhoCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoModified" HeaderText="WhoModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
                         <asp:Button ID="btnView" class="btnView" Text="View" runat="server" title='<%# Eval("Vendor_Code")%>' />

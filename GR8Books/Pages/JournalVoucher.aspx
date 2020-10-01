@@ -193,7 +193,7 @@
                     Copy From
                   </button>
                   <div class="dropdown-menu">
-                    <asp:Button Text="Cash Advance" ID="btnCopyFromCA" runat="server" class="dropdown-item" />
+                    <asp:Button Text="Cash Advance Liquidation" ID="btnCopyFromCA" runat="server" class="dropdown-item" />
                   </div>
                 </div>
                 <asp:Button Text="Prev" ID="btnPrev" runat="server" class="btn btn-primary" />

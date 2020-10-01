@@ -59,6 +59,8 @@
                             <a href="../Pages/MemberManagement_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Member Management</a>
                             <a href="../Pages/DisbursementType_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Disbursement Type</a>
                             <a href="../Pages/CashReceiptType_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Receipt Type</a>
+                            <a href="../Pages/Responsibility_Center.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Responsibility Center</a>
+<%--                            <a href="../Pages/CollectionPaymentType_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Collection Payment Type</a>--%>
                             <a href="../Pages/BranchCode_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Branch Code</a>
                         </div>
                     </div>
@@ -77,7 +79,7 @@
                             <a href="../Pages/CashVoucher.aspx"  class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Voucher</a>
                             <a href="../Pages/CheckVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Check Voucher</a>
                             <a href="../Pages/CashAdvance.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Advance</a>
-                             <a href="../Pages/PettyCash.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Petty Cash</a>
+                            <a href="../Pages/PettyCash.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Petty Cash</a>
                         </div>
                     </div>
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseGeneralJournal" role="button" aria-expanded="false" aria-controls="collapseGeneralJournal"><i class="fa fa-list-ul mr-2" aria-hidden="true"></i>General Journal</a>
@@ -89,20 +91,20 @@
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseSales" role="button" aria-expanded="false" aria-controls="collapseSales"><i class="fa fa-money mr-2" aria-hidden="true"></i>Sales</a>
                     <div class="collapse" id="collapseSales">
                         <div class="list-group">
-                            <a href="../Pages/SalesJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Sales Journal</a>
                             <a href="../Pages/SO_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Sales Order</a>
-                            <a href="../Pages/SalesInvoice.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Sales Invoice</a>
                             <a href="../Pages/DeliveryReceipt.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Delivery Receipt</a>
-                            <a href="../Pages/JobOrder.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Job Order</a>
-                            <a href="../Pages/ReceivingReport.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Receiving Report</a>
+                            <a href="../Pages/SalesInvoice.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Sales Invoice</a>
+                            <a href="../Pages/SalesJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Sales Journal</a>
+                            <a href="../Pages/JobOrder.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Job Order</a>                      
                         </div>
                     </div>
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapsePurchasing" role="button" aria-expanded="false" aria-controls="collapsePurchasing"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Purchasing</a>
                     <div class="collapse" id="collapsePurchasing">
                         <div class="list-group">
-                            <a href="../Pages/AccountsPayableVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Accounts Payable Voucher</a>
-                            <a href="../Pages/PurchaseJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Journal</a>
                             <a href="../Pages/PurchaseOrder.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Order</a>
+                            <a href="../Pages/ReceivingReport.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Receiving Report</a>
+                            <a href="../Pages/AccountsPayableVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Accounts Payable Voucher</a>
+                            <a href="../Pages/PurchaseJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Journal</a>                            
                         </div>
                     </div>
                     <a href="../Pages/QueryGenerator.aspx" class="list-group-item list-group-item-action bg-light"><i class="fa fa-list-alt mr-2" aria-hidden="true"></i>Query Generator</a>
@@ -112,7 +114,6 @@
                         <div class="list-group">
                             <a href="../Pages/CreditMemo_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Credit Memo</a>
                             <a href="../Pages/DebitMemo_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Debit Memo</a>
-                            <a href="../Pages/Responsibility_Center.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Responsibility Center</a>
                         </div>
                     </div>
                 </div>

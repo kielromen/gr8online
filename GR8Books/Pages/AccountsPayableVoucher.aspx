@@ -171,7 +171,7 @@
                 e.preventDefault();
                 var Type = "APV";
                 var Url = "AccountsPayableVoucher.aspx";
-                var myWidth = "700";
+                var myWidth = "900";
                 var myHeight = "550";
                 var left = (screen.width - myWidth) / 2;
                 var top = (screen.height - myHeight) / 4;
@@ -209,7 +209,7 @@
                 e.preventDefault();
                 var Type = "CA";
                 var Url = "AccountsPayableVoucher.aspx";
-                var myWidth = "700";
+                var myWidth = "900";
                 var myHeight = "550";
                 var left = (screen.width - myWidth) / 2;
                 var top = (screen.height - myHeight) / 4;

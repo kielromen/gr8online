@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login Page" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Login.aspx.vb" Inherits="GR8Books.Login" %>
+﻿<%@ Page Title="Login Page" ValidateRequest="false" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Login.aspx.vb" Inherits="GR8Books.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="text-center mt-5" style="width: 400px; margin: auto;">

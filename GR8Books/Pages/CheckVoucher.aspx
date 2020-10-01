@@ -242,6 +242,22 @@
                 });
             });
 
+            $("#<%=btnCopyFromCASHR.ClientID%>").click(function (e) {
+                e.preventDefault();
+                var Type = "CASHL";
+                var Url = "CashVoucher.aspx";
+                var myWidth = "900";
+                var myHeight = "550";
+                var left = (screen.width - myWidth) / 2;
+                var top = (screen.height - myHeight) / 4;
+                var win = window.open("CopyFrom.aspx?id=" + Type + '&Url=' + Url, "Load Transaction", 'dialog=yes,resizable=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+                var timer = setInterval(function () {
+                    if (win.closed) {
+                        clearInterval(timer);
+                    }
+                });
+            });
+
             $("#<%=btnCopyFromPC.ClientID%>").click(function (e) {
                 e.preventDefault();
                 var Type = "PC";
@@ -278,6 +294,7 @@
                   <div class="dropdown-menu">
                     <asp:Button Text="Accounts Payable Voucher" ID="btnCopyFromAPV" runat="server" class="dropdown-item" />
                     <asp:Button Text="Cash Advance" ID="btnCopyFromCA" runat="server" class="dropdown-item" />
+                    <asp:Button Text="Cash Advance Liquidation" ID="btnCopyFromCASHR" runat="server" class="dropdown-item" />
                     <asp:Button Text="Petty Cash" ID="btnCopyFromPC" runat="server" class="dropdown-item" />
                   </div>
                 </div>

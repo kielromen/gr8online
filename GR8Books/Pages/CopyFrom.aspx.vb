@@ -1,6 +1,6 @@
 ﻿Public Class CopyFrom
     Inherits System.Web.UI.Page
-    Public RefID As New Dictionary(Of Integer, Integer)
+    Public RefID As New Dictionary(Of String, String)
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
             If Session("SessionExists") = False Then
@@ -81,7 +81,7 @@
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "CASHR"
-                query = "  SELECT   tblCA.TransID, tblCA.CA_No AS TransNo, REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, " & vbCrLf &
+                query = "  SELECT   View_CA_Return.TransID, tblCA.CA_No AS TransNo, REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, " & vbCrLf &
                         " 		    Name, tblCA.Remarks, '' AS Reference, SUM(ISNULL(View_CA_Return.Amount,0)) AS TotalAmount,  " & vbCrLf &
                         "           CASE WHEN View_CA_Return.TransID IS NOT NULL THEN  'Active'    " & vbCrLf &
                         "                WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
@@ -89,12 +89,33 @@
                         "  FROM tblCA LEFT JOIN   " & vbCrLf &
                         "  View_VCEMMaster ON tblCA .VCECode = View_VCEMMaster.Code   " & vbCrLf &
                         "  LEFT JOIN   " & vbCrLf &
-                        "  View_CA_Return ON tblCA.TransID = View_CA_Return.TransID   " & vbCrLf &
+                        "  View_CA_Return ON tblCA.CA_No = View_CA_Return.TransID   " & vbCrLf &
                         "  WHERE (tblCA.CA_No LIKE '%" & filter & "%' OR tblCA.Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%') " & vbCrLf &
                         "  AND CASE WHEN View_CA_Return.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
                         " 	      WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
-                        " 	 ELSE tblCA.Status END = 'Active'  " & vbCrLf &
-                        "  GROUP BY tblCA.TransID, tblCA.CA_No, TransDate, Name, tblCA.Remarks,  " & vbCrLf &
+                        " 	 ELSE tblCA.Status END = 'Active' AND View_CA_Return.Amount > 0  " & vbCrLf &
+                        "  GROUP BY View_CA_Return.TransID, tblCA.CA_No, TransDate, Name, tblCA.Remarks,  " & vbCrLf &
+                        " 	   CASE WHEN View_CA_Return.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
+                        " 	        WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	   ELSE tblCA.Status END  " & vbCrLf &
+                        "  ORDER BY TransID DESC "
+                SQL.FlushParams()
+                SQL.GetQuery(query)
+            Case "CASHL"
+                query = "  SELECT   View_CA_Return.TransID, tblCA.CA_No AS TransNo, REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, " & vbCrLf &
+                        " 		    Name, tblCA.Remarks, '' AS Reference, SUM(ISNULL(View_CA_Return.Amount,0)) AS TotalAmount,  " & vbCrLf &
+                        "           CASE WHEN View_CA_Return.TransID IS NOT NULL THEN  'Active'    " & vbCrLf &
+                        "                WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 		    ELSE tblCA.Status END AS Status  " & vbCrLf &
+                        "  FROM tblCA LEFT JOIN   " & vbCrLf &
+                        "  View_VCEMMaster ON tblCA .VCECode = View_VCEMMaster.Code   " & vbCrLf &
+                        "  LEFT JOIN   " & vbCrLf &
+                        "  View_CA_Return ON tblCA.CA_No = View_CA_Return.TransID   " & vbCrLf &
+                        "  WHERE (tblCA.CA_No LIKE '%" & filter & "%' OR tblCA.Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%') " & vbCrLf &
+                        "  AND CASE WHEN View_CA_Return.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
+                        " 	      WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	 ELSE tblCA.Status END = 'Active' AND View_CA_Return.Amount < 0  " & vbCrLf &
+                        "  GROUP BY View_CA_Return.TransID, tblCA.CA_No, TransDate, Name, tblCA.Remarks,  " & vbCrLf &
                         " 	   CASE WHEN View_CA_Return.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
                         " 	        WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 	   ELSE tblCA.Status END  " & vbCrLf &
@@ -123,7 +144,7 @@
     Private Sub bntChoose_Click(sender As Object, e As EventArgs) Handles bntChoose.Click
         For Each row As GridViewRow In dgvList.Rows
             If TryCast(row.FindControl("chkCheck"), CheckBox).Checked Then
-                Dim id As Integer = Integer.Parse(row.Cells(1).Text)
+                Dim id As String = row.Cells(1).Text
                 Session("CopyID") = id.ToString
                 RefID.Add(id, id)
             End If

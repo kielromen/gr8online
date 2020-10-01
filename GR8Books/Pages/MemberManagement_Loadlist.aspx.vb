@@ -1,4 +1,11 @@
-﻿Public Class MemberManagement_Loadlist
+﻿Imports System.IO
+Imports System.Data
+Imports System.Drawing
+Imports System.Data.SqlClient
+Imports System.Configuration
+Imports System.Web.Services
+Imports ClosedXML.Excel
+Public Class MemberManagement_Loadlist
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -13,7 +20,7 @@
 
     Public Sub Loadlist()
         Dim query As String
-        query = "SELECT Member_Code, Member_Name, Member_Type, Status FROM tblMember_Master WHERE Status = @Status"
+        query = "SELECT * FROM tblMember_Master WHERE Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Status", "Active")
         SQL.GetQuery(query)
@@ -36,5 +43,39 @@
     Private Sub gvMember_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvMember.PageIndexChanging
         gvMember.PageIndex = e.NewPageIndex
         Loadlist()
+    End Sub
+
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+        If gvMember.Rows.Count > 0 Then
+            'To Export all pages
+            gvMember.AllowPaging = False
+            Me.Loadlist()
+
+            Dim dt As New DataTable("Memberlist")
+            For Each cell As TableCell In gvMember.HeaderRow.Cells
+                dt.Columns.Add(cell.Text)
+            Next
+            For Each row As GridViewRow In gvMember.Rows
+                dt.Rows.Add()
+                For i As Integer = 0 To row.Cells.Count - 1
+                    row.Cells(i).CssClass = "textmode"
+                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                Next
+            Next
+            Using wb As New XLWorkbook()
+                wb.Worksheets.Add(dt)
+                Response.Clear()
+                Response.Buffer = True
+                Response.Charset = ""
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                Response.AddHeader("content-disposition", "attachment;filename=Memberlist.xlsx")
+                Using MyMemoryStream As New MemoryStream()
+                    wb.SaveAs(MyMemoryStream)
+                    MyMemoryStream.WriteTo(Response.OutputStream)
+                    Response.Flush()
+                    Response.[End]()
+                End Using
+            End Using
+        End If
     End Sub
 End Class

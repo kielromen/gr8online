@@ -38,8 +38,21 @@
 
         });
     </script>
+        <style type="text/css">
+     .hidden
+     {
+         display:none;
+     }
+    </style>
+
     <asp:Panel runat="server">
-        <asp:GridView ID="dgvItemList" runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None" OnRowDataBound="OnRowDataBound" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found"> 
+        <div class="row mt-4 justify-content-end">
+            <div class="col-2 ">
+                <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
+            </div>
+        </div>
+        <br />
+        <asp:GridView ID="dgvItemList" runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found"> 
              <AlternatingRowStyle BackColor="White" />
             <Columns>
                  <asp:TemplateField HeaderText="Photo">
@@ -50,7 +63,21 @@
                 <asp:BoundField DataField="ItemCode" HeaderText="Item Code" />
                 <asp:BoundField DataField="ItemName" HeaderText="Item Name" />
                 <asp:BoundField DataField="BarCode" HeaderText="BarCode" />
+                <asp:BoundField DataField="ItemType" HeaderText="ItemType" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="ItemCategory" HeaderText="ItemCategory" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="ItemUOM" HeaderText="ItemUOM" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="ItemUOM_QTY" HeaderText="ItemUOM_QTY" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="ItemPrice" HeaderText="Item Price" />
+                <asp:BoundField DataField="ItemCost" HeaderText="ItemCost" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Warehouse" HeaderText="Warehouse" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Location" HeaderText="Location" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Bin" HeaderText="Bin" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="LotNo" HeaderText="LotNo" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Default_Supplier" HeaderText="Default_Supplier" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoCreated" HeaderText="WhoCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="DateModified" HeaderText="DateModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoModified" HeaderText="WhoModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Status" HeaderText="Status" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
