@@ -33,6 +33,22 @@ Public Class Company_SetUp
         txtCompany_Name.Text = ""
         txtCompany_Email.Text = ""
         txtTIN_No.Text = ""
+        txtBranchCode.Text = ""
+        txtFirstName.Text = ""
+        txtLastName.Text = ""
+        txtMiddleName.Text = ""
+        txtSuffixName.Text = ""
+
+        ddlClassification.Items.Clear()
+        ddlClassification.Items.Add("--Select Classification--")
+        ddlClassification.Items.Add("Individual")
+        ddlClassification.Items.Add("Non-Individual")
+        ddlClassification.DataBind()
+
+        ddlRDO.Items.Clear()
+        ddlRDO.Items.Add("--Select RDO--")
+        ddlRDO.DataSource = LoadtblDefault_RDO().ToArray
+        ddlRDO.DataBind()
 
         ddlVAT_Type.Items.Clear()
         ddlVAT_Type.Items.Add("--Select VAT Type--")
@@ -113,6 +129,14 @@ Public Class Company_SetUp
             ddlGeneral_Type.SelectedValue = SQL.SQLDR("General_Type").ToString
             ddlIndustry.SelectedValue = SQL.SQLDR("Industry").ToString
             ddlVAT_Type.SelectedValue = SQL.SQLDR("VAT_Type").ToString
+
+            ddlClassification.SelectedValue = SQL.SQLDR("Classification").ToString
+            txtLastName.Text = SQL.SQLDR("Last_Name").ToString
+            txtFirstName.Text = SQL.SQLDR("First_Name").ToString
+            txtMiddleName.Text = SQL.SQLDR("Middle_Name").ToString
+            txtSuffixName.Text = SQL.SQLDR("Suffix_Name").ToString
+            txtBranchCode.Text = SQL.SQLDR("BranchCode").ToString
+            ddlRDO.SelectedValue = SQL.SQLDR("RDO").ToString
         End If
 
         query = " SELECT * FROM [Main].dbo.tblCompany_Information " & vbCrLf &
@@ -134,16 +158,16 @@ Public Class Company_SetUp
         Dim query As String
         query = " INSERT INTO [Main].dbo.tblCompany_Information " &
                 " (Company_Code, Company_Name, Company_Logo, Company_Contact, Company_Email, Default_EmailAddress, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy, Address_Town_City, Address_Province, 
-                         Address_Region , Address_ZipCode, VAT_Type, TIN_No, General_Type, Industry, Status, DateCreated, WhoCreated)" &
+                         Address_Region , Address_ZipCode, VAT_Type, TIN_No, General_Type, Industry, Classification, BranchCode, RDO, First_Name, Last_Name, Middle_Name, Suffix_Name, Status, DateCreated, WhoCreated)" &
                 " VALUES " &
                 " (@Company_Code, @Company_Name, @Company_Logo, @Company_Contact, @Company_Email, @Default_EmailAddress, @Address_Lot_Unit, @Address_Blk_Bldg, @Address_Street, @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, 
-                         @Address_Region, @Address_ZipCode, @VAT_Type, @TIN_No, @General_Type, @Industry, @Status, @DateCreated, @WhoCreated)"
+                         @Address_Region, @Address_ZipCode, @VAT_Type, @TIN_No, @General_Type, @Industry, @Classification, @BranchCode, @RDO, @First_Name, @Last_Name, @Middle_Name, @Suffix_Name, @Status, @DateCreated, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@Company_Code", ID)
         SQL.AddParam("@Company_Name", txtCompany_Name.Text)
         SQL.AddParam("@Company_Logo", bytes, SqlDbType.VarBinary)
         SQL.AddParam("@Company_Contact", txtCompany_Contact.Text)
-        SQL.AddParam("@Company_Email", txtCompany_Contact.Text)
+        SQL.AddParam("@Company_Email", txtCompany_Email.Text)
         SQL.AddParam("@Default_EmailAddress", Session("EmailAddress"))
         SQL.AddParam("@Address_Lot_Unit", txtAddress_Lot_Unit.Text)
         SQL.AddParam("@Address_Blk_Bldg", txtAddress_Blk_Bldg.Text)
@@ -158,6 +182,13 @@ Public Class Company_SetUp
         SQL.AddParam("@TIN_No", txtTIN_No.Text)
         SQL.AddParam("@General_Type", ddlGeneral_Type.Text)
         SQL.AddParam("@Industry", ddlIndustry.Text)
+        SQL.AddParam("@Classification", ddlClassification.Text)
+        SQL.AddParam("@BranchCode", txtBranchCode.Text)
+        SQL.AddParam("@RDO", ddlRDO.SelectedValue)
+        SQL.AddParam("@First_Name", txtFirstName.Text)
+        SQL.AddParam("@Last_Name", txtLastName.Text)
+        SQL.AddParam("@Middle_Name", txtMiddleName.Text)
+        SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@Status", "Active")
         SQL.AddParam("@DateCreated", Now.Date)
         SQL.AddParam("@WhoCreated", Session("EmailAddress"))
@@ -172,13 +203,15 @@ Public Class Company_SetUp
                 " Address_Blk_Bldg = @Address_Blk_Bldg, Address_Street = @Address_Street, Address_Subd = @Address_Subd, " & vbCrLf &
                 " Address_Brgy =@Address_Brgy, Address_Town_City = @Address_Town_City, Address_Province = @Address_Province, " & vbCrLf &
                 " Address_Region = @Address_Region, Address_ZipCode = @Address_ZipCode, VAT_Type = @VAT_Type, TIN_No = @TIN_No, " & vbCrLf &
-                " General_Type = @General_Type, Industry = @Industry, DateModified = @DateModified, WhoModified = @WhoModified" & vbCrLf &
-                " WHERE Company_Code = @Company_Code AND Status = @Status"
+                " General_Type = @General_Type, Industry = @Industry, Classification = @Classification, BranchCode = @BranchCode, RDO = @RDO, " & vbCrLf &
+                " First_Name = @First_Name, Last_Name = @Last_Name, Middle_Name = @Middle_Name, Suffix_Name = @Suffix_Name, " & vbCrLf &
+                " DateModified = @DateModified, WhoModified = @WhoModified" & vbCrLf &
+                " WHERE Company_Code = @Company_Code And Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Company_Code", Company_Code)
         SQL.AddParam("@Company_Name", txtCompany_Name.Text)
         SQL.AddParam("@Company_Contact", txtCompany_Contact.Text)
-        SQL.AddParam("@Company_Email", txtCompany_Contact.Text)
+        SQL.AddParam("@Company_Email", txtCompany_Email.Text)
         SQL.AddParam("@Default_EmailAddress", Session("EmailAddress"))
         SQL.AddParam("@Address_Lot_Unit", txtAddress_Lot_Unit.Text)
         SQL.AddParam("@Address_Blk_Bldg", txtAddress_Blk_Bldg.Text)
@@ -193,6 +226,13 @@ Public Class Company_SetUp
         SQL.AddParam("@TIN_No", txtTIN_No.Text)
         SQL.AddParam("@General_Type", ddlGeneral_Type.Text)
         SQL.AddParam("@Industry", ddlIndustry.Text)
+        SQL.AddParam("@Classification", ddlClassification.Text)
+        SQL.AddParam("@BranchCode", txtBranchCode.Text)
+        SQL.AddParam("@RDO", ddlRDO.SelectedValue)
+        SQL.AddParam("@First_Name", txtFirstName.Text)
+        SQL.AddParam("@Last_Name", txtLastName.Text)
+        SQL.AddParam("@Middle_Name", txtMiddleName.Text)
+        SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@Status", "Active")
         SQL.AddParam("@DateModified", Now.Date)
         SQL.AddParam("@WhoModified", Session("EmailAddress"))
@@ -204,7 +244,7 @@ Public Class Company_SetUp
                 bytes = br.ReadBytes(fuCompanyLogo.PostedFile.ContentLength)
             End Using
             query = " UPDATE [Main].dbo.tblCompany_Information SET Company_Logo = @Company_Logo " &
-                    " WHERE Company_Code = @Company_Code AND Status = @Status"
+                    " WHERE Company_Code = @Company_Code And Status = @Status"
             SQL.FlushParams()
             SQL.AddParam("@Company_Code", Company_Code)
             SQL.AddParam("@Company_Logo", bytes, SqlDbType.VarBinary)

@@ -452,7 +452,6 @@
     <Content Include="Pages\SalesJournal.aspx" />
     <Content Include="Pages\SalesJournal_Loadlist.aspx" />
     <Content Include="Pages\Settings.aspx" />
-    <Content Include="Pages\Settings_CostCenter.aspx" />
     <Content Include="Pages\Settings_DefaultAccount.aspx" />
     <Content Include="Pages\Settings_Tax.aspx" />
     <Content Include="Pages\Settings_TransactionID.aspx" />
@@ -1187,13 +1186,6 @@
     <Compile Include="Pages\Settings.aspx.vb">
       <DependentUpon>Settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Settings_CostCenter.aspx.designer.vb">
-      <DependentUpon>Settings_CostCenter.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Settings_CostCenter.aspx.vb">
-      <DependentUpon>Settings_CostCenter.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Settings_DefaultAccount.aspx.designer.vb">
       <DependentUpon>Settings_DefaultAccount.aspx</DependentUpon>

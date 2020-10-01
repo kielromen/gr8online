@@ -132,6 +132,20 @@ Module ModuleGen
         Return list
     End Function
 
+
+    Public Function LoadtblDefault_RDO() As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT RDO_Code, RDO_Description " &
+                       " FROM   [Main].dbo.tblDefault_RDO  "
+        SQL.ReadQuery(query)
+        While SQL.SQLDR.Read
+            list.Add(SQL.SQLDR("RDO_Code").ToString & "-" & SQL.SQLDR("RDO_Description").ToString)
+        End While
+        Return list
+    End Function
+
+
     Public Function GenerateRandomPassword(ByRef iLength As Integer) As String
         Dim rdm As New Random()
         Dim allowChrs() As Char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ0123456789".ToCharArray()
