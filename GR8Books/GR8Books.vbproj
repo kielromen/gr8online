@@ -398,7 +398,6 @@
     <Content Include="Pages\Branchcode_Entry.aspx" />
     <Content Include="Pages\Branchcode_Maintenance.aspx" />
     <Content Include="Pages\CashAdvance.aspx" />
-    <Content Include="Pages\CashDisbursement_Entry.aspx" />
     <Content Include="Pages\CashReceiptType_Loadlist.aspx" />
     <Content Include="Pages\CashReceiptType_Maintenance.aspx">
       <BrowseToURL>~/Pages/CashReceiptType_Maintenance.aspx</BrowseToURL>
@@ -793,13 +792,6 @@
     </Compile>
     <Compile Include="Pages\CashAdvance.aspx.vb">
       <DependentUpon>CashAdvance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\CashDisbursement_Entry.aspx.designer.vb">
-      <DependentUpon>CashDisbursement_Entry.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\CashDisbursement_Entry.aspx.vb">
-      <DependentUpon>CashDisbursement_Entry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\CashReceiptType_Loadlist.aspx.designer.vb">
