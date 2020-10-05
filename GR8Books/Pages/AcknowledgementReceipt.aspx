@@ -5,7 +5,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../Scripts/jquery.formatCurrency-1.4.0.js"></script>
-    
+
     <script src="../Scripts/umd/popper.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
 
@@ -23,7 +23,7 @@
                 e.preventDefault();
             }
         });
-    </script>  
+    </script>
 
 
     <script type='text/javascript'>
@@ -240,12 +240,12 @@
                 <asp:Button Text="Cancel" ID="btnCancel" runat="server" class="btnCancel btn btn-primary" />
                 <asp:Button Text="Close" ID="btnClose" runat="server" class="btn btn-primary" />
                 <div class="btn-group">
-                  <button type="button"  runat="server" id="btnCopyFrom" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Copy From
-                  </button>
-                  <div class="dropdown-menu">
-                    <asp:Button Text="Cash Advance Liquidation" ID="btnCopyFromCASHR" runat="server" class="dropdown-item" />
-                  </div>
+                    <button type="button" runat="server" id="btnCopyFrom" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Copy From
+                    </button>
+                    <div class="dropdown-menu">
+                        <asp:Button Text="Cash Advance Liquidation" ID="btnCopyFromCASHR" runat="server" class="dropdown-item" />
+                    </div>
                 </div>
                 <asp:Button Text="Prev" ID="btnPrev" runat="server" class="btn btn-primary" />
                 <asp:Button Text="Next" ID="btnNext" runat="server" class="btn btn-primary" />
@@ -265,7 +265,7 @@
                         <div class="col">
                             <asp:DropDownList ID="ddlType" AutoPostBack="True" runat="server" class="form-control" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
                             </asp:DropDownList>
-                             <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator9" runat="Server" ControlToValidate="ddlType" InitialValue="--Select Payment Type--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator9" runat="Server" ControlToValidate="ddlType" InitialValue="--Select Payment Type--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -282,7 +282,12 @@
                             <asp:Label Text="VCEName:" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:TextBox ID="txtName" runat="server" class="form-control"  AutoComplete="off"/>
+                            <div class="input-group">
+                                <asp:TextBox ID="txtName" runat="server" class="form-control" AutoComplete="off" />
+                                <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewVCE" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
                             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -305,7 +310,7 @@
                             <asp:Label Text="Remarks :" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:TextBox ID="txtRemarks" runat="server" class="form-control"  AutoComplete="off" />
+                            <asp:TextBox ID="txtRemarks" runat="server" class="form-control" AutoComplete="off" />
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -314,54 +319,54 @@
                         </div>
                         <div class="col">
                             <asp:DropDownList runat="server" ID="ddlCollectionType" class="ddlCollectionType form-control" AppendDataBoundItems="true" AutoPostBack="true" EnableViewState="true" OnSelectedIndexChanged="ddlCollectionType_SelectedIndexChanged">
-                             </asp:DropDownList>
+                            </asp:DropDownList>
                         </div>
                     </div>
-                  
+
                 </div>
                 <div class="col">
-                <asp:Panel ID="panelBank" runat="server">
-                    <div id="div_Bank">
-                        <div class="row mb-2">
-                            <div class="col-4 my-auto">
-                                <asp:Label Text="Bank:" runat="server" />
+                    <asp:Panel ID="panelBank" runat="server">
+                        <div id="div_Bank">
+                            <div class="row mb-2">
+                                <div class="col-4 my-auto">
+                                    <asp:Label Text="Bank:" runat="server" />
+                                </div>
+
+                                <div class="col">
+                                    <asp:TextBox ID="txtBank_Name" runat="server" class="form-control" AutoComplete="off" />
+                                </div>
                             </div>
 
-                            <div class="col">
-                                <asp:TextBox ID="txtBank_Name" runat="server" class="form-control"  AutoComplete="off" />
+
+                            <div class="row mb-2">
+                                <div class="col-4 my-auto">
+                                    <asp:Label Text="Check No:" runat="server" />
+                                </div>
+
+                                <div class="col">
+                                    <asp:TextBox ID="txtBank_CheckNo" runat="server" class="form-control" AutoComplete="off" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-4 my-auto">
+                                    <asp:Label Text="Check Date:" runat="server" />
+                                </div>
+
+                                <div class="col">
+                                    <input type="date" runat="server" id="dtpBank_Date" class="form-control">
+                                </div>
                             </div>
                         </div>
-
-
-                        <div class="row mb-2">
-                            <div class="col-4 my-auto">
-                                <asp:Label Text="Check No:" runat="server" />
-                            </div>
-
-                            <div class="col">
-                                <asp:TextBox ID="txtBank_CheckNo" runat="server" class="form-control"  AutoComplete="off" />
-                            </div>
-                        </div>
-
-                        <div class="row mb-2">
-                            <div class="col-4 my-auto">
-                                <asp:Label Text="Check Date:" runat="server" />
-                            </div>
-
-                            <div class="col">
-                                <input type="date" runat="server" id="dtpBank_Date" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </asp:Panel>
-                 </div>
+                    </asp:Panel>
+                </div>
                 <div class="col">
                     <div class="row mb-2">
                         <div class="col-4 my-auto">
                             <asp:Label Text="AR No.:" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:TextBox ID="txtTrans_Num" runat="server" class="form-control"  AutoComplete="off" />
+                            <asp:TextBox ID="txtTrans_Num" runat="server" class="form-control" AutoComplete="off" />
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -377,7 +382,7 @@
                             <asp:Label Text="Ref Type:" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:TextBox ID="txtRef_Type" runat="server" ReadOnly="true" class="form-control"  AutoComplete="off" />
+                            <asp:TextBox ID="txtRef_Type" runat="server" ReadOnly="true" class="form-control" AutoComplete="off" />
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -385,10 +390,10 @@
                             <asp:Label Text="Ref No.:" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:TextBox ID="txtRef_No" runat="server" ReadOnly="true" class="form-control"  AutoComplete="off" />
+                            <asp:TextBox ID="txtRef_No" runat="server" ReadOnly="true" class="form-control" AutoComplete="off" />
                         </div>
                     </div>
-                   <div class="row mb-2">
+                    <div class="row mb-2">
                         <div class="col-4 my-auto">
                             <asp:Label Text="Status:" runat="server" />
                         </div>
@@ -409,88 +414,88 @@
             </div>
 
             <div style="overflow-y: scroll;">
-            <asp:GridView ID="dgvEntry" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" ShowFooter="True">
-                <AlternatingRowStyle BackColor="White" />
-                <Columns>
-                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="X" ControlStyle-CssClass="btn btn-danger" />
-                    <asp:BoundField DataField="chNo" HeaderText="No." />
-                    <asp:TemplateField HeaderText="Account Code">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtAccntCode_Entry" Class="txtAccntCode_Entry form-control" runat="server" Width="110" AutoComplete="off"></asp:TextBox>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Button ID="btnAdd_Entry" runat="server" class="btn btn-light btn-sm" Text="Add Entry" OnClick="AddNewRow" AutoPostBack="False" />
-                        </FooterTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Account Title">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="100%"></asp:TextBox>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Button ID="btnCompute" runat="server" class="btnCompute btn btn-light btn-sm" Text="Auto Entry" OnClick="ComputeRow" />
-                        </FooterTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Debit">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtDebit_Entry" onkeydown="return((event.keyCode==96 ||event.keyCode==97 ||event.keyCode==98 ||event.keyCode==99 ||event.keyCode==100 ||event.keyCode==101 ||event.keyCode==102 ||event.keyCode==103 ||event.keyCode==104 ||event.keyCode==105 ||event.keyCode==106 ||event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtDebit_Entry form-control" runat="server" Width="110" Text="0.00" Style="text-align: right" AutoComplete="off"></asp:TextBox>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Label ID="lblTotalDebit_Amount" Class="lblTotalDebit_Amount" runat="server" Font-Bold="true" Text="0.00" AutoComplete="off"></asp:Label>
-                        </FooterTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Credit">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtCredit_Entry" onkeydown="return((event.keyCode==96 ||event.keyCode==97 ||event.keyCode==98 ||event.keyCode==99 ||event.keyCode==100 ||event.keyCode==101 ||event.keyCode==102 ||event.keyCode==103 ||event.keyCode==104 ||event.keyCode==105 ||event.keyCode==106 ||event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtCredit_Entry form-control" runat="server" Width="110" Text="0.00" Style="text-align: right" AutoComplete="off"></asp:TextBox>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Label ID="lblTotalCredit_Amount" runat="server" Class="lblTotalCredit_Amount" Font-Bold="true" Text="0.00" AutoComplete="off"></asp:Label>
-                        </FooterTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Tax">
-                        <ItemTemplate>
-                            <asp:Button ID="btnTax_Entry" Class="btnTax_Entry  btn btn-primary" runat="server" text="%" data-toggle="modal" data-target="#modalTax" data-whatever="@mdo"></asp:Button>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Particulars">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Code">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtCode_Entry" class="txtCode_Entry form-control " runat="server" Width="110" AutoComplete="off"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Name">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                <asp:GridView ID="dgvEntry" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" ShowFooter="True">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="X" ControlStyle-CssClass="btn btn-danger" />
+                        <asp:BoundField DataField="chNo" HeaderText="No." />
+                        <asp:TemplateField HeaderText="Account Code">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtAccntCode_Entry" Class="txtAccntCode_Entry form-control" runat="server" Width="110" AutoComplete="off"></asp:TextBox>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Button ID="btnAdd_Entry" runat="server" class="btn btn-light btn-sm" Text="Add Entry" OnClick="AddNewRow" AutoPostBack="False" />
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Account Title">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="100%"></asp:TextBox>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Button ID="btnCompute" runat="server" class="btnCompute btn btn-light btn-sm" Text="Auto Entry" OnClick="ComputeRow" />
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Debit">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtDebit_Entry" onkeydown="return((event.keyCode==96 ||event.keyCode==97 ||event.keyCode==98 ||event.keyCode==99 ||event.keyCode==100 ||event.keyCode==101 ||event.keyCode==102 ||event.keyCode==103 ||event.keyCode==104 ||event.keyCode==105 ||event.keyCode==106 ||event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtDebit_Entry form-control" runat="server" Width="110" Text="0.00" Style="text-align: right" AutoComplete="off"></asp:TextBox>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label ID="lblTotalDebit_Amount" Class="lblTotalDebit_Amount" runat="server" Font-Bold="true" Text="0.00" AutoComplete="off"></asp:Label>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Credit">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtCredit_Entry" onkeydown="return((event.keyCode==96 ||event.keyCode==97 ||event.keyCode==98 ||event.keyCode==99 ||event.keyCode==100 ||event.keyCode==101 ||event.keyCode==102 ||event.keyCode==103 ||event.keyCode==104 ||event.keyCode==105 ||event.keyCode==106 ||event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtCredit_Entry form-control" runat="server" Width="110" Text="0.00" Style="text-align: right" AutoComplete="off"></asp:TextBox>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label ID="lblTotalCredit_Amount" runat="server" Class="lblTotalCredit_Amount" Font-Bold="true" Text="0.00" AutoComplete="off"></asp:Label>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Tax">
+                            <ItemTemplate>
+                                <asp:Button ID="btnTax_Entry" Class="btnTax_Entry  btn btn-primary" runat="server" Text="%" data-toggle="modal" data-target="#modalTax" data-whatever="@mdo"></asp:Button>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Particulars">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Code">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtCode_Entry" class="txtCode_Entry form-control " runat="server" Width="110" AutoComplete="off"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Name">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Cost Center">
-                        <ItemTemplate>
-                            <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px"  AutoPostBack="false" EnableViewState="true">
-                            </asp:DropDownList>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Cost Center">
+                            <ItemTemplate>
+                                <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px" AutoPostBack="false" EnableViewState="true">
+                                </asp:DropDownList>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Reference ID">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-                <EditRowStyle BackColor="#2461BF" />
-                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EFF3FB" />
-                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                <SortedDescendingHeaderStyle BackColor="#4870BE" />
-            </asp:GridView>
+                        <asp:TemplateField HeaderText="Reference ID">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
             </div>
 
         </asp:Panel>

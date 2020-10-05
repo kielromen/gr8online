@@ -282,7 +282,12 @@
                             <asp:Label Text="VCEName:" runat="server" />
                         </div>
                         <div class="col">
+                                                        <div class="input-group">
                             <asp:TextBox ID="txtName" runat="server" class="form-control"  AutoComplete="off"/>
+  <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewVCE" runat="server" class="btn btn-primary" />
+                                </div>
+                                                            </div>
                             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
