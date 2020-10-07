@@ -211,73 +211,78 @@
                             <asp:Label Text="Name:" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:TextBox ID="txtName" runat="server" class="form-control" autocomplete="off" />
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-3 my-auto">
-                            <asp:Label Text="Plate No.:" runat="server" />
-                        </div>
-                        <div class="col">
-                            <asp:TextBox ID="txtPlateNo" runat="server" class="form-control text-right" autocomplete="off" />
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtPlateNo" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-3 my-auto">
-                            <asp:Label Text="Driver Name:" runat="server" />
-                        </div>
-                        <div class="col">
-                            <asp:TextBox ID="txtDriverName" runat="server" class="form-control text-right" autocomplete="off" />
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtDriverName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-3 my-auto">
-                            <asp:Label Text="Remarks:" runat="server" autocomplete="off" />
-                        </div>
-                        <div class="col">
-                            <asp:TextBox ID="txtRemarks" runat="server" class="form-control" autocomplete="off" />
-                        </div>
+                            <div class="input-group">
+                                <asp:TextBox ID="txtName" runat="server" class="form-control" autocomplete="off" />
+                                <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-
-
-                <div class="col">
-                    <div class="row mb-2">
-                        <div class="col-3 my-auto">
-                            <asp:Label Text="Ref.:" runat="server" />
-                        </div>
-                        <div class="col">
-                            <asp:TextBox ID="txtRef_No" runat="server" class="form-control" autocomplete="off" />
-                        </div>
+                <div class="row mb-2">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Plate No.:" runat="server" />
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-3 my-auto">
-                            <asp:Label Text="Trans No.:" runat="server" />
-                        </div>
-                        <div class="col">
-                            <asp:TextBox ID="txtTrans_Num" runat="server" class="form-control" autocomplete="off" />
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-3 my-auto">
-                            <asp:Label Text="Document Date:" runat="server" />
-                        </div>
-                        <div class="col">
-                            <input type="date" runat="server" id="dtpDoc_Date" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-3 my-auto">
-                            <asp:Label Text="Delivery Date:" runat="server" />
-                        </div>
-                        <div class="col">
-                            <input type="date" runat="server" id="dtpDel_Date" class="form-control">
-                        </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtPlateNo" runat="server" class="form-control text-right" autocomplete="off" />
+                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtPlateNo" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Driver Name:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtDriverName" runat="server" class="form-control text-right" autocomplete="off" />
+                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtDriverName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Remarks:" runat="server" autocomplete="off" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtRemarks" runat="server" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="row mb-2">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Ref.:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtRef_No" runat="server" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Trans No.:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtTrans_Num" runat="server" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Document Date:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <input type="date" runat="server" id="dtpDoc_Date" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Delivery Date:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <input type="date" runat="server" id="dtpDel_Date" class="form-control">
+                    </div>
+                </div>
+            </div>
             </div>
 
         </asp:Panel>
