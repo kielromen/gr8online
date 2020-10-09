@@ -23,13 +23,13 @@ Partial Public Class CollectionPaymentType_LoadList
     Protected WithEvents btnExport As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''gvCollectionType control.
+    '''gvPaymentType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvCollectionType As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents gvPaymentType As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btnAdd control.

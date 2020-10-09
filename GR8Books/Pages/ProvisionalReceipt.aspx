@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Provitional Receipt" MaintainScrollPositionOnPostback="true" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="ProvitionalReceipt.aspx.vb" Inherits="GR8Books.ProvitionalReceipt" %>
+﻿<%@ Page Title="Provitional Receipt" MaintainScrollPositionOnPostback="true" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="ProvisionalReceipt.aspx.vb" Inherits="GR8Books.ProvisionalReceipt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -42,7 +42,7 @@
             $(".txtAccntTitle_Entry").autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "<%= ResolveUrl("ProvitionalReceipt.aspx/ListAccountTitle") %>",
+                        url: "<%= ResolveUrl("ProvisionalReceipt.aspx/ListAccountTitle") %>",
                         data: "{'prefix': '" + request.term + "'}",
                         dataType: "json",
                         type: "POST",
@@ -74,7 +74,7 @@
             $(".txtName_Entry").autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "<%= ResolveUrl("ProvitionalReceipt.aspx/ListVCE") %>",
+                        url: "<%= ResolveUrl("ProvisionalReceipt.aspx/ListVCE") %>",
                         data: "{'prefix': '" + request.term + "'}",
                         dataType: "json",
                         type: "POST",
@@ -107,7 +107,7 @@
             $("#<%=txtName.ClientID%>").autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "<%= ResolveUrl("ProvitionalReceipt.aspx/ListVCE") %>",
+                        url: "<%= ResolveUrl("ProvisionalReceipt.aspx/ListVCE") %>",
                         data: "{'prefix': '" + request.term + "'}",
                         dataType: "json",
                         type: "POST",
@@ -181,7 +181,7 @@
             $("#<%=btnSearch.ClientID%>").click(function (e) {
                 e.preventDefault();
                 var Type = "AR";
-                var Url = "ProvitionalReceipt.aspx";
+                var Url = "ProvisionalReceipt.aspx";
                 var myWidth = "900";
                 var myHeight = "550";
                 var left = (screen.width - myWidth) / 2;
@@ -213,7 +213,7 @@
             $("#<%=btnCopyFromCASHR.ClientID%>").click(function (e) {
                 e.preventDefault();
                 var Type = "CASHR";
-                var Url = "ProvitionalReceipt.aspx";
+                var Url = "ProvisionalReceipt.aspx";
                 var myWidth = "900";
                 var myHeight = "550";
                 var left = (screen.width - myWidth) / 2;

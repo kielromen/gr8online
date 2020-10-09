@@ -14,29 +14,29 @@ Option Explicit On
 Partial Public Class ResponsibilityCenter_Loadlist
 
     '''<summary>
-    '''txtFilter control.
+    '''btnExport control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFilter As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btnExport As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnSearch control.
+    '''gvResCenter control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents gvResCenter As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''dgvList control.
+    '''btnAdd control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dgvList As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
 End Class

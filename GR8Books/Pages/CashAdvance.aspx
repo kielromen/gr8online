@@ -112,35 +112,7 @@
                 minLength: 1
             });
 
-            $("#<%=txtAccntName.ClientID%>").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "<%= ResolveUrl("CashAdvance.aspx/ListAccountTitle")%>",
-                        data: "{'prefix': '" + request.term + "'}",
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-                            response($.map(data.d, function (item) {
-                                return {
-                                    id: item.split('--')[1],
-                                    value: item.split('--')[0]
-                                }
-                            }))
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                },
-                select: function (e, i) {
-                    $("#<%=txtAccntCode.ClientID%>").val(i.item.id);
-                },
-                minLength: 1
-            });
+           
 
             $("#<%=btnSave.ClientID%>").click(function (e) {           
                     if (Page_IsValid) {
@@ -235,17 +207,9 @@
                             <asp:Label Text="Account Code:" runat="server"  class="col-sm-3 col-form-label" />
                         </div>
                         <div class="col">
-                           <asp:TextBox ID="txtAccntCode" runat="server" class="form-control" autocomplete="off"/>
-                           <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator8" runat="Server" ControlToValidate="txtAccntCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-                        </div>
-                 </div>
-                 <div class="row mb-2">
-                        <div class="col-4 my-auto text-nowrap">
-                            <asp:Label Text="Account Title:" runat="server" class="col-sm-3 col-form-label"  />
-                        </div>
-                        <div class="col">
-                            <asp:TextBox ID="txtAccntName" runat="server" class="form-control" autocomplete="off"/>       
-                            <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator9" runat="Server" ControlToValidate="txtAccntName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                           <asp:DropDownList runat="server" ID="ddlDefaultAccount" class="ddlDefaultAccount form-control" AppendDataBoundItems="true" AutoPostBack="true" EnableViewState="true">
+                           </asp:DropDownList>
+                           <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator8" runat="Server" InitialValue="--Select Account--" ControlToValidate="ddlDefaultAccount" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                  </div>
                   <%-- Cost Center --%>

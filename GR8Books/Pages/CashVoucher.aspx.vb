@@ -860,7 +860,7 @@ Public Class CashVoucher
 
     Private Sub LoadDefaultEntry(ByVal ModuleID As String, ByVal Type As String)
         Dim query As String
-        query = " SELECT tblDefaultAccount.AccountCode, tblCOA.AccountTitle FROM tblDefaultAccount INNER JOIN tblCOA ON tblDefaultAccount.AccountCode = tblCOA.AccountCode WHERE ModuleID =  '" & ModuleID & "' AND Type = '" & Type & "' "
+        query = " SELECT tblDefaultAccount.AccountCode, tblCOA.AccountTitle FROM tblDefaultAccount INNER JOIN tblCOA ON tblDefaultAccount.AccountCode = tblCOA.AccountCode WHERE ModuleID =  '" & ModuleID & "' AND Description = '" & Type & "' "
         SQL.ReadQuery(query, 2)
         If SQL.SQLDR2.Read Then
             Session("AccountCode") = SQL.SQLDR2("AccountCode")
