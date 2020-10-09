@@ -230,13 +230,18 @@
                             <asp:Label Text="Name:" runat="server" />
                         </div>
                         <div class="col">
+                              <div class="input-group">
                             <asp:TextBox ID="txtName" runat="server" class="form-control" autocomplete="off" />
+                                     <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
                             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-3 my-auto">
-                            <asp:Label Text="GrossAmount:" runat="server" />
+                            <asp:Label Text="Gross Amount:" runat="server" />
                         </div>
                         <div class="col">
                             <asp:TextBox ID="txtGrossAmount" runat="server" class="txtGrossAmount form-control text-right"  autocomplete="off" />
@@ -245,7 +250,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-3 my-auto">
-                            <asp:Label Text="VATAmount:" runat="server" />
+                            <asp:Label Text="VAT Amount:" runat="server" />
                         </div>
                         <div class="col">
                             <asp:TextBox ID="txtVATAmount" runat="server" class="txtVATAmount form-control text-right"  autocomplete="off" />
@@ -263,7 +268,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-3 my-auto">
-                            <asp:Label Text="Remarks :" runat="server" autocomplete="off" />
+                            <asp:Label Text="Remarks:" runat="server" autocomplete="off" />
                         </div>
                         <div class="col">
                             <asp:TextBox ID="txtRemarks" runat="server" class="form-control" autocomplete="off" />
