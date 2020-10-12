@@ -67,8 +67,9 @@ Module ModuleGen
                 " FROM   [Main].dbo.tblAddress_Province " &
                 " INNER JOIN  [Main].dbo.tblAddress_Region ON " &
                 " [Main].dbo.tblAddress_Province.regCode =  [Main].dbo.tblAddress_Region.regCode " &
-                " WHERE regDesc = '" & Region & "'"
+                " WHERE regDesc = @regDesc"
         SQL.FlushParams()
+        SQL.AddParam("@regDesc", Region)
         SQL.ReadQuery(query, 2)
         While SQL.SQLDR2.Read
             list.Add(SQL.SQLDR2("provDesc"))
@@ -83,8 +84,9 @@ Module ModuleGen
                 " FROM   [Main].dbo.tblAddress_CityMunicipality " &
                 " INNER JOIN  [Main].dbo.tblAddress_Province ON " &
                 " [Main].dbo.tblAddress_Province.provCode =  [Main].dbo.tblAddress_CityMunicipality.provCode " &
-                " WHERE provDesc = '" & Province & "'"
+                " WHERE provDesc = @provDesc"
         SQL.FlushParams()
+        SQL.AddParam("@provDesc", Province)
         SQL.ReadQuery(query, 2)
         While SQL.SQLDR2.Read
             list.Add(SQL.SQLDR2("citymunDesc"))
@@ -99,8 +101,9 @@ Module ModuleGen
                 " FROM   [Main].dbo.tblAddress_Brgy " &
                 " INNER JOIN  [Main].dbo.tblAddress_CityMunicipality ON  " &
                 " [Main].dbo.tblAddress_Brgy.citymunCode =  [Main].dbo.tblAddress_CityMunicipality.citymunCode " &
-                " WHERE citymunDesc = '" & CityMunicipality & "'"
+                " WHERE citymunDesc = @citymunDesc"
         SQL.FlushParams()
+        SQL.AddParam("@citymunDesc", CityMunicipality)
         SQL.ReadQuery(query, 2)
         While SQL.SQLDR2.Read
             list.Add(SQL.SQLDR2("brgyDesc"))
@@ -132,6 +135,21 @@ Module ModuleGen
         Return list
     End Function
 
+
+    Public Function LoadtblDefault_Reports(ByVal Type As String) As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT Report_Name " &
+                       " FROM   [Main].dbo.tblDefault_Reports WHERE Type = @Type AND Status = @Status ORDER BY OrderNo"
+        SQL.FlushParams()
+        SQL.AddParam("@Type", Type)
+        SQL.AddParam("@Status", "Active")
+        SQL.ReadQuery(query)
+        While SQL.SQLDR.Read
+            list.Add(SQL.SQLDR("Report_Name").ToString)
+        End While
+        Return list
+    End Function
 
     Public Function LoadtblDefault_RDO() As List(Of String)
         Dim list As New List(Of String)
@@ -381,7 +399,9 @@ Module ModuleGen
 
     Public Function GetVCEName(ByVal Code As String) As String
         Dim query As String
-        query = " SELECT Name FROM View_VCEMMaster WHERE Code ='" & Code & "'"
+        query = " SELECT Name FROM View_VCEMMaster WHERE Code = @Code"
+        SQL.FlushParams()
+        SQL.AddParam("@Code", Code)
         SQL.ReadQuery(query)
         If SQL.SQLDR.Read Then
             Return SQL.SQLDR("Name").ToString
@@ -390,14 +410,27 @@ Module ModuleGen
         End If
     End Function
 
-
+    Public Function GetUserFullName(ByVal emailAddress As String) As String
+        Dim query As String
+        query = "  SELECT EmailAddress, CONCAT(LastName, ', ', FirstName, ' ', MiddleName) AS FullName 
+                   FROM [main].dbo.tblCompany_User WHERE EmailAddress = @EmailAddress"
+        SQL.FlushParams()
+        SQL.AddParam("@EmailAddress", emailAddress)
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read Then
+            Return SQL.SQLDR2("FullName").ToString
+        Else
+            Return ""
+        End If
+    End Function
     'new
     Public Function LoadCostCenter() As List(Of String)
         Dim list As New List(Of String)
         Dim query As String
         query = " SELECT  CostCenter " &
-                " FROM    tblCostCenter "
+                " FROM    tblResponsibility_Center WHERE Status = @Status "
         SQL.FlushParams()
+        SQL.AddParam("@Status", "Active")
         SQL.ReadQuery(query, 2)
         While SQL.SQLDR2.Read
             list.Add(SQL.SQLDR2("CostCenter").ToString)
@@ -439,7 +472,9 @@ Module ModuleGen
         Dim query As String
         Dim CostID As String = ""
         query = " SELECT  CostID, CostCenter " &
-                " FROM    tblCostCenter WHERE CostCenter = '" & CostCenter & "' "
+                " FROM    tblResponsibility_Center WHERE CostCenter = @CostCenter "
+        SQL.FlushParams()
+        SQL.AddParam("@CostCenter", CostCenter)
         SQL.ReadQuery(query, 2)
         If SQL.SQLDR2.Read() Then
             CostID = SQL.SQLDR2("CostID").ToString
@@ -451,7 +486,9 @@ Module ModuleGen
         Dim query As String
         Dim CostCenter As String = ""
         query = " SELECT  CostID, CostCenter " &
-                " FROM    tblCostCenter WHERE CostID = '" & CostID & "' "
+                " FROM    tblResponsibility_Center WHERE CostID = @CostID"
+        SQL.FlushParams()
+        SQL.AddParam("@CostID", CostID)
         SQL.ReadQuery(query, 2)
         If SQL.SQLDR2.Read() Then
             CostCenter = SQL.SQLDR2("CostCenter").ToString
@@ -463,12 +500,60 @@ Module ModuleGen
         Dim query As String
         Dim AccountCode As String = ""
         query = " SELECT  AccountCode, AccountTitle" &
-                " FROM    tblCOA WHERE AccountTitle = '" & AccountTitle & "' "
+                " FROM    tblCOA WHERE AccountTitle = @AccountTitle"
+        SQL.FlushParams()
+        SQL.AddParam("@AccountTitle", AccountTitle)
         SQL.ReadQuery(query, 2)
         If SQL.SQLDR2.Read() Then
             AccountCode = SQL.SQLDR2("AccountCode").ToString
         End If
         Return AccountCode
     End Function
+
+    Public Function LoadDefaultModuleAccount() As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT  ModuleID, Description " &
+                " FROM    [Main].dbo.tblDefault_ModuleAccount WHERE Status = @Status "
+        SQL.FlushParams()
+        SQL.AddParam("@Status", "Active")
+        SQL.ReadQuery(query, 2)
+        While SQL.SQLDR2.Read
+            list.Add(SQL.SQLDR2("Description").ToString)
+        End While
+        Return list
+    End Function
+
+    Public Function GetModuleID(ByVal Description As String) As String
+        Dim query As String
+        Dim AccountCode As String = ""
+        query = " SELECT  ModuleID, Description" &
+                " FROM    [Main].dbo.tblDefault_ModuleAccount WHERE Description = @Description"
+        SQL.FlushParams()
+        SQL.AddParam("@Description", Description)
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read() Then
+            AccountCode = SQL.SQLDR2("ModuleID").ToString
+        End If
+        Return AccountCode
+    End Function
+
+    Public Function LoadDefaultAccount(ByVal ModuleID As String, ByVal Description As String) As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT tblDefaultAccount.AccountCode, tblCOA.AccountTitle FROM tblDefaultAccount " &
+                " INNER JOIN tblCOA ON tblDefaultAccount.AccountCode = tblCOA.AccountCode " &
+                " WHERE ModuleID = @ModuleID AND Description = @Description "
+        SQL.FlushParams()
+        SQL.AddParam("@ModuleID", ModuleID)
+        SQL.AddParam("@Description", Description)
+        SQL.ReadQuery(query, 2)
+        While SQL.SQLDR2.Read
+            list.Add(SQL.SQLDR2("AccountTitle").ToString)
+        End While
+        Return list
+    End Function
+
 End Module
+
 

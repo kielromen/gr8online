@@ -4,7 +4,7 @@ Imports System.Data.SqlClient
 Imports System.Data
 Imports System.Drawing
 
-Public Class ProvitionalReceipt
+Public Class ProvisionalReceipt
     Inherits System.Web.UI.Page
     Dim TransAuto As Boolean
     Dim ARNo As String
@@ -289,7 +289,7 @@ Public Class ProvitionalReceipt
         Return strName.ToArray()
     End Function
 
-    Private Sub ProvitionalReceipt_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
+    Private Sub ProvisionalReceipt_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
         If Not IsPostBack Then
             Session("ID") = ""
             Session("CopyFromID") = ""

@@ -345,6 +345,9 @@ C:\Users\AKO-MIKKO\Desktop\gr12web\GR8Books\obj\Debug\GR8Books.vbproj.CopyComple
 C:\Users\AKO-MIKKO\Desktop\gr12web\GR8Books\obj\Debug\GR8Books.dll
 C:\Users\AKO-MIKKO\Desktop\gr12web\GR8Books\obj\Debug\WebForms_Basic.xml
 C:\Users\AKO-MIKKO\Desktop\gr12web\GR8Books\obj\Debug\GR8Books.pdb
+D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.Resources.resources
+D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.vbproj.GenerateResource.cache
+D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.vbproj.CoreCompileInputs.cache
 D:\GR8BOOKS WEB\GR8Books\bin\GR8Books.dll.config
 D:\GR8BOOKS WEB\GR8Books\bin\GR8Books.dll
 D:\GR8BOOKS WEB\GR8Books\bin\GR8Books.pdb
@@ -416,11 +419,8 @@ D:\GR8BOOKS WEB\GR8Books\bin\Newtonsoft.Json.xml
 D:\GR8BOOKS WEB\GR8Books\bin\Antlr3.Runtime.pdb
 D:\GR8BOOKS WEB\GR8Books\bin\Microsoft.AspNet.FriendlyUrls.xml
 D:\GR8BOOKS WEB\GR8Books\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.vbprojAssemblyReference.cache
-D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.Resources.resources
-D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.vbproj.GenerateResource.cache
-D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.vbproj.CoreCompileInputs.cache
 D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.vbproj.CopyComplete
 D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.dll
 D:\GR8BOOKS WEB\GR8Books\obj\Debug\WebForms_Basic.xml
 D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.pdb
+D:\GR8BOOKS WEB\GR8Books\obj\Debug\GR8Books.vbprojAssemblyReference.cache

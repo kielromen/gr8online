@@ -936,10 +936,9 @@ Public Class AccountsPayableVoucher
     End Sub
 
 
-
     Public Sub LoadCreditAccount(ByVal ModuleID As String, ByVal Type As String)
         Dim query As String
-        query = " SELECT tblDefaultAccount.AccountCode, tblCOA.AccountTitle FROM tblDefaultAccount INNER JOIN tblCOA ON tblDefaultAccount.AccountCode = tblCOA.AccountCode WHERE ModuleID =  '" & ModuleID & "' AND Type = '" & Type & "' "
+        query = " SELECT tblDefaultAccount.AccountCode, tblCOA.AccountTitle FROM tblDefaultAccount INNER JOIN tblCOA ON tblDefaultAccount.AccountCode = tblCOA.AccountCode WHERE ModuleID =  '" & ModuleID & "' AND Description = '" & Type & "' "
         SQL.ReadQuery(query)
         ddlCreditAccount.Items.Clear()
         ddlCreditAccount.Items.Add("--Select Credit Account--")
@@ -947,7 +946,7 @@ Public Class AccountsPayableVoucher
             ddlCreditAccount.Items.Add(SQL.SQLDR("AccountTitle").ToString)
         End While
 
-        query = " SELECT tblDefaultAccount.AccountCode, tblCOA.AccountTitle FROM tblDefaultAccount INNER JOIN tblCOA ON tblDefaultAccount.AccountCode = tblCOA.AccountCode WHERE ModuleID =  '" & ModuleID & "' AND Type = '" & Type & "' "
+        query = " SELECT tblDefaultAccount.AccountCode, tblCOA.AccountTitle FROM tblDefaultAccount INNER JOIN tblCOA ON tblDefaultAccount.AccountCode = tblCOA.AccountCode WHERE ModuleID =  '" & ModuleID & "' AND Description = '" & Type & "' "
         SQL.ReadQuery(query)
         If SQL.SQLDR.Read Then
             Session("AccountCode") = SQL.SQLDR("AccountCode")

@@ -129,7 +129,7 @@
 
     Protected Sub GridView_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
-            e.Row.Attributes("onclick") = Page.ClientScript.GetPostBackClientHyperlink(dgvList, "Select$" & e.Row.RowIndex)
+            'e.Row.Attributes("onclick") = Page.ClientScript.GetPostBackClientHyperlink(dgvList, "Select$" & e.Row.RowIndex)
             e.Row.Attributes("onmouseover") = "this.style.backgroundColor='gray';"
                 e.Row.Attributes("onmouseout") = "this.style.backgroundColor='white';"
         End If

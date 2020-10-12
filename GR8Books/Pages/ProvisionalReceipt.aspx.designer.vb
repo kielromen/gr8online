@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class ProvitionalReceipt
+Partial Public Class ProvisionalReceipt
 
     '''<summary>
     '''panel1 control.

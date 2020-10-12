@@ -44,12 +44,9 @@ Public Class CashAdvance
         Session("Transno") = ""
         txtCode.Attributes.Add("readonly", "readonly")
         txtStatus.Attributes.Add("readonly", "readonly")
-        txtAccntCode.Attributes.Add("readonly", "readonly")
         txtCode.Text = ""
         txtName.Text = ""
         txtStatus.Text = ""
-        txtAccntCode.Text = ""
-        txtAccntName.Text = ""
         txtAmount.Text = ""
         txtRemarks.Text = ""
         txtTrans_Num.Text = ""
@@ -59,6 +56,11 @@ Public Class CashAdvance
         ddlCostCenter.Items.Add("")
         ddlCostCenter.DataSource = LoadCostCenter().ToArray
         ddlCostCenter.DataBind()
+
+        ddlDefaultAccount.Items.Clear()
+        ddlDefaultAccount.Items.Add("--Select Account--")
+        ddlDefaultAccount.DataSource = LoadDefaultAccount(ModuleID, "Cash Advance").ToArray
+        ddlDefaultAccount.DataBind()
     End Sub
 
     <WebMethod()>
@@ -190,6 +192,7 @@ Public Class CashAdvance
 
     Public Sub Save()
         Dim CostID = GetCostCenterID(ddlCostCenter.SelectedValue)
+        Dim AccountCode = GetAccountCode(ddlDefaultAccount.SelectedValue)
         Dim insertSQL As String
         activityStatus = True
         SQL.FlushParams()
@@ -201,7 +204,7 @@ Public Class CashAdvance
         SQL.AddParam("@CA_No", CANO)
         SQL.AddParam("@VCECode", txtCode.Text)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
-        SQL.AddParam("@AccountCode", txtAccntCode.Text)
+        SQL.AddParam("@AccountCode", AccountCode)
         SQL.AddParam("@Amount", CDec(txtAmount.Text))
         SQL.AddParam("@Remarks", txtRemarks.Text)
         SQL.AddParam("@CostID", CostID)
@@ -212,6 +215,7 @@ Public Class CashAdvance
     End Sub
 
     Private Sub UpdateCA()
+        Dim AccountCode = GetAccountCode(ddlDefaultAccount.SelectedValue)
         Dim CostID = GetCostCenterID(ddlCostCenter.SelectedValue)
         Dim updateSQL As String
         activityStatus = True
@@ -223,7 +227,7 @@ Public Class CashAdvance
         SQL.AddParam("@TransID", Session("TransID").ToString)
         SQL.AddParam("@CA_No", CANO)
         SQL.AddParam("@VCECode", txtCode.Text)
-        SQL.AddParam("@AccountCode", txtAccntCode.Text)
+        SQL.AddParam("@AccountCode", AccountCode)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@Amount", CDec(txtAmount.Text))
         SQL.AddParam("@Remarks", txtRemarks.Text)
@@ -247,12 +251,14 @@ Public Class CashAdvance
 
     Private Sub LoadTransaction(ByVal ID As String)
         Dim query As String
-        query = " SELECT  tblCA.TransID, CA_No, tblCA.VCECode, Name, TransDate, Amount, CostID, Remarks, tblCA.AccountCode ,Accounttitle," & vbCrLf &
-                " CASE WHEN View_CA_Return.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
-                " 	      WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
+        query = " SELECT  tblCA.TransID, tblCA.CA_No, tblCA.VCECode, Name, TransDate, Amount, CostID, Remarks, tblCA.AccountCode ,Accounttitle," & vbCrLf &
+                " CASE WHEN View_CA_Return.CA_No IS NOT NULL THEN 'Active'  " & vbCrLf &
+                "       WHEN View_CA_Balance.CA_No IS NOT NULL THEN 'Active'  " & vbCrLf &
+                " 	    WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
                 " 	    ELSE tblCA.Status END AS Status  " & vbCrLf &
                 " FROM    tblCA  " & vbCrLf &
-                " LEFT JOIN (SELECT TransID FROM View_CA_Return) AS View_CA_Return ON tblCA.CA_No = View_CA_Return.TransID " & vbCrLf &
+                " LEFT JOIN (SELECT CA_No FROM View_CA_Return) AS View_CA_Return ON tblCA.CA_No = View_CA_Return.CA_No " & vbCrLf &
+                " LEFT JOIN (SELECT CA_No FROM View_CA_Balance) AS View_CA_Balance ON tblCA.CA_No = View_CA_Balance.CA_No " & vbCrLf &
                 " LEFT JOIN View_VCEMMaster ON tblCA.VCECode = View_VCEMMaster.Code " & vbCrLf &
                 " LEFT JOIN tblCOA ON tblCA.AccountCode = tblCOA.AccountCode " & vbCrLf &
                 " WHERE   tblCA.TransID = '" & ID & "' "
@@ -265,8 +271,7 @@ Public Class CashAdvance
             txtTrans_Num.Text = CANO
             txtCode.Text = SQL.SQLDR("VCECode").ToString
             txtName.Text = SQL.SQLDR("Name").ToString
-            txtAccntCode.Text = SQL.SQLDR("AccountCode").ToString
-            txtAccntName.Text = SQL.SQLDR("Accounttitle").ToString
+            ddlDefaultAccount.SelectedValue = SQL.SQLDR("Accounttitle").ToString
             dtpDoc_Date.Value = CDate(SQL.SQLDR("TransDate")).ToString("yyyy-MM-dd")
             txtAmount.Text = SQL.SQLDR("Amount").ToString
             txtRemarks.Text = SQL.SQLDR("Remarks").ToString
@@ -349,4 +354,5 @@ Public Class CashAdvance
 
         LoadTransaction(Session("TransID"))
     End Sub
+
 End Class

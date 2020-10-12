@@ -331,6 +331,7 @@ Public Class Company_SetUp
     End Sub
 
     Public Sub LoadPeriod()
+
         If ddlYear.SelectedValue = "Calendar Year" Then
             dtpFromDate.Text = CDate(Now.Year & "-01-01").ToString("yyyy-MM-dd")
             dtpToDate.Text = CDate(Now.Year & "-12-31").ToString("yyyy-MM-dd")
@@ -342,8 +343,8 @@ Public Class Company_SetUp
             dtpFromDate.Attributes.Remove("readonly")
             dtpToDate.Attributes.Add("readonly", "true")
         Else
-            dtpFromDate.Text = "yyyy-MM-dd"
-            dtpToDate.Text = "yyyy-MM-dd"
+            dtpFromDate.Text = CDate(Now.Year & "-01-01").ToString("yyyy-MM-dd")
+            dtpToDate.Text = CDate(Now.Year & "-12-31").ToString("yyyy-MM-dd")
             dtpFromDate.Attributes.Add("readonly", "true")
             dtpToDate.Attributes.Add("readonly", "true")
         End If

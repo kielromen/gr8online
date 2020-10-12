@@ -419,6 +419,8 @@
     <Content Include="Pages\CustomerManagement_View.aspx" />
     <Content Include="Pages\DebitMemo_Entry.aspx" />
     <Content Include="Pages\DebitMemo_Maintenance.aspx" />
+    <Content Include="Pages\DefaultAccounts.aspx" />
+    <Content Include="Pages\DefaultAccounts_Loadlist.aspx" />
     <Content Include="Pages\DeliveryReceipt.aspx" />
     <Content Include="Pages\DeliveryReceipt_Loadlist.aspx" />
     <Content Include="Pages\DisbursementType_Loadlist.aspx" />
@@ -436,7 +438,7 @@
     <Content Include="Pages\OfficialReceipt.aspx" />
     <Content Include="Pages\PettyCash.aspx" />
     <Content Include="Pages\Pricing.aspx" />
-    <Content Include="Pages\ProvitionalReceipt.aspx" />
+    <Content Include="Pages\ProvisionalReceipt.aspx" />
     <Content Include="Pages\PurchaseJournal.aspx" />
     <Content Include="Pages\PurchaseOrder.aspx" />
     <Content Include="Pages\PurchaseOrder_Loadlist.aspx" />
@@ -444,6 +446,9 @@
     <Content Include="Pages\ReceivingReport.aspx" />
     <Content Include="Pages\ReceivingReport_Loadlist.aspx" />
     <Content Include="Pages\Reports.aspx" />
+    <Content Include="Pages\Reports_BookofAccounts.aspx" />
+    <Content Include="Pages\Reports_FinancialReports.aspx" />
+    <Content Include="Pages\Reports_TransactionReports.aspx" />
     <Content Include="Pages\ResponsibilityCenter_Loadlist.aspx" />
     <Content Include="Pages\Responsibility_Center.aspx" />
     <Content Include="Pages\SalesInvoice.aspx" />
@@ -521,6 +526,39 @@
     <Content Include="Dataset\dsCArpt.xsc">
       <DependentUpon>dsCArpt.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsBOASUMrpt.xsc">
+      <DependentUpon>dsBOASUMrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsBOADETrpt.xsc">
+      <DependentUpon>dsBOADETrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsBOADETrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBOADETrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsBOADETrpt.xss">
+      <DependentUpon>dsBOADETrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsBOALLrpt.xsc">
+      <DependentUpon>dsBOALLrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsBOALLrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBOALLrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsBOALLrpt.xss">
+      <DependentUpon>dsBOALLrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsBOASUMrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBOASUMrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsBOASUMrpt.xss">
+      <DependentUpon>dsBOASUMrpt.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsCArpt.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -528,6 +566,28 @@
     </None>
     <Content Include="Dataset\dsCArpt.xss">
       <DependentUpon>dsCArpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsCASUMrpt.xsc">
+      <DependentUpon>dsCASUMrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsCASUMrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCASUMrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsCASUMrpt.xss">
+      <DependentUpon>dsCASUMrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsCAUNLQrpt.xsc">
+      <DependentUpon>dsCAUNLQrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsCAUNLQrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCAUNLQrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsCAUNLQrpt.xss">
+      <DependentUpon>dsCAUNLQrpt.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\dsCHKVrpt.xsd" />
     <Content Include="Dataset\dsCHKVrpt.xss">
@@ -542,6 +602,17 @@
     </Content>
     <Content Include="Dataset\dsHEADERrpt.xsc">
       <DependentUpon>dsHEADERrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsGENLGRrpt.xsc">
+      <DependentUpon>dsGENLGRrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsGENLGRrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsGENLGRrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsGENLGRrpt.xss">
+      <DependentUpon>dsGENLGRrpt.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\dsHEADERrpt.xsd" />
     <Content Include="Dataset\dsHEADERrpt.xss">
@@ -565,6 +636,17 @@
     </None>
     <Content Include="Dataset\dsPCrpt.xss">
       <DependentUpon>dsPCrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsTBrpt.xsc">
+      <DependentUpon>dsTBrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsTBrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTBrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsTBrpt.xss">
+      <DependentUpon>dsTBrpt.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -681,19 +763,54 @@
     <Compile Include="Dataset\dsAPVrpt.vb">
       <DependentUpon>dsAPVrpt.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\dsBOADETrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBOADETrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsBOALLrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBOALLrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsBOASUMrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBOASUMrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsCArpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCArpt.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\dsCASUMrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCASUMrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsCAUNLQrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCAUNLQrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsCHKVrpt1.Designer.vb" />
     <Compile Include="Dataset\dsCVrpt.Designer.vb" />
+    <Compile Include="Dataset\dsGENLGRrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsGENLGRrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsHEADERrpt.Designer.vb" />
     <Compile Include="Dataset\dsJVrpt.Designer.vb" />
     <Compile Include="Dataset\dsPCrpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPCrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsTBrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTBrpt.xsd</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
@@ -934,6 +1051,20 @@
       <DependentUpon>DebitMemo_Maintenance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\DefaultAccounts.aspx.designer.vb">
+      <DependentUpon>DefaultAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DefaultAccounts.aspx.vb">
+      <DependentUpon>DefaultAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DefaultAccounts_Loadlist.aspx.designer.vb">
+      <DependentUpon>DefaultAccounts_Loadlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DefaultAccounts_Loadlist.aspx.vb">
+      <DependentUpon>DefaultAccounts_Loadlist.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\DeliveryReceipt.aspx.designer.vb">
       <DependentUpon>DeliveryReceipt.aspx</DependentUpon>
     </Compile>
@@ -1067,11 +1198,11 @@
       <DependentUpon>Pricing.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Pages\ProvitionalReceipt.aspx.designer.vb">
-      <DependentUpon>ProvitionalReceipt.aspx</DependentUpon>
+    <Compile Include="Pages\ProvisionalReceipt.aspx.designer.vb">
+      <DependentUpon>ProvisionalReceipt.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ProvitionalReceipt.aspx.vb">
-      <DependentUpon>ProvitionalReceipt.aspx</DependentUpon>
+    <Compile Include="Pages\ProvisionalReceipt.aspx.vb">
+      <DependentUpon>ProvisionalReceipt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\PurchaseJournal.aspx.designer.vb">
@@ -1129,6 +1260,27 @@
     <Compile Include="Pages\Reports.aspx.vb">
       <DependentUpon>Reports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Reports_BookofAccounts.aspx.designer.vb">
+      <DependentUpon>Reports_BookofAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports_BookofAccounts.aspx.vb">
+      <DependentUpon>Reports_BookofAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Reports_FinancialReports.aspx.designer.vb">
+      <DependentUpon>Reports_FinancialReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports_FinancialReports.aspx.vb">
+      <DependentUpon>Reports_FinancialReports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Reports_TransactionReports.aspx.designer.vb">
+      <DependentUpon>Reports_TransactionReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports_TransactionReports.aspx.vb">
+      <DependentUpon>Reports_TransactionReports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\ResponsibilityCenter_Loadlist.aspx.designer.vb">
       <DependentUpon>ResponsibilityCenter_Loadlist.aspx</DependentUpon>
@@ -1240,10 +1392,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Header.rpt</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptBOADET.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBOADET.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptBOASUM.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBOASUM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptCA.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptCA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptCASUM.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCASUM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptCAUNLQ.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCAUNLQ.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptCHKV1.vb">
@@ -1264,6 +1440,42 @@
       <DependentUpon>rptCV.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\rptGENLGRD.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptGENLGRD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptGENLGRS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptGENLGRS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSBLL.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSBLL.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptTB_AFTERPEC.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTB_AFTERPEC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptTB_BEFOREPEC.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTB_BEFOREPEC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptTB_Detailed.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTB_Detailed.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptJV1.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1274,6 +1486,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptPC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptTB_Summary.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTB_Summary.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
@@ -1295,9 +1513,25 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Header1.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBOADET.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBOADET.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBOASUM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBOASUM.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptCA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptCASUM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCASUM.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptCAUNLQ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCAUNLQ.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptCHKV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1311,6 +1545,30 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCV1.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptGENLGRD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptGENLGRD.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptGENLGRS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptGENLGRS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSBLL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSBLL.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptTB_AFTERPEC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTB_AFTERPEC.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptTB_BEFOREPEC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTB_BEFOREPEC.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptTB_Detailed.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTB_Detailed.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptJV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptJV1.vb</LastGenOutput>
@@ -1318,6 +1576,10 @@
     <EmbeddedResource Include="Reports\rptPC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPC.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptTB_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTB_Summary.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
