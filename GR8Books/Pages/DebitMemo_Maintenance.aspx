@@ -141,7 +141,12 @@
             <asp:Label ID="lblCustomerName" runat="server" Text="Customer Name:"></asp:Label>
         </div>
         <div class="col">
-            <asp:TextBox ID="txtCustomerName" runat="server" Class="form-control"> </asp:TextBox>
+            <div class="input-group">
+                <asp:TextBox ID="txtCustomerName" runat="server" Class="form-control"> </asp:TextBox>
+                <div class="input-group-append">
+                    <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
+                </div>
+            </div>
         </div>
     </div>
     <div class="row mb-2">

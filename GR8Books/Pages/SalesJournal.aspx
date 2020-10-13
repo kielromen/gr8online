@@ -229,7 +229,12 @@
                             <asp:Label Text="Name:" runat="server" />
                         </div>
                         <div class="col-sm-9">
+                              <div class="input-group">
                             <asp:TextBox ID="txtName" runat="server" class="form-control" autocomplete="off" />
+                               <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
                             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -244,7 +249,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-2 my-auto">
-                            <asp:Label Text="Remarks :" runat="server" autocomplete="off" />
+                            <asp:Label Text="Remarks:" runat="server" autocomplete="off" />
                         </div>
                         <div class="col-sm-9">
                             <asp:TextBox ID="txtRemarks" runat="server" class="form-control" autocomplete="off" />
