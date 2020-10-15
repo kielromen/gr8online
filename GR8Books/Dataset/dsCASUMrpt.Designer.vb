@@ -299,6 +299,8 @@ Partial Public Class dsCASUMrpt
         
         Private columnStatus As Global.System.Data.DataColumn
         
+        Private columnRefNo As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -399,6 +401,14 @@ Partial Public Class dsCASUMrpt
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property RefNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRefNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -435,12 +445,18 @@ Partial Public Class dsCASUMrpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddView_CA_SummaryRow(ByVal TransID As Integer, ByVal TransNo As String, ByVal TransDate As Date, ByVal VCECode As String, ByVal Name As String, ByVal TotalAmount As Decimal, ByVal Remarks As String, ByVal Status As String) As View_CA_SummaryRow
+        Public Overloads Function AddView_CA_SummaryRow(ByVal TransID As Integer, ByVal TransNo As String, ByVal TransDate As Date, ByVal VCECode As String, ByVal Name As String, ByVal TotalAmount As Decimal, ByVal Remarks As String, ByVal Status As String, ByVal RefNo As String) As View_CA_SummaryRow
             Dim rowView_CA_SummaryRow As View_CA_SummaryRow = CType(Me.NewRow,View_CA_SummaryRow)
-            Dim columnValuesArray() As Object = New Object() {TransID, TransNo, TransDate, VCECode, Name, TotalAmount, Remarks, Status}
+            Dim columnValuesArray() As Object = New Object() {TransID, TransNo, TransDate, VCECode, Name, TotalAmount, Remarks, Status, RefNo}
             rowView_CA_SummaryRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowView_CA_SummaryRow)
             Return rowView_CA_SummaryRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindByTransID(ByVal TransID As Integer) As View_CA_SummaryRow
+            Return CType(Me.Rows.Find(New Object() {TransID}),View_CA_SummaryRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -468,6 +484,7 @@ Partial Public Class dsCASUMrpt
             Me.columnTotalAmount = MyBase.Columns("TotalAmount")
             Me.columnRemarks = MyBase.Columns("Remarks")
             Me.columnStatus = MyBase.Columns("Status")
+            Me.columnRefNo = MyBase.Columns("RefNo")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -489,14 +506,18 @@ Partial Public Class dsCASUMrpt
             MyBase.Columns.Add(Me.columnRemarks)
             Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStatus)
+            Me.columnRefNo = New Global.System.Data.DataColumn("RefNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRefNo)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnTransID}, true))
             Me.columnTransID.AllowDBNull = false
+            Me.columnTransID.Unique = true
             Me.columnTransNo.MaxLength = 50
             Me.columnVCECode.MaxLength = 50
             Me.columnName.MaxLength = 250
             Me.columnTotalAmount.ReadOnly = true
             Me.columnRemarks.MaxLength = 2147483647
-            Me.columnStatus.ReadOnly = true
             Me.columnStatus.MaxLength = 50
+            Me.columnRefNo.MaxLength = 2147483647
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -759,6 +780,21 @@ Partial Public Class dsCASUMrpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property RefNo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CA_Summary.RefNoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RefNo' in table 'View_CA_Summary' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CA_Summary.RefNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsTransNoNull() As Boolean
             Return Me.IsNull(Me.tableView_CA_Summary.TransNoColumn)
         End Function
@@ -839,6 +875,18 @@ Partial Public Class dsCASUMrpt
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetStatusNull()
             Me(Me.tableView_CA_Summary.StatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsRefNoNull() As Boolean
+            Return Me.IsNull(Me.tableView_CA_Summary.RefNoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetRefNoNull()
+            Me(Me.tableView_CA_Summary.RefNoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -1016,6 +1064,7 @@ Namespace dsCASUMrptTableAdapters
             tableMapping.ColumnMappings.Add("TotalAmount", "TotalAmount")
             tableMapping.ColumnMappings.Add("Remarks", "Remarks")
             tableMapping.ColumnMappings.Add("Status", "Status")
+            tableMapping.ColumnMappings.Add("RefNo", "RefNo")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -1032,8 +1081,8 @@ Namespace dsCASUMrptTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT TransID, TransNo, TransDate, VCECode, Name, TotalAmount, Remarks, Status F"& _ 
-                "ROM dbo.View_CA_Summary"
+            Me._commandCollection(0).CommandText = "SELECT TransID, TransNo, TransDate, VCECode, Name, TotalAmount, Remarks, Status, "& _ 
+                "RefNo FROM dbo.View_CA_Summary"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

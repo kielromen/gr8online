@@ -465,6 +465,84 @@ Public Class Reports
 
                 crystalReport.Close()
                 crystalReport.Dispose()
+            Case "FSFP"
+                Dim query As String
+                query = " SELECT * FROM rptBS"
+
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptFSFP.rpt"))
+
+                Dim dsFSFPrpt As dsFSFPrpt = GetData(Type, query)
+                crystalReport.Database.Tables(0).SetDataSource(dsFSFPrpt.Tables("Table"))
+                crystalReport.Subreports(0).SetDataSource(dsHEADERrpt.Tables("Table"))
+                crystalReport.SetParameterValue("@DateTo", Session("@DateTo"))
+                crystalReport.SetParameterValue("@User", GetUserFullName(Session("EmailAddress")))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptFSFP.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptFSFP.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptFSFP.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptFSFP.pdf"))
+                    file = Server.MapPath("~/Reports/rptFSFP.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
+            Case "FSIS"
+                Dim query As String
+                query = " SELECT * FROM rptIS"
+
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptFSIS.rpt"))
+
+                Dim dsFSISrpt As dsFSISrpt = GetData(Type, query)
+                crystalReport.Database.Tables(0).SetDataSource(dsFSISrpt.Tables("Table"))
+                crystalReport.Subreports(0).SetDataSource(dsHEADERrpt.Tables("Table"))
+                crystalReport.SetParameterValue("@DateTo", Session("@DateTo"))
+                crystalReport.SetParameterValue("@User", GetUserFullName(Session("EmailAddress")))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptFSIS.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptFSIS.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptFSIS.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptFSIS.pdf"))
+                    file = Server.MapPath("~/Reports/rptFSIS.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
+            Case "FSCE"
+                Dim query As String
+                query = " SELECT * FROM tblPrint_TB"
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptFSCE.rpt"))
+
+                Dim dsFSCErpt As dsFSCErpt = GetData(Type, query)
+
+                crystalReport.Database.Tables(0).SetDataSource(dsFSCErpt.Tables("Table"))
+                crystalReport.Subreports(0).SetDataSource(dsHEADERrpt.Tables("Table"))
+                crystalReport.SetParameterValue("@DateTo", Session("@DateTo"))
+                crystalReport.SetParameterValue("@User", GetUserFullName(Session("EmailAddress")))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptFSCE.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptFSCE.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptFSCE.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptFSCE.pdf"))
+                    file = Server.MapPath("~/Reports/rptFSCE.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
         End Select
 
         If file <> "" Then
@@ -570,6 +648,21 @@ Public Class Reports
                 Using dsBOALLrpt As New dsBOALLrpt
                     SQL.SQLDA.Fill(dsBOALLrpt)
                     Return dsBOALLrpt
+                End Using
+            Case "FSFP"
+                Using dsFSFPrpt As New dsFSFPrpt
+                    SQL.SQLDA.Fill(dsFSFPrpt)
+                    Return dsFSFPrpt
+                End Using
+            Case "FSIS"
+                Using dsFSISrpt As New dsFSISrpt
+                    SQL.SQLDA.Fill(dsFSISrpt)
+                    Return dsFSISrpt
+                End Using
+            Case "FSCE"
+                Using dsFSCErpt As New dsFSCErpt
+                    SQL.SQLDA.Fill(dsFSCErpt)
+                    Return dsFSCErpt
                 End Using
         End Select
     End Function

@@ -42,11 +42,58 @@
                     }
                 }
             });
+            $('#<%= ddlClassification.ClientID%>').change(function () {
+                if ($('#<%=ddlClassification.ClientID%> :selected').text() == "Individual") {
+                    $(".txtCustomerName").val("N/A");
+                       $(".txtFirstName").val("");
+                       $(".txtMiddleName").val("");
+                       $(".txtLastName").val("");
+                       $(".txtSuffixName").val("");
+                        $(".txtFirstName").prop("readonly", false);
+                       $(".txtMiddleName").prop("readonly", false);
+                        $(".txtLastName").prop("readonly", false);
+                        $(".txtSuffixName").prop("readonly", false);
+                    $(".txtCustomerName").prop("readonly", true);
+                        return;
+                    }
+                else if ($('#<%=ddlClassification.ClientID%> :selected').text() == "Non-Individual") {
+                    $(".txtFirstName").prop("readonly", true);
+                    $(".txtMiddleName").prop("readonly", true);
+                    $(".txtLastName").prop("readonly", true);
+                    $(".txtSuffixName").prop("readonly", true);
+                    $(".txtCustomerName").prop("readonly", false);
+                    $(".txtFirstName").val("N/A");
+                    $(".txtMiddleName").val("N/A");
+                    $(".txtLastName").val("N/A");
+                    $(".txtSuffixName").val("N/A");
+                    $(".txtCustomerName").val("");
+                    return;
+                }
+                else {
+                    $(".txtFirstName").prop("readonly", true);
+                    $(".txtMiddleName").prop("readonly", true);
+                    $(".txtLastName").prop("readonly", true);
+                    $(".txtSuffixName").prop("readonly", true);
+                    $(".txtCustomerName").prop("readonly", true);
+                    return;
+                }
+            });
         });
     </script>
 
     <asp:Panel runat="server" ID="panelCustomer">
         <div class="row mb-2">
+             <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Classification:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:DropDownList ID="ddlClassification" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator20" runat="Server" ControlToValidate="ddlClassification" InitialValue="--Select Classification--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
@@ -55,6 +102,72 @@
                     <div class="col">
                         <asp:TextBox ID="txtCustomerCode" runat="server" class="form-control"  autocomplete="off" />
                          <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtCustomerCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row mb-2">
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Customer name:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtCustomerName" runat="server" class="txtCustomerName form-control"  autocomplete="off" />
+                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtCustomerName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Last Name:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtLastName" runat="server" class="txtLastName form-control"  autocomplete="off" />
+                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator21" runat="Server" ControlToValidate="txtLastName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+                
+        <div class="row mb-2">
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="First Name:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtFirstName" runat="server" class="txtFirstName form-control"  autocomplete="off" />
+                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator22" runat="Server" ControlToValidate="txtFirstName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Middle Name:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtMiddleName" runat="server" class="txtMiddleName form-control"  autocomplete="off" />
+                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator23" runat="Server" ControlToValidate="txtMiddleName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Suffix Name:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtSuffixName" runat="server" class="txtSuffixName form-control"  autocomplete="off" />
                     </div>
                 </div>
             </div>
@@ -70,18 +183,17 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
         <div class="row mb-2">
-            <div class="col-sm">
-                <div class="row">
-                    <div class="col-3 my-auto">
-                        <asp:Label Text="Customer name:" runat="server" />
-                    </div>
-                    <div class="col">
-                        <asp:TextBox ID="txtCustomerName" runat="server" class="form-control"  autocomplete="off" />
-                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtCustomerName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-            </div>
             <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
@@ -93,8 +205,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
@@ -106,6 +216,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
@@ -116,6 +228,8 @@
                          <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator5" runat="Server" ControlToValidate="ddlVAT_Type" InitialValue="--Select VAT Type--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm">
             </div>
         </div>
         <%--Billing Address--%>

@@ -20,7 +20,11 @@ Public Class CustomerManagement_View
 
     Public Sub Loadlist()
         Dim query As String
-        query = " SELECT * FROM tblCustomer_Master WHERE Status = @Status"
+        query = " SELECT        Customer_Code, TIN_No, Billing_Lot_Unit, Billing_Blk_Bldg, Billing_Street, Billing_Subd, Billing_Brgy, Billing_Town_City, Billing_Province, Billing_Region, Billing_ZipCode, Delivery_Lot_Unit, 
+                         Delivery_Blk_Bldg, Delivery_Street, Delivery_Subd, Delivery_Brgy, Delivery_Town_City, Delivery_Province, Delivery_Region, Delivery_ZipCode, SameAddress, Contact_Person, Contact_Position, Contact_Telephone, 
+                         Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, DateModified, WhoCreated, WhoModified, TransAuto, Classification, First_Name, Last_Name, Middle_Name, Suffix_Name, 
+						 CASE WHEN Classification = 'Individual' THEN CONCAT(Last_Name, ', ', First_name, ' ', Middle_Name,' ', Suffix_Name) ELSE Customer_Name END AS Customer_Name
+                  FROM dbo.tblCustomer_Master WHERE Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Status", "Active")
         SQL.GetQuery(query)
@@ -59,7 +63,7 @@ Public Class CustomerManagement_View
                 dt.Rows.Add()
                 For i As Integer = 0 To row.Cells.Count - 1
                     row.Cells(i).CssClass = "textmode"
-                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                    dt.Rows(dt.Rows.Count - 1)(i) = HttpUtility.HtmlDecode(row.Cells(i).Text.Trim)
                 Next
             Next
             Using wb As New XLWorkbook()

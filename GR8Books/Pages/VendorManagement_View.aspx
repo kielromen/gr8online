@@ -49,7 +49,12 @@
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="Vendor_Code" HeaderText="Vendor Code" />
+                <asp:BoundField DataField="Classification" HeaderText="Classification" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Vendor_Name" HeaderText="Vendor Name" />
+                <asp:BoundField DataField="First_Name" HeaderText="First_Name" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Last_Name" HeaderText="Last_Name" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Middle_Name" HeaderText="Middle_Name" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="Suffix_Name" HeaderText="Suffix_Name" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="TIN_No" HeaderText="TIN_No" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Address_Lot_Unit" HeaderText="Address_Lot_Unit" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Address_Blk_Bldg" HeaderText="Address_Blk_Bldg" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />

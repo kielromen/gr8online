@@ -245,7 +245,7 @@ Public Class QueryGenerator
                 dt.Rows.Add()
                 For i As Integer = 0 To row.Cells.Count - 1
                     row.Cells(i).CssClass = "textmode"
-                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                    dt.Rows(dt.Rows.Count - 1)(i) = HttpUtility.HtmlDecode(row.Cells(i).Text.Trim)
                 Next
             Next
             Using wb As New XLWorkbook()
@@ -272,7 +272,7 @@ Public Class QueryGenerator
             For Each row As GridViewRow In gvListDetailed.Rows
                 dt.Rows.Add()
                 For i As Integer = 0 To row.Cells.Count - 1
-                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                    dt.Rows(dt.Rows.Count - 1)(i) = HttpUtility.HtmlDecode(row.Cells(i).Text.Trim)
                 Next
             Next
             Using wb As New XLWorkbook()
