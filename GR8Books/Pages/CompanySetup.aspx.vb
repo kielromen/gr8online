@@ -144,7 +144,7 @@ Public Class Company_SetUp
             txtBranchCode.Text = SQL.SQLDR("BranchCode").ToString
             ddlRDO.SelectedValue = SQL.SQLDR("RDO").ToString
 
-            ddlYear.SelectedValue = SQL.SQLDR("FiscalCalendar").ToString
+            ddlYear.SelectedValue = SQL.SQLDR("ReportCycle").ToString
             dtpFromDate.Text = CDate(SQL.SQLDR("DateFrom")).ToString("yyyy-MM-dd")
             dtpToDate.Text = CDate(SQL.SQLDR("DateTo")).ToString("yyyy-MM-dd")
         End If
@@ -168,10 +168,10 @@ Public Class Company_SetUp
         Dim query As String
         query = " INSERT INTO [Main].dbo.tblCompany_Information " &
                 " (Company_Code, Company_Name, Company_Logo, Company_Contact, Company_Email, Default_EmailAddress, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy, Address_Town_City, Address_Province, 
-                         Address_Region , Address_ZipCode, VAT_Type, TIN_No, General_Type, Industry, Classification, BranchCode, RDO, First_Name, Last_Name, Middle_Name, Suffix_Name,FiscalCalendar, DateFrom, DateTo, Status, DateCreated, WhoCreated)" &
+                         Address_Region , Address_ZipCode, VAT_Type, TIN_No, General_Type, Industry, Classification, BranchCode, RDO, First_Name, Last_Name, Middle_Name, Suffix_Name,ReportCycle, DateFrom, DateTo, Status, DateCreated, WhoCreated)" &
                 " VALUES " &
                 " (@Company_Code, @Company_Name, @Company_Logo, @Company_Contact, @Company_Email, @Default_EmailAddress, @Address_Lot_Unit, @Address_Blk_Bldg, @Address_Street, @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, 
-                         @Address_Region, @Address_ZipCode, @VAT_Type, @TIN_No, @General_Type, @Industry, @Classification, @BranchCode, @RDO, @First_Name, @Last_Name, @Middle_Name, @Suffix_Name, @FiscalCalendar, @DateFrom, @DateTo, @Status, @DateCreated, @WhoCreated)"
+                         @Address_Region, @Address_ZipCode, @VAT_Type, @TIN_No, @General_Type, @Industry, @Classification, @BranchCode, @RDO, @First_Name, @Last_Name, @Middle_Name, @Suffix_Name, @ReportCycle, @DateFrom, @DateTo, @Status, @DateCreated, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@Company_Code", ID)
         SQL.AddParam("@Company_Name", txtCompany_Name.Text)
@@ -199,7 +199,7 @@ Public Class Company_SetUp
         SQL.AddParam("@Last_Name", txtLastName.Text)
         SQL.AddParam("@Middle_Name", txtMiddleName.Text)
         SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
-        SQL.AddParam("@FiscalCalendar", ddlYear.SelectedValue)
+        SQL.AddParam("@ReportCycle", ddlYear.SelectedValue)
         SQL.AddParam("@DateFrom", dtpFromDate.Text)
         SQL.AddParam("@DateTo", dtpToDate.Text)
         SQL.AddParam("@Status", "Active")
@@ -218,7 +218,7 @@ Public Class Company_SetUp
                 " Address_Region = @Address_Region, Address_ZipCode = @Address_ZipCode, VAT_Type = @VAT_Type, TIN_No = @TIN_No, " & vbCrLf &
                 " General_Type = @General_Type, Industry = @Industry, Classification = @Classification, BranchCode = @BranchCode, RDO = @RDO, " & vbCrLf &
                 " First_Name = @First_Name, Last_Name = @Last_Name, Middle_Name = @Middle_Name, Suffix_Name = @Suffix_Name, " & vbCrLf &
-                " FiscalCalendar = @FiscalCalendar, DateFrom = @DateFrom, DateTo = @DateTo, DateModified = @DateModified, WhoModified = @WhoModified" & vbCrLf &
+                " ReportCycle = @ReportCycle, DateFrom = @DateFrom, DateTo = @DateTo, DateModified = @DateModified, WhoModified = @WhoModified" & vbCrLf &
                 " WHERE Company_Code = @Company_Code And Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Company_Code", Company_Code)
@@ -246,7 +246,7 @@ Public Class Company_SetUp
         SQL.AddParam("@Last_Name", txtLastName.Text)
         SQL.AddParam("@Middle_Name", txtMiddleName.Text)
         SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
-        SQL.AddParam("@FiscalCalendar", ddlYear.SelectedValue)
+        SQL.AddParam("@ReportCycle", ddlYear.SelectedValue)
         SQL.AddParam("@DateFrom", dtpFromDate.Text)
         SQL.AddParam("@DateTo", dtpToDate.Text)
         SQL.AddParam("@Status", "Active")

@@ -37,16 +37,21 @@ Public Class VendorManagement
         txtVendorCode.Text = GenerateTransNum(TransAuto, ModuleID, ColumnPK, DBTable)
         Dim query As String
         query = " INSERT INTO tblVendor_Master " &
-                        " (Vendor_Code, Vendor_Name, TIN_No, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, " &
+                        " (Vendor_Code, Vendor_Name, TIN_No, First_Name,Last_Name,Middle_Name, Suffix_Name, Classification, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, " &
                         " Address_Subd, Address_Brgy, Address_Town_City, Address_Province, Address_Region, Address_ZipCode, Contact_Person, Contact_Position, Contact_Telephone," &
                         " Contact_Cellphone , Contact_Email , Contact_Fax, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, WhoCreated)" &
                         " VALUES " &
-                        " (@VendorCode, @Vendor_Name, @TIN_No, @Address_Lot_Unit,@Address_Blk_Bldg, @Address_Street, " &
+                        " (@VendorCode, @Vendor_Name, @TIN_No,@First_Name,@Last_Name,@Middle_Name, @Suffix_Name, @Classification, @Address_Lot_Unit,@Address_Blk_Bldg, @Address_Street, " &
                         " @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, @Address_Region, @Address_ZipCode, @Contact_Person, @Contact_Position, @Contact_Telephone, " &
                         " @Contact_Cellphone, @Contact_Email, @Contact_Fax, @Contact_Website, @Terms, @CutOff, @VAT_Type, @Status, @DateCreated, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@VendorCode", txtVendorCode.Text)
         SQL.AddParam("@Vendor_Name", txtVendorName.Text)
+        SQL.AddParam("@Classification", ddlClassification.SelectedValue)
+        SQL.AddParam("@First_Name", txtFirstName.Text)
+        SQL.AddParam("@Last_Name", txtLastName.Text)
+        SQL.AddParam("@Middle_Name", txtMiddleName.Text)
+        SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@TIN_No", txtTINNO.Text)
         SQL.AddParam("@Address_Lot_Unit", txtLot_Unit.Text)
         SQL.AddParam("@Address_Blk_Bldg", txtBlk_Bldg.Text)
@@ -77,7 +82,7 @@ Public Class VendorManagement
         Dim ID As String = Request.QueryString("ID")
         Dim query As String
         query = " UPDATE tblVendor_Master " &
-                        " SET Vendor_Name = @Vendor_Name, TIN_No = @TIN_No, " &
+                        " SET Vendor_Name = @Vendor_Name, TIN_No = @TIN_No,  First_Name = @First_Name ,Last_Name = @Last_Name ,Middle_Name = @Middle_Name, Suffix_Name = @Suffix_Name, Classification = @Classification," &
                         "     Address_Lot_Unit = @Address_Lot_Unit, Address_Blk_Bldg = @Address_Blk_Bldg, Address_Street = @Address_Street," &
                         "     Address_Subd = @Address_Subd, Address_Brgy = @Address_Brgy, Address_Town_City = @Address_Town_City, " &
                         "     Address_Province = @Address_Province, Address_Region = @Address_Region, Address_ZipCode = @Address_ZipCode, " &
@@ -87,6 +92,11 @@ Public Class VendorManagement
         SQL.FlushParams()
         SQL.AddParam("@Vendor_Code", txtVendorCode.Text)
         SQL.AddParam("@Vendor_Name", txtVendorName.Text)
+        SQL.AddParam("@Classification", ddlClassification.SelectedValue)
+        SQL.AddParam("@First_Name", txtFirstName.Text)
+        SQL.AddParam("@Last_Name", txtLastName.Text)
+        SQL.AddParam("@Middle_Name", txtMiddleName.Text)
+        SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@TIN_No", txtTINNO.Text)
         SQL.AddParam("@Address_Lot_Unit", txtLot_Unit.Text)
         SQL.AddParam("@Address_Blk_Bldg", txtBlk_Bldg.Text)
@@ -179,6 +189,16 @@ Public Class VendorManagement
         ddlRegion.DataSource = LoadtblAddress_Region().ToArray
         ddlRegion.DataBind()
 
+        txtFirstName.Text = ""
+        txtLastName.Text = ""
+        txtMiddleName.Text = ""
+        txtSuffixName.Text = ""
+
+        ddlClassification.Items.Clear()
+        ddlClassification.Items.Add("--Select Classification--")
+        ddlClassification.Items.Add("Individual")
+        ddlClassification.Items.Add("Non-Individual")
+        ddlClassification.DataBind()
     End Sub
 
     Public Sub Region_Changed()
@@ -224,11 +244,16 @@ Public Class VendorManagement
         If SQL.SQLDR.Read Then
             txtVendorCode.Text = SQL.SQLDR("Vendor_Code").ToString
             txtVendorName.Text = SQL.SQLDR("Vendor_Name").ToString
+            txtFirstName.Text = SQL.SQLDR("First_Name").ToString
+            txtLastName.Text = SQL.SQLDR("Last_Name").ToString
+            txtMiddleName.Text = SQL.SQLDR("Middle_Name").ToString
+            txtSuffixName.Text = SQL.SQLDR("Suffix_Name").ToString
             txtTINNO.Text = SQL.SQLDR("TIN_No").ToString
             txtLot_Unit.Text = SQL.SQLDR("Address_Lot_Unit").ToString
             txtBlk_Bldg.Text = SQL.SQLDR("Address_Blk_Bldg").ToString
             txtStreet.Text = SQL.SQLDR("Address_Street").ToString
             txtSubd.Text = SQL.SQLDR("Address_Subd").ToString
+            ddlClassification.SelectedValue = SQL.SQLDR("Classification").ToString
             ddlRegion.SelectedValue = SQL.SQLDR("Address_Region").ToString
             Region_Changed()
             ddlProvince.SelectedValue = SQL.SQLDR("Address_Province").ToString

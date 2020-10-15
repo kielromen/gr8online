@@ -682,6 +682,201 @@ Update Order Option
 Used to sort self-referenced table's rows
 </summary>
 </member>
+<member name="T:GR8Books.dsFSCErpt">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSCErpt.tblPrint_TBDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSCErpt.tblPrint_TBRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSCErpt.tblPrint_TBRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:GR8Books.dsFSCErptTableAdapters.tblPrint_TBTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSCErptTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:GR8Books.dsFSCErptTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsFSCErpt,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSCErptTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsFSCErpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSCErptTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsFSCErpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSCErptTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:GR8Books.dsFSCErptTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsFSCErpt)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSCErptTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:GR8Books.dsFSCErptTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrpt">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrpt.rptBSDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrpt.rptBSRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrpt.rptBSRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrptTableAdapters.rptBSTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsFSFPrpt,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsFSFPrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsFSFPrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsFSFPrpt)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:GR8Books.dsFSFPrptTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrpt">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrpt.rptISDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrpt.rptISRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrpt.rptISRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrptTableAdapters.rptISTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrptTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:GR8Books.dsFSISrptTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsFSISrpt,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSISrptTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsFSISrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSISrptTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsFSISrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:GR8Books.dsFSISrptTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:GR8Books.dsFSISrptTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsFSISrpt)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrptTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:GR8Books.dsFSISrptTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
 <member name="T:GR8Books.dsGENLGRrpt">
 <summary>
 Represents a strongly typed in-memory cache of data.
@@ -4645,6 +4840,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CustomerManagement._ddlClassification">
+<summary>
+ddlClassification control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._RequiredFieldValidator20">
+<summary>
+RequiredFieldValidator20 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CustomerManagement._txtCustomerCode">
 <summary>
 txtCustomerCode control.
@@ -4663,24 +4876,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.CustomerManagement._txtTINNO">
-<summary>
-txtTINNO control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CustomerManagement._RequiredFieldValidator2">
-<summary>
-RequiredFieldValidator2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:GR8Books.CustomerManagement._txtCustomerName">
 <summary>
 txtCustomerName control.
@@ -4693,6 +4888,87 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CustomerManagement._RequiredFieldValidator3">
 <summary>
 RequiredFieldValidator3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._txtLastName">
+<summary>
+txtLastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._RequiredFieldValidator21">
+<summary>
+RequiredFieldValidator21 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._txtFirstName">
+<summary>
+txtFirstName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._RequiredFieldValidator22">
+<summary>
+RequiredFieldValidator22 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._txtMiddleName">
+<summary>
+txtMiddleName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._RequiredFieldValidator23">
+<summary>
+RequiredFieldValidator23 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._txtSuffixName">
+<summary>
+txtSuffixName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._txtTINNO">
+<summary>
+txtTINNO control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._RequiredFieldValidator2">
+<summary>
+RequiredFieldValidator2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -11674,6 +11950,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.VendorManagement._ddlClassification">
+<summary>
+ddlClassification control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._RequiredFieldValidator20">
+<summary>
+RequiredFieldValidator20 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.VendorManagement._txtVendorCode">
 <summary>
 txtVendorCode control.
@@ -11704,6 +11998,69 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.VendorManagement._RequiredFieldValidator3">
 <summary>
 RequiredFieldValidator3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._txtLastName">
+<summary>
+txtLastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._RequiredFieldValidator21">
+<summary>
+RequiredFieldValidator21 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._txtFirstName">
+<summary>
+txtFirstName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._RequiredFieldValidator22">
+<summary>
+RequiredFieldValidator22 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._txtMiddleName">
+<summary>
+txtMiddleName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._RequiredFieldValidator23">
+<summary>
+RequiredFieldValidator23 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._txtSuffixName">
+<summary>
+txtSuffixName control.
 </summary>
 <remarks>
 Auto-generated field.

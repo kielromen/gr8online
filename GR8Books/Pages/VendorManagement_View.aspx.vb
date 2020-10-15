@@ -20,7 +20,11 @@ Public Class VendorManagement_View
 
     Public Sub Loadlist()
         Dim query As String
-        query = "SELECT * FROM tblVendor_Master WHERE Status = @Status"
+        query = "SELECT        Vendor_Code, TIN_No, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy, Address_Town_City, Address_Province, Address_Region, Address_ZipCode, Contact_Person, 
+                         Contact_Position, Contact_Telephone, Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, DateModified, WhoCreated, WhoModified, TransAuto, Classification, 
+                         First_Name, Last_Name, Middle_Name, Suffix_Name,
+						 CASE WHEN Classification = 'Individual' THEN CONCAT(Last_Name, ', ', First_name, ' ', Middle_Name,' ', Suffix_Name) ELSE Vendor_Name END AS Vendor_Name
+                 FROM            dbo.tblVendor_Master WHERE Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Status", "Active")
         SQL.GetQuery(query)
@@ -54,7 +58,7 @@ Public Class VendorManagement_View
                 dt.Rows.Add()
                 For i As Integer = 0 To row.Cells.Count - 1
                     row.Cells(i).CssClass = "textmode"
-                    dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text.ToString.Replace("&nbsp;", "")
+                    dt.Rows(dt.Rows.Count - 1)(i) = HttpUtility.HtmlDecode(row.Cells(i).Text.Trim)
                 Next
             Next
             Using wb As New XLWorkbook()
@@ -72,5 +76,10 @@ Public Class VendorManagement_View
                 End Using
             End Using
         End If
+    End Sub
+
+    Private Sub gvVendor_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvVendor.PageIndexChanging
+        gvVendor.PageIndex = e.NewPageIndex
+        Loadlist()
     End Sub
 End Class

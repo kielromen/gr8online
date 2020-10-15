@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="GR8BooksConnectionString (Web.config)" DbObjectName="GR8Books.dbo.View_CA_Summary" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT TransID, TransNo, TransDate, VCECode, Name, TotalAmount, Remarks, Status FROM dbo.View_CA_Summary</CommandText>
+                    <CommandText>SELECT TransID, TransNo, TransDate, VCECode, Name, TotalAmount, Remarks, Status, RefNo FROM dbo.View_CA_Summary</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -27,6 +27,7 @@
               <Mapping SourceColumn="TotalAmount" DataSetColumn="TotalAmount" />
               <Mapping SourceColumn="Remarks" DataSetColumn="Remarks" />
               <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="RefNo" DataSetColumn="RefNo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -72,10 +73,17 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Status" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RefNo" msprop:Generator_ColumnVarNameInTable="columnRefNo" msprop:Generator_ColumnPropNameInRow="RefNo" msprop:Generator_ColumnPropNameInTable="RefNoColumn" msprop:Generator_UserColumnName="RefNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -84,5 +92,9 @@
         </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:View_CA_Summary" />
+      <xs:field xpath="mstns:TransID" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

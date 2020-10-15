@@ -606,6 +606,39 @@
     <Content Include="Dataset\dsGENLGRrpt.xsc">
       <DependentUpon>dsGENLGRrpt.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsFSFPrpt.xsc">
+      <DependentUpon>dsFSFPrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsFSCErpt.xsc">
+      <DependentUpon>dsFSCErpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsFSCErpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFSCErpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsFSCErpt.xss">
+      <DependentUpon>dsFSCErpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsFSFPrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFSFPrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsFSFPrpt.xss">
+      <DependentUpon>dsFSFPrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsFSISrpt.xsc">
+      <DependentUpon>dsFSISrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsFSISrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFSISrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsFSISrpt.xss">
+      <DependentUpon>dsFSISrpt.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsGENLGRrpt.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -795,6 +828,21 @@
     </Compile>
     <Compile Include="Dataset\dsCHKVrpt1.Designer.vb" />
     <Compile Include="Dataset\dsCVrpt.Designer.vb" />
+    <Compile Include="Dataset\dsFSCErpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFSCErpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsFSFPrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFSFPrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsFSISrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFSISrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsGENLGRrpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1440,6 +1488,24 @@
       <DependentUpon>rptCV.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\rptFSCE.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFSCE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptFSFP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFSFP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptFSIS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFSIS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptGENLGRD.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1544,6 +1610,18 @@
     <EmbeddedResource Include="Reports\rptCV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCV1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptFSCE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFSCE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptFSFP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFSFP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptFSIS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFSIS.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptGENLGRD.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
