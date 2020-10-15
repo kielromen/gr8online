@@ -221,7 +221,12 @@
                             <asp:Label Text="Name:" runat="server" />
                         </div>
                         <div class="col">
+                              <div class="input-group">
                             <asp:TextBox ID="txtName" runat="server" class="form-control" autocomplete="off" />
+                                         <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
                             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>

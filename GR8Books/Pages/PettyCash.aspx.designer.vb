@@ -131,6 +131,15 @@ Partial Public Class PettyCash
     Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''btnAddNewVCE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddNewVCE As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
@@ -165,6 +174,15 @@ Partial Public Class PettyCash
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAccntName As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnAddNewAccount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddNewAccount As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''RequiredFieldValidator9 control.
