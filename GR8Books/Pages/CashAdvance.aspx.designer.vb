@@ -131,15 +131,6 @@ Partial Public Class CashAdvance
     Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnAddNewVCE control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddNewVCE As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
@@ -149,13 +140,13 @@ Partial Public Class CashAdvance
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''txtAccntCode control.
+    '''ddlDefaultAccount control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAccntCode As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlDefaultAccount As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''RequiredFieldValidator8 control.
@@ -165,33 +156,6 @@ Partial Public Class CashAdvance
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator8 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''txtAccntName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAccntName As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnAddNewAccount control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddNewAccount As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''RequiredFieldValidator9 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''ddlCostCenter control.
