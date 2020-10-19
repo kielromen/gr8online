@@ -131,6 +131,15 @@ Partial Public Class CashAdvance
     Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''btnAddNewCustomer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddNewCustomer As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
@@ -147,6 +156,15 @@ Partial Public Class CashAdvance
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlDefaultAccount As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Button1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''RequiredFieldValidator8 control.

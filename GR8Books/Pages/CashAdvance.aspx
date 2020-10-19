@@ -197,7 +197,12 @@
                             <asp:Label Text="VCEName:" runat="server" class="col-sm-3 col-form-label"  />
                         </div>
                         <div class="col">
-                            <asp:TextBox ID="txtName" runat="server" class="form-control" autocomplete="off"/>       
+                            <div class="input-group">
+                                <asp:TextBox ID="txtName" runat="server" class="form-control " autocomplete="off" />
+                                <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
                             <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                  </div>
@@ -207,8 +212,13 @@
                             <asp:Label Text="Account Code:" runat="server"  class="col-sm-3 col-form-label" />
                         </div>
                         <div class="col">
-                           <asp:DropDownList runat="server" ID="ddlDefaultAccount" class="ddlDefaultAccount form-control" AppendDataBoundItems="true" AutoPostBack="true" EnableViewState="true">
-                           </asp:DropDownList>
+                            <div class="input-group">
+                                <asp:DropDownList runat="server" ID="ddlDefaultAccount" class="ddlDefaultAccount form-control" AppendDataBoundItems="true" AutoPostBack="true" EnableViewState="true">
+                                </asp:DropDownList>
+                                <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="Button1" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
                            <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator8" runat="Server" InitialValue="--Select Account--" ControlToValidate="ddlDefaultAccount" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                  </div>
