@@ -23,6 +23,7 @@ Public Class CustomerManagement
         txtCustomerCode.Text = ""
         txtCustomerName.Text = ""
         txtTINNO.Text = ""
+        txtBranchCode.Text = ""
         txtCutOff.Text = ""
         txtTelephone.Text = ""
         txtCellphone.Text = ""
@@ -146,6 +147,7 @@ Public Class CustomerManagement
             txtMiddleName.Text = SQL.SQLDR("Middle_Name").ToString
             txtSuffixName.Text = SQL.SQLDR("Suffix_Name").ToString
             txtTINNO.Text = SQL.SQLDR("TIN_No").ToString
+            txtBranchCode.Text = SQL.SQLDR("BranchCode").ToString
             txtTerms.Text = SQL.SQLDR("Terms").ToString
             txtCutOff.Text = SQL.SQLDR("CutOff").ToString
             ddlClassification.SelectedValue = SQL.SQLDR("Classification").ToString
@@ -255,13 +257,13 @@ Public Class CustomerManagement
         txtCustomerCode.Text = GenerateTransNum(TransAuto, ModuleID, ColumnPK, DBTable)
         Dim query As String
         query = " INSERT INTO tblCustomer_Master " &
-                        " (Customer_Code, Customer_Name, TIN_No, First_Name,Last_Name,Middle_Name, Suffix_Name, Classification," &
+                        " (Customer_Code, Customer_Name, TIN_No, BranchCode, First_Name,Last_Name,Middle_Name, Suffix_Name, Classification," &
                         " Billing_Lot_Unit, Billing_Blk_Bldg, Billing_Street, Billing_Subd, Billing_Brgy, Billing_Town_City, Billing_Province, Billing_Region, Billing_ZipCode, " &
                         " Delivery_Lot_Unit, Delivery_Blk_Bldg, Delivery_Street, Delivery_Subd, Delivery_Brgy, Delivery_Town_City, Delivery_Province, Delivery_Region, Delivery_ZipCode, " &
                         " SameAddress, Contact_Person, Contact_Position, Contact_Telephone," &
                         " Contact_Cellphone , Contact_Email , Contact_Fax, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, WhoCreated)" &
                         " VALUES " &
-                        " (@Customer_Code, @Customer_Name, @TIN_No,@First_Name,@Last_Name,@Middle_Name, @Suffix_Name, @Classification," &
+                        " (@Customer_Code, @Customer_Name, @TIN_No, @BranchCode, @First_Name,@Last_Name,@Middle_Name, @Suffix_Name, @Classification," &
                         " @Billing_Lot_Unit,@Billing_Blk_Bldg, @Billing_Street, @Billing_Subd, @Billing_Brgy, @Billing_Town_City, @Billing_Province, @Billing_Region, @Billing_ZipCode, " &
                         " @Delivery_Lot_Unit,@Delivery_Blk_Bldg, @Delivery_Street, @Delivery_Subd, @Delivery_Brgy, @Delivery_Town_City, @Delivery_Province, @Delivery_Region, @Delivery_ZipCode, " &
                         " @SameAddress, @Contact_Person, @Contact_Position, @Contact_Telephone, " &
@@ -275,6 +277,7 @@ Public Class CustomerManagement
         SQL.AddParam("@Middle_Name", txtMiddleName.Text)
         SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@TIN_No", txtTINNO.Text)
+        SQL.AddParam("@BranchCode", txtBranchCode.Text)
         SQL.AddParam("@Billing_Lot_Unit", txtLot_Unit.Text)
         SQL.AddParam("@Billing_Blk_Bldg", txtBlk_Bldg.Text)
         SQL.AddParam("@Billing_Street", txtStreet.Text)
@@ -314,7 +317,7 @@ Public Class CustomerManagement
         Dim ID As String = Request.QueryString("ID")
         Dim query As String
         query = " UPDATE tblCustomer_Master " &
-                        " SET Customer_Name = @Customer_Name, TIN_No = @TIN_No, First_Name = @First_Name ,Last_Name = @Last_Name ,Middle_Name = @Middle_Name, Suffix_Name = @Suffix_Name, Classification = @Classification," &
+                        " SET Customer_Name = @Customer_Name, TIN_No = @TIN_No, BranchCode = @BranchCode, First_Name = @First_Name ,Last_Name = @Last_Name ,Middle_Name = @Middle_Name, Suffix_Name = @Suffix_Name, Classification = @Classification," &
                         "     Billing_Lot_Unit = @Billing_Lot_Unit, Billing_Blk_Bldg = @Billing_Blk_Bldg, Billing_Street = @Billing_Street, Billing_Subd = @Billing_Subd, Billing_Brgy = @Billing_Brgy, Billing_Town_City = @Billing_Town_City, Billing_Province = @Billing_Province, Billing_Region = @Billing_Region, Billing_ZipCode = @Billing_ZipCode," &
                         "     Delivery_Lot_Unit = @Delivery_Lot_Unit, Delivery_Blk_Bldg = @Delivery_Blk_Bldg, Delivery_Street = @Delivery_Street, Delivery_Subd = @Delivery_Subd, Delivery_Brgy = @Delivery_Brgy, Delivery_Town_City = @Delivery_Town_City, Delivery_Province = @Delivery_Province, Delivery_Region = @Delivery_Region, Delivery_ZipCode = @Delivery_ZipCode," &
                         "     SameAddress = @SameAddress, Contact_Person = @Contact_Person, Contact_Position= @Contact_Position, Contact_Telephone = @Contact_Telephone, Contact_Cellphone = @Contact_Cellphone, Contact_Email = @Contact_Email, Contact_Fax = @Contact_Fax," &
@@ -329,6 +332,7 @@ Public Class CustomerManagement
         SQL.AddParam("@Middle_Name", txtMiddleName.Text)
         SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@TIN_No", txtTINNO.Text)
+        SQL.AddParam("@BranchCode", txtBranchCode.Text)
         SQL.AddParam("@Billing_Lot_Unit", txtLot_Unit.Text)
         SQL.AddParam("@Billing_Blk_Bldg", txtBlk_Bldg.Text)
         SQL.AddParam("@Billing_Street", txtStreet.Text)

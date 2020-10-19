@@ -235,7 +235,7 @@
                             <input type="date" runat="server" id="dtpDoc_Date" class="form-control ">
                         </div>
                     </div>
-                    <div class="row mb-2">
+<%--                    <div class="row mb-2">
                         <div class="col-sm-5 my-auto">
                             <asp:Label Text="Ref Type:" runat="server"  />
                         </div>
@@ -250,7 +250,7 @@
                         <div class="col">
                             <asp:TextBox ID="txtRef_No" runat="server" class="form-control " autocomplete="off" />
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="row mb-2">
                         <div class="col-sm-5 my-auto">
                              <asp:Label Text="Status:" runat="server" />

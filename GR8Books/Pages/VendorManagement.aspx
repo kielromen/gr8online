@@ -10,11 +10,19 @@
         $(document).ready(function () {
             $('.txtTINNO').click(
                 function () {
-                    $(".txtTINNO").mask("000-000-000-000");
+                    $(".txtTINNO").mask("000-000-000");
                 });
             $('.txtTINNO').keypress(
                 function () {
-                    $(".txtTINNO").mask("000-000-000-000");
+                    $(".txtTINNO").mask("000-000-000");
+                });
+            $('.txtBranchCode').click(
+                function () {
+                    $(".txtBranchCode").mask("00000");
+                });
+            $('.txtBranchCode').keypress(
+                function () {
+                    $(".txtBranchCode").mask("00000");
                 });
             $('.txtTelephone').click(
                 function () {
@@ -46,27 +54,27 @@
             $('#<%= ddlClassification.ClientID%>').change(function () {
                 if ($('#<%=ddlClassification.ClientID%> :selected').text() == "Individual") {
                     $(".txtVendorName").val("N/A");
-                       $(".txtFirstName").val("");
-                       $(".txtMiddleName").val("");
-                       $(".txtLastName").val("");
-                       $(".txtSuffixName").val("");
-                        $(".txtFirstName").prop("readonly", false);
-                       $(".txtMiddleName").prop("readonly", false);
-                        $(".txtLastName").prop("readonly", false);
-                        $(".txtSuffixName").prop("readonly", false);
+                    $(".txtFirstName").val("");
+                    $(".txtMiddleName").val("");
+                    $(".txtLastName").val("");
+                    $(".txtSuffixName").val("");
+                    $(".txtFirstName").prop("readonly", false);
+                    $(".txtMiddleName").prop("readonly", false);
+                    $(".txtLastName").prop("readonly", false);
+                    $(".txtSuffixName").prop("readonly", false);
                     $(".txtVendorName").prop("readonly", true);
                         return;
                     }
                   else if ($('#<%=ddlClassification.ClientID%> :selected').text() == "Non-Individual") {
-                      $(".txtFirstName").prop("readonly", true);
-                      $(".txtMiddleName").prop("readonly", true);
-                      $(".txtLastName").prop("readonly", true);
-                      $(".txtSuffixName").prop("readonly", true);
+                    $(".txtFirstName").prop("readonly", true);
+                    $(".txtMiddleName").prop("readonly", true);
+                    $(".txtLastName").prop("readonly", true);
+                    $(".txtSuffixName").prop("readonly", true);
                     $(".txtVendorName").prop("readonly", false);
-                      $(".txtFirstName").val("N/A");
-                      $(".txtMiddleName").val("N/A");
-                      $(".txtLastName").val("N/A");
-                      $(".txtSuffixName").val("N/A");
+                    $(".txtFirstName").val("N/A");
+                    $(".txtMiddleName").val("N/A");
+                    $(".txtLastName").val("N/A");
+                    $(".txtSuffixName").val("N/A");
                     $(".txtVendorName").val("");
                       return;
                   }
@@ -206,7 +214,7 @@
                         <asp:Label Text="TIN:" runat="server" />
                     </div>
                     <div class="col">
-                        <asp:TextBox ID="txtTINNO" class="txtTINNO form-control" autocomplete="off" runat="server" Placeholder="000-000-000-000" />
+                        <asp:TextBox ID="txtTINNO" class="txtTINNO form-control" autocomplete="off" runat="server" Placeholder="000-000-000" />
                          <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"  ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtTINNO" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
@@ -217,6 +225,16 @@
             <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
+                        <asp:Label Text="Branch Code:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtBranchCode" class="txtBranchCode form-control" autocomplete="off" runat="server" Placeholder="00000" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
                         <asp:Label Text="Terms:" runat="server" />
                     </div>
                     <div class="col">
@@ -224,8 +242,11 @@
                          <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"  ID="RequiredFieldValidator4" runat="Server" ControlToValidate="txtTerms" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm">
+            </div>     
+        </div>
+
+       <div class="row mb-2">
+          <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
                         <asp:Label Text="Cut off (days):" runat="server" />
@@ -236,9 +257,6 @@
                     </div>
                 </div>
             </div>
-           
-        </div>
-         <div class="row mb-2">
               <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
@@ -250,9 +268,10 @@
                     </div>
                 </div>
             </div>
-             <div class="col-sm">
-             </div>
         </div>
+
+
+
         <%--Address--%>
         <div class="row mt-4">
             <div class="col">

@@ -113,7 +113,7 @@ Public Class QueryGenerator
                     "  WHERE    JE.AppDate BETWEEN '" & dtpFrom.Value & "' AND '" & dtpTo.Value & "'   " & vbCrLf &
                     "  AND	    tblCOA.AccountCode  >= N'" & hfFromAccountCode.Text & "'  " & vbCrLf &
                     "  AND      tblCOA.AccountCode  <= N'" & hfToAccountCode.Text & "'  " & vbCrLf &
-                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV','CHKV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & vbCrLf &
+                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & vbCrLf &
                     "  GROUP BY tblCOA.AccountCode, tblCOA.AccountTitle, tblCOA.AccountType "
         Else
             query = "  SELECT   tblCOA.AccountCode, tblCOA.AccountTitle,   " & vbCrLf &
@@ -125,7 +125,7 @@ Public Class QueryGenerator
                     "  WHERE    view_GL.status <> 'Cancelled' AND view_GL.AppDate BETWEEN '" & dtpFrom.Value & "' AND '" & dtpTo.Value & "'   " & vbCrLf &
                     "  AND	    tblCOA.AccountCode >= N'" & hfFromAccountCode.Text & "'  " & vbCrLf &
                     "  AND      tblCOA.AccountCode <= N'" & hfToAccountCode.Text & "'  " & vbCrLf &
-                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV','CHKV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & vbCrLf &
+                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & vbCrLf &
                     "  GROUP BY tblCOA.AccountCode, tblCOA.AccountTitle, tblCOA.AccountType "
         End If
         SQL.GetQuery(query)
@@ -157,7 +157,7 @@ Public Class QueryGenerator
                     "  WHERE    JE.AppDate BETWEEN '" & dtpFrom.Value & "' AND '" & dtpTo.Value & "'   " & vbCrLf &
                     "  AND	    tblCOA.AccountCode >= N'" & hfFromAccountCode.Text & "'  " & vbCrLf &
                     "  AND      tblCOA.AccountCode <= N'" & hfToAccountCode.Text & "'  " & vbCrLf &
-                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV','CHKV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & OrderBy()
+                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & OrderBy()
         Else
             query = "  SELECT   tblCOA.AccountCode, tblCOA.AccountTitle,   " & vbCrLf &
                     "           CONVERT(VARCHAR,CONVERT(MONEY,Debit),1) AS Debit, CONVERT(VARCHAR,CONVERT(MONEY,Credit),1) AS Credit, VCECode, VCEName, Book, RefType, CASE WHEN RefType ='BB' THEN CAST(view_GL.JE_No AS nvarchar) ELSE CAST(ISNULL(TransNo,RefTransID) AS nvarchar) END AS TransNo, RefTransID as RefTransID, REPLACE(CAST(Appdate as DATE),' 12:00:00 AM','') as Appdate,  " & vbCrLf &
@@ -167,7 +167,7 @@ Public Class QueryGenerator
                     "  WHERE    view_GL.status <> 'Cancelled' AND  view_GL.AppDate BETWEEN '" & dtpFrom.Value & "' AND '" & dtpTo.Value & "'   " & vbCrLf &
                     "  AND	    tblCOA.AccountCode >= N'" & hfFromAccountCode.Text & "'  " & vbCrLf &
                     "  AND      tblCOA.AccountCode <= N'" & hfToAccountCode.Text & "'  " & vbCrLf &
-                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV','CHKV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & OrderBy()
+                    "  AND	    RefType IN ('" & IIf(rbCRB.Checked = True, "OR','AR','CR','PR','DEPOSIT", "") & "','" & IIf(rbPEC.Checked = True, "Period End Closing", "") & "','" & IIf(rbCDB.Checked = True, "CV", "") & "','" & IIf(rbGJ.Checked = True, "JV", "") & "','" & IIf(rbPB.Checked = True, "PJ','APV", "") & "','" & IIf(rbSB.Checked = True, "SJ", "") & "','" & IIf(rbBB.Checked = True, "BB", "") & "')  " & OrderBy()
         End If
         SQL.GetQuery(query)
         gvListDetailed.Columns(2).FooterText = "Total"

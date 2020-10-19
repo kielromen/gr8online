@@ -1098,7 +1098,7 @@ Public Class CashVoucher
         Dim list As New List(Of String)
         Dim query As String
         query = " SELECT  TaxDescription " &
-                " FROM    tblTax_Maintenance WHERE TaxRate > 0 AND TaxType = @TaxType ORDER BY TaxCode "
+                " FROM    tblTax_Maintenance WHERE TaxType = @TaxType ORDER BY TaxCode "
         SQL.FlushParams()
         SQL.AddParam("@TaxType", Type, SqlDbType.NVarChar)
         SQL.ReadQuery(query)

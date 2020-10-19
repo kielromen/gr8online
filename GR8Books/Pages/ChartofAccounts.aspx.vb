@@ -78,18 +78,34 @@ Public Class ChartofAccounts
         Page.Validate()
         If (Page.IsValid) Then
             If btnSave.Text = "Save" Then
-                Save()
-                alertSave.Visible = True
-                alertUpdate.Visible = False
-                Initialize()
+                If Not IfExist(txtCode.Text) Then
+                    Save()
+                    alertSave.Visible = True
+                    alertUpdate.Visible = False
+                    Initialize()
+                Else
+                    Response.Write("<script>alert('Account Code Already Exist!');</script>")
+                End If
             ElseIf btnSave.Text = "Update" Then
-                Update()
+                    Update()
                 Response.Write("<script>ocation.reload();</script>")
                 alertSave.Visible = False
                 alertUpdate.Visible = True
             End If
         End If
     End Sub
+
+
+    Private Function IfExist(ByVal AccountCode As String) As Boolean
+        Dim query As String
+        query = " SELECT * FROM tblCOA WHERE AccountCode ='" & AccountCode & "'  "
+        SQL.ReadQuery(query)
+        If SQL.SQLDR.Read Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
     Public Sub View()
         Dim ID As String = Request.QueryString("ID")

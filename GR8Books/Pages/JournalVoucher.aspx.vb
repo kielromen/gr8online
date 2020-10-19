@@ -237,13 +237,13 @@ Public Class JournalVoucher
 
     Public Sub Initialize()
         Session("Transno") = ""
-        txtRef_Type.Attributes.Add("readonly", "readonly")
-        txtRef_No.Attributes.Add("readonly", "readonly")
+        'txtRef_Type.Attributes.Add("readonly", "readonly")
+        'txtRef_No.Attributes.Add("readonly", "readonly")
         txtStatus.Attributes.Add("readonly", "readonly")
         txtStatus.Text = ""
-        txtRef_Type.Text = ""
+        'txtRef_Type.Text = ""
         txtRemarks.Text = ""
-        txtRef_No.Text = ""
+        'txtRef_No.Text = ""
         txtTrans_Num.Text = ""
         dtpDoc_Date.Value = Now.Date
         LoadDatagrid()
@@ -354,7 +354,7 @@ Public Class JournalVoucher
         SQL.AddParam("@TransID", TransID)
         SQL.AddParam("@JV_No", JVNo)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
-        SQL.AddParam("@Reference", txtRef_No.Text)
+        SQL.AddParam("@Reference", "")
         SQL.AddParam("@Remarks", txtRemarks.Text)
         SQL.AddParam("@TransAuto", TransAuto)
         SQL.AddParam("@WhoCreated", Session("EmailAddress"))
@@ -456,7 +456,7 @@ Public Class JournalVoucher
         SQL.FlushParams()
         SQL.AddParam("@TransID", Session("TransID").ToString)
         SQL.AddParam("@JV_No", JVNo)
-        SQL.AddParam("@Reference", txtRef_No.Text)
+        SQL.AddParam("@Reference", "")
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@Remarks", txtRemarks.Text)
         SQL.AddParam("@TransAuto", TransAuto)
@@ -586,7 +586,7 @@ Public Class JournalVoucher
             JVNo = SQL.SQLDR("JV_No").ToString
             Session("Transno") = SQL.SQLDR("JV_No").ToString
             txtTrans_Num.Text = JVNo
-            txtRef_No.Text = SQL.SQLDR("Reference").ToString
+            'txtRef_No.Text = SQL.SQLDR("Reference").ToString
             dtpDoc_Date.Value = CDate(SQL.SQLDR("TransDate")).ToString("yyyy-MM-dd")
             txtRemarks.Text = SQL.SQLDR("Remarks").ToString
             txtStatus.Text = SQL.SQLDR("Status").ToString

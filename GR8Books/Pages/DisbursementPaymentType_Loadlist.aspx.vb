@@ -5,7 +5,7 @@ Imports System.Data.SqlClient
 Imports System.Configuration
 Imports System.Web.Services
 Imports ClosedXML.Excel
-Public Class CollectionPaymentType_LoadList
+Public Class DisbursementPaymentType_Loadlist
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -20,9 +20,10 @@ Public Class CollectionPaymentType_LoadList
 
     Public Sub Loadlist()
         Dim query As String
-        query = " SELECT  ID, PaymentType, WithBank ,Status, DateCreated, DateModified, WhoCreated, WhoModified " &
-                " FROM tblCollection_PaymentType  " &
-                " WHERE tblCollection_PaymentType.Status = @Status"
+        query = " SELECT  ID, PaymentType, WithBank , tblDV_PaymentType.AccountCode, AccountTitle, Status, DateCreated, DateModified, WhoCreated, WhoModified " &
+                " FROM tblDV_PaymentType  " &
+                " LEFT JOIN (SELECT AccountCode, AccountTitle FROM tblCOA) AS tblCOA ON tblDV_PaymentType.AccountCode = tblCOA.AccountCode " &
+                " WHERE tblDV_PaymentType.Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Status", "Active")
         SQL.GetQuery(query)
@@ -38,12 +39,12 @@ Public Class CollectionPaymentType_LoadList
     Private Sub gvPaymentType_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvPaymentType.RowCommand
         If (e.CommandName = "btnInactive") Then
             Dim query As String
-            query = "UPDATE tblCollection_PaymentType SET Status = @Status WHERE ID = @ID"
+            query = "UPDATE tblDV_PaymentType SET Status = @Status WHERE ID = @ID"
             SQL.FlushParams()
             SQL.AddParam("@ID", e.CommandArgument)
             SQL.AddParam("@Status", "Inactive")
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='CollectionPaymentType_LoadList.aspx';</script>")
+            Response.Write("<script>alert('Removed successfully');window.location='DisbursementPaymentType_Loadlist.aspx';</script>")
         End If
     End Sub
 
@@ -81,4 +82,5 @@ Public Class CollectionPaymentType_LoadList
             End Using
         End If
     End Sub
+
 End Class

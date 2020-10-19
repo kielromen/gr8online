@@ -6,10 +6,10 @@ Public Class CheckVoucher
     Dim TransAuto As Boolean
     Dim CVNo As String
     Dim TransID, JETransiD As String
-    Dim ModuleID As String = "CHKV"
+    Dim ModuleID As String = "CV"
     Dim ColumnPK As String = "CV_No"
     Dim ColumnID As String = "TransID"
-    Dim DBTable As String = "tblDV_Check"
+    Dim DBTable As String = "tblDV"
     Dim bankID As Integer
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         TransAuto = GetTransSetup(ModuleID)
@@ -18,7 +18,6 @@ Public Class CheckVoucher
                 Response.Redirect("Login.aspx")
             Else
                 Initialize()
-                LoadBankList()
                 If Session("ID") <> "" Then
                     LoadTransaction(Session("ID"))
                 ElseIf Session("Type") <> "" And Session("CopyID") <> "" Then
@@ -237,6 +236,62 @@ Public Class CheckVoucher
         Return strName.ToArray()
     End Function
 
+    Public Sub WithBank()
+        Dim query As String
+        query = " SELECT WithBank, tblDV_PaymentType. AccountCode, AccountTitle" & vbCrLf &
+                " FROM   tblDV_PaymentType " & vbCrLf &
+                " LEFT JOIN  tblCOA ON tblCOA.AccountCode = tblDV_PaymentType.AccountCode " & vbCrLf &
+                " WHERE  tblDV_PaymentType.Status ='Active' AND PaymentType = @PaymentType"
+        SQL.FlushParams()
+        SQL.AddParam("@PaymentType", ddlType.SelectedValue)
+        SQL.ReadQuery(query)
+        If SQL.SQLDR.Read Then
+            If ddlType.SelectedValue.ToString.Contains("Transfer") Then
+                panelBankTransfer.Visible = True
+                panelBank.Visible = True
+                panelBankDetails.Visible = False
+                lblBank.Text = "From Bank :"
+                BankDetails()
+            ElseIf SQL.SQLDR("WithBank") = False Then
+                Session("AccountCode") = SQL.SQLDR("AccountCode")
+                Session("AccountTitle") = SQL.SQLDR("AccountTitle")
+                panelBankTransfer.Visible = False
+                panelBank.Visible = False
+                panelBankDetails.Visible = False
+                lblBank.Text = "Bank :"
+            Else
+                panelBankTransfer.Visible = False
+                panelBank.Visible = True
+                panelBankDetails.Visible = True
+                lblBank.Text = "Bank :"
+                BankDetails()
+            End If
+        Else
+            panelBankTransfer.Visible = False
+            panelBank.Visible = False
+            panelBankDetails.Visible = False
+        End If
+    End Sub
+
+
+    Public Sub BankDetails()
+        Dim query As String
+        query = " SELECT tblBank.AccountCode, AccountTitle" & vbCrLf &
+                " FROM   tblBank " & vbCrLf &
+                " INNER JOIN tblCOA ON tblBank.AccountCode = tblCOA.AccountCode " & vbCrLf &
+                " WHERE  tblBank.Status ='Active' AND Bank = @Bank"
+        SQL.FlushParams()
+        SQL.AddParam("Bank", ddlBank_List.SelectedValue)
+        SQL.ReadQuery(query)
+        If SQL.SQLDR.Read Then
+            Session("AccountCode") = SQL.SQLDR("AccountCode")
+            Session("AccountTitle") = SQL.SQLDR("AccountTitle")
+        Else
+            Session("AccountCode") = ""
+            Session("AccountTitle") = ""
+        End If
+    End Sub
+
     Public Sub Initialize()
         Session("AccountCode") = ""
         Session("AccountTitle") = ""
@@ -259,14 +314,26 @@ Public Class CheckVoucher
         txtBank_CheckStatus.Text = ""
         dtpDoc_Date.Value = Now.Date
         dtpBank_Date.Value = Now.Date
+
+
         LoadDatagrid()
+
+        ddlType.Items.Clear()
+        ddlType.Items.Add("--Select Payment Type--")
+        ddlType.DataSource = LoadDisbursementPaymentType().ToArray
+        ddlType.DataBind()
+
+        ddlBank_List.Items.Clear()
+        ddlBank_List.Items.Add("--Select Bank--")
+        ddlBank_List.DataSource = LoadBank().ToArray
+        ddlBank_List.DataBind()
+
+        WithBank()
 
         ddlDisbursementType.Items.Clear()
         ddlDisbursementType.Items.Add("--Select Disbursement Type--")
         ddlDisbursementType.DataSource = LoadDisbursementType().ToArray
         ddlDisbursementType.DataBind()
-
-
     End Sub
 
     Public Sub EnableControl(ByVal Value As Boolean)
@@ -356,7 +423,7 @@ Public Class CheckVoucher
 
     Private Function IfExist(ByVal ID As String) As Boolean
         Dim query As String
-        query = " SELECT * FROM tblDV_Check WHERE CV_No ='" & ID & "'  "
+        query = " SELECT * FROM tblDV WHERE CV_No ='" & ID & "'  "
         SQL.ReadQuery(query)
         If SQL.SQLDR.Read Then
             Return True
@@ -370,11 +437,12 @@ Public Class CheckVoucher
         activityStatus = True
         SQL.FlushParams()
         insertSQL = " INSERT INTO " &
-                        " tblDV_Check (TransID, CV_No, VCECode, TransDate, TotalAmount, Remarks, WhoCreated, TransAuto ) " &
-                        " VALUES (@TransID, @CV_No, @VCECode, @TransDate, @TotalAmount, @Remarks,  @WhoCreated, @TransAuto)"
+                        " tblDV (TransID, CV_No, PaymentType, VCECode, TransDate, TotalAmount, Remarks, WhoCreated, TransAuto ) " &
+                        " VALUES (@TransID, @CV_No, @PaymentType, @VCECode, @TransDate, @TotalAmount, @Remarks,  @WhoCreated, @TransAuto)"
         SQL.FlushParams()
         SQL.AddParam("@TransID", TransID)
         SQL.AddParam("@CV_No", CVNo)
+        SQL.AddParam("@PaymentType", ddlType.SelectedValue)
         SQL.AddParam("@VCECode", txtCode.Text)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@TotalAmount", CDec(txtAmount.Text))
@@ -390,7 +458,7 @@ Public Class CheckVoucher
                         " VALUES(@AppDate, @RefType, @RefTransID, @Book, @TotalDBCR, @Remarks, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@AppDate", dtpDoc_Date.Value)
-        SQL.AddParam("@RefType", "CHKV")
+        SQL.AddParam("@RefType", "CV")
         SQL.AddParam("@RefTransID", TransID)
         SQL.AddParam("@Book", "Cash Disbursement")
         SQL.AddParam("@TotalDBCR", "0.00")
@@ -398,7 +466,7 @@ Public Class CheckVoucher
         SQL.AddParam("@WhoCreated", Session("EmailAddress"))
         SQL.ExecNonQuery(insertSQL)
 
-        JETransiD = LoadJE("CHKV", TransID)
+        JETransiD = LoadJE("CV", TransID)
 
         Dim strRefNo As String = ""
         Dim line As Integer = 1
@@ -478,8 +546,8 @@ Public Class CheckVoucher
         Dim insertSQL As String
         Dim BankID As String = GetBankID(ddlBank_List.SelectedValue)
         insertSQL = " INSERT INTO " &
-                    " tblDV_Check_BankRef (CV_No, BankID, RefNo, RefDate, RefAmount, RefName) " &
-                    " VALUES(@CV_No, @BankID, @RefNo, @RefDate, @RefAmount, @RefName)"
+                    " tblDV_Check_BankRef (CV_No, BankID, RefNo, RefDate, RefAmount, RefName, TransferTo, TransferAccountNo) " &
+                    " VALUES(@CV_No, @BankID, @RefNo, @RefDate, @RefAmount, @RefName, @TransferTo, @TransferAccountNo)"
         SQL.FlushParams()
         SQL.AddParam("@CV_No", CVNo)
         SQL.AddParam("@BankID", BankID)
@@ -487,13 +555,15 @@ Public Class CheckVoucher
         SQL.AddParam("@RefDate", dtpBank_Date.Value)
         SQL.AddParam("@RefAmount", CDec(txtAmount.Text))
         SQL.AddParam("@RefName", IIf(txtBank_CheckName.Text = "", txtName.Text, txtBank_CheckName.Text))
+        SQL.AddParam("@TransferTo", txtTransferTo.Text)
+        SQL.AddParam("@TransferAccountNo", txtAccountNo.Text)
         SQL.ExecNonQuery(insertSQL)
     End Sub
 
     Private Sub LoadCVRef(ByVal CVNo As Integer)
         Dim query As String
         query = " SELECT Bank, " &
-                " 	     RefNo, RefDate, RefAmount, tblDV_Check_BankRef.Status, RefName " &
+                " 	     RefNo, RefDate, RefAmount, tblDV_Check_BankRef.Status, RefName, TransferAccountNo, TransferTo" &
                 " FROM   tblDV_Check_BankRef INNER JOIN tblBank " &
                 " ON     tblDV_Check_BankRef.BankID = tblBank.ID " &
                 " WHERE  CV_No ='" & CVNo & "' AND tblDV_Check_BankRef.Status <> 'Cancelled' "
@@ -505,6 +575,8 @@ Public Class CheckVoucher
             txtBank_CheckStatus.Text = SQL.SQLDR("Status").ToString
             txtBank_CheckName.Text = SQL.SQLDR("RefName").ToString
             ddlBank_List.SelectedValue = SQL.SQLDR("Bank").ToString
+            txtAccountNo.Text = SQL.SQLDR("TransferAccountNo").ToString
+            txtTransferTo.Text = SQL.SQLDR("TransferTo").ToString
             bankID = GetBankID(ddlBank_List.SelectedValue)
         End If
     End Sub
@@ -513,13 +585,14 @@ Public Class CheckVoucher
     Private Sub Update()
         Dim insertSQL, updateSQL As String
         activityStatus = True
-        updateSQL = " UPDATE tblDV_Check  " &
-                        " SET    CV_No = @CV_No, VCECode = @VCECode, TransDate = @TransDate, " &
+        updateSQL = " UPDATE tblDV  " &
+                        " SET    CV_No = @CV_No, PaymentType = @PaymentType, VCECode = @VCECode, TransDate = @TransDate, " &
                         "        TotalAmount = @TotalAmount, Remarks = @Remarks, WhoModified = @WhoModified, DateModified = GETDATE() " &
                         " WHERE TransID = @TransID "
         SQL.FlushParams()
         SQL.AddParam("@TransID", Session("TransID").ToString)
         SQL.AddParam("@CV_No", CVNo)
+        SQL.AddParam("@PaymentType", ddlType.SelectedValue)
         SQL.AddParam("@VCECode", txtCode.Text)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@TotalAmount", CDec(txtAmount.Text))
@@ -530,14 +603,14 @@ Public Class CheckVoucher
 
         SaveCVRef(Session("TransID").ToString)
 
-        JETransiD = LoadJE("CHKV", Session("TransID"))
+        JETransiD = LoadJE("CV", Session("TransID"))
         If JETransiD = 0 Then
             insertSQL = " INSERT INTO " &
                         " tblJE_Header (AppDate, RefType, RefTransID, Book, TotalDBCR, Remarks, WhoCreated) " &
                         " VALUES(@AppDate, @RefType, @RefTransID, @Book, @TotalDBCR, @Remarks, @WhoCreated)"
             SQL.FlushParams()
             SQL.AddParam("@AppDate", dtpDoc_Date.Value)
-            SQL.AddParam("@RefType", "CHKV")
+            SQL.AddParam("@RefType", "CV")
             SQL.AddParam("@RefTransID", Session("TransID"))
             SQL.AddParam("@Book", "Cash Disbursement")
             SQL.AddParam("@TotalDBCR", "0.00")
@@ -545,7 +618,7 @@ Public Class CheckVoucher
             SQL.AddParam("@WhoCreated", Session("EmailAddress"))
             SQL.ExecNonQuery(insertSQL)
 
-            JETransiD = LoadJE("CHKV", Session("TransID"))
+            JETransiD = LoadJE("CV", Session("TransID"))
         Else
             updateSQL = " UPDATE tblJE_Header " &
                            " SET    AppDate = @AppDate,  " &
@@ -555,7 +628,7 @@ Public Class CheckVoucher
             SQL.FlushParams()
             SQL.AddParam("@JE_No", JETransiD)
             SQL.AddParam("@AppDate", dtpDoc_Date.Value)
-            SQL.AddParam("@RefType", "CHKV")
+            SQL.AddParam("@RefType", "CV")
             SQL.AddParam("@RefTransID", Session("TransID").ToString)
             SQL.AddParam("@Book", "Cash Disbursement")
             SQL.AddParam("@TotalDBCR", "0.00")
@@ -640,11 +713,11 @@ Public Class CheckVoucher
     End Sub
 
     Private Sub LoadTransaction(ByVal ID As String)
-        Dim query As String
-        query = " SELECT  TransID, CV_No, tblDV_Check.VCECode, Name, TransDate, TotalAmount, Remarks, " &
-                "         ISNULL(APV_Ref,0) as APV_Ref, OR_Ref, ISNULL(LN_Ref,0) as LN_Ref, tblDV_Check.Status " &
-                " FROM    tblDV_Check LEFT JOIN View_VCEMMaster " &
-                " ON      tblDV_Check.VCECode = View_VCEMMaster.Code " &
+        Dim query, PaymentType As String
+        query = " SELECT  TransID, CV_No, PaymentType, tblDV.VCECode, Name, TransDate, TotalAmount, Remarks, " &
+                "         ISNULL(APV_Ref,0) as APV_Ref, OR_Ref, ISNULL(LN_Ref,0) as LN_Ref, tblDV.Status " &
+                " FROM    tblDV LEFT JOIN View_VCEMMaster " &
+                " ON      tblDV.VCECode = View_VCEMMaster.Code " &
                 " WHERE   TransID = '" & ID & "' "
         SQL.FlushParams()
         SQL.ReadQuery(query)
@@ -660,6 +733,11 @@ Public Class CheckVoucher
             dtpDoc_Date.Value = CDate(SQL.SQLDR("TransDate")).ToString("yyyy-MM-dd")
             txtRemarks.Text = SQL.SQLDR("Remarks").ToString
             txtStatus.Text = SQL.SQLDR("Status").ToString
+            PaymentType = SQL.SQLDR("PaymentType").ToString
+            ddlType.Text = PaymentType
+
+            WithBank()
+
             LoadCVRef(TransID)
             LoadEntry(TransID)
 
@@ -708,7 +786,7 @@ Public Class CheckVoucher
         query = " SELECT ID, JE_No, View_GL.BranchCode, View_GL.AccntCode, AccountTitle, View_GL.VCECode, View_GL.VCEName, Debit, Credit, Particulars, CostID, RefNo   " &
                 " FROM   View_GL INNER JOIN tblCOA " &
                 " ON     View_GL.AccntCode = tblCOA.AccountCode " &
-                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE RefType = 'CHKV' AND RefTransID = " & CVNo & ") " &
+                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE RefType = 'CV' AND RefTransID = " & CVNo & ") " &
                 " ORDER BY LineNumber "
         SQL.ReadQuery(query)
         Dim ch As Integer = 1
@@ -742,7 +820,6 @@ Public Class CheckVoucher
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         If CVNo = "" Then
             Initialize()
-            LoadBankList()
             EnableControl(False)
             btnEdit.Attributes("disabled") = "disabled"
             btnCancel.Attributes("disabled") = "disabled"
@@ -751,7 +828,6 @@ Public Class CheckVoucher
             btnPreview.Attributes("disabled") = "disabled"
         Else
             Initialize()
-            LoadBankList()
             LoadTransaction(TransID)
             btnEdit.Attributes.Remove("disabled")
             btnCancel.Attributes.Remove("disabled")
@@ -769,7 +845,7 @@ Public Class CheckVoucher
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
         If Session("Transno") <> "" Then
             Dim query As String
-            query = " SELECT Top 1 TransID FROM tblDV_Check  WHERE CV_No > '" & Session("Transno") & "' ORDER BY CV_No ASC "
+            query = " SELECT Top 1 TransID FROM tblDV  WHERE CV_No > '" & Session("Transno") & "' ORDER BY CV_No ASC "
             SQL.ReadQuery(query)
             If SQL.SQLDR.Read Then
                 TransID = SQL.SQLDR("TransID").ToString
@@ -783,7 +859,7 @@ Public Class CheckVoucher
     Private Sub btnPrev_Click(sender As Object, e As EventArgs) Handles btnPrev.Click
         If Session("Transno") <> "" Then
             Dim query As String
-            query = " SELECT Top 1 TransID FROM tblDV_Check  WHERE CV_No < '" & Session("Transno") & "' ORDER BY CV_No DESC "
+            query = " SELECT Top 1 TransID FROM tblDV  WHERE CV_No < '" & Session("Transno") & "' ORDER BY CV_No DESC "
             SQL.ReadQuery(query)
             If SQL.SQLDR.Read Then
                 TransID = SQL.SQLDR("TransID").ToString
@@ -826,36 +902,24 @@ Public Class CheckVoucher
         Dim CheckNo As String = ""
         If Bank_ID <> 0 Then
             Dim query As String
-            query = " SELECT  RIGHT('000000000000' + CAST((CAST(MAX(RefNo) AS bigint) + 1) AS nvarchar), LEN(SeriesStart)) AS RefNo, SeriesStart " &
-                    " FROM    tblDV_Check_BankRef RIGHT JOIN tblBank " &
+            query = " SELECT  RIGHT('000000000000' + CAST((CAST(MAX(RefNo) AS bigint) + 1) AS nvarchar), LEN(SeriesStart)) AS RefNo, ISNULL(SeriesStart,0) AS SeriesStart " &
+                    " FROM    tblBank LEFT JOIN tblDV_Check_BankRef " &
                     " ON      tblDV_Check_BankRef.BankID = tblBank.ID " &
                     " AND     tblDV_Check_BankRef.RefNo BETWEEN SeriesStart AND SeriesEnd " &
+                    " LEFT JOIN tblDV ON tblDV_Check_BankRef.CV_No = tblDV.TransID AND PaymentType = 'Check'" &
                     " WHERE   tblBank.ID = '" & Bank_ID & "'   " &
                     " GROUP BY LEN(SeriesStart), SeriesStart  "
             SQL.ReadQuery(query)
             If SQL.SQLDR.Read AndAlso Not IsDBNull(SQL.SQLDR("RefNo")) Then
                 CheckNo = SQL.SQLDR("RefNo").ToString
-            Else
+            ElseIf Not IsDBNull(SQL.SQLDR("SeriesStart")) Then
                 CheckNo = SQL.SQLDR("SeriesStart").ToString
+            Else
+                CheckNo = ""
             End If
         End If
         Return CheckNo
     End Function
-
-    Private Sub LoadBankList()
-        Dim query As String
-        query = " SELECT  Bank " &
-                " FROM    tblBank " &
-                " WHERE   Status =@Status"
-        SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
-        SQL.ReadQuery(query)
-        ddlBank_List.Items.Clear()
-        ddlBank_List.Items.Add("--Select Bank--")
-        While SQL.SQLDR.Read
-            ddlBank_List.Items.Add(SQL.SQLDR("Bank").ToString)
-        End While
-    End Sub
 
     Public Sub ddlBankSelectChange()
         txtBank_CheckNo.Text = GetCheckNo(GetBankID(ddlBank_List.SelectedValue))

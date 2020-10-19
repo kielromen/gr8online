@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="GR8BooksConnectionString (Web.config)" DbObjectName="GR8Books.dbo.View_GL" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, JE_No, AppDate, RefType, TransNo, RefTransID, Book, VCECode, VCEName, AccntCode, AccntTitle, Debit, Credit, Particulars, CheckNo, RefNo, Remarks, OtherRef, Status, BranchCode, BusinessCode, LineNumber, CostCenter, ProfitCenter, CIP_Code, SL_Code, dateCleared, dateDeposit, WhoCreated, LoginName, DateCreated FROM dbo.View_GL</CommandText>
+                    <CommandText>SELECT ID, JE_No, AppDate, RefType, TransNo, RefTransID, Book, VCECode, VCEName, AccntCode, AccntTitle, AccountNature, Debit, Credit, Particulars, CheckNo, RefNo, Remarks, OtherRef, Status, BranchCode, BusinessCode, LineNumber, CostID, CostCenter, ProfitCenter, CIP_Code, SL_Code, dateCleared, dateDeposit, WhoCreated, LoginName, DateCreated FROM dbo.View_GL</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -30,6 +30,7 @@
               <Mapping SourceColumn="VCEName" DataSetColumn="VCEName" />
               <Mapping SourceColumn="AccntCode" DataSetColumn="AccntCode" />
               <Mapping SourceColumn="AccntTitle" DataSetColumn="AccntTitle" />
+              <Mapping SourceColumn="AccountNature" DataSetColumn="AccountNature" />
               <Mapping SourceColumn="Debit" DataSetColumn="Debit" />
               <Mapping SourceColumn="Credit" DataSetColumn="Credit" />
               <Mapping SourceColumn="Particulars" DataSetColumn="Particulars" />
@@ -41,6 +42,7 @@
               <Mapping SourceColumn="BranchCode" DataSetColumn="BranchCode" />
               <Mapping SourceColumn="BusinessCode" DataSetColumn="BusinessCode" />
               <Mapping SourceColumn="LineNumber" DataSetColumn="LineNumber" />
+              <Mapping SourceColumn="CostID" DataSetColumn="CostID" />
               <Mapping SourceColumn="CostCenter" DataSetColumn="CostCenter" />
               <Mapping SourceColumn="ProfitCenter" DataSetColumn="ProfitCenter" />
               <Mapping SourceColumn="CIP_Code" DataSetColumn="CIP_Code" />
@@ -58,7 +60,7 @@
               <DbSource ConnectionRef="GR8BooksConnectionString (Web.config)" DbObjectName="GR8Books.dbo.View_CV_Printout" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT TransID, CV_No, BranchCode, BusinessCode, VCECode, VCEName, TransDate, TotalAmount, Remarks, Status FROM dbo.View_CV_Printout</CommandText>
+                    <CommandText>SELECT TransID, CV_No, BranchCode, BusinessCode, VCECode, VCEName, TransDate, TotalAmount, Remarks, Status, BankID, RefNo, RefDate, RefAmount, RefName, CheckStatus, ClearDate, TransferAccountNo, TransferTo FROM dbo.View_CV_Printout</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -75,6 +77,15 @@
               <Mapping SourceColumn="TotalAmount" DataSetColumn="TotalAmount" />
               <Mapping SourceColumn="Remarks" DataSetColumn="Remarks" />
               <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="BankID" DataSetColumn="BankID" />
+              <Mapping SourceColumn="RefNo" DataSetColumn="RefNo" />
+              <Mapping SourceColumn="RefDate" DataSetColumn="RefDate" />
+              <Mapping SourceColumn="RefAmount" DataSetColumn="RefAmount" />
+              <Mapping SourceColumn="RefName" DataSetColumn="RefName" />
+              <Mapping SourceColumn="CheckStatus" DataSetColumn="CheckStatus" />
+              <Mapping SourceColumn="ClearDate" DataSetColumn="ClearDate" />
+              <Mapping SourceColumn="TransferAccountNo" DataSetColumn="TransferAccountNo" />
+              <Mapping SourceColumn="TransferTo" DataSetColumn="TransferTo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -86,7 +97,7 @@
   <xs:element name="dsCVrpt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsCVrpt" msprop:Generator_UserDSName="dsCVrpt">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="View_GL" msprop:Generator_TableClassName="View_GLDataTable" msprop:Generator_TableVarName="tableView_GL" msprop:Generator_TablePropName="View_GL" msprop:Generator_RowDeletingName="View_GLRowDeleting" msprop:Generator_RowChangingName="View_GLRowChanging" msprop:Generator_RowEvHandlerName="View_GLRowChangeEventHandler" msprop:Generator_RowDeletedName="View_GLRowDeleted" msprop:Generator_UserTableName="View_GL" msprop:Generator_RowChangedName="View_GLRowChanged" msprop:Generator_RowEvArgName="View_GLRowChangeEvent" msprop:Generator_RowClassName="View_GLRow">
+        <xs:element name="View_GL" msprop:Generator_TableClassName="View_GLDataTable" msprop:Generator_TableVarName="tableView_GL" msprop:Generator_RowChangedName="View_GLRowChanged" msprop:Generator_TablePropName="View_GL" msprop:Generator_RowDeletingName="View_GLRowDeleting" msprop:Generator_RowChangingName="View_GLRowChanging" msprop:Generator_RowEvHandlerName="View_GLRowChangeEventHandler" msprop:Generator_RowDeletedName="View_GLRowDeleted" msprop:Generator_RowClassName="View_GLRow" msprop:Generator_UserTableName="View_GL" msprop:Generator_RowEvArgName="View_GLRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -139,6 +150,13 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AccountNature" msprop:Generator_ColumnVarNameInTable="columnAccountNature" msprop:Generator_ColumnPropNameInRow="AccountNature" msprop:Generator_ColumnPropNameInTable="AccountNatureColumn" msprop:Generator_UserColumnName="AccountNature" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -201,6 +219,13 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="LineNumber" msprop:Generator_ColumnVarNameInTable="columnLineNumber" msprop:Generator_ColumnPropNameInRow="LineNumber" msprop:Generator_ColumnPropNameInTable="LineNumberColumn" msprop:Generator_UserColumnName="LineNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="CostID" msprop:Generator_ColumnVarNameInTable="columnCostID" msprop:Generator_ColumnPropNameInRow="CostID" msprop:Generator_ColumnPropNameInTable="CostIDColumn" msprop:Generator_UserColumnName="CostID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="CostCenter" msprop:Generator_ColumnVarNameInTable="columnCostCenter" msprop:Generator_ColumnPropNameInRow="CostCenter" msprop:Generator_ColumnPropNameInTable="CostCenterColumn" msprop:Generator_UserColumnName="CostCenter" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -301,6 +326,45 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BankID" msprop:Generator_ColumnVarNameInTable="columnBankID" msprop:Generator_ColumnPropNameInRow="BankID" msprop:Generator_ColumnPropNameInTable="BankIDColumn" msprop:Generator_UserColumnName="BankID" type="xs:int" minOccurs="0" />
+              <xs:element name="RefNo" msprop:Generator_ColumnVarNameInTable="columnRefNo" msprop:Generator_ColumnPropNameInRow="RefNo" msprop:Generator_ColumnPropNameInTable="RefNoColumn" msprop:Generator_UserColumnName="RefNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RefDate" msprop:Generator_ColumnVarNameInTable="columnRefDate" msprop:Generator_ColumnPropNameInRow="RefDate" msprop:Generator_ColumnPropNameInTable="RefDateColumn" msprop:Generator_UserColumnName="RefDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="RefAmount" msprop:Generator_ColumnVarNameInTable="columnRefAmount" msprop:Generator_ColumnPropNameInRow="RefAmount" msprop:Generator_ColumnPropNameInTable="RefAmountColumn" msprop:Generator_UserColumnName="RefAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RefName" msprop:Generator_ColumnVarNameInTable="columnRefName" msprop:Generator_ColumnPropNameInRow="RefName" msprop:Generator_ColumnPropNameInTable="RefNameColumn" msprop:Generator_UserColumnName="RefName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CheckStatus" msprop:Generator_ColumnVarNameInTable="columnCheckStatus" msprop:Generator_ColumnPropNameInRow="CheckStatus" msprop:Generator_ColumnPropNameInTable="CheckStatusColumn" msprop:Generator_UserColumnName="CheckStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ClearDate" msprop:Generator_ColumnVarNameInTable="columnClearDate" msprop:Generator_ColumnPropNameInRow="ClearDate" msprop:Generator_ColumnPropNameInTable="ClearDateColumn" msprop:Generator_UserColumnName="ClearDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TransferAccountNo" msprop:Generator_ColumnVarNameInTable="columnTransferAccountNo" msprop:Generator_ColumnPropNameInRow="TransferAccountNo" msprop:Generator_ColumnPropNameInTable="TransferAccountNoColumn" msprop:Generator_UserColumnName="TransferAccountNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TransferTo" msprop:Generator_ColumnVarNameInTable="columnTransferTo" msprop:Generator_ColumnPropNameInRow="TransferTo" msprop:Generator_ColumnPropNameInTable="TransferToColumn" msprop:Generator_UserColumnName="TransferTo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

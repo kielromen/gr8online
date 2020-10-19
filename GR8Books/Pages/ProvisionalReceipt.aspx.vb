@@ -46,19 +46,6 @@ Public Class ProvisionalReceipt
         End If
     End Sub
 
-    Public Sub PaymentType()
-        Dim query As String
-        query = " SELECT DISTINCT PaymentType FROM tblCollection_PaymentType WHERE Status ='Active' " &
-                " UNION ALL" &
-                " SELECT DISTINCT Bank FROM tblBank WHERE Status ='Active' "
-        SQL.ReadQuery(query)
-        ddlType.Items.Clear()
-        ddlType.Items.Add("--Select Payment Type--")
-        While SQL.SQLDR.Read
-            ddlType.Items.Add(SQL.SQLDR("PaymentType").ToString)
-        End While
-        BankDetails()
-    End Sub
 
     Public Sub EnableControl(ByVal Value As Boolean)
         panelConrols.Enabled = Value
@@ -81,20 +68,30 @@ Public Class ProvisionalReceipt
         txtName.Text = ""
         txtAmount.Text = "0.00"
         txtRemarks.Text = ""
-        txtRef_No.Text = ""
+        'txtRef_No.Text = ""
         txtTrans_Num.Text = ""
         txtBank_CheckNo.Text = ""
         txtBank_Name.Text = ""
         dtpDoc_Date.Value = CDate(Date.Now).ToString("yyyy-MM-dd")
         dtpBank_Date.Value = CDate(Date.Now).ToString("yyyy-MM-dd")
+        WithBank()
         BankDetails()
         LoadDatagrid()
+
+        ddlType.Items.Clear()
+        ddlType.Items.Add("--Select Payment Type--")
+        ddlType.DataSource = LoadCollectionPaymentType().ToArray
+        ddlType.DataBind()
+
+        ddlBank.Items.Clear()
+        ddlBank.Items.Add("--Select Bank--")
+        ddlBank.DataSource = LoadBank().ToArray
+        ddlBank.DataBind()
 
         ddlCollectionType.Items.Clear()
         ddlCollectionType.Items.Add("--Select Collection Type--")
         ddlCollectionType.DataSource = LoadCollectionType().ToArray
         ddlCollectionType.DataBind()
-        PaymentType()
     End Sub
 
     Public Sub LoadDatagrid()
@@ -384,7 +381,7 @@ Public Class ProvisionalReceipt
 
     Private Sub LoadTransaction(ByVal ID As String)
         Dim query, PaymentType As String
-        query = " SELECT  TransID, PR_No, tblCollection_PR.VCECode, Name, TransDate, Amount, Remarks, PaymentType, " &
+        query = " SELECT  TransID, PR_No, tblCollection_PR.VCECode, Name, TransDate, Amount, Remarks, PaymentType, DepositTo," &
                 "          tblCollection_PR.Status, CheckDate, BankRef, CheckRef " &
                 " FROM    tblCollection_PR LEFT JOIN View_VCEMMaster " &
                 " ON      tblCollection_PR.VCECode = View_VCEMMaster.Code " &
@@ -407,6 +404,8 @@ Public Class ProvisionalReceipt
             txtBank_CheckNo.Text = SQL.SQLDR("CheckRef").ToString
             PaymentType = SQL.SQLDR("PaymentType").ToString
             ddlType.Text = PaymentType
+            ddlBank.SelectedValue = SQL.SQLDR("DepositTo").ToString
+            WithBank()
             BankDetails()
 
 
@@ -484,28 +483,39 @@ Public Class ProvisionalReceipt
         SetDataTable()
     End Sub
 
-    Protected Sub ddlType_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
-        BankDetails()
+
+    Public Sub WithBank()
+        Dim query As String
+        query = " SELECT WithBank" & vbCrLf &
+                " FROM   tblCollection_PaymentType " & vbCrLf &
+                " WHERE  tblCollection_PaymentType.Status ='Active' AND PaymentType = @PaymentType"
+        SQL.FlushParams()
+        SQL.AddParam("PaymentType", ddlType.SelectedValue)
+        SQL.ReadQuery(query)
+        If SQL.SQLDR.Read Then
+            panelBank.Visible = SQL.SQLDR("WithBank")
+            txtBank_Name.Text = ""
+            txtBank_CheckNo.Text = ""
+        Else
+            panelBank.Visible = False
+            txtBank_Name.Text = ""
+            txtBank_CheckNo.Text = ""
+        End If
     End Sub
 
     Public Sub BankDetails()
         Dim query As String
-        query = " SELECT WithBank, tblCollection_PaymentType.AccountCode, AccountTitle" & vbCrLf &
-                " FROM   tblCollection_PaymentType " & vbCrLf &
-                " INNER Join tblCOA ON tblCollection_PaymentType.AccountCode = tblCOA.AccountCode" & vbCrLf &
-                " WHERE  tblCollection_PaymentType.Status ='Active' AND PaymentType ='" & ddlType.SelectedValue & "' " & vbCrLf &
-                " UNION ALL" & vbCrLf &
-                " Select '0' As WithBank, tblBank.AccountCode, AccountTitle " & vbCrLf &
-                " From tblBank " & vbCrLf &
-                " INNER Join tblCOA ON tblBank.AccountCode = tblCOA.AccountCode" & vbCrLf &
-                " WHERE  tblBank.Status ='Active' AND Bank ='" & ddlType.SelectedValue & "' "
+        query = " SELECT tblBank.AccountCode, AccountTitle" & vbCrLf &
+                " FROM   tblBank " & vbCrLf &
+                " INNER JOIN tblCOA ON tblBank.AccountCode = tblCOA.AccountCode " & vbCrLf &
+                " WHERE  tblBank.Status ='Active' AND Bank = @Bank"
+        SQL.FlushParams()
+        SQL.AddParam("Bank", ddlBank.SelectedValue)
         SQL.ReadQuery(query)
         If SQL.SQLDR.Read Then
-            panelBank.Visible = SQL.SQLDR("WithBank")
             Session("AccountCode") = SQL.SQLDR("AccountCode")
             Session("AccountTitle") = SQL.SQLDR("AccountTitle")
         Else
-            panelBank.Visible = False
             Session("AccountCode") = ""
             Session("AccountTitle") = ""
         End If
@@ -602,9 +612,13 @@ Public Class ProvisionalReceipt
                     ARNo = txtTrans_Num.Text
                 End If
                 txtTrans_Num.Text = ARNo
-                Save()
-                Response.Write("<script>alert('Transaction " & txtTrans_Num.Text & " successfully saved.');</script>")
-                LoadTransaction(TransID)
+                If Not IfExist(txtTrans_Num.Text) Then
+                    Save()
+                    Response.Write("<script>alert('Transaction " & txtTrans_Num.Text & " successfully saved.');</script>")
+                    LoadTransaction(TransID)
+                Else
+                    Response.Write("<script>alert('Not Save, transaction " & txtTrans_Num.Text & " already exist!');</script>")
+                End If
             Else
                 If Session("TransNo") = txtTrans_Num.Text Then
                     ARNo = txtTrans_Num.Text
@@ -620,7 +634,7 @@ Public Class ProvisionalReceipt
                         ARNo = txtTrans_Num.Text
                         LoadTransaction(Session("TransID"))
                     Else
-                        Response.Write("<script>alert('Transaction " & txtTrans_Num.Text & " already exist!');</script>")
+                        Response.Write("<script>alert('Not Save, transaction " & txtTrans_Num.Text & " already exist!');</script>")
                     End If
                 End If
             End If
@@ -632,13 +646,14 @@ Public Class ProvisionalReceipt
         activityStatus = True
         SQL.FlushParams()
         insertSQL = " INSERT INTO " &
-                        " tblCollection_PR (TransID,  PR_No, TransDate, VCECode, PaymentType, Amount,  CheckRef, BankRef, CheckDate, Remarks, TransAuto, WhoCreated) " &
-                        " VALUES(@TransID, @PR_No, @TransDate, @VCECode, @PaymentType, @Amount, @CheckRef, @BankRef, @CheckDate, @Remarks, @TransAuto, @WhoCreated)"
+                        " tblCollection_PR (TransID,  PR_No, TransDate, VCECode, PaymentType,DepositTo, Amount,  CheckRef, BankRef, CheckDate, Remarks, TransAuto, WhoCreated) " &
+                        " VALUES(@TransID, @PR_No, @TransDate, @VCECode, @PaymentType, @DepositTo, @Amount, @CheckRef, @BankRef, @CheckDate, @Remarks, @TransAuto, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@TransID", TransID)
         SQL.AddParam("@PR_No", ARNo)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@PaymentType", ddlType.Text)
+        SQL.AddParam("@DepositTo", ddlBank.SelectedValue)
         SQL.AddParam("@VCECode", txtCode.Text)
         If IsNumeric(txtAmount.Text) Then
             SQL.AddParam("@Amount", CDec(txtAmount.Text))
@@ -744,7 +759,7 @@ Public Class ProvisionalReceipt
         Dim insertSQL, updateSQL As String
         activityStatus = True
         updateSQL = " UPDATE tblCollection_PR  " &
-                        " SET     PR_No = @PR_No, TransDate = @TransDate, PaymentType = @PaymentType, " &
+                        " SET     PR_No = @PR_No, TransDate = @TransDate, PaymentType = @PaymentType, DepositTo = @DepositTo," &
                         "        VCECode = @VCECode, Amount = @Amount, CheckRef = @CheckRef, BankRef = @BankRef, CheckDate = @CheckDate, " &
                         "        Remarks = @Remarks, WhoModified = @WhoModified, DateModified = GETDATE()" &
                         " WHERE TransID = @TransID "
@@ -754,6 +769,7 @@ Public Class ProvisionalReceipt
         SQL.AddParam("@PR_No", ARNo)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@PaymentType", ddlType.Text)
+        SQL.AddParam("@DepositTo", ddlBank.SelectedValue)
         SQL.AddParam("@VCECode", txtCode.Text)
         If IsNumeric(txtAmount.Text) Then
             SQL.AddParam("@Amount", CDec(txtAmount.Text))

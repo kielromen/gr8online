@@ -158,6 +158,15 @@ Partial Public Class VendorManagement
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''txtBranchCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtBranchCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txtTerms control.
     '''</summary>
     '''<remarks>

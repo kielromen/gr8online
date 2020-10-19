@@ -512,91 +512,6 @@ Update Order Option
 Used to sort self-referenced table's rows
 </summary>
 </member>
-<member name="T:GR8Books.dsCHKVrpt">
-<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrpt.View_CHKV_PrintoutDataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrpt.View_GLDataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrpt.View_CHKV_PrintoutRow">
-<summary>
-Represents strongly named DataRow class.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrpt.View_GLRow">
-<summary>
-Represents strongly named DataRow class.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrpt.View_CHKV_PrintoutRowChangeEvent">
-<summary>
-Row event argument class
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrpt.View_GLRowChangeEvent">
-<summary>
-Row event argument class
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrptTableAdapters.View_CHKV_PrintoutTableAdapter">
-<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrptTableAdapters.View_GLTableAdapter">
-<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager">
-<summary>
-TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
-</summary>
-</member>
-<member name="M:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsCHKVrpt,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
-<summary>
-Update rows in top-down order.
-</summary>
-</member>
-<member name="M:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsCHKVrpt,System.Collections.Generic.List{System.Data.DataRow})">
-<summary>
-Insert rows in top-down order.
-</summary>
-</member>
-<member name="M:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsCHKVrpt,System.Collections.Generic.List{System.Data.DataRow})">
-<summary>
-Delete rows in bottom-up order.
-</summary>
-</member>
-<member name="M:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
-<summary>
-Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
-</summary>
-</member>
-<member name="M:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsCHKVrpt)">
-<summary>
-Update all changes to the dataset.
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager.UpdateOrderOption">
-<summary>
-Update Order Option
-</summary>
-</member>
-<member name="T:GR8Books.dsCHKVrptTableAdapters.TableAdapterManager.SelfReferenceComparer">
-<summary>
-Used to sort self-referenced table's rows
-</summary>
-</member>
 <member name="T:GR8Books.dsCVrpt">
 <summary>
 Represents a strongly typed in-memory cache of data.
@@ -1789,6 +1704,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.AcknowledgementReceipt._ddlBank">
+<summary>
+ddlBank control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.AcknowledgementReceipt._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.AcknowledgementReceipt._panelBank">
 <summary>
 panelBank control.
@@ -1834,27 +1767,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.AcknowledgementReceipt._RequiredFieldValidator5">
+<summary>
+RequiredFieldValidator5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.AcknowledgementReceipt._dtpDoc_Date">
 <summary>
 dtpDoc_Date control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.AcknowledgementReceipt._txtRef_Type">
-<summary>
-txtRef_Type control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.AcknowledgementReceipt._txtRef_No">
-<summary>
-txtRef_No control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3238,6 +3162,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.ChartofAccount_Loadlist._GridView1">
+<summary>
+GridView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.ChartofAccount_Loadlist._btnAdd">
 <summary>
 btnAdd control.
@@ -3391,6 +3324,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CheckVoucher._ddlType">
+<summary>
+ddlType control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CheckVoucher._RequiredFieldValidator6">
+<summary>
+RequiredFieldValidator6 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CheckVoucher._txtCode">
 <summary>
 txtCode control.
@@ -3472,6 +3423,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CheckVoucher._panelBank">
+<summary>
+panelBank control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CheckVoucher._lblBank">
+<summary>
+lblBank control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CheckVoucher._ddlBank_List">
 <summary>
 ddlBank_List control.
@@ -3484,6 +3453,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CheckVoucher._RequiredFieldValidator9">
 <summary>
 RequiredFieldValidator9 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CheckVoucher._panelBankDetails">
+<summary>
+panelBankDetails control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3529,6 +3507,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CheckVoucher._txtBank_CheckStatus">
 <summary>
 txtBank_CheckStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CheckVoucher._panelBankTransfer">
+<summary>
+panelBankTransfer control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CheckVoucher._txtTransferTo">
+<summary>
+txtTransferTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CheckVoucher._txtAccountNo">
+<summary>
+txtAccountNo control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3655,42 +3660,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CollectionPaymentType_Maintenance._RequiredFieldValidator4">
 <summary>
 RequiredFieldValidator4 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CollectionPaymentType_Maintenance._txtAccountCode">
-<summary>
-txtAccountCode control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CollectionPaymentType_Maintenance._RequiredFieldValidator1">
-<summary>
-RequiredFieldValidator1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CollectionPaymentType_Maintenance._txtAccountTitle">
-<summary>
-txtAccountTitle control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CollectionPaymentType_Maintenance._RequiredFieldValidator3">
-<summary>
-RequiredFieldValidator3 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3922,6 +3891,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CollectionReceipt._ddlBank">
+<summary>
+ddlBank control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CollectionReceipt._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CollectionReceipt._panelBank">
 <summary>
 panelBank control.
@@ -3970,24 +3957,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CollectionReceipt._dtpDoc_Date">
 <summary>
 dtpDoc_Date control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CollectionReceipt._txtRef_Type">
-<summary>
-txtRef_Type control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CollectionReceipt._txtRef_No">
-<summary>
-txtRef_No control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4570,6 +4539,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.Company_SetUp._txtTelephone">
+<summary>
+txtTelephone control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.Company_SetUp._btnSave">
 <summary>
 btnSave control.
@@ -4969,6 +4947,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CustomerManagement._RequiredFieldValidator2">
 <summary>
 RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement._txtBranchCode">
+<summary>
+txtBranchCode control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6058,6 +6045,141 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.DeliveryReceipt_Loadlist._dgvList">
 <summary>
 dgvList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Loadlist._btnExport">
+<summary>
+btnExport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Loadlist._gvPaymentType">
+<summary>
+gvPaymentType control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._panelPaymentType">
+<summary>
+panelPaymentType control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._txtPaymentType">
+<summary>
+txtPaymentType control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._RequiredFieldValidator2">
+<summary>
+RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._ddlWithBank">
+<summary>
+ddlWithBank control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._panelAccount">
+<summary>
+panelAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._txtAccountCode">
+<summary>
+txtAccountCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._RequiredFieldValidator1">
+<summary>
+RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._txtAccountTitle">
+<summary>
+txtAccountTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._RequiredFieldValidator3">
+<summary>
+RequiredFieldValidator3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._btnSave">
+<summary>
+btnSave control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Maintenance._btnCancel">
+<summary>
+btnCancel control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7549,24 +7671,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.JournalVoucher._txtRef_Type">
-<summary>
-txtRef_Type control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.JournalVoucher._txtRef_No">
-<summary>
-txtRef_No control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:GR8Books.JournalVoucher._txtStatus">
 <summary>
 txtStatus control.
@@ -8422,6 +8526,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.OfficialReceipt._ddlBank">
+<summary>
+ddlBank control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.OfficialReceipt._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.OfficialReceipt._panelBank">
 <summary>
 panelBank control.
@@ -8467,27 +8589,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.OfficialReceipt._RequiredFieldValidator5">
+<summary>
+RequiredFieldValidator5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.OfficialReceipt._dtpDoc_Date">
 <summary>
 dtpDoc_Date control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.OfficialReceipt._txtRef_Type">
-<summary>
-txtRef_Type control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.OfficialReceipt._txtRef_No">
-<summary>
-txtRef_No control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8980,6 +9093,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.ProvisionalReceipt._ddlBank">
+<summary>
+ddlBank control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ProvisionalReceipt._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.ProvisionalReceipt._panelBank">
 <summary>
 panelBank control.
@@ -9025,27 +9156,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.ProvisionalReceipt._RequiredFieldValidator5">
+<summary>
+RequiredFieldValidator5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.ProvisionalReceipt._dtpDoc_Date">
 <summary>
 dtpDoc_Date control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.ProvisionalReceipt._txtRef_Type">
-<summary>
-txtRef_Type control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.ProvisionalReceipt._txtRef_No">
-<summary>
-txtRef_No control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -10412,6 +10534,141 @@ To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:GR8Books.Reports_FinancialReports._gvFilter">
+<summary>
+gvFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._ddlReports">
+<summary>
+ddlReports control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._RequiredFieldValidator3">
+<summary>
+RequiredFieldValidator3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._RequiredFieldValidator2">
+<summary>
+RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._ddlReportType">
+<summary>
+ddlReportType control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._RequiredFieldValidator1">
+<summary>
+RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._ddlPeriodType">
+<summary>
+ddlPeriodType control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._txtYear">
+<summary>
+txtYear control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._ddlMonth">
+<summary>
+ddlMonth control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._dtpFromDate">
+<summary>
+dtpFromDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._dtpToDate">
+<summary>
+dtpToDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._btnPreview">
+<summary>
+btnPreview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._btnExport">
+<summary>
+btnExport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._panelFilter">
+<summary>
+panelFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Reports_Journals._gvFilter">
 <summary>
 gvFilter control.
 </summary>
@@ -12079,6 +12336,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.VendorManagement._RequiredFieldValidator2">
 <summary>
 RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement._txtBranchCode">
+<summary>
+txtBranchCode control.
 </summary>
 <remarks>
 Auto-generated field.

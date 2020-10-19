@@ -21,6 +21,14 @@
                     function () {
                         $(".txtBranchCode").mask("00000");
                     });
+                $('.txtTelephone').click(
+                    function () {
+                        $(".txtTelephone").mask("(999)-999-9999");
+                    });
+                $('.txtTelephone').keypress(
+                    function () {
+                        $(".txtTelephone").mask("(999)-999-9999");
+                    });
 
                 $('#<%= ddlClassification.ClientID%>').change(function () {
                     if ($('#<%=ddlClassification.ClientID%> :selected').text() == "Individual") {
@@ -388,6 +396,20 @@
                         <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator8" runat="Server" ControlToValidate="txtCompany_Email" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
+            </div>
+        </div>
+          <div class="row mb-2">
+             <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Telephone no.:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtTelephone" runat="server" class="form-control txtTelephone"  autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">    
             </div>
         </div>
     </asp:Panel>

@@ -1,23 +1,23 @@
-﻿<%@ Page Title="Collection Payment Type" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="CollectionPaymentType_LoadList.aspx.vb" Inherits="GR8Books.CollectionPaymentType_LoadList" %>
+﻿<%@ Page Title="Disbursement Payment Type" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="DisbursementPaymentType_Loadlist.aspx.vb" Inherits="GR8Books.DisbursementPaymentType_Loadlist" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <script type='text/javascript'>
          $(document).ready(function () {
              $(".btnView").click(function () {
                  var ID = $(this).attr("title");
                  var Actions = "View"
-                 window.open("CollectionPaymentType_Maintenance.aspx?id=" + ID + '&Actions=' + Actions, "View", "width=550,height=550");
+                 window.open("DisbursementPaymentType_Maintenance.aspx?id=" + ID + '&Actions=' + Actions, "View", "width=550,height=550");
                  return false;
              });
 
              $(".btnEdit").click(function () {
                  var ID = $(this).attr("title");
                  var Actions = "Edit"
-                 window.open("CollectionPaymentType_Maintenance.aspx?id=" + ID + '&Actions=' + Actions, "Edit", "width=550,height=550");
+                 window.open("DisbursementPaymentType_Maintenance.aspx?id=" + ID + '&Actions=' + Actions, "Edit", "width=550,height=550");
                  return false;
              });
 
              $(".btnAdd").click(function () {
-                 window.location = "CollectionPaymentType_Maintenance.aspx";
+                 window.location = "DisbursementPaymentType_Maintenance.aspx";
                  return false;
              });
 
@@ -53,6 +53,8 @@
                         <asp:BoundField DataField="ID" HeaderText="ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
                         <asp:BoundField DataField="PaymentType" HeaderText="Payment Type" />
                         <asp:BoundField DataField="WithBank" HeaderText="WithBank" />
+                        <asp:BoundField DataField="AccountCode" HeaderText="AccountCode" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                        <asp:BoundField DataField="AccountTitle" HeaderText="AccountTitle" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                         <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                         <asp:BoundField DataField="DateModified" HeaderText="DateModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                         <asp:BoundField DataField="WhoCreated" HeaderText="WhoCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />

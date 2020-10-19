@@ -32,21 +32,14 @@
             Case "JV"
                 query = " SELECT   TransID, JV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, '' AS Name, '0.00' AS TotalAmount, Remarks, tblJV.Status  " &
                         " FROM     tblJV  " &
-                        " WHERE JV_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR tblJV.Status LIKE '%" & filter & "%'  ORDER BY TransID ASC"
+                        " WHERE JV_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR tblJV.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "CV"
-                query = " SELECT   TransID, CV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, TotalAmount, Remarks, tblDV_Cash.Status  " &
-                        " FROM     tblDV_Cash LEFT JOIN View_VCEMMaster " &
-                        " ON	   tblDV_Cash.VCECode = View_VCEMMaster.Code   " &
-                        " WHERE CV_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblDV_Cash.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
-                SQL.FlushParams()
-                SQL.GetQuery(query)
-            Case "CHKV"
-                query = " SELECT   TransID, CV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, TotalAmount, Remarks, tblDV_Check.Status  " &
-                        " FROM     tblDV_Check LEFT JOIN View_VCEMMaster " &
-                        " ON	   tblDV_Check.VCECode = View_VCEMMaster.Code   " &
-                        " WHERE CV_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblDV_Check.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
+                query = " SELECT   TransID, CV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, TotalAmount, Remarks, tblDV.Status  " &
+                        " FROM     tblDV LEFT JOIN View_VCEMMaster " &
+                        " ON	   tblDV.VCECode = View_VCEMMaster.Code   " &
+                        " WHERE CV_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblDV.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "CA"

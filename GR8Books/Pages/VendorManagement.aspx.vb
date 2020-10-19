@@ -37,11 +37,11 @@ Public Class VendorManagement
         txtVendorCode.Text = GenerateTransNum(TransAuto, ModuleID, ColumnPK, DBTable)
         Dim query As String
         query = " INSERT INTO tblVendor_Master " &
-                        " (Vendor_Code, Vendor_Name, TIN_No, First_Name,Last_Name,Middle_Name, Suffix_Name, Classification, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, " &
+                        " (Vendor_Code, Vendor_Name, TIN_No, BranchCode, First_Name,Last_Name,Middle_Name, Suffix_Name, Classification, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, " &
                         " Address_Subd, Address_Brgy, Address_Town_City, Address_Province, Address_Region, Address_ZipCode, Contact_Person, Contact_Position, Contact_Telephone," &
                         " Contact_Cellphone , Contact_Email , Contact_Fax, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, WhoCreated)" &
                         " VALUES " &
-                        " (@VendorCode, @Vendor_Name, @TIN_No,@First_Name,@Last_Name,@Middle_Name, @Suffix_Name, @Classification, @Address_Lot_Unit,@Address_Blk_Bldg, @Address_Street, " &
+                        " (@VendorCode, @Vendor_Name, @TIN_No, @BranchCode, @First_Name,@Last_Name,@Middle_Name, @Suffix_Name, @Classification, @Address_Lot_Unit,@Address_Blk_Bldg, @Address_Street, " &
                         " @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, @Address_Region, @Address_ZipCode, @Contact_Person, @Contact_Position, @Contact_Telephone, " &
                         " @Contact_Cellphone, @Contact_Email, @Contact_Fax, @Contact_Website, @Terms, @CutOff, @VAT_Type, @Status, @DateCreated, @WhoCreated)"
         SQL.FlushParams()
@@ -53,6 +53,7 @@ Public Class VendorManagement
         SQL.AddParam("@Middle_Name", txtMiddleName.Text)
         SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@TIN_No", txtTINNO.Text)
+        SQL.AddParam("@BranchCode", txtBranchCode.Text)
         SQL.AddParam("@Address_Lot_Unit", txtLot_Unit.Text)
         SQL.AddParam("@Address_Blk_Bldg", txtBlk_Bldg.Text)
         SQL.AddParam("@Address_Street", txtStreet.Text)
@@ -82,7 +83,7 @@ Public Class VendorManagement
         Dim ID As String = Request.QueryString("ID")
         Dim query As String
         query = " UPDATE tblVendor_Master " &
-                        " SET Vendor_Name = @Vendor_Name, TIN_No = @TIN_No,  First_Name = @First_Name ,Last_Name = @Last_Name ,Middle_Name = @Middle_Name, Suffix_Name = @Suffix_Name, Classification = @Classification," &
+                        " SET Vendor_Name = @Vendor_Name, TIN_No = @TIN_No,BranchCode = @BranchCode,  First_Name = @First_Name ,Last_Name = @Last_Name ,Middle_Name = @Middle_Name, Suffix_Name = @Suffix_Name, Classification = @Classification," &
                         "     Address_Lot_Unit = @Address_Lot_Unit, Address_Blk_Bldg = @Address_Blk_Bldg, Address_Street = @Address_Street," &
                         "     Address_Subd = @Address_Subd, Address_Brgy = @Address_Brgy, Address_Town_City = @Address_Town_City, " &
                         "     Address_Province = @Address_Province, Address_Region = @Address_Region, Address_ZipCode = @Address_ZipCode, " &
@@ -98,6 +99,7 @@ Public Class VendorManagement
         SQL.AddParam("@Middle_Name", txtMiddleName.Text)
         SQL.AddParam("@Suffix_Name", txtSuffixName.Text)
         SQL.AddParam("@TIN_No", txtTINNO.Text)
+        SQL.AddParam("@BranchCode", txtBranchCode.Text)
         SQL.AddParam("@Address_Lot_Unit", txtLot_Unit.Text)
         SQL.AddParam("@Address_Blk_Bldg", txtBlk_Bldg.Text)
         SQL.AddParam("@Address_Street", txtStreet.Text)
@@ -158,6 +160,7 @@ Public Class VendorManagement
         txtVendorCode.Text = ""
         txtVendorName.Text = ""
         txtTINNO.Text = ""
+        txtBranchCode.Text = ""
         txtCutOff.Text = ""
         txtTelephone.Text = ""
         txtCellphone.Text = ""
@@ -249,6 +252,7 @@ Public Class VendorManagement
             txtMiddleName.Text = SQL.SQLDR("Middle_Name").ToString
             txtSuffixName.Text = SQL.SQLDR("Suffix_Name").ToString
             txtTINNO.Text = SQL.SQLDR("TIN_No").ToString
+            txtBranchCode.Text = SQL.SQLDR("BranchCode").ToString
             txtLot_Unit.Text = SQL.SQLDR("Address_Lot_Unit").ToString
             txtBlk_Bldg.Text = SQL.SQLDR("Address_Blk_Bldg").ToString
             txtStreet.Text = SQL.SQLDR("Address_Street").ToString

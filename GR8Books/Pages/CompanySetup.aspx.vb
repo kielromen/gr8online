@@ -20,6 +20,7 @@ Public Class Company_SetUp
 
     Public Sub EnableControl(ByVal Value As Boolean)
         panCompanySetUp.Enabled = Value
+        fuCompanyLogo.Enabled = Value
     End Sub
 
     Public Sub Initialize()
@@ -30,6 +31,7 @@ Public Class Company_SetUp
         txtAddress_Subd.Text = ""
         txtAddress_ZipCode.Text = ""
         txtCompany_Contact.Text = ""
+        txtTelephone.Text = ""
         txtCompany_Name.Text = ""
         txtCompany_Email.Text = ""
         txtTIN_No.Text = ""
@@ -118,6 +120,7 @@ Public Class Company_SetUp
         If SQL.SQLDR.Read Then
             txtCompany_Name.Text = SQL.SQLDR("Company_Name").ToString
             txtCompany_Contact.Text = SQL.SQLDR("Company_Contact").ToString
+            txtTelephone.Text = SQL.SQLDR("Company_Telephone").ToString
             txtCompany_Email.Text = SQL.SQLDR("Company_Email").ToString
             txtAddress_Blk_Bldg.Text = SQL.SQLDR("Address_Blk_Bldg").ToString
             txtAddress_Lot_Unit.Text = SQL.SQLDR("Address_Lot_Unit").ToString
@@ -167,16 +170,17 @@ Public Class Company_SetUp
         End Using
         Dim query As String
         query = " INSERT INTO [Main].dbo.tblCompany_Information " &
-                " (Company_Code, Company_Name, Company_Logo, Company_Contact, Company_Email, Default_EmailAddress, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy, Address_Town_City, Address_Province, 
+                " (Company_Code, Company_Name, Company_Logo, Company_Contact, Company_Telephone, Company_Email, Default_EmailAddress, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy, Address_Town_City, Address_Province, 
                          Address_Region , Address_ZipCode, VAT_Type, TIN_No, General_Type, Industry, Classification, BranchCode, RDO, First_Name, Last_Name, Middle_Name, Suffix_Name,ReportCycle, DateFrom, DateTo, Status, DateCreated, WhoCreated)" &
                 " VALUES " &
-                " (@Company_Code, @Company_Name, @Company_Logo, @Company_Contact, @Company_Email, @Default_EmailAddress, @Address_Lot_Unit, @Address_Blk_Bldg, @Address_Street, @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, 
+                " (@Company_Code, @Company_Name, @Company_Logo, @Company_Contact, @Company_Telephone, @Company_Email, @Default_EmailAddress, @Address_Lot_Unit, @Address_Blk_Bldg, @Address_Street, @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, 
                          @Address_Region, @Address_ZipCode, @VAT_Type, @TIN_No, @General_Type, @Industry, @Classification, @BranchCode, @RDO, @First_Name, @Last_Name, @Middle_Name, @Suffix_Name, @ReportCycle, @DateFrom, @DateTo, @Status, @DateCreated, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@Company_Code", ID)
         SQL.AddParam("@Company_Name", txtCompany_Name.Text)
         SQL.AddParam("@Company_Logo", bytes, SqlDbType.VarBinary)
         SQL.AddParam("@Company_Contact", txtCompany_Contact.Text)
+        SQL.AddParam("@Company_Telephone", txtTelephone.Text)
         SQL.AddParam("@Company_Email", txtCompany_Email.Text)
         SQL.AddParam("@Default_EmailAddress", Session("EmailAddress"))
         SQL.AddParam("@Address_Lot_Unit", txtAddress_Lot_Unit.Text)
@@ -211,7 +215,7 @@ Public Class Company_SetUp
     Public Sub Update(ByVal Company_Code As String)
         Dim query As String
         query = " UPDATE [Main].dbo.tblCompany_Information SET " &
-                " Company_Name = @Company_Name, Company_Contact = @Company_Contact, " &
+                " Company_Name = @Company_Name, Company_Contact = @Company_Contact, Company_Telephone =@Company_Telephone," &
                 " Company_Email = @Company_Email, Default_EmailAddress = @Default_EmailAddress, Address_Lot_Unit = @Address_Lot_Unit, " &
                 " Address_Blk_Bldg = @Address_Blk_Bldg, Address_Street = @Address_Street, Address_Subd = @Address_Subd, " & vbCrLf &
                 " Address_Brgy =@Address_Brgy, Address_Town_City = @Address_Town_City, Address_Province = @Address_Province, " & vbCrLf &
@@ -224,6 +228,7 @@ Public Class Company_SetUp
         SQL.AddParam("@Company_Code", Company_Code)
         SQL.AddParam("@Company_Name", txtCompany_Name.Text)
         SQL.AddParam("@Company_Contact", txtCompany_Contact.Text)
+        SQL.AddParam("@Company_Telephone", txtTelephone.Text)
         SQL.AddParam("@Company_Email", txtCompany_Email.Text)
         SQL.AddParam("@Default_EmailAddress", Session("EmailAddress"))
         SQL.AddParam("@Address_Lot_Unit", txtAddress_Lot_Unit.Text)
@@ -331,7 +336,6 @@ Public Class Company_SetUp
     End Sub
 
     Public Sub LoadPeriod()
-
         If ddlYear.SelectedValue = "Calendar Year" Then
             dtpFromDate.Text = CDate(Now.Year & "-01-01").ToString("yyyy-MM-dd")
             dtpToDate.Text = CDate(Now.Year & "-12-31").ToString("yyyy-MM-dd")

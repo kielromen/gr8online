@@ -221,6 +221,24 @@ Partial Public Class CollectionReceipt
     Protected WithEvents ddlCollectionType As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''ddlBank control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlBank As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''panelBank control.
     '''</summary>
     '''<remarks>
@@ -273,24 +291,6 @@ Partial Public Class CollectionReceipt
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dtpDoc_Date As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
-
-    '''<summary>
-    '''txtRef_Type control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtRef_Type As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtRef_No control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtRef_No As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtStatus control.

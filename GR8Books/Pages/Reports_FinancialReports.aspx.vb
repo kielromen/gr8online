@@ -433,10 +433,10 @@
                 "        FROM tblCOA" & vbCrLf &
                 "        LEFT JOIN" & vbCrLf &
                 "	  (" & vbCrLf &
-                "		SELECT (SELECT AccountCode FROM tblCOA WHERE AccountTitle LIKE '%NET INCOME%' AND AccountGroup = 'Sub Account') AS AccntCode, ISNULL(SUM(Credit - Debit),0) AS Amount FROM" & vbCrLf &
+                "		SELECT (SELECT AccountCode FROM tblCOA WHERE AccountTitle LIKE 'NET%' AND AccountGroup = 'Sub Account') AS AccntCode, ISNULL(SUM(Credit - Debit),0) AS Amount FROM" & vbCrLf &
                 "		View_GL WHERE Status <> 'Cancelled' AND AppDate BETWEEN CAST('01-01-" & DateFrom.Year & "' AS DATE) AND '" & DateTo.Date & "' AND AccntCode IN (SELECT AccountCode FROM tblCOA WHERE AccountType = 'Income Statement')" & vbCrLf &
                 "	  ) AS Bal ON AccountCode = AccntCode" & vbCrLf &
-                "	  WHERE AccountTitle LIKE '%NET INCOME%' AND AccountGroup = 'Sub Account'" & vbCrLf &
+                "	  WHERE AccountTitle LIKE 'NET%' AND AccountGroup = 'Sub Account'" & vbCrLf &
                 " )" & vbCrLf &
                 " ORDER BY OrderNo "
         SQL.GetQuery(query)

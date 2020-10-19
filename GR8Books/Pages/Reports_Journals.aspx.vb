@@ -1,6 +1,6 @@
-﻿Public Class Reports_BookofAccounts
+﻿Public Class Reports_Journals
     Inherits System.Web.UI.Page
-    Dim Type As String = "Book of Accounts"
+    Dim Type As String = "Journals"
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
             If Session("SessionExists") = False Then
@@ -111,17 +111,19 @@
         gvFilter.DataSource = ds
         gvFilter.DataBind()
         panelFilter.Visible = False
-        ddlReportType.Attributes("disabled") = "disabled"
-        If ddlReports.SelectedValue = "Cash Receipts Book" Then
+        If ddlReports.SelectedValue = "Cash Receipts Journal" Then
             Session("@Book") = "Cash Receipt"
             LoadModules()
-        ElseIf ddlReports.SelectedValue = "Cash Disbursement Book" Then
+        ElseIf ddlReports.SelectedValue = "Cash Disbursement Journal" Then
             Session("@Book") = "Cash Disbursement"
             LoadModules()
-        ElseIf ddlReports.SelectedValue = "Purchase Book" Then
+        ElseIf ddlReports.SelectedValue = "General Journal" Then
+            Session("@Book") = "General Journal"
+            LoadModules()
+        ElseIf ddlReports.SelectedValue = "Purchase Journal" Then
             Session("@Book") = "Purchase Book"
             LoadModules()
-        ElseIf ddlReports.SelectedValue = "Sales Book" Then
+        ElseIf ddlReports.SelectedValue = "Sales Journal" Then
             Session("@Book") = "Sales Book"
             LoadModules()
         End If
@@ -142,6 +144,20 @@
         Session("@ReportType") = ddlReportType.SelectedValue
         Session("@Header") = ddlReports.SelectedValue
 
+        If ddlReports.SelectedValue = "Cash Receipts Journal" Then
+            GenerateJournals(CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
+        ElseIf ddlReports.SelectedValue = "Cash Disbursement Journal" Then
+            GenerateJournals(CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
+        ElseIf ddlReports.SelectedValue = "General Journal" Then
+            GenerateJournals(CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
+        ElseIf ddlReports.SelectedValue = "Purchase Journal" Then
+            GenerateJournals(CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
+        ElseIf ddlReports.SelectedValue = "Sales Journal" Then
+            GenerateJournals(CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
+        End If
+    End Sub
+
+    Private Sub GenerateJournals(ByVal DateFrom As Date, ByVal DateTo As Date)
         Dim query As String
         query = " DELETE FROM tblPrint_BOA  "
         SQL.ExecNonQuery(query)
@@ -161,21 +177,56 @@
             Exit Sub
         End If
 
-        If ddlReports.SelectedValue = "Cash Receipts Book" Then
-            Session("@Book") = "Cash Receipt"
-            Response.Write("<script>window.open('Reports.aspx?id=' + 'CRBLL', '_blank');</script>")
-        ElseIf ddlReports.SelectedValue = "Cash Disbursement Book - Looseleaf" Then
-            Session("@Book") = "Cash Disbursement Book"
-            Response.Write("<script>window.open('Reports.aspx?id=' + 'CDBLL', '_blank');</script>")
-        ElseIf ddlReports.SelectedValue = "Purchase Book" Then
-            Session("@Book") = "Purchase Book"
-            Response.Write("<script>window.open('Reports.aspx?id=' + 'PBLL', '_blank');</script>")
-        ElseIf ddlReports.SelectedValue = "Sales Book - Looseleaf" Then
-            Session("@Book") = "Sales Book"
-            Response.Write("<script>window.open('Reports.aspx?id=' + 'SBLL', '_blank');</script>")
+        If ddlReportType.SelectedValue = "Summary" Then
+            Dim insertSQL, deleteSQL As String
+            deleteSQL = " DELETE FROM tblPRint_TB "
+            SQL.ExecNonQuery(deleteSQL)
+            insertSQL = " INSERT INTO tblPRint_TB(Code, Title, BBDR, BBCR, CRDR, CRCR, CDDR, CDCR, SBDR, SBCR, PBDR, PBCR, JVDR, JVCR, TBDR, TBCR) " &
+                    " SELECT  AccountCode, AccountTitle,  " &
+                    " 		  CASE WHEN SUM(BBDR) > SUM(BBCR) THEN SUM(BBDR) - SUM(BBCR) ELSE 0 END AS BBDR, " &
+                    " 		  CASE WHEN SUM(BBCR) > SUM(BBDR) THEN SUM(BBCR) - SUM(BBDR) ELSE 0 END AS BBDR, " &
+                    " 		  SUM(CRDR) AS CRDR, " &
+                    " 		  SUM(CRCR) AS CRCR, " &
+                    " 		  SUM(CDDR) AS CDDR, " &
+                    " 		  SUM(CDCR) AS CDCR, " &
+                    " 		  SUM(SBDR) AS SBDR, " &
+                    " 		  SUM(SBCR) AS SBCR, " &
+                    " 		  SUM(PBDR) AS PBDR, " &
+                    " 		  SUM(PBCR) AS PBCR, " &
+                    " 		  SUM(JVDR) AS JVDR, " &
+                    " 		  SUM(JVCR) AS JVCR, " &
+                    " 		  CASE WHEN SUM(TBDR) > SUM(TBCR) THEN SUM(TBDR) - SUM(TBCR) ELSE 0 END AS TBDR, " &
+                    " 		  CASE WHEN SUM(TBCR) > SUM(TBDR) THEN SUM(TBCR) - SUM(TBDR) ELSE 0 END AS TBCR " &
+                    " FROM " &
+                    " ( " &
+                    " 	SELECT tblCOA.AccountCode, tblCOA.AccountTitle,  " &
+                    " 		   CASE WHEN AppDate <'" & DateFrom & "' OR Book ='BB' THEN Debit ELSE 0 END AS BBDR, " &
+                    " 		   CASE WHEN AppDate < '" & DateFrom & "' OR Book ='BB' THEN Credit ELSE 0 END AS BBCR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Cash Receipt' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Debit ELSE 0 END AS CRDR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Cash Receipt' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Credit ELSE 0 END AS CRCR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Cash Disbursement' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Debit ELSE 0 END AS CDDR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Cash Disbursement' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Credit ELSE 0 END AS CDCR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Sales Book' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Debit ELSE 0 END AS SBDR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Sales Book' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Credit ELSE 0 END AS SBCR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Purchase Book' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Debit ELSE 0 END AS PBDR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='Purchase Book' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Credit ELSE 0 END AS PBCR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='General Journal' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Debit ELSE 0 END AS JVDR, " &
+                    " 		   CASE WHEN AppDate >= '" & DateFrom & "' AND (Book ='General Journal' AND RefType IN (SELECT RefType FROM tblPrint_BOA)) THEN Credit ELSE 0 END AS JVCR, " &
+                    " 		   Debit AS TBDR, " &
+                    " 		   Credit AS TBCR, View_GL.Status   " &
+                    " 	FROM View_GL INNER JOIN tblCOA " &
+                    " 	ON View_GL.AccntCode = tblCOA.AccountCode " &
+                    " 	WHERE AppDate BETWEEN '01-01-" & DateFrom.Year & "' AND '" & DateTo & "' " &
+                    " ) AS A " &
+                    " WHERE A.Status ='Saved'  " &
+                    " GROUP BY AccountCode, AccountTitle "
+            SQL.FlushParams()
+            SQL.ExecNonQuery(insertSQL)
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'BOASUM', '_blank');</script>")
+        ElseIf ddlReportType.SelectedValue = "Detailed" Then
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'BOADET', '_blank');</script>")
         End If
     End Sub
-
 
     Private Sub gvFilter_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles gvFilter.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then
@@ -183,6 +234,5 @@
             e.Row.Attributes.Add("onmouseout", "MouseEvents(this, event)")
         End If
     End Sub
-
 
 End Class

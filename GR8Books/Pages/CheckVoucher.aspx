@@ -173,7 +173,7 @@
             var id = "test";
             $("#<%=btnSearch.ClientID%>").click(function (e) {
                 e.preventDefault();
-                var Type = "CHKV";
+                var Type = "CV";
                 var Url = "CHeckVoucher.aspx";
                 var myWidth = "900";
                 var myHeight = "550";
@@ -206,7 +206,7 @@
 
             $("#<%=btnPreview.ClientID%>").click(function (e) {
                 e.preventDefault();
-                var Type = "CHKV";
+                var Type = "CV";
                 var win = window.open("Reports.aspx?id=" + Type, "_blank");
             });
 
@@ -245,7 +245,7 @@
             $("#<%=btnCopyFromCASHR.ClientID%>").click(function (e) {
                 e.preventDefault();
                 var Type = "CASHL";
-                var Url = "CashVoucher.aspx";
+                var Url = "CheckVoucher.aspx";
                 var myWidth = "900";
                 var myHeight = "550";
                 var left = (screen.width - myWidth) / 2;
@@ -308,6 +308,16 @@
         <asp:Panel ID="panelConrols" runat="server">
             <div class="row mb-2">
                 <div class="col-5">
+                     <div class="row mb-2">
+                        <div class="col-4 my-auto">
+                            <asp:Label Text="Payment Type:" runat="server" />
+                        </div>
+                        <div class="col">
+                            <asp:DropDownList ID="ddlType" AutoPostBack="True" runat="server" class="form-control"  AppendDataBoundItems="true" EnableViewState="true"  OnSelectedIndexChanged="WithBank">
+                            </asp:DropDownList>
+                             <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator6" runat="Server" ControlToValidate="ddlType" InitialValue="--Select Payment Type--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
                     <div class="row mb-2">
                         <div class="col-4 my-auto">
                             <asp:Label Text="VCECode:" runat="server" />
@@ -360,16 +370,19 @@
                 </div>
 
                 <div class="col">
+                    <asp:Panel ID="panelBank" runat="server" Display="Dynamic">
                     <div class="row mb-2">
                         <div class="col-4 my-auto">
-                            <asp:Label Text="Bank:" runat="server" />
+                            <asp:Label ID="lblBank" Text="Bank:" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:DropDownList ID="ddlBank_List" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlBankSelectChange" class="form-control">
+                            <asp:DropDownList ID="ddlBank_List" AutoPostBack="True" runat="server" AppendDataBoundItems="true" EnableViewState="true"  OnSelectedIndexChanged="ddlBankSelectChange" class="form-control">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator9" runat="Server" ControlToValidate="ddlBank_List" InitialValue="--Select Bank--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
+                    </asp:Panel>
+                    <asp:Panel ID="panelBankDetails" runat="server" Display="Dynamic">
                     <div class="row mb-2">
                         <div class="col-4 my-auto">
                             <asp:Label Text="Payee:" runat="server" />
@@ -403,6 +416,26 @@
                             <asp:TextBox ID="txtBank_CheckStatus" runat="server" autocomplete="off" class="form-control" />
                         </div>
                     </div>
+                    </asp:Panel>
+
+                    <asp:Panel ID="panelBankTransfer" runat="server" Display="Dynamic">
+                    <div class="row mb-2">
+                        <div class="col-4 my-auto text-nowrap">
+                            <asp:Label Text="To :" runat="server" />
+                        </div>
+                        <div class="col">
+                           <asp:TextBox ID="txtTransferTo" runat="server" autocomplete="off" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4 my-auto text-nowrap">
+                            <asp:Label Text="Account No :" runat="server" />
+                        </div>
+                        <div class="col">
+                           <asp:TextBox ID="txtAccountNo" runat="server" autocomplete="off" class="form-control" />
+                        </div>
+                    </div>
+                    </asp:Panel>
                 </div>
 
 
@@ -519,16 +552,16 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Cost Center">
+                     <asp:TemplateField HeaderText="Res. Center">
                         <ItemTemplate>
                             <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px"  AutoPostBack="false" EnableViewState="true">
                             </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Reference ID">
+                    <asp:TemplateField HeaderText="Ref. ID">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

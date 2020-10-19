@@ -49,19 +49,20 @@
                         <div class="list-group">
                             <a href="../Pages/CompanySetup.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Company Setup</a>
                             <a href="../Pages/ChartofAccount_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Chart of Accounts</a>
+                            <a href="../Pages/BankMasterfile_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Bank Management</a>
                             <a href="../Pages/TaxSetup_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Tax Setup</a>
                             <a href="../Pages/VendorManagement_View.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Vendor Management</a>
                             <a href="../Pages/CustomerManagement_View.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Customer Management</a>
-                            <a href="../Pages/ItemMasterfile_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Item Management</a>
-                            <a href="../Pages/Collector_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Collector Maintenance</a>
-                            <a href="../Pages/BankMasterfile_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Bank Management</a>
                             <a href="../Pages/Employee_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Employee Management</a>
                             <a href="../Pages/MemberManagement_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Member Management</a>
-                            <a href="../Pages/DisbursementType_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Disbursement Type</a>
+                            <a href="../Pages/ItemMasterfile_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Item Management</a>
+                            <a href="../Pages/Collector_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Collector Maintenance</a>
+                            <a href="../Pages/CollectionPaymentType_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Collection Payment Type</a>
                             <a href="../Pages/CashReceiptType_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Receipt Type</a>
+                            <a href="../Pages/DisbursementPaymentType_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Disbursement Payment Type</a>
+                            <a href="../Pages/DisbursementType_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Disbursement Type</a>
                             <a href="../Pages/ResponsibilityCenter_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Responsibility Center</a>
                             <a href="../Pages/DefaultAccounts_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Default Accounts</a>
-                            <a href="../Pages/CollectionPaymentType_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Collection Payment Type</a>
                             <%--<a href="../Pages/BranchCode_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Branch Code</a>--%>
                         </div>
                     </div>
@@ -71,14 +72,15 @@
                             <a href="../Pages/OfficialReceipt.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Official Receipt</a>
                             <a href="../Pages/CollectionReceipt.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Collection Receipt</a>
                             <a href="../Pages/AcknowledgementReceipt.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Acknowledgment Receipt</a>
-                            <a href="../Pages/ProvisionalReceipt.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Provitional Receipt</a>
+                            <a href="../Pages/ProvisionalReceipt.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Provisional Receipt</a>
                         </div>
                     </div>
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseCashDisbursement" role="button" aria-expanded="false" aria-controls="collapseCashDisbursement"><i class="fa fa-arrow-circle-o-up mr-2" aria-hidden="true"></i>Cash Disbursement</a>
                     <div class="collapse" id="collapseCashDisbursement">
                         <div class="list-group">
-                            <a href="../Pages/CashVoucher.aspx"  class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Voucher</a>
+                            <%--<a href="../Pages/CashVoucher.aspx"  class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Voucher</a>--%>
                             <a href="../Pages/CheckVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Check Voucher</a>
+                            <a href="../Pages/AccountsPayableVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Accounts Payable Voucher</a>
                             <a href="../Pages/CashAdvance.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Advance</a>
                             <a href="../Pages/PettyCash.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Petty Cash</a>
                         </div>
@@ -104,7 +106,6 @@
                         <div class="list-group">
                             <a href="../Pages/PurchaseOrder.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Order</a>
                             <a href="../Pages/ReceivingReport.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Receiving Report</a>
-                            <a href="../Pages/AccountsPayableVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Accounts Payable Voucher</a>
                             <a href="../Pages/PurchaseJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Journal</a>                            
                         </div>
                     </div>
@@ -114,7 +115,8 @@
                         <div class="list-group">
                             <a href="../Pages/Reports_TransactionReports.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Transaction Reports</a>
                             <a href="../Pages/Reports_FinancialReports.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Financial Reports</a>
-                            <a href="../Pages/Reports_BookofAccounts.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Book of Accounts</a>                          
+                            <a href="../Pages/Reports_BookofAccounts.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Book of Accounts</a> 
+                            <a href="../Pages/Reports_Journals.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Journals</a>                          
                             <a href="../" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>BIR Reports</a>    
                         </div>
                     </div>

@@ -1,7 +1,6 @@
-﻿<%@ Page Title="Cash Receipt Type Maintenance" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="CashReceiptType_Maintenance.aspx.vb" Inherits="GR8Books.CashReeciptType_Maintenance" %>
-
+﻿<%@ Page Title="Disbursement Payment Type" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="DisbursementPaymentType_Maintenance.aspx.vb" Inherits="GR8Books.DisbursementPaymentType_Maintenance" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
@@ -9,7 +8,7 @@
             $(".txtAccountTitle").autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "<%= ResolveUrl("CashReceiptType_Maintenance.aspx/ListAccountTitle") %>",
+                        url: "<%= ResolveUrl("DisbursementPaymentType_Maintenance.aspx/ListAccountTitle") %>",
                         data: "{'prefix': '" + request.term + "'}",
                         dataType: "json",
                         type: "POST",
@@ -49,26 +48,33 @@
         });
 
     </script>
-
-
-    <asp:Panel runat="server" ID="panelCollectionType">
-
+    <asp:Panel runat="server" ID="panelPaymentType">
         <div class="row mb-2">
-            <div class="col-sm-2 my-auto">
-                <asp:Label Text="Description:" runat="server" />
+            <div class="col-2 my-auto">
+                <asp:Label Text="Payment Type" runat="server" />
             </div>
-            <div class="col-sm">
-                <asp:TextBox ID="txtDescription" class="txtDescription form-control" runat="server" />
-                <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtDescription" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+            <div class="col">
+                <asp:TextBox ID="txtPaymentType" class="txtPaymentType form-control" runat="server" AutoComplete="off" />
+                <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic"   ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtPaymentType" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
             </div>
         </div>
+        <div class="row mb-2">
+            <div class="col-2 my-auto">
+                <asp:Label Text="With Bank:" runat="server" />
+            </div>
+            <div class="col">
+                <asp:DropDownList ID="ddlWithBank" runat="server" AutoPostBack="true" EnableViewState="true" AppendDataBoundItems="true" class="form-control" OnSelectedIndexChanged="ddlWithBank_SelectedIndexChanged"></asp:DropDownList>
+                <asp:RequiredFieldValidator  InitialValue="--Select Options--"  Forecolor="Red" Font-size="Small" Display="Dynamic"   ID="RequiredFieldValidator4" runat="Server" ControlToValidate="ddlWithBank" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+        <asp:Panel ID="panelAccount" runat="server">
         <div class="row mb-2">
             <div class="col-sm-2 my-auto">
                 <asp:Label Text="Account code:" runat="server" />
             </div>
             <div class="col-sm">
                 <asp:TextBox ID="txtAccountCode" Class="txtAccountCode form-control" runat="server" />
-                <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtAccountCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtAccountCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row mb-2">
@@ -80,32 +86,15 @@
                 <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtAccountTitle" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
             </div>
         </div>
-        <div class="row mb-2">
-            <div class="col-sm-2 my-auto">
-                <asp:Label Text="Amount:" runat="server" />
-            </div>
-            <div class="col-sm">
-                <asp:TextBox ID="txtAmount" runat="server" Type="number"  Class="form-control"/>
-                <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator4" runat="Server" ControlToValidate="txtAccountTitle" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-sm-2 my-auto">
-                <asp:Label Text="Module:" runat="server" />
-            </div>
-            <div class="col-sm">
-                <asp:DropDownList ID="ddlModule" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
-                <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator6" runat="Server" ControlToValidate="ddlModule" InitialValue="--Select Module--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-            </div>
-        </div>
-
-        <div class="row justify-content-end mt-2">
-            <div class="col-sm-2 my-auto mb-2">
+        </asp:Panel>
+        <div class="row mt-4 justify-content-end">
+            <div class="col-sm-2 ">
                 <asp:Button Text="Save" ID="btnSave" class="btnSave btn btn-primary btn-block" runat="server" ValidationGroup="g" />
             </div>
-            <div class="col-sm-2 my-auto">
+            <div class="col-sm-2 ">
                 <asp:Button Text="Cancel" ID="btnCancel" class="btnCancel btn btn-primary btn-block" runat="server" />
             </div>
         </div>
     </asp:Panel>
+
 </asp:Content>

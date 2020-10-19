@@ -468,6 +468,50 @@ Module ModuleGen
         Return list
     End Function
 
+
+    Public Function LoadBank() As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT  Bank " &
+                " FROM    tblBank " &
+                " WHERE   Status =@Status"
+        SQL.FlushParams()
+        SQL.AddParam("@Status", "Active")
+        SQL.ReadQuery(query)
+        While SQL.SQLDR.Read
+            list.Add(SQL.SQLDR("Bank").ToString)
+        End While
+        Return list
+    End Function
+
+    Public Function LoadCollectionPaymentType() As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = "SELECT PaymentType FROM tblCollection_PaymentType WHERE Status ='Active' ORDER BY ID  "
+        SQL.FlushParams()
+        SQL.AddParam("@Status", "Active")
+        SQL.ReadQuery(query)
+        While SQL.SQLDR.Read
+            list.Add(SQL.SQLDR("PaymentType").ToString)
+        End While
+        Return list
+    End Function
+
+
+    Public Function LoadDisbursementPaymentType() As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = "SELECT PaymentType FROM tblDV_PaymentType WHERE Status ='Active' ORDER BY ID "
+        SQL.FlushParams()
+        SQL.AddParam("@Status", "Active")
+        SQL.ReadQuery(query)
+        While SQL.SQLDR.Read
+            list.Add(SQL.SQLDR("PaymentType").ToString)
+        End While
+        Return list
+    End Function
+
+
     Public Function GetCostCenterID(ByVal CostCenter As String) As String
         Dim query As String
         Dim CostID As String = ""

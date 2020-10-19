@@ -345,6 +345,8 @@ Partial Public Class dsCVrpt
         
         Private columnAccntTitle As Global.System.Data.DataColumn
         
+        Private columnAccountNature As Global.System.Data.DataColumn
+        
         Private columnDebit As Global.System.Data.DataColumn
         
         Private columnCredit As Global.System.Data.DataColumn
@@ -366,6 +368,8 @@ Partial Public Class dsCVrpt
         Private columnBusinessCode As Global.System.Data.DataColumn
         
         Private columnLineNumber As Global.System.Data.DataColumn
+        
+        Private columnCostID As Global.System.Data.DataColumn
         
         Private columnCostCenter As Global.System.Data.DataColumn
         
@@ -510,6 +514,14 @@ Partial Public Class dsCVrpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property AccountNatureColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAccountNature
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property DebitColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnDebit
@@ -593,6 +605,14 @@ Partial Public Class dsCVrpt
         Public ReadOnly Property LineNumberColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLineNumber
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property CostIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCostID
             End Get
         End Property
         
@@ -717,6 +737,7 @@ Partial Public Class dsCVrpt
                     ByVal VCEName As String,  _
                     ByVal AccntCode As String,  _
                     ByVal AccntTitle As String,  _
+                    ByVal AccountNature As String,  _
                     ByVal Debit As Decimal,  _
                     ByVal Credit As Decimal,  _
                     ByVal Particulars As String,  _
@@ -728,6 +749,7 @@ Partial Public Class dsCVrpt
                     ByVal BranchCode As String,  _
                     ByVal BusinessCode As String,  _
                     ByVal LineNumber As Integer,  _
+                    ByVal CostID As String,  _
                     ByVal CostCenter As String,  _
                     ByVal ProfitCenter As String,  _
                     ByVal CIP_Code As String,  _
@@ -738,7 +760,7 @@ Partial Public Class dsCVrpt
                     ByVal LoginName As String,  _
                     ByVal DateCreated As Date) As View_GLRow
             Dim rowView_GLRow As View_GLRow = CType(Me.NewRow,View_GLRow)
-            Dim columnValuesArray() As Object = New Object() {ID, JE_No, AppDate, RefType, TransNo, Nothing, Book, VCECode, VCEName, AccntCode, AccntTitle, Debit, Credit, Particulars, CheckNo, RefNo, Remarks, OtherRef, Status, BranchCode, BusinessCode, LineNumber, CostCenter, ProfitCenter, CIP_Code, SL_Code, dateCleared, dateDeposit, WhoCreated, LoginName, DateCreated}
+            Dim columnValuesArray() As Object = New Object() {ID, JE_No, AppDate, RefType, TransNo, Nothing, Book, VCECode, VCEName, AccntCode, AccntTitle, AccountNature, Debit, Credit, Particulars, CheckNo, RefNo, Remarks, OtherRef, Status, BranchCode, BusinessCode, LineNumber, CostID, CostCenter, ProfitCenter, CIP_Code, SL_Code, dateCleared, dateDeposit, WhoCreated, LoginName, DateCreated}
             If (Not (parentView_CV_PrintoutRowByView_CV_Printout_View_GL) Is Nothing) Then
                 columnValuesArray(5) = parentView_CV_PrintoutRowByView_CV_Printout_View_GL(0)
             End If
@@ -775,6 +797,7 @@ Partial Public Class dsCVrpt
             Me.columnVCEName = MyBase.Columns("VCEName")
             Me.columnAccntCode = MyBase.Columns("AccntCode")
             Me.columnAccntTitle = MyBase.Columns("AccntTitle")
+            Me.columnAccountNature = MyBase.Columns("AccountNature")
             Me.columnDebit = MyBase.Columns("Debit")
             Me.columnCredit = MyBase.Columns("Credit")
             Me.columnParticulars = MyBase.Columns("Particulars")
@@ -786,6 +809,7 @@ Partial Public Class dsCVrpt
             Me.columnBranchCode = MyBase.Columns("BranchCode")
             Me.columnBusinessCode = MyBase.Columns("BusinessCode")
             Me.columnLineNumber = MyBase.Columns("LineNumber")
+            Me.columnCostID = MyBase.Columns("CostID")
             Me.columnCostCenter = MyBase.Columns("CostCenter")
             Me.columnProfitCenter = MyBase.Columns("ProfitCenter")
             Me.columnCIP_Code = MyBase.Columns("CIP_Code")
@@ -822,6 +846,8 @@ Partial Public Class dsCVrpt
             MyBase.Columns.Add(Me.columnAccntCode)
             Me.columnAccntTitle = New Global.System.Data.DataColumn("AccntTitle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAccntTitle)
+            Me.columnAccountNature = New Global.System.Data.DataColumn("AccountNature", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAccountNature)
             Me.columnDebit = New Global.System.Data.DataColumn("Debit", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDebit)
             Me.columnCredit = New Global.System.Data.DataColumn("Credit", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -844,6 +870,8 @@ Partial Public Class dsCVrpt
             MyBase.Columns.Add(Me.columnBusinessCode)
             Me.columnLineNumber = New Global.System.Data.DataColumn("LineNumber", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLineNumber)
+            Me.columnCostID = New Global.System.Data.DataColumn("CostID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCostID)
             Me.columnCostCenter = New Global.System.Data.DataColumn("CostCenter", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCostCenter)
             Me.columnProfitCenter = New Global.System.Data.DataColumn("ProfitCenter", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -874,6 +902,7 @@ Partial Public Class dsCVrpt
             Me.columnVCEName.MaxLength = 250
             Me.columnAccntCode.MaxLength = 50
             Me.columnAccntTitle.MaxLength = 250
+            Me.columnAccountNature.MaxLength = 50
             Me.columnParticulars.MaxLength = 2147483647
             Me.columnCheckNo.MaxLength = 150
             Me.columnRefNo.MaxLength = 2147483647
@@ -884,6 +913,7 @@ Partial Public Class dsCVrpt
             Me.columnBranchCode.ReadOnly = true
             Me.columnBranchCode.MaxLength = 10
             Me.columnBusinessCode.MaxLength = 10
+            Me.columnCostID.MaxLength = 50
             Me.columnCostCenter.MaxLength = 50
             Me.columnProfitCenter.MaxLength = 50
             Me.columnCIP_Code.MaxLength = 50
@@ -1048,6 +1078,24 @@ Partial Public Class dsCVrpt
         
         Private columnStatus As Global.System.Data.DataColumn
         
+        Private columnBankID As Global.System.Data.DataColumn
+        
+        Private columnRefNo As Global.System.Data.DataColumn
+        
+        Private columnRefDate As Global.System.Data.DataColumn
+        
+        Private columnRefAmount As Global.System.Data.DataColumn
+        
+        Private columnRefName As Global.System.Data.DataColumn
+        
+        Private columnCheckStatus As Global.System.Data.DataColumn
+        
+        Private columnClearDate As Global.System.Data.DataColumn
+        
+        Private columnTransferAccountNo As Global.System.Data.DataColumn
+        
+        Private columnTransferTo As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -1164,6 +1212,78 @@ Partial Public Class dsCVrpt
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property BankIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property RefNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRefNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property RefDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRefDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property RefAmountColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRefAmount
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property RefNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRefName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property CheckStatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCheckStatus
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ClearDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnClearDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property TransferAccountNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTransferAccountNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property TransferToColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTransferTo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1200,9 +1320,28 @@ Partial Public Class dsCVrpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddView_CV_PrintoutRow(ByVal TransID As Integer, ByVal CV_No As String, ByVal BranchCode As String, ByVal BusinessCode As String, ByVal VCECode As String, ByVal VCEName As String, ByVal TransDate As Date, ByVal TotalAmount As Decimal, ByVal Remarks As String, ByVal Status As String) As View_CV_PrintoutRow
+        Public Overloads Function AddView_CV_PrintoutRow( _
+                    ByVal TransID As Integer,  _
+                    ByVal CV_No As String,  _
+                    ByVal BranchCode As String,  _
+                    ByVal BusinessCode As String,  _
+                    ByVal VCECode As String,  _
+                    ByVal VCEName As String,  _
+                    ByVal TransDate As Date,  _
+                    ByVal TotalAmount As Decimal,  _
+                    ByVal Remarks As String,  _
+                    ByVal Status As String,  _
+                    ByVal BankID As Integer,  _
+                    ByVal RefNo As String,  _
+                    ByVal RefDate As Date,  _
+                    ByVal RefAmount As Decimal,  _
+                    ByVal RefName As String,  _
+                    ByVal CheckStatus As String,  _
+                    ByVal ClearDate As Date,  _
+                    ByVal TransferAccountNo As String,  _
+                    ByVal TransferTo As String) As View_CV_PrintoutRow
             Dim rowView_CV_PrintoutRow As View_CV_PrintoutRow = CType(Me.NewRow,View_CV_PrintoutRow)
-            Dim columnValuesArray() As Object = New Object() {TransID, CV_No, BranchCode, BusinessCode, VCECode, VCEName, TransDate, TotalAmount, Remarks, Status}
+            Dim columnValuesArray() As Object = New Object() {TransID, CV_No, BranchCode, BusinessCode, VCECode, VCEName, TransDate, TotalAmount, Remarks, Status, BankID, RefNo, RefDate, RefAmount, RefName, CheckStatus, ClearDate, TransferAccountNo, TransferTo}
             rowView_CV_PrintoutRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowView_CV_PrintoutRow)
             Return rowView_CV_PrintoutRow
@@ -1241,6 +1380,15 @@ Partial Public Class dsCVrpt
             Me.columnTotalAmount = MyBase.Columns("TotalAmount")
             Me.columnRemarks = MyBase.Columns("Remarks")
             Me.columnStatus = MyBase.Columns("Status")
+            Me.columnBankID = MyBase.Columns("BankID")
+            Me.columnRefNo = MyBase.Columns("RefNo")
+            Me.columnRefDate = MyBase.Columns("RefDate")
+            Me.columnRefAmount = MyBase.Columns("RefAmount")
+            Me.columnRefName = MyBase.Columns("RefName")
+            Me.columnCheckStatus = MyBase.Columns("CheckStatus")
+            Me.columnClearDate = MyBase.Columns("ClearDate")
+            Me.columnTransferAccountNo = MyBase.Columns("TransferAccountNo")
+            Me.columnTransferTo = MyBase.Columns("TransferTo")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1266,6 +1414,24 @@ Partial Public Class dsCVrpt
             MyBase.Columns.Add(Me.columnRemarks)
             Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStatus)
+            Me.columnBankID = New Global.System.Data.DataColumn("BankID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankID)
+            Me.columnRefNo = New Global.System.Data.DataColumn("RefNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRefNo)
+            Me.columnRefDate = New Global.System.Data.DataColumn("RefDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRefDate)
+            Me.columnRefAmount = New Global.System.Data.DataColumn("RefAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRefAmount)
+            Me.columnRefName = New Global.System.Data.DataColumn("RefName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRefName)
+            Me.columnCheckStatus = New Global.System.Data.DataColumn("CheckStatus", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCheckStatus)
+            Me.columnClearDate = New Global.System.Data.DataColumn("ClearDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnClearDate)
+            Me.columnTransferAccountNo = New Global.System.Data.DataColumn("TransferAccountNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTransferAccountNo)
+            Me.columnTransferTo = New Global.System.Data.DataColumn("TransferTo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTransferTo)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnTransID}, true))
             Me.columnTransID.AllowDBNull = false
             Me.columnTransID.Unique = true
@@ -1276,6 +1442,11 @@ Partial Public Class dsCVrpt
             Me.columnVCEName.MaxLength = 250
             Me.columnRemarks.MaxLength = 2147483647
             Me.columnStatus.MaxLength = 50
+            Me.columnRefNo.MaxLength = 150
+            Me.columnRefName.MaxLength = 150
+            Me.columnCheckStatus.MaxLength = 50
+            Me.columnTransferAccountNo.MaxLength = 150
+            Me.columnTransferTo.MaxLength = 150
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1579,6 +1750,21 @@ Partial Public Class dsCVrpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property AccountNature() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_GL.AccountNatureColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'AccountNature' in table 'View_GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_GL.AccountNatureColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property Debit() As Decimal
             Get
                 Try 
@@ -1739,6 +1925,21 @@ Partial Public Class dsCVrpt
             End Get
             Set
                 Me(Me.tableView_GL.LineNumberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property CostID() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_GL.CostIDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CostID' in table 'View_GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_GL.CostIDColumn) = value
             End Set
         End Property
         
@@ -1998,6 +2199,18 @@ Partial Public Class dsCVrpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsAccountNatureNull() As Boolean
+            Return Me.IsNull(Me.tableView_GL.AccountNatureColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetAccountNatureNull()
+            Me(Me.tableView_GL.AccountNatureColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsDebitNull() As Boolean
             Return Me.IsNull(Me.tableView_GL.DebitColumn)
         End Function
@@ -2126,6 +2339,18 @@ Partial Public Class dsCVrpt
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetLineNumberNull()
             Me(Me.tableView_GL.LineNumberColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsCostIDNull() As Boolean
+            Return Me.IsNull(Me.tableView_GL.CostIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetCostIDNull()
+            Me(Me.tableView_GL.CostIDColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2400,6 +2625,141 @@ Partial Public Class dsCVrpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property BankID() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.BankIDColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankID' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.BankIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property RefNo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.RefNoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RefNo' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.RefNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property RefDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.RefDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RefDate' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.RefDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property RefAmount() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.RefAmountColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RefAmount' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.RefAmountColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property RefName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.RefNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RefName' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.RefNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property CheckStatus() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.CheckStatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CheckStatus' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.CheckStatusColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.ClearDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ClearDate' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.ClearDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property TransferAccountNo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.TransferAccountNoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TransferAccountNo' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.TransferAccountNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property TransferTo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableView_CV_Printout.TransferToColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TransferTo' in table 'View_CV_Printout' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableView_CV_Printout.TransferToColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsCV_NoNull() As Boolean
             Return Me.IsNull(Me.tableView_CV_Printout.CV_NoColumn)
         End Function
@@ -2504,6 +2864,114 @@ Partial Public Class dsCVrpt
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetStatusNull()
             Me(Me.tableView_CV_Printout.StatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsBankIDNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.BankIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetBankIDNull()
+            Me(Me.tableView_CV_Printout.BankIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsRefNoNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.RefNoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetRefNoNull()
+            Me(Me.tableView_CV_Printout.RefNoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsRefDateNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.RefDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetRefDateNull()
+            Me(Me.tableView_CV_Printout.RefDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsRefAmountNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.RefAmountColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetRefAmountNull()
+            Me(Me.tableView_CV_Printout.RefAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsRefNameNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.RefNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetRefNameNull()
+            Me(Me.tableView_CV_Printout.RefNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsCheckStatusNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.CheckStatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetCheckStatusNull()
+            Me(Me.tableView_CV_Printout.CheckStatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsClearDateNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.ClearDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetClearDateNull()
+            Me(Me.tableView_CV_Printout.ClearDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsTransferAccountNoNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.TransferAccountNoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetTransferAccountNoNull()
+            Me(Me.tableView_CV_Printout.TransferAccountNoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsTransferToNull() As Boolean
+            Return Me.IsNull(Me.tableView_CV_Printout.TransferToColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetTransferToNull()
+            Me(Me.tableView_CV_Printout.TransferToColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2730,6 +3198,7 @@ Namespace dsCVrptTableAdapters
             tableMapping.ColumnMappings.Add("VCEName", "VCEName")
             tableMapping.ColumnMappings.Add("AccntCode", "AccntCode")
             tableMapping.ColumnMappings.Add("AccntTitle", "AccntTitle")
+            tableMapping.ColumnMappings.Add("AccountNature", "AccountNature")
             tableMapping.ColumnMappings.Add("Debit", "Debit")
             tableMapping.ColumnMappings.Add("Credit", "Credit")
             tableMapping.ColumnMappings.Add("Particulars", "Particulars")
@@ -2741,6 +3210,7 @@ Namespace dsCVrptTableAdapters
             tableMapping.ColumnMappings.Add("BranchCode", "BranchCode")
             tableMapping.ColumnMappings.Add("BusinessCode", "BusinessCode")
             tableMapping.ColumnMappings.Add("LineNumber", "LineNumber")
+            tableMapping.ColumnMappings.Add("CostID", "CostID")
             tableMapping.ColumnMappings.Add("CostCenter", "CostCenter")
             tableMapping.ColumnMappings.Add("ProfitCenter", "ProfitCenter")
             tableMapping.ColumnMappings.Add("CIP_Code", "CIP_Code")
@@ -2767,10 +3237,10 @@ Namespace dsCVrptTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, JE_No, AppDate, RefType, TransNo, RefTransID, Book, VCECode, VCEName, "& _ 
-                "AccntCode, AccntTitle, Debit, Credit, Particulars, CheckNo, RefNo, Remarks, Othe"& _ 
-                "rRef, Status, BranchCode, BusinessCode, LineNumber, CostCenter, ProfitCenter, CI"& _ 
-                "P_Code, SL_Code, dateCleared, dateDeposit, WhoCreated, LoginName, DateCreated FR"& _ 
-                "OM dbo.View_GL"
+                "AccntCode, AccntTitle, AccountNature, Debit, Credit, Particulars, CheckNo, RefNo"& _ 
+                ", Remarks, OtherRef, Status, BranchCode, BusinessCode, LineNumber, CostID, CostC"& _ 
+                "enter, ProfitCenter, CIP_Code, SL_Code, dateCleared, dateDeposit, WhoCreated, Lo"& _ 
+                "ginName, DateCreated FROM dbo.View_GL"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -2936,6 +3406,15 @@ Namespace dsCVrptTableAdapters
             tableMapping.ColumnMappings.Add("TotalAmount", "TotalAmount")
             tableMapping.ColumnMappings.Add("Remarks", "Remarks")
             tableMapping.ColumnMappings.Add("Status", "Status")
+            tableMapping.ColumnMappings.Add("BankID", "BankID")
+            tableMapping.ColumnMappings.Add("RefNo", "RefNo")
+            tableMapping.ColumnMappings.Add("RefDate", "RefDate")
+            tableMapping.ColumnMappings.Add("RefAmount", "RefAmount")
+            tableMapping.ColumnMappings.Add("RefName", "RefName")
+            tableMapping.ColumnMappings.Add("CheckStatus", "CheckStatus")
+            tableMapping.ColumnMappings.Add("ClearDate", "ClearDate")
+            tableMapping.ColumnMappings.Add("TransferAccountNo", "TransferAccountNo")
+            tableMapping.ColumnMappings.Add("TransferTo", "TransferTo")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -2953,7 +3432,8 @@ Namespace dsCVrptTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT TransID, CV_No, BranchCode, BusinessCode, VCECode, VCEName, TransDate, Tot"& _ 
-                "alAmount, Remarks, Status FROM dbo.View_CV_Printout"
+                "alAmount, Remarks, Status, BankID, RefNo, RefDate, RefAmount, RefName, CheckStat"& _ 
+                "us, ClearDate, TransferAccountNo, TransferTo FROM dbo.View_CV_Printout"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

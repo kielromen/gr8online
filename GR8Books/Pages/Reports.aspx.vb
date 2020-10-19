@@ -21,26 +21,6 @@ Public Class Reports
         Dim selectQuery As String = "SELECT * FROM [Main].dbo.tblCompany_Information WHERE Default_EmailAddress ='" & Session("EmailAddress") & "'"
         Dim dsHEADERrpt As dsHEADERrpt = GetData("HEADER", selectQuery)
         Select Case Type
-            Case "CHKV"
-                Dim query As String
-                query = " SELECT * FROM View_CHKV_Printout WHERE TransID = @TransID " & vbCrLf &
-                        " SELECT * FROM View_GL WHERE RefTransID = @RefTransID AND RefType = 'CHKV' "
-                SQL.FlushParams()
-                SQL.AddParam("@TransID", Session("TransID"))
-                SQL.AddParam("@RefTransID", Session("TransID"))
-                Dim crystalReport As New ReportDocument()
-                crystalReport.Load(Server.MapPath("~/Reports/rptCHKV.rpt"))
-
-                Dim dsCHKVrpt As dsCHKVrpt = GetData(Type, query)
-                crystalReport.Database.Tables(0).SetDataSource(dsCHKVrpt.Tables("Table"))
-                crystalReport.Database.Tables(1).SetDataSource(dsCHKVrpt.Tables("Table1"))
-                crystalReport.Subreports(0).SetDataSource(dsHEADERrpt.Tables("Table"))
-                CrystalReportViewer1.ReportSource = crystalReport
-                crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptCHKV.pdf"))
-                file = Server.MapPath("~/Reports/rptCHKV.pdf")
-
-                crystalReport.Close()
-                crystalReport.Dispose()
             Case "CV"
                 Dim query As String
                 query = " SELECT * FROM View_CV_Printout WHERE TransID = @TransID " & vbCrLf &
@@ -397,7 +377,7 @@ Public Class Reports
                     file = Server.MapPath("~/Reports/rptBOASUM.pdf")
                 End If
 
-                    crystalReport.Close()
+                crystalReport.Close()
                 crystalReport.Dispose()
             Case "BOADET"
                 Dim query As String
@@ -563,11 +543,6 @@ Public Class Reports
                 Using dsHEADERrpt As New dsHEADERrpt
                     SQL.SQLDA.Fill(dsHEADERrpt)
                     Return dsHEADERrpt
-                End Using
-            Case "CHKV"
-                Using dsCHKVrpt As New dsCHKVrpt
-                    SQL.SQLDA.Fill(dsCHKVrpt)
-                    Return dsCHKVrpt
                 End Using
             Case "CV"
                 Using dsCVrpt As New dsCVrpt

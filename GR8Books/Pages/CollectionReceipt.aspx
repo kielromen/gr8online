@@ -263,7 +263,7 @@
                             <asp:Label Text="Payment Type:" runat="server" />
                         </div>
                         <div class="col">
-                            <asp:DropDownList ID="ddlType" AutoPostBack="True" runat="server" class="form-control" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlType" AppendDataBoundItems="true" AutoPostBack="true" EnableViewState="true" runat="server" class="form-control" OnSelectedIndexChanged="WithBank">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator9" runat="Server" ControlToValidate="ddlType" InitialValue="--Select Payment Type--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
@@ -274,7 +274,7 @@
                         </div>
                         <div class="col">
                             <asp:TextBox ID="txtCode" runat="server" class="form-control" AutoComplete="off" />
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -283,7 +283,7 @@
                         </div>
                         <div class="col">
                             <asp:TextBox ID="txtName" runat="server" class="form-control"  AutoComplete="off"/>
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator  ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -320,7 +320,18 @@
                   
                 </div>
                 <div class="col">
-                <asp:Panel ID="panelBank" runat="server">
+ 
+                     <div class="row mb-2">
+                        <div class="col-4 my-auto">
+                            <asp:Label Text="Deposit To:" runat="server" />
+                        </div>
+                        <div class="col">
+                            <asp:DropDownList ID="ddlBank" AutoPostBack="True" runat="server"  AppendDataBoundItems="true" EnableViewState="true"   class="form-control"  OnSelectedIndexChanged="BankDetails">
+                            </asp:DropDownList>
+                             <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator4" runat="Server" ControlToValidate="ddlBank" InitialValue="--Select Bank--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                    <asp:Panel ID="panelBank" runat="server">
                     <div id="div_Bank"">
                         <div class="row mb-2">
                             <div class="col-4 my-auto">
@@ -372,7 +383,7 @@
                             <input type="date" runat="server" id="dtpDoc_Date" class="form-control">
                         </div>
                     </div>
-                    <div class="row mb-2">
+                   <%-- <div class="row mb-2">
                         <div class="col-4 my-auto">
                             <asp:Label Text="Ref Type:" runat="server" />
                         </div>
@@ -387,7 +398,7 @@
                         <div class="col">
                             <asp:TextBox ID="txtRef_No" runat="server" ReadOnly="true" class="form-control"  AutoComplete="off" />
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="row mb-2">
                         <div class="col-4 my-auto">
                             <asp:Label Text="Status:" runat="server" />
@@ -466,16 +477,16 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Cost Center">
+                    <asp:TemplateField HeaderText="Res. Center">
                         <ItemTemplate>
                             <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px"  AutoPostBack="false" EnableViewState="true">
                             </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Reference ID">
+                    <asp:TemplateField HeaderText="Ref. ID">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

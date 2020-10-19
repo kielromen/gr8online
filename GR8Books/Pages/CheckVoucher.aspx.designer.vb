@@ -158,6 +158,24 @@ Partial Public Class CheckVoucher
     Protected WithEvents panelConrols As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''ddlType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlType As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''RequiredFieldValidator6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtCode control.
     '''</summary>
     '''<remarks>
@@ -239,6 +257,24 @@ Partial Public Class CheckVoucher
     Protected WithEvents ddlDisbursementType As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''panelBank control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panelBank As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lblBank control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblBank As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''ddlBank_List control.
     '''</summary>
     '''<remarks>
@@ -255,6 +291,15 @@ Partial Public Class CheckVoucher
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''panelBankDetails control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panelBankDetails As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''txtBank_CheckName control.
@@ -300,6 +345,33 @@ Partial Public Class CheckVoucher
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtBank_CheckStatus As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''panelBankTransfer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panelBankTransfer As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''txtTransferTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTransferTo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtAccountNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAccountNo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtTrans_Num control.

@@ -57,6 +57,7 @@
                 <asp:BoundField DataField="Middle_Name" HeaderText="Middle_Name" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Suffix_Name" HeaderText="Suffix_Name" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="TIN_No" HeaderText="TIN_No" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                 <asp:BoundField DataField="BranchCode" HeaderText="BranchCode" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Billing_Lot_Unit" HeaderText="Billing_Lot_Unit" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Billing_Blk_Bldg" HeaderText="Billing_Blk_Bldg" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Billing_Street" HeaderText="Billing_Street" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />

@@ -473,6 +473,15 @@ Partial Public Class Company_SetUp
     Protected WithEvents RequiredFieldValidator8 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''txtTelephone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTelephone As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btnSave control.
     '''</summary>
     '''<remarks>

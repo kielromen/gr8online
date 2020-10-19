@@ -29,7 +29,7 @@
 
     Public Sub Loadlist()
         Dim query As String
-        query = " SELECT * FROM tblTransactionSetup  "
+        query = " SELECT * FROM tblTransactionSetup WHERE Type <> 'Maintenance'  "
         SQL.GetQuery(query)
         gvTransSetUp.DataSource = SQL.SQLDS
         gvTransSetUp.DataBind()

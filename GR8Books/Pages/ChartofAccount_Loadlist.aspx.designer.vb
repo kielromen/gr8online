@@ -50,6 +50,15 @@ Partial Public Class ChartofAccount_Loadlist
     Protected WithEvents gvCOA As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''GridView1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''btnAdd control.
     '''</summary>
     '''<remarks>

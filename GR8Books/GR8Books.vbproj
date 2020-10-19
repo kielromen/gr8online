@@ -423,6 +423,8 @@
     <Content Include="Pages\DefaultAccounts_Loadlist.aspx" />
     <Content Include="Pages\DeliveryReceipt.aspx" />
     <Content Include="Pages\DeliveryReceipt_Loadlist.aspx" />
+    <Content Include="Pages\DisbursementPaymentType_Loadlist.aspx" />
+    <Content Include="Pages\DisbursementPaymentType_Maintenance.aspx" />
     <Content Include="Pages\DisbursementType_Loadlist.aspx" />
     <Content Include="Pages\DisbursementType_Maintenance.aspx" />
     <Content Include="Pages\Employee_Loadlist.aspx" />
@@ -448,6 +450,7 @@
     <Content Include="Pages\Reports.aspx" />
     <Content Include="Pages\Reports_BookofAccounts.aspx" />
     <Content Include="Pages\Reports_FinancialReports.aspx" />
+    <Content Include="Pages\Reports_Journals.aspx" />
     <Content Include="Pages\Reports_TransactionReports.aspx" />
     <Content Include="Pages\ResponsibilityCenter_Loadlist.aspx" />
     <Content Include="Pages\Responsibility_Center.aspx" />
@@ -503,9 +506,6 @@
     <Content Include="Scripts\jquery.formatCurrency-1.4.0.min.js" />
     <Content Include="Scripts\jquery.formatCurrency-1.4.0.pack.js" />
     <Content Include="Web.sitemap" />
-    <Content Include="Dataset\dsCHKVrpt.xsc">
-      <DependentUpon>dsCHKVrpt.xsd</DependentUpon>
-    </Content>
     <Content Include="crystalreportviewers115\ActiveXControls\crviewer.dep" />
     <Content Include="crystalreportviewers115\crsmarttag.jsp" />
     <Content Include="crystalreportviewers115\crystalimagehandler.csp" />
@@ -589,17 +589,6 @@
     <Content Include="Dataset\dsCAUNLQrpt.xss">
       <DependentUpon>dsCAUNLQrpt.xsd</DependentUpon>
     </Content>
-    <None Include="Dataset\dsCHKVrpt.xsd" />
-    <Content Include="Dataset\dsCHKVrpt.xss">
-      <DependentUpon>dsCHKVrpt.xsd</DependentUpon>
-    </Content>
-    <Content Include="Dataset\dsCVrpt.xsc">
-      <DependentUpon>dsCVrpt.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\dsCVrpt.xsd" />
-    <Content Include="Dataset\dsCVrpt.xss">
-      <DependentUpon>dsCVrpt.xsd</DependentUpon>
-    </Content>
     <Content Include="Dataset\dsHEADERrpt.xsc">
       <DependentUpon>dsHEADERrpt.xsd</DependentUpon>
     </Content>
@@ -611,6 +600,17 @@
     </Content>
     <Content Include="Dataset\dsFSCErpt.xsc">
       <DependentUpon>dsFSCErpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsCVrpt.xsc">
+      <DependentUpon>dsCVrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsCVrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCVrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsCVrpt.xss">
+      <DependentUpon>dsCVrpt.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\dsFSCErpt.xsd">
       <SubType>Designer</SubType>
@@ -826,8 +826,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCAUNLQrpt.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\dsCHKVrpt1.Designer.vb" />
-    <Compile Include="Dataset\dsCVrpt.Designer.vb" />
+    <Compile Include="Dataset\dsCVrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCVrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsFSCErpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1127,6 +1130,20 @@
       <DependentUpon>DeliveryReceipt_Loadlist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\DisbursementPaymentType_Loadlist.aspx.designer.vb">
+      <DependentUpon>DisbursementPaymentType_Loadlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DisbursementPaymentType_Loadlist.aspx.vb">
+      <DependentUpon>DisbursementPaymentType_Loadlist.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DisbursementPaymentType_Maintenance.aspx.designer.vb">
+      <DependentUpon>DisbursementPaymentType_Maintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DisbursementPaymentType_Maintenance.aspx.vb">
+      <DependentUpon>DisbursementPaymentType_Maintenance.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\DisbursementType_Loadlist.aspx.designer.vb">
       <DependentUpon>DisbursementType_Loadlist.aspx</DependentUpon>
     </Compile>
@@ -1323,6 +1340,13 @@
       <DependentUpon>Reports_FinancialReports.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Pages\Reports_Journals.aspx.designer.vb">
+      <DependentUpon>Reports_Journals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports_Journals.aspx.vb">
+      <DependentUpon>Reports_Journals.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\Reports_TransactionReports.aspx.designer.vb">
       <DependentUpon>Reports_TransactionReports.aspx</DependentUpon>
     </Compile>
@@ -1470,22 +1494,16 @@
       <DependentUpon>rptCAUNLQ.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\rptCHKV1.vb">
+    <Compile Include="Reports\rptCV.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptCHKV.rpt</DependentUpon>
+      <DependentUpon>rptCV.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptAPV.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptAPV.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\rptCV1.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptCV.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptFSCE.vb">
@@ -1599,17 +1617,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCAUNLQ.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\rptCHKV.rpt">
+    <EmbeddedResource Include="Reports\rptCV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptCHKV1.vb</LastGenOutput>
+      <LastGenOutput>rptCV.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptAPV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptAPV.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\rptCV.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptCV1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptFSCE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

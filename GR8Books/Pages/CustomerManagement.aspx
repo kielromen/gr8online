@@ -8,13 +8,21 @@
     <script src="../Scripts/jquery.mask.js"></script>
     <script type="text/javascript">                
         $(document).ready(function () {
+            $('.txtBranchCode').click(
+                function () {
+                    $(".txtBranchCode").mask("00000");
+                });
+            $('.txtBranchCode').keypress(
+                function () {
+                    $(".txtBranchCode").mask("00000");
+                });
             $('.txtTINNO').click(
                 function () {
-                    $(".txtTINNO").mask("000-000-000-000");
+                    $(".txtTINNO").mask("000-000-000");
                 });
             $('.txtTINNO').keypress(
                 function () {
-                    $(".txtTINNO").mask("000-000-000-000");
+                    $(".txtTINNO").mask("000-000-000");
                 });
             $('.txtTelephone').click(
                 function () {
@@ -177,7 +185,7 @@
                         <asp:Label Text="TIN:" runat="server" />
                     </div>
                     <div class="col">
-                        <asp:TextBox ID="txtTINNO" class="txtTINNO form-control" runat="server" Placeholder="000-000-000-000"  autocomplete="off" />
+                        <asp:TextBox ID="txtTINNO" class="txtTINNO form-control" runat="server" Placeholder="000-000-000"  autocomplete="off" />
                          <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtTINNO" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
@@ -185,15 +193,17 @@
         </div>
 
 
-
-
-
-
-
-
-
-
         <div class="row mb-2">
+             <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Branch Code:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtBranchCode" class="txtBranchCode form-control" autocomplete="off" runat="server" Placeholder="00000" />
+                    </div>
+                </div>
+            </div>
             <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
@@ -205,7 +215,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
+        </div>
+        <div class="row mb-2">
+              <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
                         <asp:Label Text="Cut off: (days):" runat="server" />
@@ -216,8 +228,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-sm">
                 <div class="row">
                     <div class="col-3 my-auto">
@@ -228,8 +238,6 @@
                          <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator5" runat="Server" ControlToValidate="ddlVAT_Type" InitialValue="--Select VAT Type--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm">
             </div>
         </div>
         <%--Billing Address--%>
