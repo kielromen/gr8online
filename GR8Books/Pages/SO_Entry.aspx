@@ -142,7 +142,12 @@
                         </div>
 
                         <div class="col">
-                            <asp:TextBox ID="txtName" runat="server" class="form-control" />
+                            <div class="input-group">
+                                <asp:TextBox ID="txtName" runat="server" class="form-control" />
+                                <div class="input-group-append">
+                                    <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-2">
