@@ -332,7 +332,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Account Title">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="100%" onmouseover='this.title=this.value'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Debit">
@@ -353,7 +353,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Particulars">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Code">
@@ -363,7 +363,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Name">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" AutoComplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
 

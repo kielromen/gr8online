@@ -196,7 +196,7 @@
 
         <asp:Panel ID="panelConrols" runat="server">
             <div class="row mb-2">
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                     <div class="row mb-2">
                         <div class="col-2 my-auto">
                             <asp:Label Text="VCE Code:" runat="server" />
@@ -335,12 +335,12 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Item Name">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Description">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtDescription_Entry" Class="txtDescription_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtDescription_Entry" Class="txtDescription_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="UnitPrice">
@@ -358,42 +358,6 @@
                                 <asp:TextBox ID="txtQTY_Entry" onkeydown="return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtQTY_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-
-                        <%--<asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="UnitCost">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtUnitCost_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtUnitCost_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="GrossAmount">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtGrossAmount_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtGrossAmount_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="VATAmount">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtVATAmount_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtVATAmount_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="VATInc">
-                    <ItemTemplate>
-                        <asp:checkbox ID="txtVATInc_Entry"  Class="txtVATInc_Entry" runat="server" Width="110" autocomplete="off" ></asp:checkbox>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="DiscountRate">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtDiscountRate_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtDiscountRate_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Discount">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtDiscount_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtDiscount_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="NetAmount">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtNetAmount_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtNetAmount_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                </asp:TemplateField>--%>
                         <asp:TemplateField HeaderText="VATable">
                             <ItemTemplate>
                                 <asp:CheckBox ID="txtVATable_Entry" Class="txtVATable_Entry" runat="server" Width="110" Style="text-align: right"></asp:CheckBox>
@@ -411,20 +375,9 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Account Title">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-
-
-
-                        <%--                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Credit">
-                    <ItemTemplate>
-                        <asp:TextBox  ID="txtCredit_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtCredit_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off"></asp:TextBox>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        <asp:Label ID="lblTotalCredit_Amount" runat="server" Class="lblTotalCredit_Amount" Font-Bold="true" Text="0.00"></asp:Label>
-                    </FooterTemplate>
-                </asp:TemplateField>--%>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

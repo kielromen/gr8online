@@ -329,34 +329,13 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Item Title">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <%--                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Debit">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtDebit_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtDebit_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        <asp:Label ID="lblTotalDebit_Amount" Class="lblTotalDebit_Amount" runat="server" Font-Bold="true" Text="0.00"></asp:Label>
-                    </FooterTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Credit">
-                    <ItemTemplate>
-                        <asp:TextBox  ID="txtCredit_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtCredit_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off"></asp:TextBox>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        <asp:Label ID="lblTotalCredit_Amount" runat="server" Class="lblTotalCredit_Amount" Font-Bold="true" Text="0.00"></asp:Label>
-                    </FooterTemplate>
-                </asp:TemplateField>--%>
                     <asp:TemplateField HeaderText="UOM">
                         <ItemTemplate>
                             <asp:TextBox ID="txtUOM_Entry" Class="txtUOM_Entry" runat="server" autocomplete="off"></asp:TextBox>
                         </ItemTemplate>
-                        <%--                    <FooterTemplate>
-                        <div style="text-align: right;">
-                            <span style="font-weight: bold;">Total: </span>
-                        </div>
-                    </FooterTemplate>--%>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="QTY">
                         <ItemTemplate>

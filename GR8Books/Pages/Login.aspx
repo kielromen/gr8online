@@ -3,9 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="text-center mt-5" style="width: 400px; margin: auto;">
         <div class="card">
-            <div class="card-header">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/GR8_LOGO.png" Height="40" Style="vertical-align: top;" class="mr-2"></asp:Image><h2 style="display: inline;">GR8BOOKS</h2>
-            </div>
             <div class="card-body">
                 <h3 class="card-title">Sign In</h3>
                 <hr />
