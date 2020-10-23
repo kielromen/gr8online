@@ -127,6 +127,7 @@
                         <div class="list-group">
                             <a href="../Pages/CreditMemo_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Credit Memo</a>
                             <a href="../Pages/DebitMemo_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Debit Memo</a>
+                            <a href="../Pages/Transaction_Uploader.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Transaction Uploader</a>
                         </div>
                     </div>
                 </div>
