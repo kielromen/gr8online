@@ -1137,6 +1137,60 @@ Update Order Option
 Used to sort self-referenced table's rows
 </summary>
 </member>
+<member name="F:GR8Books._Default._name">
+<summary>
+name control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books._Default._email">
+<summary>
+email control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books._Default._subject">
+<summary>
+subject control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books._Default._message">
+<summary>
+message control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books._Default._btnSend">
+<summary>
+btnSend control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books._Default._lblMessage">
+<summary>
+lblMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.Dashboard._btnLogout">
 <summary>
 btnLogout control.
@@ -7815,18 +7869,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.Login._Panel1">
+<member name="F:GR8Books.Login._txtEMail">
 <summary>
-Panel1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.Login._txtEmail">
-<summary>
-txtEmail control.
+txtEMail control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7836,15 +7881,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.Login._txtPassword">
 <summary>
 txtPassword control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.Login._btnRemember">
-<summary>
-btnRemember control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7872,6 +7908,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.Login._lnkRegister">
 <summary>
 lnkRegister control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Login._btnGoogle">
+<summary>
+btnGoogle control.
 </summary>
 <remarks>
 Auto-generated field.

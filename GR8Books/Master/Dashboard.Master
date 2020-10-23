@@ -36,11 +36,11 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <div class="d-flex toggled" id="wrapper" >
+        <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-light border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading">
-                    <img src="/Images/GR8_LOGO.png" height="30" class="d-inline-block align-top mr-2">GR8BOOKS
+                    <img src="/Images/Gr8Books_Logo.png" height="30" class="d-inline-block align-top mr-2">
                 </div>
                 <div class="list-group list-group-flush">
                     <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-area-chart mr-2" aria-hidden="true"></i>My Dashboard</a>
@@ -98,7 +98,7 @@
                             <a href="../Pages/DeliveryReceipt.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Delivery Receipt</a>
                             <a href="../Pages/SalesInvoice.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Sales Invoice</a>
                             <a href="../Pages/SalesJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Sales Journal</a>
-                            <a href="../Pages/JobOrder.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Job Order</a>                      
+                            <a href="../Pages/JobOrder.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Job Order</a>
                         </div>
                     </div>
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapsePurchasing" role="button" aria-expanded="false" aria-controls="collapsePurchasing"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Purchasing</a>
@@ -106,7 +106,7 @@
                         <div class="list-group">
                             <a href="../Pages/PurchaseOrder.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Order</a>
                             <a href="../Pages/ReceivingReport.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Receiving Report</a>
-                            <a href="../Pages/PurchaseJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Journal</a>                            
+                            <a href="../Pages/PurchaseJournal.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Purchase Journal</a>
                         </div>
                     </div>
                     <a href="../Pages/QueryGenerator.aspx" class="list-group-item list-group-item-action bg-light"><i class="fa fa-list-alt mr-2" aria-hidden="true"></i>Query Generator</a>
@@ -115,15 +115,15 @@
                         <div class="list-group">
                             <a href="../Pages/Reports_TransactionReports.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Transaction Reports</a>
                             <a href="../Pages/Reports_FinancialReports.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Financial Reports</a>
-                            <a href="../Pages/Reports_BookofAccounts.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Book of Accounts</a> 
-                            <a href="../Pages/Reports_Journals.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Journals</a>                          
-                            <a href="../" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>BIR Reports</a>    
+                            <a href="../Pages/Reports_BookofAccounts.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Book of Accounts</a>
+                            <a href="../Pages/Reports_Journals.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Journals</a>
+                            <a href="../" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>BIR Reports</a>
                         </div>
                     </div>
-                    
-                    
+
+
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseOthers" role="button" aria-expanded="false" aria-controls="collapseOthers"><i class="fa fa-file-o mr-2" aria-hidden="true"></i>Other</a>
-                <div class="collapse" id="collapseOthers">
+                    <div class="collapse" id="collapseOthers">
                         <div class="list-group">
                             <a href="../Pages/CreditMemo_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Credit Memo</a>
                             <a href="../Pages/DebitMemo_Entry.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Debit Memo</a>
@@ -161,7 +161,7 @@
                     <div class="col">
                         <h5 class="ml-3"><%: Page.Title %> </h5>
                     </div>
-                     <div class="col text-right mr-3">
+                    <div class="col text-right mr-3">
                         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="true" />
                         <asp:SiteMapPath ID="SiteMapPath1" runat="server" PathSeparator=" > " RenderCurrentNodeAsLink="false">
                         </asp:SiteMapPath>
@@ -189,10 +189,6 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-
-
-
-
 </body>
 </html>
 

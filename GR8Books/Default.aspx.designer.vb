@@ -12,4 +12,58 @@ Option Explicit On
 
 
 Partial Public Class _Default
+
+    '''<summary>
+    '''name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents name As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''email control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents email As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+
+    '''<summary>
+    '''subject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents subject As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''message control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents message As Global.System.Web.UI.HtmlControls.HtmlTextArea
+
+    '''<summary>
+    '''btnSend control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSend As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
 End Class

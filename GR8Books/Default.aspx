@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Home" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.vb" Inherits="GR8Books._Default" %>
+﻿<%@ Page Title="Home" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.vb" Inherits="GR8Books._Default" ValidateRequest="false" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-  <!-- ======= Hero Section ======= -->
+    <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 
     <div class="container">
@@ -557,7 +557,7 @@
     </section><!-- End Portfolio Section -->--%>
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <%--<section id="team" class="team section-bg">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -579,8 +579,8 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4>Mikko Crizaldo</h4>
+                <span>Manager</span>
               </div>
             </div>
           </div>
@@ -597,8 +597,8 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
+                <h4>Anjomarc Topacio</h4>
+                <span>Manager</span>
               </div>
             </div>
           </div>
@@ -642,7 +642,7 @@
         </div>
 
       </div>
-    </section><!-- End Team Section -->
+    </section><!-- End Team Section -->--%>
 
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
@@ -826,32 +826,29 @@
           </div>
 
           <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <input runat="server" type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <input runat="server" type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <input runat="server" type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <textarea runat="server" id="message" class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="mb-3">
+           <%--   <div class="mb-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-
+              </div>--%><div class="text-center"><asp:button ID="btnSend" runat="server" class="btn btn-primary" Text="Send Message" /></div>
+        <%--  </div>--%>
+              <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Green"/>
         </div>
 
       </div>
