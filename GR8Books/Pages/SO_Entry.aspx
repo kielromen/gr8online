@@ -242,7 +242,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Item Name">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtItemDesc" Class="txtItemDesc" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtItemDesc" Class="txtItemDesc" runat="server" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="QTY">

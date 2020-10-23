@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="Forgot Password" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="ForgotPassword.aspx.vb" Inherits="GR8Books.ForgotPassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="row justify-content-center" >
+    <br />
+    <br />
+
+    <div class="row justify-content-center mt-5 mb-5">
         <div class="col-md-4 border">
             <div class="text-center">
                 <h3><i class="fa fa-lock fa-4x"></i></h3>

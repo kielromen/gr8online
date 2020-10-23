@@ -1,8 +1,11 @@
 ﻿<%@ Page Title="Register" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Register.aspx.vb" Inherits="GR8Books.Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <br />
+
     <asp:Panel runat="server">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5 mb-5">
             <div class="col-md-6">
                 <div class="card">
                     <header class="card-header">
@@ -13,20 +16,20 @@
                         <div class="form-row">
                             <div class="col form-group">
                                 <label>First name </label>
-                                <asp:TextBox ID="txtFirstname" runat="server"  class="form-control" />
+                                <asp:TextBox ID="txtFirstname" runat="server" class="form-control" />
                             </div>
                             <div class="col form-group">
                                 <label>Last name</label>
-                                <asp:TextBox ID="txtLastName" runat="server"  class="form-control" />
+                                <asp:TextBox ID="txtLastName" runat="server" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Company name</label>
-                            <asp:TextBox ID="txtCompanyName" runat="server"  TextMode="MultiLine" class="form-control" />
+                            <asp:TextBox ID="txtCompanyName" runat="server" TextMode="MultiLine" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
-                            <asp:TextBox ID="txtEmail" runat="server"  class="form-control" />
+                            <asp:TextBox ID="txtEmail" runat="server" class="form-control" />
                             <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
