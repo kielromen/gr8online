@@ -13,6 +13,10 @@ Public Class CustomerManagement_View
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
+                Dim dt As New DataTable
+                dt.Columns.Add("")
+                gvUpload.DataSource = dt
+                gvUpload.DataBind()
                 Loadlist()
             End If
         End If
@@ -82,4 +86,60 @@ Public Class CustomerManagement_View
             End Using
         End If
     End Sub
+
+    <WebMethod()>
+    Public Shared Function SaveVCE(Customer_Code As String, Classification As String, First_Name As String, Last_Name As String, Middle_Name As String, Suffix_Name As String, Customer_Name As String, TIN_No As String, BranchCode As String, Billing_Lot_Unit As String, Billing_Blk_Bldg As String, Billing_Street As String, Billing_Subd As String, Billing_Brgy As String, Billing_Town_City As String, Billing_Province As String, Billing_Region As String, Billing_ZipCode As String, Delivery_Lot_Unit As String, Delivery_Blk_Bldg As String, Delivery_Street As String, Delivery_Subd As String, Delivery_Brgy As String, Delivery_Town_City As String, Delivery_Province As String, Delivery_Region As String, Delivery_ZipCode As String, SameAddress As String, Contact_Person As String, Contact_Position As String, Contact_Telephone As String, Contact_Cellphone As String, Contact_Fax As String, Contact_Email As String, Contact_Website As String, Terms As String, CutOff As String, VAT_Type As String) As String
+        Dim query As String
+        query = " SELECT Customer_Code FROM tblCustomer_Master WHERE Customer_Code = @Customer_Code "
+        SQL.FlushParams()
+        SQL.AddParam("@Customer_Code", Customer_Code)
+        SQL.ReadQuery(query)
+        If SQL.SQLDR.Read Then
+            Return "Exist"
+        Else
+            query = " INSERT INTO tblCustomer_Master(Customer_Code, Classification, First_Name, Last_Name, Middle_Name, Suffix_Name, Customer_Name, TIN_No, BranchCode, Billing_Lot_Unit, Billing_Blk_Bldg, Billing_Street, Billing_Subd, Billing_Brgy, Billing_Town_City, Billing_Province, Billing_Region, Billing_ZipCode, Delivery_Lot_Unit, Delivery_Blk_Bldg, Delivery_Street, Delivery_Subd, Delivery_Brgy, Delivery_Town_City, Delivery_Province, Delivery_Region, Delivery_ZipCode, SameAddress, Contact_Person, Contact_Position, Contact_Telephone, Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type) " & vbCrLf &
+                    " VALUES (@Customer_Code, @Classification, @First_Name, @Last_Name, @Middle_Name, @Suffix_Name, @Customer_Name, @TIN_No, @BranchCode, @Billing_Lot_Unit, @Billing_Blk_Bldg, @Billing_Street, @Billing_Subd, @Billing_Brgy, @Billing_Town_City, @Billing_Province, @Billing_Region, @Billing_ZipCode, @Delivery_Lot_Unit, @Delivery_Blk_Bldg, @Delivery_Street, @Delivery_Subd, @Delivery_Brgy, @Delivery_Town_City, @Delivery_Province, @Delivery_Region, @Delivery_ZipCode, @SameAddress, @Contact_Person, @Contact_Position, @Contact_Telephone, @Contact_Cellphone, @Contact_Fax, @Contact_Email, @Contact_Website, @Terms, @CutOff, @VAT_Type) "
+            SQL.FlushParams()
+            SQL.AddParam("@Customer_Code", IIf(Customer_Code = "undefined", DBNull.Value, Customer_Code))
+            SQL.AddParam("@Classification", IIf(Classification = "undefined", DBNull.Value, Classification))
+            SQL.AddParam("@First_Name", IIf(First_Name = "undefined", DBNull.Value, First_Name))
+            SQL.AddParam("@Last_Name", IIf(Last_Name = "undefined", DBNull.Value, Last_Name))
+            SQL.AddParam("@Middle_Name", IIf(Middle_Name = "undefined", DBNull.Value, Middle_Name))
+            SQL.AddParam("@Suffix_Name", IIf(Suffix_Name = "undefined", DBNull.Value, Suffix_Name))
+            SQL.AddParam("@Customer_Name", IIf(Customer_Name = "undefined", DBNull.Value, Customer_Name))
+            SQL.AddParam("@TIN_No", IIf(TIN_No = "undefined", DBNull.Value, TIN_No))
+            SQL.AddParam("@BranchCode", IIf(BranchCode = "undefined", DBNull.Value, BranchCode))
+            SQL.AddParam("@Billing_Lot_Unit", IIf(Billing_Lot_Unit = "undefined", DBNull.Value, Billing_Lot_Unit))
+            SQL.AddParam("@Billing_Blk_Bldg", IIf(Billing_Blk_Bldg = "undefined", DBNull.Value, Billing_Blk_Bldg))
+            SQL.AddParam("@Billing_Street", IIf(Billing_Street = "undefined", DBNull.Value, Billing_Street))
+            SQL.AddParam("@Billing_Subd", IIf(Billing_Subd = "undefined", DBNull.Value, Billing_Subd))
+            SQL.AddParam("@Billing_Brgy", IIf(Billing_Brgy = "undefined", DBNull.Value, Billing_Brgy))
+            SQL.AddParam("@Billing_Town_City", IIf(Billing_Town_City = "undefined", DBNull.Value, Billing_Town_City))
+            SQL.AddParam("@Billing_Province", IIf(Billing_Province = "undefined", DBNull.Value, Billing_Province))
+            SQL.AddParam("@Billing_Region", IIf(Billing_Region = "undefined", DBNull.Value, Billing_Region))
+            SQL.AddParam("@Billing_ZipCode", IIf(Billing_ZipCode = "undefined", DBNull.Value, Billing_ZipCode))
+            SQL.AddParam("@Delivery_Lot_Unit", IIf(Delivery_Lot_Unit = "undefined", DBNull.Value, Delivery_Lot_Unit))
+            SQL.AddParam("@Delivery_Blk_Bldg", IIf(Delivery_Blk_Bldg = "undefined", DBNull.Value, Delivery_Blk_Bldg))
+            SQL.AddParam("@Delivery_Street", IIf(Delivery_Street = "undefined", DBNull.Value, Delivery_Street))
+            SQL.AddParam("@Delivery_Subd", IIf(Delivery_Subd = "undefined", DBNull.Value, Delivery_Subd))
+            SQL.AddParam("@Delivery_Brgy", IIf(Delivery_Brgy = "undefined", DBNull.Value, Delivery_Brgy))
+            SQL.AddParam("@Delivery_Town_City", IIf(Delivery_Town_City = "undefined", DBNull.Value, Delivery_Town_City))
+            SQL.AddParam("@Delivery_Province", IIf(Delivery_Province = "undefined", DBNull.Value, Delivery_Province))
+            SQL.AddParam("@Delivery_Region", IIf(Delivery_Region = "undefined", DBNull.Value, Delivery_Region))
+            SQL.AddParam("@Delivery_ZipCode", IIf(Delivery_ZipCode = "undefined", DBNull.Value, Delivery_ZipCode))
+            SQL.AddParam("@SameAddress", IIf(SameAddress = "undefined", DBNull.Value, SameAddress))
+            SQL.AddParam("@Contact_Person", IIf(Contact_Person = "undefined", DBNull.Value, Contact_Person))
+            SQL.AddParam("@Contact_Position", IIf(Contact_Position = "undefined", DBNull.Value, Contact_Position))
+            SQL.AddParam("@Contact_Telephone", IIf(Contact_Telephone = "undefined", DBNull.Value, Contact_Telephone))
+            SQL.AddParam("@Contact_Cellphone", IIf(Contact_Cellphone = "undefined", DBNull.Value, Contact_Cellphone))
+            SQL.AddParam("@Contact_Fax", IIf(Contact_Fax = "undefined", DBNull.Value, Contact_Fax))
+            SQL.AddParam("@Contact_Email", IIf(Contact_Email = "undefined", DBNull.Value, Contact_Email))
+            SQL.AddParam("@Contact_Website", IIf(Contact_Website = "undefined", DBNull.Value, Contact_Website))
+            SQL.AddParam("@Terms", IIf(Terms = "undefined", DBNull.Value, Terms))
+            SQL.AddParam("@CutOff", IIf(CutOff = "undefined", DBNull.Value, CutOff))
+            SQL.AddParam("@VAT_Type", IIf(VAT_Type = "undefined", DBNull.Value, VAT_Type))
+            SQL.ExecNonQuery(query)
+            Return "False"
+        End If
+    End Function
 End Class

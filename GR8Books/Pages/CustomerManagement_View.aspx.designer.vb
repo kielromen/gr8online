@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class CustomerManagement_View
-
+    
     '''<summary>
     '''btnExport control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class CustomerManagement_View
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnExport As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''gvCustomer control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class CustomerManagement_View
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvCustomer As Global.System.Web.UI.WebControls.GridView
-
+    
     '''<summary>
     '''btnAdd control.
     '''</summary>
@@ -39,4 +39,40 @@ Partial Public Class CustomerManagement_View
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btnUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpload As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''alertUpdate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertUpdate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''gvUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvUpload As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''btnUploadSave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUploadSave As Global.System.Web.UI.WebControls.Button
 End Class

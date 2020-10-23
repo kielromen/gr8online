@@ -220,6 +220,26 @@ Public Class QueryGenerator
                     Dim url As String = "SalesJournal.aspx"
                     Session("ID") = RefTransID
                     Response.Write("<script>window.open('" & url & "', '_blank');</script>")
+                Case "OR"
+                    Dim url As String = "OfficialReceipt.aspx"
+                    Session("ID") = RefTransID
+                    Response.Write("<script>window.open('" & url & "', '_blank');</script>")
+                Case "AR"
+                    Dim url As String = "AcknowledgementReceipt.aspx"
+                    Session("ID") = RefTransID
+                    Response.Write("<script>window.open('" & url & "', '_blank');</script>")
+                Case "PR"
+                    Dim url As String = "ProvisionalReceipt.aspx"
+                    Session("ID") = RefTransID
+                    Response.Write("<script>window.open('" & url & "', '_blank');</script>")
+                Case "CR"
+                    Dim url As String = "CollectionReceipt.aspx"
+                    Session("ID") = RefTransID
+                    Response.Write("<script>window.open('" & url & "', '_blank');</script>")
+                Case "CV"
+                    Dim url As String = "CheckVoucher.aspx"
+                    Session("ID") = RefTransID
+                    Response.Write("<script>window.open('" & url & "', '_blank');</script>")
             End Select
         End If
     End Sub

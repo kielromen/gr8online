@@ -1,4 +1,10 @@
-﻿Imports System.Web.Services
+﻿Imports System.IO
+Imports System.Data
+Imports System.Drawing
+Imports System.Data.SqlClient
+Imports System.Configuration
+Imports System.Web.Services
+Imports ClosedXML.Excel
 Public Class ChartofAccount_Loadlist
     Inherits System.Web.UI.Page
 
@@ -8,6 +14,10 @@ Public Class ChartofAccount_Loadlist
                 Response.Redirect("Login.aspx")
             Else
                 Initialize()
+                Dim dt As New DataTable
+                dt.Columns.Add("")
+                gvUpload.DataSource = dt
+                gvUpload.DataBind()
                 Loadlist()
             End If
         End If
@@ -71,5 +81,67 @@ Public Class ChartofAccount_Loadlist
         SQL.AddParam("@AccountCode", AccountCode)
         SQL.AddParam("@OrderNo", OrderNo)
         SQL.ExecNonQuery(query)
+    End Sub
+
+    <WebMethod()>
+    Public Shared Function SaveCOA(AccountCode As String, AccountTitle As String, AccountType As String, AccountGroup As String, AccountNature As String, ReportAlias As String, AccountClass As String, withSubsidiary As String, OrderNo As String) As String
+        Dim query As String
+        query = " DELETE FROM tblCOA WHERE AccountCode = @AccountCode "
+        SQL.FlushParams()
+        SQL.AddParam("@AccountCode", AccountCode)
+        SQL.ExecNonQuery(query)
+
+        query = " INSERT INTO tblCOA(AccountCode, AccountTitle, AccountType, AccountGroup, AccountNature, ReportAlias, Class, withSubsidiary, OrderNo) " & vbCrLf &
+                " VALUES(@AccountCode, @AccountTitle, @AccountType, @AccountGroup, @AccountNature, @ReportAlias, @Class, @withSubsidiary, @OrderNo) "
+        SQL.FlushParams()
+        SQL.AddParam("@AccountCode", AccountCode)
+        SQL.AddParam("@AccountTitle", AccountTitle)
+        SQL.AddParam("@AccountType", AccountType)
+        SQL.AddParam("@AccountGroup", AccountGroup)
+        SQL.AddParam("@AccountNature", AccountNature)
+        SQL.AddParam("@ReportAlias", ReportAlias)
+        SQL.AddParam("@Class", AccountClass)
+        SQL.AddParam("@withSubsidiary", withSubsidiary)
+        SQL.AddParam("@OrderNo", OrderNo)
+        If SQL.ExecNonQuery(query) > 0 Then
+            Return False
+        Else
+            Return "Exist"
+        End If
+
+    End Function
+
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+        If gvCOA.Rows.Count > 0 Then
+            'To Export all pages
+            gvCOA.AllowPaging = False
+            Me.Loadlist()
+
+            Dim dt As New DataTable("COAlist")
+            For Each cell As TableCell In gvCOA.HeaderRow.Cells
+                dt.Columns.Add(cell.Text)
+            Next
+            For Each row As GridViewRow In gvCOA.Rows
+                dt.Rows.Add()
+                For i As Integer = 0 To row.Cells.Count - 1
+                    row.Cells(i).CssClass = "textmode"
+                    dt.Rows(dt.Rows.Count - 1)(i) = HttpUtility.HtmlDecode(row.Cells(i).Text.Trim)
+                Next
+            Next
+            Using wb As New XLWorkbook()
+                wb.Worksheets.Add(dt)
+                Response.Clear()
+                Response.Buffer = True
+                Response.Charset = ""
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                Response.AddHeader("content-disposition", "attachment;filename=COAlist.xlsx")
+                Using MyMemoryStream As New MemoryStream()
+                    wb.SaveAs(MyMemoryStream)
+                    MyMemoryStream.WriteTo(Response.OutputStream)
+                    Response.Flush()
+                    Response.[End]()
+                End Using
+            End Using
+        End If
     End Sub
 End Class

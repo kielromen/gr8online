@@ -164,7 +164,7 @@
         If ddlReports.SelectedValue = "Cash Receipts Book" Then
             Session("@Book") = "Cash Receipt"
             Response.Write("<script>window.open('Reports.aspx?id=' + 'CRBLL', '_blank');</script>")
-        ElseIf ddlReports.SelectedValue = "Cash Disbursement Book - Looseleaf" Then
+        ElseIf ddlReports.SelectedValue = "Cash Disbursement Book" Then
             Session("@Book") = "Cash Disbursement Book"
             Response.Write("<script>window.open('Reports.aspx?id=' + 'CDBLL', '_blank');</script>")
         ElseIf ddlReports.SelectedValue = "Purchase Book" Then

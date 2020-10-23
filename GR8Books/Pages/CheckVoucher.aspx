@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Check Voucher" Language="vb" MaintainScrollPositionOnPostback="true" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="CheckVoucher.aspx.vb" Inherits="GR8Books.CheckVoucher" %>
+﻿<%@ Page Title="Cash Disbursement" Language="vb" MaintainScrollPositionOnPostback="true" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="CheckVoucher.aspx.vb" Inherits="GR8Books.CheckVoucher" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

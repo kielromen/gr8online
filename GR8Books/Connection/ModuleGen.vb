@@ -554,6 +554,36 @@ Module ModuleGen
         Return AccountCode
     End Function
 
+
+    Public Function GetAccountTitle(ByVal AccountCode As String) As String
+        Dim query As String
+        Dim AccountTitle As String = ""
+        query = " SELECT  AccountCode, AccountTitle" &
+                " FROM    tblCOA WHERE AccountCode = @AccountCode"
+        SQL.FlushParams()
+        SQL.AddParam("@AccountCode", AccountCode)
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read() Then
+            AccountTitle = SQL.SQLDR2("AccountTitle").ToString
+        End If
+        Return AccountTitle
+    End Function
+
+    Public Function GetSLBalance(ByVal VCECode As String, ByVal AccountCode As String) As String
+        Dim query As String
+        Dim Balance As Decimal = 0
+        query = " SELECT Top 1 CONVERT(VARCHAR,CONVERT(MONEY,Balance),1) AS Balance FROM View_ledger " &
+                " WHERE AccntCode = @AccntCode AND VCECode = @VCECode Order BY No desc"
+        SQL.FlushParams()
+        SQL.AddParam("@AccntCode", AccountCode)
+        SQL.AddParam("@VCECode", VCECode)
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read() Then
+            Balance = SQL.SQLDR2("Balance").ToString
+        End If
+        Return Balance
+    End Function
+
     Public Function LoadDefaultModuleAccount() As List(Of String)
         Dim list As New List(Of String)
         Dim query As String

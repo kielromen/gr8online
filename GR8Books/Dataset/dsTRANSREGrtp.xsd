@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsTRANSREGrtp" targetNamespace="http://tempuri.org/dsTRANSREGrtp.xsd" xmlns:mstns="http://tempuri.org/dsTRANSREGrtp.xsd" xmlns="http://tempuri.org/dsTRANSREGrtp.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="GR8BooksConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GR8BooksConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.GR8BooksConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_Transactions_RegistersTableAdapter" GeneratorDataComponentClassName="View_Transactions_RegistersTableAdapter" Name="View_Transactions_Registers" UserDataComponentName="View_Transactions_RegistersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GR8BooksConnectionString (Web.config)" DbObjectName="GR8Books.dbo.View_Transactions_Registers" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Date, [Doc Type], [Ref No], [Check No], VCECode, VCEName, Amount, Status FROM dbo.View_Transactions_Registers</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Date" DataSetColumn="Date" />
+              <Mapping SourceColumn="Doc Type" DataSetColumn="Doc Type" />
+              <Mapping SourceColumn="Ref No" DataSetColumn="Ref No" />
+              <Mapping SourceColumn="Check No" DataSetColumn="Check No" />
+              <Mapping SourceColumn="VCECode" DataSetColumn="VCECode" />
+              <Mapping SourceColumn="VCEName" DataSetColumn="VCEName" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsTRANSREGrtp" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsTRANSREGrtp" msprop:Generator_UserDSName="dsTRANSREGrtp">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="View_Transactions_Registers" msprop:Generator_TableClassName="View_Transactions_RegistersDataTable" msprop:Generator_TableVarName="tableView_Transactions_Registers" msprop:Generator_TablePropName="View_Transactions_Registers" msprop:Generator_RowDeletingName="View_Transactions_RegistersRowDeleting" msprop:Generator_RowChangingName="View_Transactions_RegistersRowChanging" msprop:Generator_RowEvHandlerName="View_Transactions_RegistersRowChangeEventHandler" msprop:Generator_RowDeletedName="View_Transactions_RegistersRowDeleted" msprop:Generator_UserTableName="View_Transactions_Registers" msprop:Generator_RowChangedName="View_Transactions_RegistersRowChanged" msprop:Generator_RowEvArgName="View_Transactions_RegistersRowChangeEvent" msprop:Generator_RowClassName="View_Transactions_RegistersRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="_Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Doc_x0020_Type" msprop:Generator_ColumnVarNameInTable="columnDoc_Type" msprop:Generator_ColumnPropNameInRow="Doc_Type" msprop:Generator_ColumnPropNameInTable="Doc_TypeColumn" msprop:Generator_UserColumnName="Doc Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ref_x0020_No" msprop:Generator_ColumnVarNameInTable="columnRef_No" msprop:Generator_ColumnPropNameInRow="Ref_No" msprop:Generator_ColumnPropNameInTable="Ref_NoColumn" msprop:Generator_UserColumnName="Ref No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Check_x0020_No" msprop:Generator_ColumnVarNameInTable="columnCheck_No" msprop:Generator_ColumnPropNameInRow="Check_No" msprop:Generator_ColumnPropNameInTable="Check_NoColumn" msprop:Generator_UserColumnName="Check No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VCECode" msprop:Generator_ColumnVarNameInTable="columnVCECode" msprop:Generator_ColumnPropNameInRow="VCECode" msprop:Generator_ColumnPropNameInTable="VCECodeColumn" msprop:Generator_UserColumnName="VCECode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VCEName" msprop:Generator_ColumnVarNameInTable="columnVCEName" msprop:Generator_ColumnPropNameInRow="VCEName" msprop:Generator_ColumnPropNameInTable="VCENameColumn" msprop:Generator_UserColumnName="VCEName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

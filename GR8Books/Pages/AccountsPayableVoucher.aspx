@@ -468,18 +468,18 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Cost Center">
+                         <asp:TemplateField HeaderText="Res. Center">
                             <ItemTemplate>
-                                <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px" AutoPostBack="false" EnableViewState="true">
+                                <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px"  AutoPostBack="false" EnableViewState="true">
                                 </asp:DropDownList>
-                            </ItemTemplate>
+                              </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Reference ID">
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Ref. ID">
+                             <ItemTemplate>
+                                <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
+                             </ItemTemplate>
+                         </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
