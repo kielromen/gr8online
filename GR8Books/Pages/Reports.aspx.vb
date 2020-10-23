@@ -180,11 +180,11 @@ Public Class Reports
 
                 crystalReport.Close()
                 crystalReport.Dispose()
-            Case "TBDETAILED"
+            Case "WORKSHEETDETAILED"
                 Dim query As String
                 query = " SELECT * FROM tblPrint_TB"
                 Dim crystalReport As New ReportDocument()
-                crystalReport.Load(Server.MapPath("~/Reports/rptTB_Detailed.rpt"))
+                crystalReport.Load(Server.MapPath("~/Reports/rptWorksheet_Detailed.rpt"))
 
                 Dim dsTBrpt As dsTBrpt = GetData(Type, query)
 
@@ -196,22 +196,22 @@ Public Class Reports
                 CrystalReportViewer1.ReportSource = crystalReport
 
                 If Session("@FileType") = "Excel" Then
-                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptTB_Detailed.xls"))
-                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptTB_Detailed.xls")
-                    Response.TransmitFile(Server.MapPath("~/Reports/rptTB_Detailed.xls"))
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptWorksheet_Detailed.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptWorksheet_Detailed.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptWorksheet_Detailed.xls"))
                     Response.End()
                 Else
-                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptTB_Detailed.pdf"))
-                    file = Server.MapPath("~/Reports/rptTB_Detailed.pdf")
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptWorksheet_Detailed.pdf"))
+                    file = Server.MapPath("~/Reports/rptWorksheet_Detailed.pdf")
                 End If
 
                 crystalReport.Close()
                 crystalReport.Dispose()
-            Case "TBSUMMARY"
+            Case "WORKSHEETSUMMARY"
                 Dim query As String
                 query = " SELECT * FROM tblPrint_TB"
                 Dim crystalReport As New ReportDocument()
-                crystalReport.Load(Server.MapPath("~/Reports/rptTB_Summary.rpt"))
+                crystalReport.Load(Server.MapPath("~/Reports/rptWorksheet_Summary.rpt"))
 
                 Dim dsTBrpt As dsTBrpt = GetData(Type, query)
 
@@ -223,13 +223,13 @@ Public Class Reports
                 CrystalReportViewer1.ReportSource = crystalReport
 
                 If Session("@FileType") = "Excel" Then
-                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptTB_Summary.xls"))
-                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptTB_Summary.xls")
-                    Response.TransmitFile(Server.MapPath("~/Reports/rptTB_Summary.xls"))
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptWorksheet_Summary.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptWorksheet_Summary.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptWorksheet_Summary.xls"))
                     Response.End()
                 Else
-                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptTB_Summary.pdf"))
-                    file = Server.MapPath("~/Reports/rptTB_Summary.pdf")
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptWorksheet_Summary.pdf"))
+                    file = Server.MapPath("~/Reports/rptWorksheet_Summary.pdf")
                 End If
 
                 crystalReport.Close()
@@ -523,6 +523,62 @@ Public Class Reports
 
                 crystalReport.Close()
                 crystalReport.Dispose()
+            Case "TRANSREG"
+                Dim query As String
+                query = " SELECT * FROM View_Transactions_Registers WHERE [Doc Type] IN (SELECT Filter FROM tblPrint_REG)"
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptTRANSREG.rpt"))
+
+                Dim dsTRANSREGrtp As dsTRANSREGrtp = GetData(Type, query)
+
+                crystalReport.Database.Tables(0).SetDataSource(dsTRANSREGrtp.Tables("Table"))
+                crystalReport.Subreports(0).SetDataSource(dsHEADERrpt.Tables("Table"))
+                crystalReport.SetParameterValue("@DateFrom", Session("@DateFrom"))
+                crystalReport.SetParameterValue("@DateTo", Session("@DateTo"))
+                crystalReport.SetParameterValue("@Header", Session("@Header"))
+                crystalReport.SetParameterValue("@User", GetUserFullName(Session("EmailAddress")))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptTRANSREG.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptTRANSREG.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptTRANSREG.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptTRANSREG.pdf"))
+                    file = Server.MapPath("~/Reports/rptTRANSREG.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
+            Case "CHECKREG"
+                Dim query As String
+                query = " SELECT * FROM View_Check_Registers WHERE AccntCode IN (SELECT Filter FROM tblPrint_REG)"
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptCHECKREG.rpt"))
+
+                Dim dsCHECKREGrpt As dsCHECKREGrpt = GetData(Type, query)
+
+                crystalReport.Database.Tables(0).SetDataSource(dsCHECKREGrpt.Tables("Table"))
+                crystalReport.Subreports(0).SetDataSource(dsHEADERrpt.Tables("Table"))
+                crystalReport.SetParameterValue("@DateFrom", Session("@DateFrom"))
+                crystalReport.SetParameterValue("@DateTo", Session("@DateTo"))
+                crystalReport.SetParameterValue("@Header", Session("@Header"))
+                crystalReport.SetParameterValue("@User", GetUserFullName(Session("EmailAddress")))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptCHECKREG.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptCHECKREG.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptCHECKREG.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptCHECKREG.pdf"))
+                    file = Server.MapPath("~/Reports/rptCHECKREG.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
         End Select
 
         If file <> "" Then
@@ -579,12 +635,12 @@ Public Class Reports
                     SQL.SQLDA.Fill(dsPCrpt)
                     Return dsPCrpt
                 End Using
-            Case "TBDETAILED"
+            Case "WORKSHEETDETAILED"
                 Using dsTBrpt As New dsTBrpt
                     SQL.SQLDA.Fill(dsTBrpt)
                     Return dsTBrpt
                 End Using
-            Case "TBSUMMARY"
+            Case "WORKSHEETSUMMARY"
                 Using dsTBrpt As New dsTBrpt
                     SQL.SQLDA.Fill(dsTBrpt)
                     Return dsTBrpt
@@ -638,6 +694,16 @@ Public Class Reports
                 Using dsFSCErpt As New dsFSCErpt
                     SQL.SQLDA.Fill(dsFSCErpt)
                     Return dsFSCErpt
+                End Using
+            Case "TRANSREG"
+                Using dsTRANSREGrtp As New dsTRANSREGrtp
+                    SQL.SQLDA.Fill(dsTRANSREGrtp)
+                    Return dsTRANSREGrtp
+                End Using
+            Case "CHECKREG"
+                Using dsCHECKREGrpt As New dsCHECKREGrpt
+                    SQL.SQLDA.Fill(dsCHECKREGrpt)
+                    Return dsCHECKREGrpt
                 End Using
         End Select
     End Function

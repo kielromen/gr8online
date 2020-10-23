@@ -15,6 +15,12 @@
         Dim query As String = ""
         Dim filter As String = txtFilter.Text
         Select Case Type
+            Case "TU"
+                query = " SELECT   TransID, UB_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, '' AS Name, '0.00' AS TotalAmount, Remarks, tblJE_Upload.Status  " &
+                        " FROM     tblJE_Upload  " &
+                        " WHERE UB_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR tblJE_Upload.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
+                SQL.FlushParams()
+                SQL.GetQuery(query)
             Case "SJ"
                 query = " SELECT   TransID, SJ_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, TotalAmount, Remarks, tblSJ.Status  " &
                         " FROM     tblSJ LEFT JOIN View_VCEMMaster " &

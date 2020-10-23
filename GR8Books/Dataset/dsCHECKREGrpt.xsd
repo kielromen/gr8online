@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCHECKREGrpt" targetNamespace="http://tempuri.org/dsCHECKREGrpt.xsd" xmlns:mstns="http://tempuri.org/dsCHECKREGrpt.xsd" xmlns="http://tempuri.org/dsCHECKREGrpt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="GR8BooksConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GR8BooksConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.GR8BooksConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_Check_RegistersTableAdapter" GeneratorDataComponentClassName="View_Check_RegistersTableAdapter" Name="View_Check_Registers" UserDataComponentName="View_Check_RegistersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GR8BooksConnectionString (Web.config)" DbObjectName="GR8Books.dbo.View_Check_Registers" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Date, [Doc Type], TransID, [Ref No], [Check No], VCECode, VCEName, Amount, AccntCode, AccountTitle FROM dbo.View_Check_Registers</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Date" DataSetColumn="Date" />
+              <Mapping SourceColumn="Doc Type" DataSetColumn="Doc Type" />
+              <Mapping SourceColumn="TransID" DataSetColumn="TransID" />
+              <Mapping SourceColumn="Ref No" DataSetColumn="Ref No" />
+              <Mapping SourceColumn="Check No" DataSetColumn="Check No" />
+              <Mapping SourceColumn="VCECode" DataSetColumn="VCECode" />
+              <Mapping SourceColumn="VCEName" DataSetColumn="VCEName" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="AccntCode" DataSetColumn="AccntCode" />
+              <Mapping SourceColumn="AccountTitle" DataSetColumn="AccountTitle" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCHECKREGrpt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsCHECKREGrpt" msprop:Generator_UserDSName="dsCHECKREGrpt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="View_Check_Registers" msprop:Generator_TableClassName="View_Check_RegistersDataTable" msprop:Generator_TableVarName="tableView_Check_Registers" msprop:Generator_TablePropName="View_Check_Registers" msprop:Generator_RowDeletingName="View_Check_RegistersRowDeleting" msprop:Generator_RowChangingName="View_Check_RegistersRowChanging" msprop:Generator_RowEvHandlerName="View_Check_RegistersRowChangeEventHandler" msprop:Generator_RowDeletedName="View_Check_RegistersRowDeleted" msprop:Generator_UserTableName="View_Check_Registers" msprop:Generator_RowChangedName="View_Check_RegistersRowChanged" msprop:Generator_RowEvArgName="View_Check_RegistersRowChangeEvent" msprop:Generator_RowClassName="View_Check_RegistersRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="_Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Doc_x0020_Type" msprop:Generator_ColumnVarNameInTable="columnDoc_Type" msprop:Generator_ColumnPropNameInRow="Doc_Type" msprop:Generator_ColumnPropNameInTable="Doc_TypeColumn" msprop:Generator_UserColumnName="Doc Type" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TransID" msprop:Generator_ColumnVarNameInTable="columnTransID" msprop:Generator_ColumnPropNameInRow="TransID" msprop:Generator_ColumnPropNameInTable="TransIDColumn" msprop:Generator_UserColumnName="TransID" type="xs:int" />
+              <xs:element name="Ref_x0020_No" msprop:Generator_ColumnVarNameInTable="columnRef_No" msprop:Generator_ColumnPropNameInRow="Ref_No" msprop:Generator_ColumnPropNameInTable="Ref_NoColumn" msprop:Generator_UserColumnName="Ref No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Check_x0020_No" msprop:Generator_ColumnVarNameInTable="columnCheck_No" msprop:Generator_ColumnPropNameInRow="Check_No" msprop:Generator_ColumnPropNameInTable="Check_NoColumn" msprop:Generator_UserColumnName="Check No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VCECode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVCECode" msprop:Generator_ColumnPropNameInRow="VCECode" msprop:Generator_ColumnPropNameInTable="VCECodeColumn" msprop:Generator_UserColumnName="VCECode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VCEName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVCEName" msprop:Generator_ColumnPropNameInRow="VCEName" msprop:Generator_ColumnPropNameInTable="VCENameColumn" msprop:Generator_UserColumnName="VCEName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Amount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AccntCode" msprop:Generator_ColumnVarNameInTable="columnAccntCode" msprop:Generator_ColumnPropNameInRow="AccntCode" msprop:Generator_ColumnPropNameInTable="AccntCodeColumn" msprop:Generator_UserColumnName="AccntCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AccountTitle" msprop:Generator_ColumnVarNameInTable="columnAccountTitle" msprop:Generator_ColumnPropNameInRow="AccountTitle" msprop:Generator_ColumnPropNameInTable="AccountTitleColumn" msprop:Generator_UserColumnName="AccountTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:View_Check_Registers" />
+      <xs:field xpath="mstns:TransID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class rptTB_Summary
+Public Class rptWorksheet_Detailed
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class rptTB_Summary
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "rptTB_Summary.rpt"
+            Return "rptWorksheet_Detailed.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class rptTB_Summary
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "GR8Books.rptTB_Summary.rpt"
+            Return "GR8Books.rptWorksheet_Detailed.rpt"
         End Get
         Set
             'Do nothing
@@ -62,7 +62,7 @@ Public Class rptTB_Summary
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportHeaderSection4() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(1)
         End Get
@@ -70,7 +70,7 @@ Public Class rptTB_Summary
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportHeaderSection4() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportHeaderSection5() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(2)
         End Get
@@ -102,7 +102,7 @@ Public Class rptTB_Summary
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(6)
         End Get
@@ -110,7 +110,7 @@ Public Class rptTB_Summary
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(7)
         End Get
@@ -118,7 +118,7 @@ Public Class rptTB_Summary
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_User() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_DateTo() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(0)
         End Get
@@ -126,7 +126,7 @@ Public Class rptTB_Summary
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_DateFrom() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_User() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(1)
         End Get
@@ -134,7 +134,7 @@ Public Class rptTB_Summary
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_DateTo() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_DateFrom() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(2)
         End Get
@@ -142,7 +142,7 @@ Public Class rptTB_Summary
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedrptTB_Summary
+Public Class CachedrptWorksheet_Detailed
     Inherits Component
     Implements ICachedReport
     
@@ -184,7 +184,7 @@ Public Class CachedrptTB_Summary
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As rptTB_Summary = New rptTB_Summary()
+        Dim rpt As rptWorksheet_Detailed = New rptWorksheet_Detailed()
         rpt.Site = Me.Site
         Return rpt
     End Function

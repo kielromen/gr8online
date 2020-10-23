@@ -41,6 +41,15 @@ Partial Public Class ChartofAccount_Loadlist
     Protected WithEvents btnSort As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''btnExport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExport As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''gvCOA control.
     '''</summary>
     '''<remarks>
@@ -50,15 +59,6 @@ Partial Public Class ChartofAccount_Loadlist
     Protected WithEvents gvCOA As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''GridView1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
     '''btnAdd control.
     '''</summary>
     '''<remarks>
@@ -66,4 +66,40 @@ Partial Public Class ChartofAccount_Loadlist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpload As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''alertUpdate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertUpdate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''gvUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvUpload As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''btnUploadSave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUploadSave As Global.System.Web.UI.WebControls.Button
 End Class

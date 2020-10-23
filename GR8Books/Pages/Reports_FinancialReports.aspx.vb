@@ -140,7 +140,7 @@
             ddlReportType.Attributes("disabled") = "disabled"
             ddlPeriodType.Items.Clear()
             ddlPeriodType.Items.Add("As Of")
-        ElseIf ddlReports.SelectedValue = "Trial Balance" Then
+        ElseIf ddlReports.SelectedValue = "Worksheet" Then
 
         ElseIf ddlReports.SelectedValue = "General Ledger" Then
             LoadAccounts()
@@ -175,7 +175,7 @@
             GenerateTB(ddlReportType.SelectedValue, CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily" Or ddlPeriodType.SelectedValue = "As Of", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
         ElseIf ddlReports.SelectedValue = "Post Closing Trial Balance (TB generated after PEC)" Then
             GenerateTB(ddlReportType.SelectedValue, CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily" Or ddlPeriodType.SelectedValue = "As Of", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
-        ElseIf ddlReports.SelectedValue = "Trial Balance" Then
+        ElseIf ddlReports.SelectedValue = "Worksheet" Then
             GenerateTB(ddlReportType.SelectedValue, CDate(dtpFromDate.Text), IIf(ddlPeriodType.SelectedValue = "Daily", CDate(dtpFromDate.Text), CDate(dtpToDate.Text)))
         ElseIf ddlReports.SelectedValue = "General Ledger" Then
             GenerateGL(ddlReportType.SelectedValue)
@@ -199,7 +199,7 @@
         Dim insertSQL, deleteSQL As String
         deleteSQL = " DELETE FROM tblPRint_TB "
         SQL.ExecNonQuery(deleteSQL)
-        If Type = "Detailed" And ddlReports.SelectedValue = "Trial Balance" Then
+        If Type = "Detailed" And ddlReports.SelectedValue = "Worksheet" Then
             insertSQL = " INSERT INTO tblPRint_TB(Code, Title, BBDR, BBCR, CRDR, CRCR, CDDR, CDCR, SBDR, SBCR, PBDR, PBCR, JVDR, JVCR, TBDR, TBCR) " &
                     " SELECT  AccountCode, AccountTitle,  " &
                     " 		  CASE WHEN SUM(BBDR) > SUM(BBCR) THEN SUM(BBDR) - SUM(BBCR) ELSE 0 END AS BBDR, " &
@@ -241,8 +241,8 @@
                     " GROUP BY AccountCode, AccountTitle "
             SQL.FlushParams()
             SQL.ExecNonQuery(insertSQL)
-            Response.Write("<script>window.open('Reports.aspx?id=' + 'TBDETAILED', '_blank');</script>")
-        ElseIf Type = "Summary" And ddlReports.SelectedValue = "Trial Balance" Then
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'WORKSHEETDETAILED', '_blank');</script>")
+        ElseIf Type = "Summary" And ddlReports.SelectedValue = "Worksheet" Then
             insertSQL = " INSERT INTO tblPRint_TB(Code, Title, BBDR, BBCR, CRDR, CRCR, TBDR, TBCR) " &
                      " SELECT  AccountCode, AccountTitle,  " &
                      " 		  CASE WHEN SUM(BBDR) > SUM(BBCR) THEN SUM(BBDR) - SUM(BBCR) ELSE 0 END AS BBDR, " &
@@ -275,7 +275,7 @@
                     " WHERE A.Status ='Saved'  " &
                     " GROUP BY AccountCode, AccountTitle "
             SQL.ExecNonQuery(insertSQL)
-            Response.Write("<script>window.open('Reports.aspx?id=' + 'TBSUMMARY', '_blank');</script>")
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'WORKSHEETSUMMARY', '_blank');</script>")
         ElseIf ddlReports.SelectedValue = "Preliminary Trial Balance (TB generated before closing entries)" Then
             insertSQL = " INSERT INTO tblPRint_TB(Code, Title, BBDR, BBCR, CRDR, CRCR, TBDR, TBCR) " &
                     " SELECT  AccountCode, AccountTitle,  " &

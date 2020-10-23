@@ -513,6 +513,8 @@
     <Content Include="Pages\JobOrder.aspx" />
     <Content Include="Pages\JobOrder_Loadlist.aspx" />
     <Content Include="Pages\JournalVoucher.aspx" />
+    <Content Include="Pages\Ledger.aspx" />
+    <Content Include="Pages\LedgerDetails.aspx" />
     <Content Include="Pages\LoadTransaction.aspx" />
     <Content Include="Pages\MemberManagement.aspx" />
     <Content Include="Pages\MemberManagement_Loadlist.aspx" />
@@ -544,6 +546,7 @@
     <Content Include="Pages\SO_Entry.aspx" />
     <Content Include="Pages\TaxSetup_Loadlist.aspx" />
     <Content Include="Pages\TaxSetup_Management.aspx" />
+    <Content Include="Pages\Transaction_Uploader.aspx" />
     <Content Include="Pages\VendorManagement.aspx" />
     <Content Include="Pages\VendorManagement_View.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -708,6 +711,17 @@
     <Content Include="Dataset\dsCVrpt.xsc">
       <DependentUpon>dsCVrpt.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsCHECKREGrpt.xsc">
+      <DependentUpon>dsCHECKREGrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsCHECKREGrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCHECKREGrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsCHECKREGrpt.xss">
+      <DependentUpon>dsCHECKREGrpt.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsCVrpt.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -784,6 +798,17 @@
     </None>
     <Content Include="Dataset\dsTBrpt.xss">
       <DependentUpon>dsTBrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsTRANSREGrtp.xsc">
+      <DependentUpon>dsTRANSREGrtp.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsTRANSREGrtp.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTRANSREGrtp.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsTRANSREGrtp.xss">
+      <DependentUpon>dsTRANSREGrtp.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -930,6 +955,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCAUNLQrpt.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\dsCHECKREGrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCHECKREGrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsCVrpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -966,6 +996,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsTBrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsTRANSREGrtp.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTRANSREGrtp.xsd</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
@@ -1318,6 +1353,20 @@
       <DependentUpon>JournalVoucher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Ledger.aspx.designer.vb">
+      <DependentUpon>Ledger.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Ledger.aspx.vb">
+      <DependentUpon>Ledger.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Pages\LedgerDetails.aspx.designer.vb">
+      <DependentUpon>LedgerDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LedgerDetails.aspx.vb">
+      <DependentUpon>LedgerDetails.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\LoadTransaction.aspx.designer.vb">
       <DependentUpon>LoadTransaction.aspx</DependentUpon>
     </Compile>
@@ -1549,6 +1598,13 @@
       <DependentUpon>TaxSetup_Management.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Transaction_Uploader.aspx.designer.vb">
+      <DependentUpon>Transaction_Uploader.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Transaction_Uploader.aspx.vb">
+      <DependentUpon>Transaction_Uploader.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\VendorManagement.aspx.designer.vb">
       <DependentUpon>VendorManagement.aspx</DependentUpon>
     </Compile>
@@ -1596,6 +1652,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptCAUNLQ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptCHECKREG.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCHECKREG.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptCV.vb">
@@ -1658,10 +1720,10 @@
       <DependentUpon>rptTB_BEFOREPEC.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\rptTB_Detailed.vb">
+    <Compile Include="Reports\rptWorksheet_Detailed.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptTB_Detailed.rpt</DependentUpon>
+      <DependentUpon>rptWorksheet_Detailed.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptJV1.vb">
@@ -1676,10 +1738,16 @@
       <DependentUpon>rptPC.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\rptTB_Summary.vb">
+    <Compile Include="Reports\rptWorksheet_Summary.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptTB_Summary.rpt</DependentUpon>
+      <DependentUpon>rptWorksheet_Summary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptTRANSREG.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTRANSREG.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
@@ -1721,6 +1789,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCAUNLQ.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptCHECKREG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCHECKREG.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptCV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCV.vb</LastGenOutput>
@@ -1761,9 +1833,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTB_BEFOREPEC.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\rptTB_Detailed.rpt">
+    <EmbeddedResource Include="Reports\rptWorksheet_Detailed.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptTB_Detailed.vb</LastGenOutput>
+      <LastGenOutput>rptWorksheet_Detailed.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptJV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1773,9 +1845,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPC.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\rptTB_Summary.rpt">
+    <EmbeddedResource Include="Reports\rptWorksheet_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptTB_Summary.vb</LastGenOutput>
+      <LastGenOutput>rptWorksheet_Summary.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptTRANSREG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTRANSREG.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

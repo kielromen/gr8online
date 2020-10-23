@@ -92,6 +92,34 @@
         End If
     End Sub
 
+
+    Public Sub LoadModules()
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT  TransType AS ID, Description AS Filter " &
+                " FROM    tblTransactionSetup WHERE Type = @Type "
+        SQL.FlushParams()
+        SQL.AddParam("@Type", Session("@Book"))
+        SQL.GetQuery(query)
+        gvFilter.DataSource = SQL.SQLDS
+        gvFilter.DataBind()
+        panelFilter.Visible = True
+    End Sub
+
+
+    Public Sub LoadBank()
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT  AccountCode AS ID, Bank AS Filter " &
+                " FROM    tblBank WHERE Status = @Status "
+        SQL.FlushParams()
+        SQL.AddParam("@Status", "Active")
+        SQL.GetQuery(query)
+        gvFilter.DataSource = SQL.SQLDS
+        gvFilter.DataBind()
+        panelFilter.Visible = True
+    End Sub
+
     Public Sub SelectReport()
         Dim ds As New DataTable()
         ds = Nothing
@@ -119,8 +147,23 @@
             txtYear.Attributes("disabled") = "disabled"
             dtpFromDate.Attributes("disabled") = "disabled"
             dtpToDate.Attributes("disabled") = "disabled"
-        End If
+        ElseIf ddlReports.SelectedValue = "Check Register" Then
+            ddlReportType.Attributes("disabled") = "disabled"
+            LoadBank()
 
+        ElseIf ddlReports.SelectedValue = "Cash Disbursement Register" Then
+            ddlReportType.Attributes("disabled") = "disabled"
+            Session("@Book") = "Cash Disbursement"
+            LoadModules()
+        ElseIf ddlReports.SelectedValue = "Cash Receipt Register" Then
+            ddlReportType.Attributes("disabled") = "disabled"
+            Session("@Book") = "Cash Receipt"
+            LoadModules()
+        ElseIf ddlReports.SelectedValue = "Sales Register" Then
+            ddlReportType.Attributes("disabled") = "disabled"
+            Session("@Book") = "Sales Book"
+            LoadModules()
+        End If
     End Sub
 
     Private Sub btnPreview_Click(sender As Object, e As EventArgs) Handles btnPreview.Click, btnExport.Click
@@ -138,12 +181,35 @@
         Session("@ReportType") = ddlReportType.SelectedValue
         Session("@Header") = ddlReports.SelectedValue
 
+        Dim query As String
+        query = " DELETE FROM tblPrint_REG  "
+        SQL.ExecNonQuery(query)
+        Dim Filter As String = ""
+        For Each row As GridViewRow In gvFilter.Rows
+            If TryCast(row.FindControl("chkBox"), CheckBox).Checked Then
+                Filter = row.Cells(1).Text
+                query = " INSERT INTO tblPrint_REG(Filter) " &
+                        " VALUES (@Filter) "
+                SQL.FlushParams()
+                SQL.AddParam("@Filter", Filter)
+                SQL.ExecNonQuery(query)
+            End If
+        Next
+
         If ddlReports.SelectedValue = "Cash Advance Summary" Then
             Response.Write("<script>window.open('Reports.aspx?id=' + 'CASUM', '_blank');</script>")
         ElseIf ddlReports.SelectedValue = "Cash Advance Ledger" Then
 
         ElseIf ddlReports.SelectedValue = "Unliquidated Cash Advance" Then
             Response.Write("<script>window.open('Reports.aspx?id=' + 'CAUNLQ', '_blank');</script>")
+        ElseIf ddlReports.SelectedValue = "Check Register" Then
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'CHECKREG', '_blank');</script>")
+        ElseIf ddlReports.SelectedValue = "Cash Disbursement Register" Then
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'TRANSREG', '_blank');</script>")
+        ElseIf ddlReports.SelectedValue = "Cash Receipt Register" Then
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'TRANSREG', '_blank');</script>")
+        ElseIf ddlReports.SelectedValue = "Sales Register" Then
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'TRANSREG', '_blank');</script>")
         End If
     End Sub
 

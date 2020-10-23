@@ -364,16 +364,16 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Cost Center">
+                     <asp:TemplateField HeaderText="Res. Center">
                         <ItemTemplate>
                             <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px"  AutoPostBack="false" EnableViewState="true">
                             </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Reference ID">
+                    <asp:TemplateField HeaderText="Ref. ID">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
