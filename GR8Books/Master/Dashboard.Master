@@ -78,11 +78,15 @@
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseCashDisbursement" role="button" aria-expanded="false" aria-controls="collapseCashDisbursement"><i class="fa fa-arrow-circle-o-up mr-2" aria-hidden="true"></i>Cash Disbursement</a>
                     <div class="collapse" id="collapseCashDisbursement">
                         <div class="list-group">
-                            <%--<a href="../Pages/CashVoucher.aspx"  class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Voucher</a>--%>
                             <a href="../Pages/CheckVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Check Voucher</a>
-                            <a href="../Pages/AccountsPayableVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Accounts Payable Voucher</a>
                             <a href="../Pages/CashAdvance.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Cash Advance</a>
                             <a href="../Pages/PettyCash.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Petty Cash</a>
+                        </div>
+                    </div>
+                    <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseAP" role="button" aria-expanded="false" aria-controls="collapseAP"><i class="fa fa-arrow-circle-o-up mr-2" aria-hidden="true"></i>Accounts Payable</a>
+                    <div class="collapse" id="collapseAP">
+                        <div class="list-group">
+                            <a href="../Pages/AccountsPayableVoucher.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Accounts Payable Voucher</a>
                         </div>
                     </div>
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseGeneralJournal" role="button" aria-expanded="false" aria-controls="collapseGeneralJournal"><i class="fa fa-list-ul mr-2" aria-hidden="true"></i>General Journal</a>
@@ -110,6 +114,7 @@
                         </div>
                     </div>
                     <a href="../Pages/QueryGenerator.aspx" class="list-group-item list-group-item-action bg-light"><i class="fa fa-list-alt mr-2" aria-hidden="true"></i>Query Generator</a>
+                    <a href="../Pages/Ledger.aspx" class="list-group-item list-group-item-action bg-light"><i class="fa fa-list-alt mr-2" aria-hidden="true"></i>Subsidiary Ledger</a>
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseReports" role="button" aria-expanded="false" aria-controls="collapseReports"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Reports</a>
                     <div class="collapse" id="collapseReports">
                         <div class="list-group">
