@@ -22,14 +22,14 @@
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "SJ"
-                query = " SELECT   TransID, SJ_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, TotalAmount, Remarks, tblSJ.Status  " &
+                query = " SELECT   TransID, SJ_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,TotalAmount),1) AS TotalAmount , Remarks, tblSJ.Status  " &
                         " FROM     tblSJ LEFT JOIN View_VCEMMaster " &
                         " ON	   tblSJ.VCECode = View_VCEMMaster.Code   " &
                         " WHERE SJ_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%'  OR tblSJ.Status LIKE '%" & filter & "%' ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "PJ"
-                query = " SELECT   TransID, PJ_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, TotalAmount, Remarks, tblPJ.Status  " &
+                query = " SELECT   TransID, PJ_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,TotalAmount),1) AS TotalAmount , Remarks, tblPJ.Status  " &
                         " FROM     tblPJ LEFT JOIN View_VCEMMaster " &
                         " ON	   tblPJ.VCECode = View_VCEMMaster.Code   " &
                         " WHERE PJ_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%'  OR tblPJ.Status LIKE '%" & filter & "%' ORDER BY TransID DESC"
@@ -42,14 +42,14 @@
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "CV"
-                query = " SELECT   TransID, CV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, TotalAmount, Remarks, tblDV.Status  " &
+                query = " SELECT   TransID, CV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,TotalAmount),1) AS TotalAmount , Remarks, tblDV.Status  " &
                         " FROM     tblDV LEFT JOIN View_VCEMMaster " &
                         " ON	   tblDV.VCECode = View_VCEMMaster.Code   " &
                         " WHERE CV_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblDV.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "CA"
-                query = " SELECT  tblCA.TransID, tblCA.CA_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks,  " & vbCrLf &
+                query = " SELECT  tblCA.TransID, tblCA.CA_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,Amount),1) AS TotalAmount , Remarks,  " & vbCrLf &
                         " CASE WHEN View_CA_Balance.CA_No IS NOT NULL THEN 'Active'  " & vbCrLf &
                         "       WHEN View_CA_Return.CA_No IS NOT NULL THEN 'Active'  " & vbCrLf &
                         " 	    WHEN tblCA.Status ='Active' THEN 'Closed'  " & vbCrLf &
@@ -69,35 +69,35 @@
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "OR"
-                query = " SELECT   TransID, OR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount,  Remarks, tblCollection_OR.Status  " &
+                query = " SELECT   TransID, OR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name,CONVERT(VARCHAR,CONVERT(MONEY,Amount),1) AS TotalAmount ,  Remarks, tblCollection_OR.Status  " &
                         " FROM     tblCollection_OR LEFT JOIN View_VCEMMaster " &
                         " ON	   tblCollection_OR.VCECode = View_VCEMMaster.Code   " &
                         " WHERE OR_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblCollection_OR.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "CR"
-                query = " SELECT   TransID, CR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks, tblCollection_CR.Status  " &
+                query = " SELECT   TransID, CR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,Amount),1) AS TotalAmount , Remarks, tblCollection_CR.Status  " &
                         " FROM     tblCollection_CR LEFT JOIN View_VCEMMaster " &
                         " ON	   tblCollection_CR.VCECode = View_VCEMMaster.Code   " &
                         " WHERE CR_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblCollection_CR.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "PR"
-                query = " SELECT   TransID, PR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks, tblCollection_PR.Status  " &
+                query = " SELECT   TransID, PR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,Amount),1) AS TotalAmount , Remarks, tblCollection_PR.Status  " &
                         " FROM     tblCollection_PR LEFT JOIN View_VCEMMaster " &
                         " ON	   tblCollection_PR.VCECode = View_VCEMMaster.Code   " &
                         " WHERE PR_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblCollection_PR.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "AR"
-                query = " SELECT   TransID, AR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks, tblCollection_AR.Status  " &
+                query = " SELECT   TransID, AR_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name,CONVERT(VARCHAR,CONVERT(MONEY,Amount),1) AS TotalAmount , Remarks, tblCollection_AR.Status  " &
                         " FROM     tblCollection_AR LEFT JOIN View_VCEMMaster " &
                         " ON	   tblCollection_AR.VCECode = View_VCEMMaster.Code   " &
                         " WHERE AR_No LIKE '%" & filter & "%' OR Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%' OR tblCollection_AR.Status LIKE '%" & filter & "%'  ORDER BY TransID DESC"
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "APV"
-                query = " SELECT   tblAPV.TransID, APV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks," & vbCrLf &
+                query = " SELECT   tblAPV.TransID, APV_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,Amount),1) AS TotalAmount , Remarks," & vbCrLf &
                         " CASE WHEN View_APV_Balance.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
                         " 	      WHEN tblAPV.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 	    ELSE tblAPV.Status END AS Status  " & vbCrLf &
@@ -113,7 +113,7 @@
                 SQL.FlushParams()
                 SQL.GetQuery(query)
             Case "PC"
-                query = " SELECT  tblPC.TransID, PC_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, Amount AS TotalAmount, Remarks,  " & vbCrLf &
+                query = " SELECT  tblPC.TransID, PC_No AS TransNo , REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, Name, CONVERT(VARCHAR,CONVERT(MONEY,Amount),1) AS TotalAmount , Remarks,  " & vbCrLf &
                         " CASE WHEN View_PC_Balance.TransID IS NOT NULL THEN 'Active'  " & vbCrLf &
                         " 	      WHEN tblPC.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 	    ELSE tblPC.Status END AS Status  " & vbCrLf &

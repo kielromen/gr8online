@@ -94,15 +94,15 @@ Public Class ChartofAccount_Loadlist
         query = " INSERT INTO tblCOA(AccountCode, AccountTitle, AccountType, AccountGroup, AccountNature, ReportAlias, Class, withSubsidiary, OrderNo) " & vbCrLf &
                 " VALUES(@AccountCode, @AccountTitle, @AccountType, @AccountGroup, @AccountNature, @ReportAlias, @Class, @withSubsidiary, @OrderNo) "
         SQL.FlushParams()
-        SQL.AddParam("@AccountCode", IIf(AccountCode = "undefined", DBNull.Value, AccountCode))
-        SQL.AddParam("@AccountTitle", IIf(AccountTitle = "undefined", DBNull.Value, AccountTitle))
-        SQL.AddParam("@AccountType", IIf(AccountType = "undefined", DBNull.Value, AccountType))
-        SQL.AddParam("@AccountGroup", IIf(AccountGroup = "undefined", DBNull.Value, AccountGroup))
-        SQL.AddParam("@AccountNature", IIf(AccountNature = "undefined", DBNull.Value, AccountNature))
-        SQL.AddParam("@ReportAlias", IIf(ReportAlias = "undefined", DBNull.Value, ReportAlias))
-        SQL.AddParam("@Class", IIf(AccountClass = "undefined", DBNull.Value, AccountClass))
+        SQL.AddParam("@AccountCode", IIf(AccountCode = "undefined", "", AccountCode))
+        SQL.AddParam("@AccountTitle", IIf(AccountTitle = "undefined", "", AccountTitle))
+        SQL.AddParam("@AccountType", IIf(AccountType = "undefined", "", AccountType))
+        SQL.AddParam("@AccountGroup", IIf(AccountGroup = "undefined", "SubAccount", AccountGroup))
+        SQL.AddParam("@AccountNature", IIf(AccountNature = "undefined", "Debit", AccountNature))
+        SQL.AddParam("@ReportAlias", IIf(ReportAlias = "undefined", "", ReportAlias))
+        SQL.AddParam("@Class", IIf(AccountClass = "undefined", "Posting", AccountClass))
         SQL.AddParam("@withSubsidiary", IIf(withSubsidiary = "undefined", False, withSubsidiary))
-        SQL.AddParam("@OrderNo", IIf(OrderNo = "undefined", DBNull.Value, OrderNo))
+        SQL.AddParam("@OrderNo", IIf(OrderNo = "undefined", 0, OrderNo))
 
         'SQL.AddParam("@AccountCode", AccountCode)
         'SQL.AddParam("@AccountTitle", AccountTitle)

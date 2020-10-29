@@ -999,6 +999,17 @@ Public Class AcknowledgementReceipt
                     txtRemarks.Text = SQL.SQLDR("Remarks").ToString
                     LoadCopyFromEntry(CopyFromID, Type)
                 End If
+            Case "SJ"
+                query = " SELECT   TransID, SJ_No AS TransNo, VCECode, VCEName, Remarks" &
+                        " FROM     View_SJ_Balance " &
+                        " WHERE TransID  ='" & CopyFromID & "' "
+                SQL.ReadQuery(query)
+                If SQL.SQLDR.Read Then
+                    txtCode.Text = SQL.SQLDR("VCECode").ToString
+                    txtName.Text = SQL.SQLDR("VCEName").ToString
+                    txtRemarks.Text = SQL.SQLDR("Remarks").ToString
+                    LoadCopyFromEntry(CopyFromID, Type)
+                End If
         End Select
 
     End Sub
@@ -1009,6 +1020,11 @@ Public Class AcknowledgementReceipt
             Case "CASHR"
                 query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
                         " FROM  View_CA_Return " &
+                        " WHERE TransID  ='" & CopyFromID & "' "
+                SQL.ReadQuery(query)
+            Case "SJ"
+                query = " SELECT TransID, SJ_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
+                        " FROM  View_SJ_Balance " &
                         " WHERE TransID  ='" & CopyFromID & "' "
                 SQL.ReadQuery(query)
         End Select

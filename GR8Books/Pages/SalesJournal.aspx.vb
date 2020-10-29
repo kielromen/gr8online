@@ -894,35 +894,19 @@ Public Class SalesJournal
                 Dim decVAmount As Decimal = If(IsNumeric(txtTTaxAmount.Text), CDec(txtTTaxAmount.Text), 0)
                 Dim decEAmount As Decimal = If(IsNumeric(txtETaxAmount.Text), CDec(txtETaxAmount.Text), 0)
                 Dim decAmount As Decimal = If(IsNumeric(txtTTotalAmount.Text), CDec(txtTTotalAmount.Text), 0)
-                '-----------------------NET AMOUNT---------------------------
+                '-----------------------AMOUNT---------------------------
                 If decAmount > 0 Then
                     dr = dt.NewRow
-                    dr("AccntCode") = strAccntCode
-                    dr("AccntTitle") = GetAccountTitle(strAccntCode)
-                    dr("Debit") = decNetAmount.ToString("N2")
+                    dr("AccntCode") = Session("AccountCode")
+                    dr("AccntTitle") = Session("AccountTitle")
+                    dr("Debit") = decAmount.ToString("N2")
                     dr("Credit") = "0.00"
                     dt.Rows.InsertAt(dr, decRow)
+
+                    txtAmount.Text = decAmount.ToString("N2")
                     decRow += 1
                 End If
-                '--------------------------VAT-------------------------------
-                If decVAmount > 0 Then
-                    Dim strTaxType As String = ddlTaxType.SelectedValue
-                    Dim query As String
-                    query = " SELECT tblSystemSetup.AR_OutputVAT, tblCOA.AccountTitle FROM tblSystemSetup " &
-                            " INNER JOIN tblCOA ON tblSystemSetup.AR_OutputVAT = tblCOA.AccountCode "
-                    SQL.FlushParams()
-                    SQL.ReadQuery(query)
-                    If SQL.SQLDR.Read Then
-                        dr = dt.NewRow
-                        dr("AccntCode") = SQL.SQLDR("AR_OutputVAT").ToString
-                        dr("AccntTitle") = SQL.SQLDR("AccountTitle").ToString
-                        dr("Debit") = decVAmount.ToString("N2")
-                        dr("Credit") = "0.00"
-                        dr("VATType") = "Output VAT"
-                        dt.Rows.InsertAt(dr, decRow)
-                        decRow += 1
-                    End If
-                End If
+
                 '--------------------------EWT-------------------------------
                 If decEAmount > 0 Then
                     Dim strTaxType As String = ddlETaxType.SelectedValue
@@ -935,24 +919,47 @@ Public Class SalesJournal
                         dr("chNo") = rowIndex + 1
                         dr("AccntCode") = SQL.SQLDR("TAX_CWT").ToString
                         dr("AccntTitle") = SQL.SQLDR("AccountTitle").ToString
-                        dr("Debit") = "0.00"
-                        dr("Credit") = decEAmount.ToString("N2")
+                        dr("Debit") = decEAmount.ToString("N2")
+                        dr("Credit") = "0.00"
                         dr("VATType") = "CWT"
                         dt.Rows.InsertAt(dr, decRow)
+                        decRow += 1
                     End If
                 End If
-                '-----------------------AMOUNT---------------------------
+
+                '--------------------------VAT-------------------------------
+                If decVAmount > 0 Then
+                    Dim strTaxType As String = ddlTaxType.SelectedValue
+                    Dim query As String
+                    query = " SELECT tblSystemSetup.TAX_Deferred, tblCOA.AccountTitle FROM tblSystemSetup " &
+                            " INNER JOIN tblCOA ON tblSystemSetup.TAX_Deferred = tblCOA.AccountCode "
+                    SQL.FlushParams()
+                    SQL.ReadQuery(query)
+                    If SQL.SQLDR.Read Then
+                        dr = dt.NewRow
+                        dr("AccntCode") = SQL.SQLDR("TAX_Deferred").ToString
+                        dr("AccntTitle") = SQL.SQLDR("AccountTitle").ToString
+                        dr("Debit") = "0.00"
+                        dr("Credit") = decVAmount.ToString("N2")
+                        dr("VATType") = "Output VAT"
+                        dt.Rows.InsertAt(dr, decRow)
+                        decRow += 1
+                    End If
+                End If
+
+                '-----------------------NET AMOUNT---------------------------
                 If decAmount > 0 Then
                     dr = dt.NewRow
-                    dr("AccntCode") = Session("AccountCode")
-                    dr("AccntTitle") = Session("AccountTitle")
+                    dr("AccntCode") = strAccntCode
+                    dr("AccntTitle") = GetAccountTitle(strAccntCode)
                     dr("Debit") = "0.00"
-                    dr("Credit") = decAmount.ToString("N2")
-                    dt.Rows.Add(dr)
+                    dr("Credit") = decNetAmount.ToString("N2")
                     dr("VATType") = IIf(ddlTaxType.SelectedIndex > 0, ddlTaxType.SelectedItem, "")
-                    txtAmount.Text = decAmount.ToString("N2")
-
+                    dt.Rows.InsertAt(dr, decRow)
+                    decRow += 1
                 End If
+
+
                 ViewState("EntryTable") = dt
 
                 dgvEntry.DataSource = dt
