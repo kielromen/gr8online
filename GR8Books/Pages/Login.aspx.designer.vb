@@ -14,31 +14,13 @@ Option Explicit On
 Partial Public Class Login
 
     '''<summary>
-    '''Image1 control.
+    '''txtEMail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''Panel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''txtEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtEMail As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
 
     '''<summary>
     '''txtPassword control.
@@ -47,16 +29,7 @@ Partial Public Class Login
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnRemember control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnRemember As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents txtPassword As Global.System.Web.UI.HtmlControls.HtmlInputPassword
 
     '''<summary>
     '''btnLogin control.
@@ -84,4 +57,13 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkRegister As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''btnGoogle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnGoogle As Global.System.Web.UI.HtmlControls.HtmlButton
 End Class

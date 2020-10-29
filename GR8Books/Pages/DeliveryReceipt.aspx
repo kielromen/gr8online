@@ -309,7 +309,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Item Title">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="UOM">

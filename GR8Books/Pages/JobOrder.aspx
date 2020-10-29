@@ -309,31 +309,25 @@
                     <asp:BoundField DataField="chNo" HeaderText="No." />
                     <asp:TemplateField HeaderText="Project Name">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtProjectName_Entry" Class="txtProjectName_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtProjectName_Entry" Class="txtProjectName_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
-                        <%--                    <ItemTemplate>
-                        <asp:TextBox ID="txtAccntCode_Entry" Class="txtAccntCode_Entry" runat="server" Width="110" required="true" autocomplete="off"></asp:TextBox>
-                    </ItemTemplate>--%>
                         <FooterTemplate>
                             <asp:Button ID="btnAdd_Entry" runat="server" Text="Add Entry" OnClick="AddNewRow" />
                         </FooterTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Location">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtLocation_Entry" Class="txtLocation_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtLocation_Entry" Class="txtLocation_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
-                        <%--                    <ItemTemplate>
-                        <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off"></asp:TextBox>
-                    </ItemTemplate>--%>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Services">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtServices_Entry" Class="txtServices_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtServices_Entry" Class="txtServices_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Project Cost">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtProjectCost_Entry" Class="txtProjectCost_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtProjectCost_Entry" Class="txtProjectCost_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

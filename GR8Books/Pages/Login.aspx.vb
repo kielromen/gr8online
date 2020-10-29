@@ -2,7 +2,6 @@
     Inherits System.Web.UI.Page
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
-            txtEmail.Focus()
             If Session("SessionExists") = True Then
                 If Session("UserRole") = "SystemAdmin" Then
                     Response.Redirect("Dashboard.aspx")
@@ -30,8 +29,8 @@
                               " WHERE   EmailAddress COLLATE Latin1_General_CS_AS = @EmailAddress " & vbCrLf &
                               "         AND Password COLLATE Latin1_General_CS_AS = @Password " & vbCrLf &
                               "         AND Status = @Status"
-            SQL.AddParam("@EmailAddress", txtEmail.Text)
-            SQL.AddParam("@Password", txtPassword.Text)
+            SQL.AddParam("@EmailAddress", txtEMail.Value)
+            SQL.AddParam("@Password", txtPassword.Value)
             SQL.AddParam("@Status", "Active")
             SQL.ReadQuery(query)
             If SQL.SQLDR.Read Then
@@ -56,8 +55,8 @@
                 End If
             Else
                 Response.Write("<script>alert('Username and password did not match');</script>")
-                txtEmail.Text = ""
-                txtEmail.Focus()
+                txtEMail.Value = ""
+                txtEMail.Focus()
             End If
         End If
     End Sub

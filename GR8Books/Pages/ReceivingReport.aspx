@@ -307,19 +307,14 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Item Name">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtName_Entry" Class="txtName_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtName_Entry" Class="txtName_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Description">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtDescription_Entry" Class="txtDescription_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtDescription_Entry" Class="txtDescription_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <%--                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="UnitPrice">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtUnitPrice_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtUnitPrice_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off" ></asp:TextBox>
-                    </ItemTemplate>
-                </asp:TemplateField>--%>
                     <asp:TemplateField HeaderText="UOM">
                         <ItemTemplate>
                             <asp:TextBox ID="txtUOM_Entry" Class="txtUOM_Entry" runat="server" autocomplete="off"></asp:TextBox>
@@ -383,20 +378,9 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Account Title">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry" runat="server" autocomplete="off" onmouseover='this.title=this.value'></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
-
-
-
-                    <%--                <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Credit">
-                    <ItemTemplate>
-                        <asp:TextBox  ID="txtCredit_Entry"  onkeydown = "return((event.keyCode==110 || event.keyCode==190 || event.keyCode==188 || event.keyCode==32 || !(event.keyCode>=65)) && !((event.keyCode==110 || event.keyCode==190) && this.value.split('.').length==2));" Class="txtCredit_Entry" runat="server" Width="110" Text="0.00" Style="text-align: right" autocomplete="off"></asp:TextBox>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        <asp:Label ID="lblTotalCredit_Amount" runat="server" Class="lblTotalCredit_Amount" Font-Bold="true" Text="0.00"></asp:Label>
-                    </FooterTemplate>
-                </asp:TemplateField>--%>
                 </Columns>
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
