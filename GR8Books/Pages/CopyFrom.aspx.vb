@@ -19,7 +19,7 @@
         Select Case Type
             Case "APV"
                 query = "  SELECT   tblAPV.TransID, tblAPV.APV_No AS TransNo, REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, " & vbCrLf &
-                        " 		    Name, tblAPV.Remarks, '' AS Reference, SUM(ISNULL(View_APV_Balance.Amount,0)) AS TotalAmount,  " & vbCrLf &
+                        " 		    Name, tblAPV.Remarks, '' AS Reference, CONVERT(VARCHAR,CONVERT(MONEY,SUM(ISNULL(View_APV_Balance.Amount,0))),1) AS TotalAmount,  " & vbCrLf &
                         "           CASE WHEN View_APV_Balance.TransID IS NOT NULL THEN  'Active'    " & vbCrLf &
                         "                WHEN tblAPV.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 		    ELSE tblAPV.Status END AS Status  " & vbCrLf &
@@ -35,6 +35,27 @@
                         " 	   CASE WHEN View_APV_Balance.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
                         " 	        WHEN tblAPV.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 	   ELSE tblAPV.Status END  " & vbCrLf &
+                        "  ORDER BY TransID DESC "
+                SQL.FlushParams()
+                SQL.GetQuery(query)
+            Case "SJ"
+                query = "  SELECT   tblSJ.TransID, tblSJ.SJ_No AS TransNo, REPLACE(CAST(TransDate as DATE),' 12:00:00 AM','') as TransDate, " & vbCrLf &
+                        " 		    Name, tblSJ.Remarks, '' AS Reference, CONVERT(VARCHAR,CONVERT(MONEY,SUM(ISNULL(View_SJ_Balance.Amount,0))),1) AS TotalAmount,  " & vbCrLf &
+                        "           CASE WHEN View_SJ_Balance.TransID IS NOT NULL THEN  'Active'    " & vbCrLf &
+                        "                WHEN tblSJ.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 		    ELSE tblSJ.Status END AS Status  " & vbCrLf &
+                        "  FROM tblSJ LEFT JOIN   " & vbCrLf &
+                        "  View_VCEMMaster ON tblSJ .VCECode = View_VCEMMaster.Code   " & vbCrLf &
+                        "  LEFT JOIN   " & vbCrLf &
+                        "  View_SJ_Balance ON tblSJ.TransID = View_SJ_Balance.TransID   " & vbCrLf &
+                        "  WHERE (tblSJ.SJ_No LIKE '%" & filter & "%' OR tblSJ.Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%') " & vbCrLf &
+                        "  AND CASE WHEN View_SJ_Balance.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
+                        " 	      WHEN tblSJ.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	 ELSE tblSJ.Status END = 'Active'  " & vbCrLf &
+                        "  GROUP BY tblSJ.TransID, tblSJ.SJ_No, TransDate, Name, tblSJ.Remarks,  " & vbCrLf &
+                        " 	   CASE WHEN View_SJ_Balance.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
+                        " 	        WHEN tblSJ.Status ='Active' THEN 'Closed'  " & vbCrLf &
+                        " 	   ELSE tblSJ.Status END  " & vbCrLf &
                         "  ORDER BY TransID DESC "
                 SQL.FlushParams()
                 SQL.GetQuery(query)

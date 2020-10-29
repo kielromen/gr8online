@@ -45,7 +45,7 @@
                 <asp:BoundField DataField="TransDate" HeaderText="Trans Date" />
                 <asp:BoundField DataField="Name" HeaderText="Name" /> 
                 <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
-                <asp:BoundField DataField="TotalAmount" HeaderText="Amount" />
+                <asp:BoundField DataField="TotalAmount" HeaderText="Amount"  ItemStyle-HorizontalAlign="Right"  />
                 <asp:BoundField DataField="Status" HeaderText="Status" />
            </Columns>
              <EditRowStyle BackColor="#2461BF" />

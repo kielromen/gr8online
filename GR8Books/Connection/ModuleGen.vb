@@ -628,6 +628,20 @@ Module ModuleGen
         Return list
     End Function
 
+    Public Function GetCompanyCode(ByVal EmailAddress As String) As String
+        Dim query As String
+        Dim CompanyCode As String = ""
+        query = " SELECT Company_Code " &
+                       " FROM   [Main].dbo.tblCompany_User WHERE EmailAddress = @EmailAddress "
+        SQL.FlushParams()
+        SQL.AddParam("@EmailAddress", EmailAddress)
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read Then
+            CompanyCode = SQL.SQLDR2("Company_Code").ToString
+        End If
+        Return CompanyCode
+    End Function
+
 End Module
 
 

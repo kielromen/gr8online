@@ -18,10 +18,10 @@ Public Class SQLManager
     Public RecordCount As Integer
     Public SQLParams As New List(Of SqlParameter)
 
-    Public Property Server As String = "(local)"
+    Public Property Server As String = "122.52.200.83"
     Public Property Database As String = "GR8Books"
     Public Property UserName As String = "sa"
-    Public Property Password As String = "eVoSolution1"
+    Public Property Password As String = "@dm1nEvo"
 
     Public Function GetSQLConnectionString() As String
         Return "Server=" & Server & " ;Database=" & Database & " ;integrated security=sspi;Uid=" & UserName & " ;Pwd=" & Password & " ;Trusted_Connection=no;MultipleActiveResultSets=True;Max Pool Size=200;"

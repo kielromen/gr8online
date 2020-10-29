@@ -18,7 +18,8 @@ Public Class Reports
     Private Sub BindReport()
         Dim Type As String = Request.QueryString("ID")
         Dim file As String = ""
-        Dim selectQuery As String = "SELECT * FROM [Main].dbo.tblCompany_Information WHERE Default_EmailAddress ='" & Session("EmailAddress") & "'"
+        Dim CompanyCode = GetCompanyCode(Session("EmailAddress"))
+        Dim selectQuery As String = "SELECT * FROM [Main].dbo.tblCompany_Information WHERE Company_Code ='" & CompanyCode & "'"
         Dim dsHEADERrpt As dsHEADERrpt = GetData("HEADER", selectQuery)
         Select Case Type
             Case "CV"
