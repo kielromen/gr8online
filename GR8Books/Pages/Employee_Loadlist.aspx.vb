@@ -121,4 +121,8 @@ Public Class Employee_Loadlist
             Return "False"
         End If
     End Function
+
+    Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
+        Response.Write("<script>window.location='Employee_Loadlist.aspx';</script>")
+    End Sub
 End Class

@@ -135,6 +135,9 @@
                 $(tableid).append(headerTr$);  
                 return columnSet;  
             }
+            $('#modalCOA').on('hidden.bs.modal', function () {
+                $(".btnUploadSave").click();
+            })
         });
     </script>
 
@@ -335,7 +338,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="btnUploadSave" Text="Save" class="btnUploadSave btn btn-primary btn-block" runat="server" />
+                            <asp:Button ID="btnUploadSave" Text="Close" class="btnUploadSave btn btn-primary btn-block" runat="server" />
                         </div>
                     </div>
                 </div>

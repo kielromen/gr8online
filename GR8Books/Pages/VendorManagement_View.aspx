@@ -74,7 +74,7 @@
                 $.each(jsondata, function (i, row) {
                     $.ajax({
                         url: "<%= ResolveUrl("VendorManagement_View.aspx/SaveVCE") %>",
-                        data: "{'Vendor_Code':'" + row.Vendor_Code + "', 'Classification':'" + row.Classification + "', 'First_Name':'" + row.First_Name + "', 'Last_Name':'" + row.Last_Name + "', 'Middle_Name':'" + row.Middle_Name + "', 'Suffix_Name':'" + row.Suffix_Name + "', 'Vendor_Name':'" + row.Vendor_Name + "', 'TIN_No':'" + row.TIN_No + "', 'BranchCode':'" + row.BranchCode + "', 'Address_Lot_Unit':'" + row.Address_Lot_Unit + "', 'Address_Blk_Bldg':'" + row.Address_Blk_Bldg + "', 'Address_Street':'" + row.Address_Street + "', 'Address_Subd':'" + row.Address_Subd + "', 'Address_Brgy':'" + row.Address_Brgy + "', 'Address_Town_City':'" + row.Address_Town_City + "', 'Address_Province':'" + row.Address_Province + "', 'Address_Region':'" + row.Address_Region + "', 'Address_ZipCode':'" + row.Address_ZipCode + "', 'Contact_Person':'" + row.Contact_Person + "', 'Contact_Position':'" + row.Contact_Position + "', 'Contact_Telephone':'" + row.Contact_Telephone + "', 'Contact_Cellphone':'" + row.Contact_Cellphone + "', 'Contact_Fax':'" + row.Contact_Fax + "', 'Contact_Email':'" + row.Contact_Email + "', 'Contact_Website':'" + row.Contact_Website + "', 'Terms':'" + row.Terms + "', 'CutOff':'" + row.CutOff + "', 'VAT_Type':'" + row.VAT_Type + "'}",
+                        data: "{'Vendor_Code':'" + row.Vendor_Code + "', 'Classification':'" + row.Classification + "', 'First_Name':'" + row.First_Name + "', 'Last_Name':'" + row.Last_Name + "', 'Middle_Name':'" + row.Middle_Name + "', 'Suffix_Name':'" + row.Suffix_Name + "', 'Vendor_Name':'" + row.Vendor_Name + "', 'TIN_No':'" + row.TIN_No + "', 'BranchCode':'" + row.BranchCode + "', 'Address_Lot_Unit':'" + row.Address_Lot_Unit + "', 'Address_Blk_Bldg':'" + row.Address_Blk_Bldg + "', 'Address_Street':'" + row.Address_Street + "', 'Address_Subd':'" + row.Address_Subd + "', 'Address_Brgy':'" + row.Address_Brgy + "', 'Address_Town_City':'" + row.Address_Town_City + "', 'Address_Province':'" + row.Address_Province + "', 'Address_Region':'" + row.Address_Region + "', 'Address_ZipCode':'" + row.Address_ZipCode + "', 'Contact_Person':'" + row.Contact_Person + "', 'Contact_Position':'" + row.Contact_Position + "', 'Contact_Telephone':'" + row.Contact_Telephone + "', 'Contact_Cellphone':'" + row.Contact_Cellphone + "', 'Contact_Fax':'" + row.Contact_Fax + "', 'Contact_Email':'" + row.Contact_Email + "', 'Contact_Website':'" + row.Contact_Website + "', 'Terms':'" + row.Terms + "', 'CutOff':'" + row.CutOff + "', 'VAT_Type':'" + row.VAT_Type + "', 'AccountNo':'" + row.AccountNo + "'}",
                         dataType: "json",
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
@@ -109,6 +109,7 @@
                             row$.append($('<td/>').html(row.Terms));
                             row$.append($('<td/>').html(row.CutOff));
                             row$.append($('<td/>').html(row.VAT_Type));
+                            row$.append($('<td/>').html(row.AccountNo));
                             if (bool == "Exist") {
                                 $("#<%=gvUpload.ClientID%>").append(row$.css({"background-color":"red","color":"white"}));  
                             } else {
@@ -141,11 +142,18 @@
                 $(tableid).append(headerTr$);  
                 return columnSet;  
             }
+            $('#modalCOA').on('hidden.bs.modal', function () {
+                $(".btnUploadSave").click();
+            })
         });
     </script>
     
-    <style>
-        .files input {
+    <style type="text/css">
+     .hidden
+     {
+         display:none;
+     }
+     .files input {
             outline: 2px dashed #92b0b3;
             outline-offset: -10px;
             -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -154,45 +162,45 @@
             text-align: center !important;
             margin: 0;
             width: 100% !important;
+    }
+    .files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
         }
-        .files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
-            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
-         }
-        .files{ position:relative}
-        .files:after {  pointer-events: none;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            width: 50px;
-            right: 0;
-            height: 56px;
-            content: "";
-            background-image:url("../Images/upload.png");
-            display: block;
-            margin: 0 auto;
-            background-size: 100%;
-            background-repeat: no-repeat;
-        }
-        .color input{ background-color:#f1f1f1;}
-        .files:before {
-            position: absolute;
-            bottom: 10px;
-            left: 0;  pointer-events: none;
-            width: 100%;
-            right: 0;
-            height: 40px;
-            content: attr(title);
-            display: block;
-            margin: 0 auto;
-            color: #507CD1;
-            font-weight: 600;
-            text-transform: capitalize;
-            text-align: center;
-        }
-        .divUpload {
-            display:none;
-        }
+    .files{ position:relative}
+    .files:after {  pointer-events: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 50px;
+        right: 0;
+        height: 56px;
+        content: "";
+        background-image:url("../Images/upload.png");
+        display: block;
+        margin: 0 auto;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+    .color input{ background-color:#f1f1f1;}
+    .files:before {
+        position: absolute;
+        bottom: 10px;
+        left: 0;  pointer-events: none;
+        width: 100%;
+        right: 0;
+        height: 40px;
+        content: attr(title);
+        display: block;
+        margin: 0 auto;
+        color: #507CD1;
+        font-weight: 600;
+        text-transform: capitalize;
+        text-align: center;
+    }
+    .divUpload {
+        display:none;
+    }
     </style>
 <%--     <div class="alert alert-success alert-dismissible fade show" role="alert" id="alertSave" runat="server">
         <strong>Record successfully saved!</strong>
@@ -216,11 +224,40 @@
         <asp:GridView ID="gvVendor" runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="Vendor_Code" HeaderText="Vendor Code" />
-                <asp:BoundField DataField="Vendor_Name" HeaderText="Vendor Name" />
-                <asp:BoundField DataField="Contact_Person" HeaderText="Contact Person" />
-                <asp:BoundField DataField="Contact_Cellphone" HeaderText="Contact Cellphone" />
+                <asp:BoundField DataField="Vendor_Code" HeaderText = "Vendor Code" />
+                <asp:BoundField DataField="Classification" HeaderText = "Classification"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="First_Name" HeaderText = "First Name"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Last_Name" HeaderText = "Last Name"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Middle_Name" HeaderText = "Middle Name"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Suffix_Name" HeaderText = "Suffix Name"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Vendor_Name" HeaderText = "Vendor Name"   />
+                <asp:BoundField DataField="TIN_No" HeaderText = "TIN No"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="BranchCode" HeaderText = "BranchCode"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Lot_Unit" HeaderText = "Address Lot Unit"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Blk_Bldg" HeaderText = "Address Blk Bldg"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Street" HeaderText = "Address Street"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Subd" HeaderText = "Address Subd"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Brgy" HeaderText = "Address Brgy"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Town_City" HeaderText = "Address Town City"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Province" HeaderText = "Address Province"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_Region" HeaderText = "Address Region"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Address_ZipCode" HeaderText = "Address ZipCode"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Contact_Person" HeaderText = "Contact Person"  />
+                <asp:BoundField DataField="Contact_Position" HeaderText = "Contact Position"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Contact_Telephone" HeaderText = "Contact Telephone"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Contact_Cellphone" HeaderText = "Contact Cellphone"  />
+                <asp:BoundField DataField="Contact_Fax" HeaderText = "Contact Fax"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Contact_Email" HeaderText = "Contact Email"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Contact_Website" HeaderText = "Contact Website"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="Terms" HeaderText = "Terms"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="CutOff" HeaderText = "CutOff"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="VAT_Type" HeaderText = "VAT Type"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
+                <asp:BoundField DataField="AccountNo" HeaderText = "AccountNo"  HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"  />
                 <asp:BoundField DataField="Status" HeaderText="Status" />
+                <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="DateModified" HeaderText="DateModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoCreated" HeaderText="WhoCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="WhoModified" HeaderText="WhoModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
                         <asp:Button ID="btnView" class="btnView" Text="View" runat="server" title='<%# Eval("Vendor_Code")%>' />
@@ -243,9 +280,10 @@
         <div class="row mt-4 justify-content-end">
             <div class="col-2 ">
                 <asp:Button ID="btnAdd" class="btnAdd btn btn-primary btn-block" Text="Add" runat="server" />
-                <asp:Button ID="btnUpload" class="btnUpload btn btn-primary btn-block" Text="Upload" runat="server" data-toggle="modal" data-target="#modalCOA" data-whatever="@mdo" />
             </div>
-
+            <div class="col-2 ">
+                    <asp:Button ID="btnUpload" class="btnUpload btn btn-primary btn-block" Text="Upload" runat="server" data-toggle="modal" data-target="#modalCOA" data-whatever="@mdo" />
+             </div>
         </div>
         
         <%-- Upload Vendor Modal --%>
@@ -316,6 +354,7 @@
                                             <asp:BoundField DataField="Terms" HeaderText = "Terms" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                                             <asp:BoundField DataField="CutOff" HeaderText = "CutOff" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                                             <asp:BoundField DataField="VAT_Type" HeaderText = "VAT Type" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                                            <asp:BoundField DataField="AccountNo" HeaderText = "AccountNo" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                                         </Columns>
                                         <EditRowStyle BackColor="#2461BF" />
                                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -334,7 +373,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnUploadSave" Text="Save" class="btnUploadSave btn btn-primary btn-block" runat="server" />
+                        <asp:Button ID="btnUploadSave" Text="Close" class="btnUploadSave btn btn-primary btn-block" runat="server" />
                     </div>
                 </div>
             </div>

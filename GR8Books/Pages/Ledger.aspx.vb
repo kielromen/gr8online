@@ -21,8 +21,9 @@
     End Sub
 
     Protected Sub OnSelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
-        Dim VCECode As String = dgvList.SelectedRow.Cells(0).Text
-        Dim AccntCode As String = dgvList.SelectedRow.Cells(2).Text
+        Dim VCECode As String = HttpUtility.HtmlDecode(dgvList.SelectedRow.Cells(0).Text)
+        Dim AccntCode As String = HttpUtility.HtmlDecode(dgvList.SelectedRow.Cells(2).Text)
+
         Dim url As String = Request.QueryString("Url")
         txtFilter.Text = ""
         Session("VCECode") = VCECode
@@ -40,7 +41,7 @@
         Dim filter As String = txtFilter.Text
         query = " SELECT VCECode, VCEName, AccntCode, AccntTitle, CONVERT(VARCHAR,CONVERT(MONEY,Debit),1) AS Debit, CONVERT(VARCHAR,CONVERT(MONEY,Credit),1) AS Credit" & vbCrLf &
                 " FROM  dbo.View_SL " & vbCrLf &
-                " WHERE VCECode LIKE '%" & filter & "%' OR VCEName LIKE '%" & filter & "%' ORDER BY VCEName, AccntCode DESC"
+                " WHERE VCECode <> '' AND (VCECode LIKE '%" & filter & "%' OR VCEName LIKE '%" & filter & "%') ORDER BY VCEName, AccntCode DESC"
         SQL.FlushParams()
         SQL.GetQuery(query)
         dgvList.DataSource = SQL.SQLDS

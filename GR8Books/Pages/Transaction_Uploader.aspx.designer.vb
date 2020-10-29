@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Transaction_Uploader
-
+    
     '''<summary>
     '''btnSearch control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Transaction_Uploader
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btnUpload control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Transaction_Uploader
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUpload As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btnCancel control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Transaction_Uploader
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btnExport control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Transaction_Uploader
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnExport As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''gvUploader control.
     '''</summary>
@@ -57,4 +57,40 @@ Partial Public Class Transaction_Uploader
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvUploader As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''alertUpdate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertUpdate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''File_Upload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents File_Upload As Global.System.Web.UI.HtmlControls.HtmlInputFile
+    
+    '''<summary>
+    '''gvUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvUpload As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''btnUploadSave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUploadSave As Global.System.Web.UI.WebControls.Button
 End Class

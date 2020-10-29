@@ -240,6 +240,21 @@
                 </div>
             </div>
         </div>
+        <div class="row mb-2">
+              <div class="col-sm">
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <asp:Label Text="Account No:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtAccountNo" runat="server" class="form-control" TextMode="Number"  autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+
+            </div>
+        </div>
         <%--Billing Address--%>
         <div class="row mt-4">
             <div class="col">

@@ -19,6 +19,10 @@ Public Class Transaction_Uploader
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
+                Dim dt As New DataTable
+                dt.Columns.Add("")
+                gvUpload.DataSource = dt
+                gvUpload.DataBind()
                 Loadlist()
             End If
         End If
@@ -74,15 +78,162 @@ Public Class Transaction_Uploader
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Dim query As String
-        query = " UPDATE  " & DBTable & " SET Status ='Cancelled' WHERE TransID = @TransID "
-        SQL.FlushParams()
-        SQL.AddParam("@TransID", Session("ID"))
-        SQL.ExecNonQuery(query)
+        Dim i As String = gvUploader.Rows(0).Cells(0).Text
 
-        query = " UPDATE  tblJE_Header SET Status ='Cancelled' WHERE RefTransID = @RefTransID  AND Upload = 1 "
-        SQL.FlushParams()
-        SQL.AddParam("@RefTransID", Session("ID"))
-        SQL.ExecNonQuery(query)
+        'Dim query As String
+        'query = " UPDATE  " & DBTable & " SET Status ='Cancelled' WHERE TransID = @TransID "
+        'SQL.FlushParams()
+        'SQL.AddParam("@TransID", Session("ID"))
+        'SQL.ExecNonQuery(query)
+
+        'query = " UPDATE  tblJE_Header SET Status ='Cancelled' WHERE RefTransID = @RefTransID  AND Upload = 1 "
+        'SQL.FlushParams()
+        'SQL.AddParam("@RefTransID", Session("ID"))
+        'SQL.ExecNonQuery(query)
     End Sub
+
+    Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
+
+        File_Upload.PostedFile.SaveAs(Server.MapPath("~/Uploads/Transaction.xlms"))
+
+        Dim cn As System.Data.OleDb.OleDbConnection
+        Dim cmd As System.Data.OleDb.OleDbCommand
+        Dim dr As System.Data.OleDb.OleDbDataReader
+        cn = New System.Data.OleDb.OleDbConnection("provider=Microsoft.ACE.OLEDB.12.0;" & "data source=" & Server.MapPath("~/Uploads/Transaction.xlms") & ";Extended Properties=Excel 12.0;")
+
+        Try
+            'SQL.BeginTransaction()
+
+            cn.Open()
+            cmd = cn.CreateCommand
+            cmd.CommandText = "SELECT * FROM [Transaction$] ORDER BY Date, Doc_Type, Doc_No, Debit DESC, Credit "
+            dr = cmd.ExecuteReader
+
+            If dr.HasRows Then
+                Dim TransID As String = ""
+                TransID = SaveTransID()
+                While dr.Read
+                    'HEADER
+                    Dim JE_No As String = ""
+                    Dim RefType As String = "U" & dr("Doc_Type").ToString
+                    Dim RefTransID As String = dr("Doc_No").ToString
+                    Dim AppDate As String = dr("Date").ToString
+                    Dim Book As String = dr("Book").ToString
+
+                    'DETAILS
+                    Dim AccntCode As String = dr("AccntCode").ToString
+                    Dim VCECode As String = dr("VCECode").ToString
+                    Dim Debit As Decimal = CDec(IIf(IsNumeric(dr("Debit").ToString), dr("Debit").ToString, 0))
+                    Dim Credit As Decimal = CDec(IIf(IsNumeric(dr("Credit").ToString), dr("Credit").ToString, 0))
+                    Dim Particulars As String = dr("Particulars").ToString
+                    Dim RefNo As String = dr("RefNo").ToString
+                    Dim CostCenter As String = dr("CostCenter").ToString
+
+                    If CheckDuplicateRef(RefType, RefTransID) Then
+                        JE_No = GetJE_No(RefType, RefTransID)
+                    Else
+                        SaveJE_Header(TransID, RefType, RefTransID, AppDate, Book)
+                        JE_No = GetJE_No(RefType, RefTransID)
+                    End If
+
+                    SaveJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, RefNo)
+                End While
+            End If
+            cn.Close()
+
+            'SQL.Commit()
+
+        Catch ex As Exception
+            cn.Close()
+            'SQL.Rollback()
+            MsgBox(ex.Message)
+            MsgBox("Sheet name should be Transaction!")
+        Finally
+            cn.Close()
+        End Try
+
+    End Sub
+
+    Private Function CheckDuplicateRef(ByVal strRefType As String, ByVal strRefTransID As String) As Boolean
+        Dim selectSQL As String = ""
+        selectSQL = " SELECT JE_No FROM tblJE_Header " & vbCrLf &
+                    " WHERE RefType = @RefType AND Remarks = @Remarks AND Upload = 1 "
+        SQL.FlushParams()
+        SQL.AddParam("@RefType", strRefType)
+        SQL.AddParam("@Remarks", strRefTransID)
+        SQL.ReadQuery(selectSQL)
+        If SQL.SQLDR.Read Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Function GetJE_No(ByVal strRefType As String, ByVal strRefTransID As String) As Integer
+        Dim selectSQL As String = ""
+        selectSQL = " SELECT JE_No FROM tblJE_Header " & vbCrLf &
+                    " WHERE RefType = @RefType AND Remarks = @Remarks AND Upload = 1 "
+        SQL.FlushParams()
+        SQL.AddParam("@RefType", strRefType)
+        SQL.AddParam("@Remarks", strRefTransID)
+        SQL.ReadQuery(selectSQL)
+        If SQL.SQLDR.Read Then
+            Return CInt(SQL.SQLDR("JE_No").ToString)
+        Else
+            Return 0
+        End If
+    End Function
+
+
+    Private Function SaveTransID() As Integer
+        Dim selectSQL As String = " SELECT ISNULL(MAX(UB_No), 0) + 1 AS UB_No, ISNULL(MAX(TransID), 0) + 1 AS TransID FROM tblJE_Upload "
+        SQL.FlushParams()
+        SQL.ReadQuery(selectSQL)
+        If SQL.SQLDR.Read Then
+            Dim UB_No As Integer = CInt(SQL.SQLDR("UB_No").ToString)
+            Dim TransID As Integer = CInt(SQL.SQLDR("TransID").ToString)
+            Dim insertSQL As String = " INSERT INTO tblJE_Upload(TransID, UB_No, TransDate) " & vbCrLf &
+                                      " VALUES(@TransID, @UB_No, GETDATE()) "
+            SQL.FlushParams()
+            SQL.AddParam("@TransID", TransID)
+            SQL.AddParam("@UB_No", UB_No)
+            SQL.ExecNonQuery(insertSQL)
+            Return UB_No
+        Else
+            Return 1
+        End If
+    End Function
+
+    Private Sub SaveJE_Header(ByVal TransID As String, ByVal RefType As String, ByVal RefTransID As String, ByVal AppDate As String, ByVal Book As String)
+
+        Dim insertSQL As String = " INSERT INTO tblJE_Header(AppDate, RefType, RefTransID, Book, Remarks, Upload, DateCreated, WhoCreated) " & vbCrLf &
+                                  " VALUES(@AppDate, @RefType, @RefTransID, @Book, @Remarks, @Upload, @DateCreated, @WhoCreated) "
+        SQL.FlushParams()
+        SQL.AddParam("@AppDate", AppDate)
+        SQL.AddParam("@RefType", RefType)
+        SQL.AddParam("@RefTransID", TransID)
+        SQL.AddParam("@Book", Book)
+        SQL.AddParam("@Remarks", RefTransID)
+        SQL.AddParam("@Upload", True)
+        SQL.AddParam("@DateCreated", Now.Date)
+        SQL.AddParam("@WhoCreated", Session("EmailAddress"))
+        SQL.ExecNonQuery(insertSQL)
+    End Sub
+
+
+    Private Sub SaveJE_Details(JE_No As String, AccntCode As String, VCECode As String, Debit As String, Credit As String, Particulars As String, RefNo As String)
+
+        Dim insertSQL As String = " INSERT INTO tblJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, RefNo) " & vbCrLf &
+                                  " VALUES(@JE_No, @AccntCode, @VCECode, @Debit, @Credit, @Particulars, @RefNo) "
+        SQL.FlushParams()
+        SQL.AddParam("@JE_No", JE_No)
+        SQL.AddParam("@AccntCode", AccntCode)
+        SQL.AddParam("@VCECode", VCECode)
+        SQL.AddParam("@Debit", Debit)
+        SQL.AddParam("@Credit", Credit)
+        SQL.AddParam("@Particulars", Particulars)
+        SQL.AddParam("@RefNo", RefNo)
+        SQL.ExecNonQuery(insertSQL)
+    End Sub
+
 End Class

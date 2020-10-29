@@ -118,6 +118,8 @@ Public Class PurchaseJournal
 
             End If
             SetDataTable()
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scrollDown", "setTimeout(function () { window.scrollTo(0,document.body.scrollHeight); }, 25);", True)
+
         End If
     End Sub
 
@@ -745,5 +747,60 @@ Public Class PurchaseJournal
         SQL.ExecNonQuery(query)
 
         LoadTransaction(Session("TransID"))
+    End Sub
+
+    Protected Sub ComputeRow(sender As Object, e As EventArgs)
+        txtAmount.Text = CDec(Session("TotalDebit") - Session("TotalCredit")).ToString("N2")
+        Page.Validate()
+        If txtAmount.Text <> "" Then
+            If Session("AccountCode") <> "" Then
+                Dim rowIndex As Integer = 0
+                If Not IsNothing(ViewState("EntryTable")) Then
+                    Dim dt As DataTable = ViewState("EntryTable")
+                    Dim dr As DataRow = Nothing
+                    If dt.Rows.Count > 0 Then
+                        For i As Integer = 0 To dt.Rows.Count - 1
+                            Dim txtAccntCode As TextBox = dgvEntry.Rows(i).Cells(2).FindControl("txtAccntCode_Entry")
+                            Dim txtAccntTitle As TextBox = dgvEntry.Rows(i).Cells(3).FindControl("txtAccntTitle_Entry")
+                            Dim txtDebit As TextBox = dgvEntry.Rows(i).Cells(5).FindControl("txtDebit_Entry")
+                            Dim txtCredit As TextBox = dgvEntry.Rows(i).Cells(6).FindControl("txtCredit_Entry")
+                            Dim txtParticulars As TextBox = dgvEntry.Rows(i).Cells(4).FindControl("txtParticulars_Entry")
+                            Dim txtCode As TextBox = dgvEntry.Rows(i).Cells(7).FindControl("txtCode_Entry")
+                            Dim txtName As TextBox = dgvEntry.Rows(i).Cells(8).FindControl("txtName_Entry")
+                            Dim txtRefID As TextBox = dgvEntry.Rows(i).Cells(9).FindControl("txtRefID_Entry")
+                            dr = dt.NewRow
+                            dr("chNo") = i + 2
+                            dr("AccntCode") = Session("AccountCode")
+                            dr("AccntTitle") = Session("AccountTitle")
+                            dr("Debit") = "0.00"
+                            dr("Credit") = Session("TotalDebit") - Session("TotalCredit")
+                            dr("Particulars") = ""
+                            dr("Code") = ""
+                            dr("Name") = ""
+                            dr("RefID") = ""
+
+                            dt.Rows(i)("AccntCode") = txtAccntCode.Text
+                            dt.Rows(i)("AccntTitle") = txtAccntTitle.Text
+                            dt.Rows(i)("Debit") = txtDebit.Text
+                            dt.Rows(i)("Credit") = txtCredit.Text
+                            dt.Rows(i)("Particulars") = txtParticulars.Text
+                            dt.Rows(i)("Code") = txtCode.Text
+                            dt.Rows(i)("Name") = txtName.Text
+                            dt.Rows(i)("RefID") = txtRefID.Text
+
+
+                            rowIndex = i
+                        Next
+                        dt.Rows.Add(dr)
+                        ViewState("EntryTable") = dt
+
+                        dgvEntry.DataSource = dt
+                        dgvEntry.DataBind()
+
+                    End If
+                    SetDataTable()
+                End If
+            End If
+        End If
     End Sub
 End Class

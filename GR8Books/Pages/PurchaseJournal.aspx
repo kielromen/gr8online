@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Purchase Journal" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="PurchaseJournal.aspx.vb" Inherits="GR8Books.PurchaseJournal" %>
+﻿<%@ Page Title="Purchase Journal" MaintainScrollPositionOnPostback="true" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="PurchaseJournal.aspx.vb" Inherits="GR8Books.PurchaseJournal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -322,18 +322,21 @@
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="X" ControlStyle-CssClass="btn btn-danger" />
                         <asp:BoundField DataField="chNo" HeaderText="No." />
-                        <asp:TemplateField HeaderText="Account Code">
+                        <asp:TemplateField HeaderText="Account Code"  HeaderStyle-Wrap="false" >
                             <ItemTemplate>
-                                <asp:TextBox ID="txtAccntCode_Entry" Class="txtAccntCode_Entry form-control" runat="server" Width="110" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtAccntCode_Entry" Class="txtAccntCode_Entry form-control" runat="server" Width="100px" AutoComplete="off"></asp:TextBox>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Button ID="btnAdd_Entry" runat="server" class="btn btn-light btn-sm" Text="Add Entry" OnClick="AddNewRow" AutoPostBack="False" />
                             </FooterTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Account Title">
+                        <asp:TemplateField HeaderText="Account Title"  HeaderStyle-Wrap="false" >
                             <ItemTemplate>
-                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="150px"></asp:TextBox>
                             </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Button ID="btnCompute" runat="server" class="btnCompute btn btn-light btn-sm" Text="Auto Entry" OnClick="ComputeRow" />
+                            </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField FooterStyle-HorizontalAlign="Right" HeaderText="Debit">
                             <ItemTemplate>
@@ -351,34 +354,45 @@
                                 <asp:Label ID="lblTotalCredit_Amount" runat="server" Class="lblTotalCredit_Amount" Font-Bold="true" Text="0.00" AutoComplete="off"></asp:Label>
                             </FooterTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Tax">
+                            <ItemTemplate>
+                                <asp:Button ID="btnTax_Entry" Class="btnTax_Entry  btn btn-primary" runat="server" Text="%" data-toggle="modal" data-target="#modalTax" data-whatever="@mdo"></asp:Button>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Particulars">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off" Width="150px"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Code">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtCode_Entry" class="txtCode_Entry form-control " runat="server" Width="110" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtCode_Entry" class="txtCode_Entry form-control " runat="server" Width="100px" AutoComplete="off"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Name">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" Width="150px" AutoComplete="off"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Res. Center">
+                         <asp:TemplateField HeaderText="Res. Center">
                             <ItemTemplate>
                                 <asp:DropDownList runat="server" ID="ddlCostCenter" class="ddlCostCenter form-control" AppendDataBoundItems="true" Width="120px"  AutoPostBack="false" EnableViewState="true">
                                 </asp:DropDownList>
-                            </ItemTemplate>
+                              </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Ref. ID">
-                            <ItemTemplate>
+                         <asp:TemplateField HeaderText="Ref. ID">
+                             <ItemTemplate>
                                 <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                             </ItemTemplate>
+                         </asp:TemplateField>
+
+                          <asp:TemplateField HeaderText="VAT Type">
+                             <ItemTemplate>
+                                <asp:TextBox ID="txtVATType" Class="txtVATType form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
+                             </ItemTemplate>
+                         </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

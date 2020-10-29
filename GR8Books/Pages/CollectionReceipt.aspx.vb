@@ -171,6 +171,8 @@ Public Class CollectionReceipt
 
             End If
             SetDataTable()
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scrollDown", "setTimeout(function () { window.scrollTo(0,document.body.scrollHeight); }, 25);", True)
+
         End If
     End Sub
 

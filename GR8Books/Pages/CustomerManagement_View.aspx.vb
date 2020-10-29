@@ -26,7 +26,7 @@ Public Class CustomerManagement_View
         Dim query As String
         query = " SELECT        Customer_Code, TIN_No, BranchCode, Billing_Lot_Unit, Billing_Blk_Bldg, Billing_Street, Billing_Subd, Billing_Brgy, Billing_Town_City, Billing_Province, Billing_Region, Billing_ZipCode, Delivery_Lot_Unit, 
                          Delivery_Blk_Bldg, Delivery_Street, Delivery_Subd, Delivery_Brgy, Delivery_Town_City, Delivery_Province, Delivery_Region, Delivery_ZipCode, SameAddress, Contact_Person, Contact_Position, Contact_Telephone, 
-                         Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, DateModified, WhoCreated, WhoModified, TransAuto, Classification, First_Name, Last_Name, Middle_Name, Suffix_Name, 
+                         Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type, AccountNo, Status, DateCreated, DateModified, WhoCreated, WhoModified, TransAuto, Classification, First_Name, Last_Name, Middle_Name, Suffix_Name, 
 						 CASE WHEN Classification = 'Individual' THEN CONCAT(Last_Name, ', ', First_name, ' ', Middle_Name,' ', Suffix_Name) ELSE Customer_Name END AS Customer_Name
                   FROM dbo.tblCustomer_Master WHERE Status = @Status"
         SQL.FlushParams()
@@ -88,7 +88,7 @@ Public Class CustomerManagement_View
     End Sub
 
     <WebMethod()>
-    Public Shared Function SaveVCE(Customer_Code As String, Classification As String, First_Name As String, Last_Name As String, Middle_Name As String, Suffix_Name As String, Customer_Name As String, TIN_No As String, BranchCode As String, Billing_Lot_Unit As String, Billing_Blk_Bldg As String, Billing_Street As String, Billing_Subd As String, Billing_Brgy As String, Billing_Town_City As String, Billing_Province As String, Billing_Region As String, Billing_ZipCode As String, Delivery_Lot_Unit As String, Delivery_Blk_Bldg As String, Delivery_Street As String, Delivery_Subd As String, Delivery_Brgy As String, Delivery_Town_City As String, Delivery_Province As String, Delivery_Region As String, Delivery_ZipCode As String, SameAddress As String, Contact_Person As String, Contact_Position As String, Contact_Telephone As String, Contact_Cellphone As String, Contact_Fax As String, Contact_Email As String, Contact_Website As String, Terms As String, CutOff As String, VAT_Type As String) As String
+    Public Shared Function SaveVCE(Customer_Code As String, Classification As String, First_Name As String, Last_Name As String, Middle_Name As String, Suffix_Name As String, Customer_Name As String, TIN_No As String, BranchCode As String, Billing_Lot_Unit As String, Billing_Blk_Bldg As String, Billing_Street As String, Billing_Subd As String, Billing_Brgy As String, Billing_Town_City As String, Billing_Province As String, Billing_Region As String, Billing_ZipCode As String, Delivery_Lot_Unit As String, Delivery_Blk_Bldg As String, Delivery_Street As String, Delivery_Subd As String, Delivery_Brgy As String, Delivery_Town_City As String, Delivery_Province As String, Delivery_Region As String, Delivery_ZipCode As String, SameAddress As String, Contact_Person As String, Contact_Position As String, Contact_Telephone As String, Contact_Cellphone As String, Contact_Fax As String, Contact_Email As String, Contact_Website As String, Terms As String, CutOff As String, VAT_Type As String, AccountNo As String) As String
         Dim query As String
         query = " SELECT Customer_Code FROM tblCustomer_Master WHERE Customer_Code = @Customer_Code "
         SQL.FlushParams()
@@ -127,7 +127,7 @@ Public Class CustomerManagement_View
             SQL.AddParam("@Delivery_Province", IIf(Delivery_Province = "undefined", DBNull.Value, Delivery_Province))
             SQL.AddParam("@Delivery_Region", IIf(Delivery_Region = "undefined", DBNull.Value, Delivery_Region))
             SQL.AddParam("@Delivery_ZipCode", IIf(Delivery_ZipCode = "undefined", DBNull.Value, Delivery_ZipCode))
-            SQL.AddParam("@SameAddress", IIf(SameAddress = "undefined", DBNull.Value, SameAddress))
+            SQL.AddParam("@SameAddress", IIf(SameAddress = "undefined", False, SameAddress))
             SQL.AddParam("@Contact_Person", IIf(Contact_Person = "undefined", DBNull.Value, Contact_Person))
             SQL.AddParam("@Contact_Position", IIf(Contact_Position = "undefined", DBNull.Value, Contact_Position))
             SQL.AddParam("@Contact_Telephone", IIf(Contact_Telephone = "undefined", DBNull.Value, Contact_Telephone))
@@ -138,8 +138,13 @@ Public Class CustomerManagement_View
             SQL.AddParam("@Terms", IIf(Terms = "undefined", DBNull.Value, Terms))
             SQL.AddParam("@CutOff", IIf(CutOff = "undefined", DBNull.Value, CutOff))
             SQL.AddParam("@VAT_Type", IIf(VAT_Type = "undefined", DBNull.Value, VAT_Type))
+            SQL.AddParam("@AccountNo", IIf(VAT_Type = "undefined", DBNull.Value, AccountNo))
             SQL.ExecNonQuery(query)
             Return "False"
         End If
     End Function
+
+    Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
+        Response.Write("<script>window.location='CustomerManagement_View.aspx';</script>")
+    End Sub
 End Class

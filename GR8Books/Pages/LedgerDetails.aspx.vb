@@ -67,6 +67,10 @@
                 Dim url As String = "CheckVoucher.aspx"
                 Session("ID") = RefTransID
                 Response.Write("<script>window.open('" & url & "', '_blank');</script>")
+            Case "APV"
+                Dim url As String = "AccountsPayableVoucher.aspx"
+                Session("ID") = RefTransID
+                Response.Write("<script>window.open('" & url & "', '_blank');</script>")
         End Select
     End Sub
 

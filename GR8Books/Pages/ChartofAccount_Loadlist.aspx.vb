@@ -94,15 +94,25 @@ Public Class ChartofAccount_Loadlist
         query = " INSERT INTO tblCOA(AccountCode, AccountTitle, AccountType, AccountGroup, AccountNature, ReportAlias, Class, withSubsidiary, OrderNo) " & vbCrLf &
                 " VALUES(@AccountCode, @AccountTitle, @AccountType, @AccountGroup, @AccountNature, @ReportAlias, @Class, @withSubsidiary, @OrderNo) "
         SQL.FlushParams()
-        SQL.AddParam("@AccountCode", AccountCode)
-        SQL.AddParam("@AccountTitle", AccountTitle)
-        SQL.AddParam("@AccountType", AccountType)
-        SQL.AddParam("@AccountGroup", AccountGroup)
-        SQL.AddParam("@AccountNature", AccountNature)
-        SQL.AddParam("@ReportAlias", ReportAlias)
-        SQL.AddParam("@Class", AccountClass)
-        SQL.AddParam("@withSubsidiary", withSubsidiary)
-        SQL.AddParam("@OrderNo", OrderNo)
+        SQL.AddParam("@AccountCode", IIf(AccountCode = "undefined", DBNull.Value, AccountCode))
+        SQL.AddParam("@AccountTitle", IIf(AccountTitle = "undefined", DBNull.Value, AccountTitle))
+        SQL.AddParam("@AccountType", IIf(AccountType = "undefined", DBNull.Value, AccountType))
+        SQL.AddParam("@AccountGroup", IIf(AccountGroup = "undefined", DBNull.Value, AccountGroup))
+        SQL.AddParam("@AccountNature", IIf(AccountNature = "undefined", DBNull.Value, AccountNature))
+        SQL.AddParam("@ReportAlias", IIf(ReportAlias = "undefined", DBNull.Value, ReportAlias))
+        SQL.AddParam("@Class", IIf(AccountClass = "undefined", DBNull.Value, AccountClass))
+        SQL.AddParam("@withSubsidiary", IIf(withSubsidiary = "undefined", False, withSubsidiary))
+        SQL.AddParam("@OrderNo", IIf(OrderNo = "undefined", DBNull.Value, OrderNo))
+
+        'SQL.AddParam("@AccountCode", AccountCode)
+        'SQL.AddParam("@AccountTitle", AccountTitle)
+        'SQL.AddParam("@AccountType", AccountType)
+        'SQL.AddParam("@AccountGroup", AccountGroup)
+        'SQL.AddParam("@AccountNature", AccountNature)
+        'SQL.AddParam("@ReportAlias", ReportAlias)
+        'SQL.AddParam("@Class", AccountClass)
+        'SQL.AddParam("@withSubsidiary", withSubsidiary)
+        'SQL.AddParam("@OrderNo", OrderNo)
         If SQL.ExecNonQuery(query) > 0 Then
             Return False
         Else
@@ -143,5 +153,9 @@ Public Class ChartofAccount_Loadlist
                 End Using
             End Using
         End If
+    End Sub
+
+    Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
+        Response.Write("<script>window.location='ChartofAccount_Loadlist.aspx';</script>")
     End Sub
 End Class

@@ -33,6 +33,7 @@ Public Class CustomerManagement
         txtWebsite.Text = ""
         txtFax.Text = ""
         txtPosition.Text = ""
+        txtAccountNo.Text = ""
         ddlVAT_Type.Items.Clear()
         ddlVAT_Type.Items.Add("--Select VAT Type--")
         ddlVAT_Type.DataSource = LoadtblDefault_VATType().ToArray
@@ -152,6 +153,7 @@ Public Class CustomerManagement
             txtCutOff.Text = SQL.SQLDR("CutOff").ToString
             ddlClassification.SelectedValue = SQL.SQLDR("Classification").ToString
             ddlVAT_Type.SelectedValue = SQL.SQLDR("VAT_Type").ToString
+            txtAccountNo.Text = SQL.SQLDR("AccountNo").ToString
             'Billing Address
             txtLot_Unit.Text = SQL.SQLDR("Billing_Lot_Unit").ToString
             txtBlk_Bldg.Text = SQL.SQLDR("Billing_Blk_Bldg").ToString
@@ -261,13 +263,13 @@ Public Class CustomerManagement
                         " Billing_Lot_Unit, Billing_Blk_Bldg, Billing_Street, Billing_Subd, Billing_Brgy, Billing_Town_City, Billing_Province, Billing_Region, Billing_ZipCode, " &
                         " Delivery_Lot_Unit, Delivery_Blk_Bldg, Delivery_Street, Delivery_Subd, Delivery_Brgy, Delivery_Town_City, Delivery_Province, Delivery_Region, Delivery_ZipCode, " &
                         " SameAddress, Contact_Person, Contact_Position, Contact_Telephone," &
-                        " Contact_Cellphone , Contact_Email , Contact_Fax, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, WhoCreated)" &
+                        " Contact_Cellphone , Contact_Email , Contact_Fax, Contact_Website, Terms, CutOff, VAT_Type, AccountNo, Status, DateCreated, WhoCreated)" &
                         " VALUES " &
                         " (@Customer_Code, @Customer_Name, @TIN_No, @BranchCode, @First_Name,@Last_Name,@Middle_Name, @Suffix_Name, @Classification," &
                         " @Billing_Lot_Unit,@Billing_Blk_Bldg, @Billing_Street, @Billing_Subd, @Billing_Brgy, @Billing_Town_City, @Billing_Province, @Billing_Region, @Billing_ZipCode, " &
                         " @Delivery_Lot_Unit,@Delivery_Blk_Bldg, @Delivery_Street, @Delivery_Subd, @Delivery_Brgy, @Delivery_Town_City, @Delivery_Province, @Delivery_Region, @Delivery_ZipCode, " &
                         " @SameAddress, @Contact_Person, @Contact_Position, @Contact_Telephone, " &
-                        " @Contact_Cellphone, @Contact_Email, @Contact_Fax, @Contact_Website, @Terms, @CutOff, @VAT_Type, @Status, @DateCreated, @WhoCreated)"
+                        " @Contact_Cellphone, @Contact_Email, @Contact_Fax, @Contact_Website, @Terms, @CutOff, @VAT_Type, @AccountNo, @Status, @DateCreated, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@Customer_Code", txtCustomerCode.Text)
         SQL.AddParam("@Customer_Name", txtCustomerName.Text)
@@ -307,6 +309,7 @@ Public Class CustomerManagement
         SQL.AddParam("@Terms", txtTerms.Text)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
+        SQL.AddParam("@AccountNo", txtAccountNo.Text)
         SQL.AddParam("@Status", "Active")
         SQL.AddParam("@DateCreated", Now.Date)
         SQL.AddParam("@WhoCreated", Session("EmailAddress"))
@@ -321,7 +324,7 @@ Public Class CustomerManagement
                         "     Billing_Lot_Unit = @Billing_Lot_Unit, Billing_Blk_Bldg = @Billing_Blk_Bldg, Billing_Street = @Billing_Street, Billing_Subd = @Billing_Subd, Billing_Brgy = @Billing_Brgy, Billing_Town_City = @Billing_Town_City, Billing_Province = @Billing_Province, Billing_Region = @Billing_Region, Billing_ZipCode = @Billing_ZipCode," &
                         "     Delivery_Lot_Unit = @Delivery_Lot_Unit, Delivery_Blk_Bldg = @Delivery_Blk_Bldg, Delivery_Street = @Delivery_Street, Delivery_Subd = @Delivery_Subd, Delivery_Brgy = @Delivery_Brgy, Delivery_Town_City = @Delivery_Town_City, Delivery_Province = @Delivery_Province, Delivery_Region = @Delivery_Region, Delivery_ZipCode = @Delivery_ZipCode," &
                         "     SameAddress = @SameAddress, Contact_Person = @Contact_Person, Contact_Position= @Contact_Position, Contact_Telephone = @Contact_Telephone, Contact_Cellphone = @Contact_Cellphone, Contact_Email = @Contact_Email, Contact_Fax = @Contact_Fax," &
-                        "     Contact_Website = @Contact_Website, Terms=@Terms, CutOff=@CutOff, VAT_Type=@VAT_Type, DateModified = @DateModified, WhoModified = @WhoModified" &
+                        "     Contact_Website = @Contact_Website, Terms=@Terms, CutOff=@CutOff, VAT_Type=@VAT_Type, AccountNo = @AccountNo, DateModified = @DateModified, WhoModified = @WhoModified" &
                         " WHERE Customer_Code = @Customer_Code"
         SQL.FlushParams()
         SQL.AddParam("@Customer_Code", txtCustomerCode.Text)
@@ -362,6 +365,7 @@ Public Class CustomerManagement
         SQL.AddParam("@Terms", txtTerms.Text)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
+        SQL.AddParam("@AccountNo", txtAccountNo.Text)
         SQL.AddParam("@DateModified", Now.Date)
         SQL.AddParam("@WhoModified", Session("EmailAddress"))
         SQL.ExecNonQuery(query)

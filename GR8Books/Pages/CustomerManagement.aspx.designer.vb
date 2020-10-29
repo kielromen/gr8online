@@ -221,6 +221,15 @@ Partial Public Class CustomerManagement
     Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''txtAccountNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAccountNo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txtLot_Unit control.
     '''</summary>
     '''<remarks>

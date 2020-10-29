@@ -24,7 +24,11 @@ Public Class VendorManagement_View
 
     Public Sub Loadlist()
         Dim query As String
-        query = "SELECT * FROM tblVendor_Master WHERE Status = @Status"
+        query = "SELECT  Vendor_Code, TIN_No, BranchCode, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy, Address_Town_City, Address_Province, Address_Region, Address_ZipCode, Contact_Person, 
+                         Contact_Position, Contact_Telephone, Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type, AccountNo, Status, DateCreated, DateModified, WhoCreated, WhoModified, TransAuto, Classification, 
+                         First_Name, Last_Name, Middle_Name, Suffix_Name,
+						 CASE WHEN Classification = 'Individual' THEN CONCAT(Last_Name, ', ', First_name, ' ', Middle_Name,' ', Suffix_Name) ELSE Vendor_Name END AS Vendor_Name
+                 FROM     dbo.tblVendor_Master WHERE Status = @Status"
         SQL.FlushParams()
         SQL.AddParam("@Status", "Active")
         SQL.GetQuery(query)
@@ -46,7 +50,7 @@ Public Class VendorManagement_View
     End Sub
 
     <WebMethod()>
-    Public Shared Function SaveVCE(Vendor_Code As String, Classification As String, First_Name As String, Last_Name As String, Middle_Name As String, Suffix_Name As String, Vendor_Name As String, TIN_No As String, BranchCode As String, Address_Lot_Unit As String, Address_Blk_Bldg As String, Address_Street As String, Address_Subd As String, Address_Brgy As String, Address_Town_City As String, Address_Province As String, Address_Region As String, Address_ZipCode As String, Contact_Person As String, Contact_Position As String, Contact_Telephone As String, Contact_Cellphone As String, Contact_Fax As String, Contact_Email As String, Contact_Website As String, Terms As String, CutOff As String, VAT_Type As String) As String
+    Public Shared Function SaveVCE(Vendor_Code As String, Classification As String, First_Name As String, Last_Name As String, Middle_Name As String, Suffix_Name As String, Vendor_Name As String, TIN_No As String, BranchCode As String, Address_Lot_Unit As String, Address_Blk_Bldg As String, Address_Street As String, Address_Subd As String, Address_Brgy As String, Address_Town_City As String, Address_Province As String, Address_Region As String, Address_ZipCode As String, Contact_Person As String, Contact_Position As String, Contact_Telephone As String, Contact_Cellphone As String, Contact_Fax As String, Contact_Email As String, Contact_Website As String, Terms As String, CutOff As String, VAT_Type As String, AccountNo As String) As String
         Dim query As String
         query = " SELECT Vendor_Code FROM tblVendor_Master WHERE Vendor_Code = @Vendor_Code "
         SQL.FlushParams()
@@ -55,8 +59,8 @@ Public Class VendorManagement_View
         If SQL.SQLDR.Read Then
             Return "Exist"
         Else
-            query = " INSERT INTO tblVendor_Master(Vendor_Code, Classification, First_Name, Last_Name, Middle_Name, Suffix_Name, Vendor_Name, TIN_No, BranchCode, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy,                          Address_Town_City, Address_Province, Address_Region, Address_ZipCode, Contact_Person, Contact_Position, Contact_Telephone, Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type) " & vbCrLf &
-                    " VALUES(@Vendor_Code, @Classification, @First_Name, @Last_Name, @Middle_Name, @Suffix_Name, @Vendor_Name, @TIN_No, @BranchCode, @Address_Lot_Unit, @Address_Blk_Bldg, @Address_Street, @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, @Address_Region, @Address_ZipCode, @Contact_Person, @Contact_Position, @Contact_Telephone, @Contact_Cellphone, @Contact_Fax, @Contact_Email, @Contact_Website, @Terms, @CutOff, @VAT_Type) "
+            query = " INSERT INTO tblVendor_Master(Vendor_Code, Classification, First_Name, Last_Name, Middle_Name, Suffix_Name, Vendor_Name, TIN_No, BranchCode, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, Address_Subd, Address_Brgy,                          Address_Town_City, Address_Province, Address_Region, Address_ZipCode, Contact_Person, Contact_Position, Contact_Telephone, Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type, AccountNo) " & vbCrLf &
+                    " VALUES(@Vendor_Code, @Classification, @First_Name, @Last_Name, @Middle_Name, @Suffix_Name, @Vendor_Name, @TIN_No, @BranchCode, @Address_Lot_Unit, @Address_Blk_Bldg, @Address_Street, @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, @Address_Region, @Address_ZipCode, @Contact_Person, @Contact_Position, @Contact_Telephone, @Contact_Cellphone, @Contact_Fax, @Contact_Email, @Contact_Website, @Terms, @CutOff, @VAT_Type, @AccountNo) "
             SQL.FlushParams()
             SQL.AddParam("@Vendor_Code", IIf(Vendor_Code = "undefined", DBNull.Value, Vendor_Code))
             SQL.AddParam("@Classification", IIf(Classification = "undefined", DBNull.Value, Classification))
@@ -86,7 +90,7 @@ Public Class VendorManagement_View
             SQL.AddParam("@Terms", IIf(Terms = "undefined", DBNull.Value, Terms))
             SQL.AddParam("@CutOff", IIf(CutOff = "undefined", DBNull.Value, CutOff))
             SQL.AddParam("@VAT_Type", IIf(VAT_Type = "undefined", DBNull.Value, VAT_Type))
-
+            SQL.AddParam("@AccountNo", IIf(AccountNo = "undefined", DBNull.Value, AccountNo))
             SQL.ExecNonQuery(query)
 
             Return "False"
@@ -130,5 +134,9 @@ Public Class VendorManagement_View
                 End Using
             End Using
         End If
+    End Sub
+
+    Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
+        Response.Write("<script>window.location='VendorManagement_View.aspx';</script>")
     End Sub
 End Class

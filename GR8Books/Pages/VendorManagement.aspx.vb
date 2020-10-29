@@ -39,11 +39,11 @@ Public Class VendorManagement
         query = " INSERT INTO tblVendor_Master " &
                         " (Vendor_Code, Vendor_Name, TIN_No, BranchCode, First_Name,Last_Name,Middle_Name, Suffix_Name, Classification, Address_Lot_Unit, Address_Blk_Bldg, Address_Street, " &
                         " Address_Subd, Address_Brgy, Address_Town_City, Address_Province, Address_Region, Address_ZipCode, Contact_Person, Contact_Position, Contact_Telephone," &
-                        " Contact_Cellphone , Contact_Email , Contact_Fax, Contact_Website, Terms, CutOff, VAT_Type, Status, DateCreated, WhoCreated)" &
+                        " Contact_Cellphone , Contact_Email , Contact_Fax, Contact_Website, Terms, CutOff, VAT_Type, AccountNo, Status, DateCreated, WhoCreated)" &
                         " VALUES " &
                         " (@VendorCode, @Vendor_Name, @TIN_No, @BranchCode, @First_Name,@Last_Name,@Middle_Name, @Suffix_Name, @Classification, @Address_Lot_Unit,@Address_Blk_Bldg, @Address_Street, " &
                         " @Address_Subd, @Address_Brgy, @Address_Town_City, @Address_Province, @Address_Region, @Address_ZipCode, @Contact_Person, @Contact_Position, @Contact_Telephone, " &
-                        " @Contact_Cellphone, @Contact_Email, @Contact_Fax, @Contact_Website, @Terms, @CutOff, @VAT_Type, @Status, @DateCreated, @WhoCreated)"
+                        " @Contact_Cellphone, @Contact_Email, @Contact_Fax, @Contact_Website, @Terms, @CutOff, @VAT_Type, @AccountNo, @Status, @DateCreated, @WhoCreated)"
         SQL.FlushParams()
         SQL.AddParam("@VendorCode", txtVendorCode.Text)
         SQL.AddParam("@Vendor_Name", txtVendorName.Text)
@@ -73,6 +73,7 @@ Public Class VendorManagement
         SQL.AddParam("@Terms", txtTerms.Text)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
+        SQL.AddParam("@AccountNo", txtAccountNo.Text)
         SQL.AddParam("@Status", "Active")
         SQL.AddParam("@DateCreated", Now.Date)
         SQL.AddParam("@WhoCreated", Session("EmailAddress"))
@@ -88,7 +89,7 @@ Public Class VendorManagement
                         "     Address_Subd = @Address_Subd, Address_Brgy = @Address_Brgy, Address_Town_City = @Address_Town_City, " &
                         "     Address_Province = @Address_Province, Address_Region = @Address_Region, Address_ZipCode = @Address_ZipCode, " &
                         "     Contact_Person = @Contact_Person, Contact_Position = @Contact_Position, Contact_Telephone = @Contact_Telephone, Contact_Cellphone = @Contact_Cellphone, Contact_Email = @Contact_Email, Contact_Fax = @Contact_Fax," &
-                        "     Contact_Website = @Contact_Website, Terms=@Terms, CutOff=@CutOff, VAT_Type=@VAT_Type, DateModified = @DateModified, WhoModified = @WhoModified" &
+                        "     Contact_Website = @Contact_Website, Terms=@Terms, CutOff=@CutOff, VAT_Type=@VAT_Type, AccountNo = @AccountNo, DateModified = @DateModified, WhoModified = @WhoModified" &
                         " WHERE Vendor_Code = @Vendor_Code"
         SQL.FlushParams()
         SQL.AddParam("@Vendor_Code", txtVendorCode.Text)
@@ -119,6 +120,7 @@ Public Class VendorManagement
         SQL.AddParam("@Terms", txtTerms.Text)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
+        SQL.AddParam("@AccountNo", txtAccountNo.Text)
         SQL.AddParam("@DateModified", Now.Date)
         SQL.AddParam("@WhoModified", Session("EmailAddress"))
         SQL.ExecNonQuery(query)
@@ -175,6 +177,7 @@ Public Class VendorManagement
         txtWebsite.Text = ""
         txtZipCode.Text = ""
         txtPosition.Text = ""
+        txtAccountNo.Text = ""
 
         ddlVAT_Type.Items.Clear()
         ddlVAT_Type.Items.Add("--Select VAT Type--")
@@ -276,6 +279,7 @@ Public Class VendorManagement
             txtTerms.Text = SQL.SQLDR("Terms").ToString
             txtCutOff.Text = SQL.SQLDR("CutOff").ToString
             ddlVAT_Type.SelectedValue = SQL.SQLDR("VAT_Type").ToString
+            txtAccountNo.Text = SQL.SQLDR("AccountNo").ToString
         End If
     End Sub
 
@@ -287,6 +291,4 @@ Public Class VendorManagement
             Response.Write("<script>window.location='VendorManagement_View.aspx';</script>")
         End If
     End Sub
-
-
 End Class

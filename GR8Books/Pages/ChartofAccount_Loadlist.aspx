@@ -149,6 +149,9 @@
                 $(tableid).append(headerTr$);  
                 return columnSet;  
             }
+            $('#modalCOA').on('hidden.bs.modal', function () {
+                $(".btnUploadSave").click();
+            })
         });
     </script>
     <style>
@@ -227,11 +230,11 @@
                                     <input type="hidden" name="Code" value='<%# Eval("AccountCode") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="AccountCode" HeaderText="Code" ItemStyle-Width="160" />
-                            <asp:BoundField DataField="AccountTitle" HeaderText="Description" ItemStyle-Width="300" />
-                            <asp:BoundField DataField="AccountGroup" HeaderText="Account Group" ItemStyle-Width="200" />
-                            <asp:BoundField DataField="AccountNature" HeaderText="Account Nature" ItemStyle-Width="160" />
-                            <asp:BoundField DataField="withSubsidiary" HeaderText="With Subsidiary" ItemStyle-Width="150" />
+                            <asp:BoundField DataField="AccountCode" HeaderText="Code"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false"  />
+                            <asp:BoundField DataField="AccountTitle" HeaderText="Description"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                            <asp:BoundField DataField="AccountGroup" HeaderText="Account Group"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                            <asp:BoundField DataField="AccountNature" HeaderText="Account Nature"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false"  />
+                            <asp:BoundField DataField="withSubsidiary" HeaderText="With Subsidiary"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                             <asp:BoundField DataField="Class" HeaderText="Class" ItemStyle-Width="100" />
                             <asp:TemplateField HeaderText="Actions" ItemStyle-Width="350">
                                 <ItemTemplate>
@@ -300,17 +303,18 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <asp:GridView ID="gvUpload" CssClass="gvUpload" runat="server" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True">
+                                <div style="overflow:scroll;">
+                                                                <asp:GridView ID="gvUpload" CssClass="gvUpload" runat="server" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True">
                                     <AlternatingRowStyle BackColor="White" />
                                     <Columns>
-                                        <asp:BoundField DataField="AccountCode" HeaderText="Code" ItemStyle-Width="160" />
-                                        <asp:BoundField DataField="AccountType" HeaderText="Type" ItemStyle-Width="160" />
-                                        <asp:BoundField DataField="AccountTitle" HeaderText="Description" ItemStyle-Width="300" />
-                                        <asp:BoundField DataField="AccountGroup" HeaderText="Account Group" ItemStyle-Width="200" />
-                                        <asp:BoundField DataField="AccountNature" HeaderText="Account Nature" ItemStyle-Width="160" />
-                                        <asp:BoundField DataField="ReportAlias" HeaderText="Report Alias" ItemStyle-Width="200" />
-                                        <asp:BoundField DataField="Class" HeaderText="Class" ItemStyle-Width="200" />
-                                        <asp:BoundField DataField="withSubsidiary" HeaderText="With Subsidiary" ItemStyle-Width="150" />
+                                        <asp:BoundField DataField="AccountCode" HeaderText="Code"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                                        <asp:BoundField DataField="AccountType" HeaderText="Type"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                                        <asp:BoundField DataField="AccountTitle" HeaderText="Description"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false"/>
+                                        <asp:BoundField DataField="AccountGroup" HeaderText="Account Group"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                                        <asp:BoundField DataField="AccountNature" HeaderText="Account Nature"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                                        <asp:BoundField DataField="ReportAlias" HeaderText="Report Alias"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false"/>
+                                        <asp:BoundField DataField="Class" HeaderText="Class"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                                        <asp:BoundField DataField="withSubsidiary" HeaderText="With Subsidiary"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                                     </Columns>
                                     <EditRowStyle BackColor="#2461BF" />
                                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -325,10 +329,11 @@
                                 </asp:GridView>
                                 <br />
                             </div>
+                           </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnUploadSave" Text="Save" class="btnUploadSave btn btn-primary btn-block" runat="server" />
+                        <asp:Button ID="btnUploadSave" Text="Close" class="btnUploadSave btn btn-primary btn-block" runat="server" />
                     </div>
                 </div>
             </div>

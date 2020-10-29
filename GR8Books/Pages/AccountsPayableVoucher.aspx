@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Accounts Payable Voucher" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="AccountsPayableVoucher.aspx.vb" Inherits="GR8Books.AccountsPayableVoucher" %>
+﻿<%@ Page Title="Accounts Payable Voucher" MaintainScrollPositionOnPostback="true"  Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Dashboard.Master" CodeBehind="AccountsPayableVoucher.aspx.vb" Inherits="GR8Books.AccountsPayableVoucher" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -223,6 +223,104 @@
             });
 
 
+
+            //-------------NEW
+
+            $("#<%=btnTax.ClientID%>").click(function (e) {
+                e.preventDefault();
+                var id = $(this).attr("id");
+                var amount = parseFloat($("#<%=txtAmount.ClientID%>").val().replace(/,/g, ""));
+                $("select#<%=ddlTaxType.ClientID%>")[0].selectedIndex = 0;
+                $("select#<%=ddlETaxType.ClientID%>")[0].selectedIndex = 0;
+                $("#<%=txtTAmount.ClientID%>").val(parseFloat(amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                $("#<%=txtTTotalAmount.ClientID%>").val(parseFloat(amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                $("#<%=txtTNetAmount.ClientID%>").val("0.00");
+                $("#<%=txtTTaxAmount.ClientID%>").val("0.00");
+                $("#<%=txtTPercent.ClientID%>").val("0.00%");
+                $("#<%=txtETaxAmount.ClientID%>").val("0.00");
+                $("#<%=txtEPercent.ClientID%>").val("0.00%");
+              });
+
+            $(".btnTax_Entry").click(function (e) {
+                e.preventDefault();
+                var id = $(this).attr("id");
+                $("#<%=txtRow.ClientID%>").val(parseFloat(id.split("_")[id.split("_").length - 1]) + 1);
+                var amount = parseFloat($("#" + id.replace("btnTax_Entry", "txtDebit_Entry")).val().replace(/,/g, "")) + parseFloat($("#" + id.replace("btnTax_Entry", "txtCredit_Entry")).val().replace(/,/g, ""));
+                $("select#<%=ddlTaxType.ClientID%>")[0].selectedIndex = 0;
+                $("select#<%=ddlETaxType.ClientID%>")[0].selectedIndex = 0;
+                ////$("#<%=txtTAmount.ClientID%>").val("0.00");
+                $("#<%=txtTAmount.ClientID%>").val(parseFloat(amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                ////$("#<%=txtTNetAmount.ClientID%>").val(parseFloat(amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                $("#<%=txtTTaxAmount.ClientID%>").val("0.00");
+                $("#<%=txtTPercent.ClientID%>").val("0.00%");
+                $("#<%=txtETaxAmount.ClientID%>").val("0.00");
+                $("#<%=txtEPercent.ClientID%>").val("0.00%");
+                $("#<%=txtTTotalAmount.ClientID%>").val("0.00");
+            });
+            //-------------VAT--------------------
+            $("#<%=ddlTaxType.ClientID%>").change(function () {
+                ComputeTax();
+            });
+
+            //-------------EWT--------------------
+            $("#<%=ddlETaxType.ClientID%>").change(function () {
+                ComputeTax();
+            });
+
+            function ComputeTax() {
+                var taxcode = $("#<%=ddlTaxType.ClientID%>").val();
+                var ewtcode = $("#<%=ddlETaxType.ClientID%>").val();
+                console.log(taxcode + " " + ewtcode);
+                $.ajax({
+                    url: "<%= ResolveUrl("AccountsPayableVoucher.aspx/LoadTaxPercent") %>",
+                    data: "{'TaxCode':'" + taxcode + "', 'EWTCode':'" + ewtcode + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        var taxpercent = data.d.split("|")[0];
+                        var ewtpercent = data.d.split("|")[1];
+                        $("#<%=txtTPercent.ClientID%>").val(taxpercent);
+                        $("#<%=txtEPercent.ClientID%>").val(ewtpercent);
+
+                        //TAX COMPUTATION
+                        taxpercent = parseFloat(taxpercent.replace("%", "")) / 100;
+                        var amount = parseFloat($("#<%=txtTAmount.ClientID%>").val().replace(/,/g, ""));
+                        if (amount > 0) {
+                            amount = amount / (1 + taxpercent);
+                            $("#<%=txtTNetAmount.ClientID%>").val(parseFloat(amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                        } else {
+                            $("#<%=txtTAmount.ClientID%>").val(parseFloat($("#<%=txtTNetAmount.ClientID%>").val()).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString())
+                        }
+                        var taxamount = parseFloat($("#<%=txtTNetAmount.ClientID%>").val().replace(/,/g, "")) * taxpercent;
+                        if (isNaN(taxamount)) {
+                            taxamount = 0;
+                        }
+                        $("#<%=txtTTaxAmount.ClientID%>").val(parseFloat(taxamount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                        $("#<%=txtTTotalAmount.ClientID%>").val(parseFloat(amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+
+                        //EWT COMPUTATION
+                        ewtpercent = parseFloat(ewtpercent.replace("%", "")) / 100;
+                        var amount = parseFloat($("#<%=txtTAmount.ClientID%>").val().replace(/,/g, ""));
+                        if (amount > 0 && parseFloat($("#<%=txtTNetAmount.ClientID%>").val().replace(/,/g, "")) == 0) {
+                            //amount = amount / (1 + percent);
+                            $("#<%=txtTNetAmount.ClientID%>").val(parseFloat(amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                        } 
+                        var taxamount = parseFloat($("#<%=txtTNetAmount.ClientID%>").val().replace(/,/g, "")) * ewtpercent;
+                        if (isNaN(taxamount)) {
+                            taxamount = 0;
+                        }
+                        $("#<%=txtETaxAmount.ClientID%>").val(parseFloat(taxamount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                        var cash = amount - taxamount;
+                        $("#<%=txtTTotalAmount.ClientID%>").val(parseFloat(cash).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+                    }
+                });
+            }
+
+            function ComputeEWT() {
+
+            }
         });
     </script>
     <asp:Panel runat="server">
@@ -291,7 +389,7 @@
                         <div class="col">
                             <asp:DropDownList runat="server" ID="ddlCreditAccount" class="ddlCreditAccount form-control" AppendDataBoundItems="true" AutoPostBack="true" EnableViewState="true">
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator5" runat="Server" ControlToValidate="ddlCreditAccount" InitialValue="--Select Credit Account--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator5" runat="Server"  ControlToValidate="ddlCreditAccount" InitialValue="--Select Credit Account--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -415,17 +513,17 @@
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="X" ControlStyle-CssClass="btn btn-danger" />
                         <asp:BoundField DataField="chNo" HeaderText="No." />
-                        <asp:TemplateField HeaderText="Account Code">
+                        <asp:TemplateField HeaderText="Account Code"  HeaderStyle-Wrap="false" >
                             <ItemTemplate>
-                                <asp:TextBox ID="txtAccntCode_Entry" Class="txtAccntCode_Entry form-control" runat="server" Width="110" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtAccntCode_Entry" Class="txtAccntCode_Entry form-control" runat="server" Width="100px" AutoComplete="off"></asp:TextBox>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Button ID="btnAdd_Entry" runat="server" class="btn btn-light btn-sm" Text="Add Entry" OnClick="AddNewRow" AutoPostBack="False" />
                             </FooterTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Account Title">
+                        <asp:TemplateField HeaderText="Account Title"  HeaderStyle-Wrap="false" >
                             <ItemTemplate>
-                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="txtAccntTitle_Entry" Class="txtAccntTitle_Entry form-control" runat="server" AutoComplete="off" Width="150px"></asp:TextBox>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Button ID="btnCompute" runat="server" class="btnCompute btn btn-light btn-sm" Text="Auto Entry" OnClick="ComputeRow" />
@@ -454,17 +552,17 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Particulars">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtParticulars_Entry" Class="txtParticulars_Entry form-control" runat="server" AutoComplete="off" Width="150px"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Code">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtCode_Entry" class="txtCode_Entry form-control " runat="server" Width="110" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtCode_Entry" class="txtCode_Entry form-control " runat="server" Width="100px" AutoComplete="off"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Name">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" AutoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtName_Entry" Class="txtName_Entry form-control" runat="server" Width="150px" AutoComplete="off"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -478,6 +576,12 @@
                          <asp:TemplateField HeaderText="Ref. ID">
                              <ItemTemplate>
                                 <asp:TextBox ID="txtRefID_Entry" Class="txtRefID_Entry form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
+                             </ItemTemplate>
+                         </asp:TemplateField>
+
+                          <asp:TemplateField HeaderText="VAT Type">
+                             <ItemTemplate>
+                                <asp:TextBox ID="txtVATType" Class="txtVATType form-control" runat="server" AutoComplete="off"  Width="100px" ></asp:TextBox>
                              </ItemTemplate>
                          </asp:TemplateField>
                     </Columns>
@@ -494,5 +598,105 @@
                 </asp:GridView>
             </div>
         </asp:Panel>
+
+
+         <%-- Tax --%>
+        <div class="modal fade" id="modalTax" tabindex="-1" role="dialog" aria-labelledby="modalLabelTax" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabelTax">Tax</h5>
+                        <asp:TextBox ID ="txtRow" runat="server"></asp:TextBox>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="Gross Amount :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txtTAmount" class="form-control text-right" runat="server" AutoComplete="off"></asp:TextBox>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="Net Amount :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txtTNetAmount" class="form-control text-right" runat="server" AutoComplete="off"></asp:TextBox>
+                                </div>
+                            </div>
+                            <%---------------------VAT---------------------%>
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="VAT Code :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:DropDownList runat="server" ID="ddlTaxType" class="ddlTaxType form-control" AppendDataBoundItems="true" AutoPostBack="false" EnableViewState="true">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="Percent :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txtTPercent" class="form-control text-right" runat="server" AutoComplete="off"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="VAT Amount :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txtTTaxAmount" class="form-control text-right" runat="server" AutoComplete="off"></asp:TextBox>
+                                </div>
+                            </div>
+                            <%-------------------EWT---------------------%>
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="EWT Code :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:DropDownList runat="server" ID="ddlETaxType" class="ddlETaxType form-control" AppendDataBoundItems="true" AutoPostBack="false" EnableViewState="true">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="Percent :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txtEPercent" class="form-control text-right" runat="server" AutoComplete="off"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="EWT Amount :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txtETaxAmount" class="form-control text-right" runat="server" AutoComplete="off"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-nowrap">
+                                    <asp:Label Text="Amount :" runat="server" />
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txtTTotalAmount" class="form-control text-right" runat="server" AutoComplete="off"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button Text="Save" ID="btnSaveTax" class="btnSaveTax btn btn-primary btn-block" runat="server" AutoPostBack="true" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </asp:Panel>
 </asp:Content>

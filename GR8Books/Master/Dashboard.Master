@@ -50,7 +50,7 @@
                             <a href="../Pages/CompanySetup.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Company Setup</a>
                             <a href="../Pages/ChartofAccount_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Chart of Accounts</a>
                             <a href="../Pages/BankMasterfile_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Bank Management</a>
-                            <a href="../Pages/TaxSetup_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Tax Setup</a>
+                            <%--<a href="../Pages/TaxSetup_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Tax Setup</a>--%>
                             <a href="../Pages/VendorManagement_View.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Vendor Management</a>
                             <a href="../Pages/CustomerManagement_View.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Customer Management</a>
                             <a href="../Pages/Employee_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Employee Management</a>

@@ -76,7 +76,7 @@
                 $.each(jsondata, function (i, row) {
                     $.ajax({
                         url: "<%= ResolveUrl("CustomerManagement_View.aspx/SaveVCE") %>",
-                        data: "{'Customer_Code':'" + row.Customer_Code + "', 'Classification':'" + row.Classification + "', 'First_Name':'" + row.First_Name + "', 'Last_Name':'" + row.Last_Name + "', 'Middle_Name':'" + row.Middle_Name + "', 'Suffix_Name':'" + row.Suffix_Name + "', 'Customer_Name':'" + row.Customer_Name + "', 'TIN_No':'" + row.TIN_No + "', 'BranchCode':'" + row.BranchCode + "', 'Billing_Lot_Unit':'" + row.Billing_Lot_Unit + "', 'Billing_Blk_Bldg':'" + row.Billing_Blk_Bldg + "', 'Billing_Street':'" + row.Billing_Street + "', 'Billing_Subd':'" + row.Billing_Subd + "', 'Billing_Brgy':'" + row.Billing_Brgy + "', 'Billing_Town_City':'" + row.Billing_Town_City + "', 'Billing_Province':'" + row.Billing_Province + "', 'Billing_Region':'" + row.Billing_Region + "', 'Billing_ZipCode':'" + row.Billing_ZipCode + "', 'Delivery_Lot_Unit':'" + row.Delivery_Lot_Unit + "', 'Delivery_Blk_Bldg':'" + row.Delivery_Blk_Bldg + "', 'Delivery_Street':'" + row.Delivery_Street + "', 'Delivery_Subd':'" + row.Delivery_Subd + "', 'Delivery_Brgy':'" + row.Delivery_Brgy + "', 'Delivery_Town_City':'" + row.Delivery_Town_City + "', 'Delivery_Province':'" + row.Delivery_Province + "', 'Delivery_Region':'" + row.Delivery_Region + "', 'Delivery_ZipCode':'" + row.Delivery_ZipCode + "', 'SameAddress':'" + row.SameAddress + "', 'Contact_Person':'" + row.Contact_Person + "', 'Contact_Position':'" + row.Contact_Position + "', 'Contact_Telephone':'" + row.Contact_Telephone + "', 'Contact_Cellphone':'" + row.Contact_Cellphone + "', 'Contact_Fax':'" + row.Contact_Fax + "', 'Contact_Email':'" + row.Contact_Email + "', 'Contact_Website':'" + row.Contact_Website + "', 'Terms':'" + row.Terms + "', 'CutOff':'" + row.CutOff + "', 'VAT_Type':'" + row.VAT_Type + "'}",
+                        data: "{'Customer_Code':'" + row.Customer_Code + "', 'Classification':'" + row.Classification + "', 'First_Name':'" + row.First_Name + "', 'Last_Name':'" + row.Last_Name + "', 'Middle_Name':'" + row.Middle_Name + "', 'Suffix_Name':'" + row.Suffix_Name + "', 'Customer_Name':'" + row.Customer_Name + "', 'TIN_No':'" + row.TIN_No + "', 'BranchCode':'" + row.BranchCode + "', 'Billing_Lot_Unit':'" + row.Billing_Lot_Unit + "', 'Billing_Blk_Bldg':'" + row.Billing_Blk_Bldg + "', 'Billing_Street':'" + row.Billing_Street + "', 'Billing_Subd':'" + row.Billing_Subd + "', 'Billing_Brgy':'" + row.Billing_Brgy + "', 'Billing_Town_City':'" + row.Billing_Town_City + "', 'Billing_Province':'" + row.Billing_Province + "', 'Billing_Region':'" + row.Billing_Region + "', 'Billing_ZipCode':'" + row.Billing_ZipCode + "', 'Delivery_Lot_Unit':'" + row.Delivery_Lot_Unit + "', 'Delivery_Blk_Bldg':'" + row.Delivery_Blk_Bldg + "', 'Delivery_Street':'" + row.Delivery_Street + "', 'Delivery_Subd':'" + row.Delivery_Subd + "', 'Delivery_Brgy':'" + row.Delivery_Brgy + "', 'Delivery_Town_City':'" + row.Delivery_Town_City + "', 'Delivery_Province':'" + row.Delivery_Province + "', 'Delivery_Region':'" + row.Delivery_Region + "', 'Delivery_ZipCode':'" + row.Delivery_ZipCode + "', 'SameAddress':'" + row.SameAddress + "', 'Contact_Person':'" + row.Contact_Person + "', 'Contact_Position':'" + row.Contact_Position + "', 'Contact_Telephone':'" + row.Contact_Telephone + "', 'Contact_Cellphone':'" + row.Contact_Cellphone + "', 'Contact_Fax':'" + row.Contact_Fax + "', 'Contact_Email':'" + row.Contact_Email + "', 'Contact_Website':'" + row.Contact_Website + "', 'Terms':'" + row.Terms + "', 'CutOff':'" + row.CutOff + "', 'VAT_Type':'" + row.VAT_Type + "', 'AccountNo':'" + row.AccountNo + "'}",
                         dataType: "json",
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
@@ -121,6 +121,7 @@
                             row$.append($('<td/>').html(row.Terms));
                             row$.append($('<td/>').html(row.CutOff));
                             row$.append($('<td/>').html(row.VAT_Type));
+                            row$.append($('<td/>').html(row.AccountNo));
                             if (bool == "Exist") {
                                 $("#<%=gvUpload.ClientID%>").append(row$.css({"background-color":"red","color":"white"}));  
                             } else {
@@ -132,8 +133,11 @@
                             if (rowCount == jsondata.length) {
                                 $(".files").attr("title", "Upload Complete");
                             }
+   
                         }
+
                     });
+                    
                 });
             }
             function BindTableHeader(jsondata, tableid) {/*Function used to get all column names from JSON and bind the html table header*/  
@@ -153,6 +157,9 @@
                 $(tableid).append(headerTr$);  
                 return columnSet;  
             }
+            $('#modalCOA').on('hidden.bs.modal', function () {
+                 $(".btnUploadSave").click();
+            })
         });
     </script>
     <style type="text/css">
@@ -237,8 +244,7 @@
                 <asp:BoundField DataField="Billing_Town_City" HeaderText="Billing_Town_City" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Billing_Province" HeaderText="Billing_Province" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Billing_Region" HeaderText="Billing_Region" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                <asp:BoundField DataField="Billing_ZipCode" HeaderText="Billing_ZipCode" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                
+                <asp:BoundField DataField="Billing_ZipCode" HeaderText="Billing_ZipCode" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />                
                 <asp:BoundField DataField="Delivery_Lot_Unit" HeaderText="Delivery_Lot_Unit" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Delivery_Blk_Bldg" HeaderText="Delivery_Blk_Bldg" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Delivery_Street" HeaderText="Delivery_Street" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
@@ -258,6 +264,7 @@
                 <asp:BoundField DataField="Terms" HeaderText="Terms" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="CutOff" HeaderText="CutOff" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="VAT_Type" HeaderText="VAT_Type" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                <asp:BoundField DataField="AccountNo" HeaderText="AccountNo" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="Status" HeaderText="Status" />
                 <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                 <asp:BoundField DataField="DateModified" HeaderText="DateModified" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
@@ -374,6 +381,7 @@
                                             <asp:BoundField DataField="Terms" HeaderText = "Terms" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                                             <asp:BoundField DataField="CutOff" HeaderText = "CutOff" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                                             <asp:BoundField DataField="VAT_Type" HeaderText = "VATType" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
+                                            <asp:BoundField DataField="AccountNo" HeaderText = "AccountNo" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                                         </Columns>
                                         <EditRowStyle BackColor="#2461BF" />
                                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -392,7 +400,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnUploadSave" Text="Save" class="btnUploadSave btn btn-primary btn-block" runat="server" />
+                        <asp:Button ID="btnUploadSave" Text="Close" class="btnUploadSave btn btn-primary btn-block" runat="server" />
                     </div>
                 </div>
             </div>
