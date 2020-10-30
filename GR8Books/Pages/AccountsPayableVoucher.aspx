@@ -210,11 +210,12 @@
                 e.preventDefault();
                 var Type = "CA";
                 var Url = "AccountsPayableVoucher.aspx";
+                var Name = $(".txtName").val();
                 var myWidth = "900";
                 var myHeight = "550";
                 var left = (screen.width - myWidth) / 2;
                 var top = (screen.height - myHeight) / 4;
-                var win = window.open("CopyFrom.aspx?id=" + Type + '&Url=' + Url, "Load Transaction", 'dialog=yes,resizable=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+                var win = window.open("CopyFrom.aspx?id=" + Type + '&Url=' + Url + '&Name=' + Name, "Load Transaction", 'dialog=yes,resizable=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
                 var timer = setInterval(function () {
                     if (win.closed) {
                         clearInterval(timer);
@@ -366,7 +367,7 @@
                         </div>
                         <div class="col">
                             <div class="input-group">
-                                <asp:TextBox ID="txtName" runat="server" class="form-control " autocomplete="off" />
+                                <asp:TextBox ID="txtName" runat="server" class="txtName form-control " autocomplete="off" />
                                 <div class="input-group-append">
                                     <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
                                 </div>

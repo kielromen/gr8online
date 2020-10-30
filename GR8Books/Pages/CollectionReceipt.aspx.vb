@@ -59,6 +59,8 @@ Public Class CollectionReceipt
         Session("Transno") = ""
         Session("AccountCode") = ""
         Session("AccountTitle") = ""
+        Session("TotalDebit") = 0
+        Session("TotalCredit") = 0
         txtCode.Attributes.Add("readonly", "readonly")
         txtStatus.Text = ""
         txtStatus.Attributes.Add("readonly", "readonly")
@@ -450,7 +452,7 @@ Public Class CollectionReceipt
                 " FROM   View_GL INNER JOIN tblCOA " &
                 " ON     View_GL.AccntCode = tblCOA.AccountCode " &
                 " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE RefType = 'CR' AND RefTransID = " & ID & ") " &
-                " ORDER BY LineNumber "
+                 " ORDER BY Debit DESC, AccntCode ASC "
         SQL.ReadQuery(query)
         Dim ch As Integer = 1
 
@@ -556,13 +558,17 @@ Public Class CollectionReceipt
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Page.Validate()
         If (Page.IsValid) Then
+            Dim count As Integer = 0
             For Each rows As GridViewRow In dgvEntry.Rows
                 Dim AccntCode As TextBox
                 AccntCode = rows.FindControl("txtAccntCode_Entry")
                 If AccntCode.Text = "" Then
-                    Response.Write("<script>alert('Invalid Account Code!');</script>")
-                    Exit Sub
+                    If dgvEntry.Rows.Count - 1 <> count And AccntCode.Text = "" Then
+                        Response.Write("<script>alert('Invalid Account Code!');</script>")
+                        Exit Sub
+                    End If
                 End If
+                count = count + 1
             Next
             If Session("TransID") = "" Then
                 TransID = GenerateTransID(ColumnID, DBTable)
@@ -880,6 +886,9 @@ Public Class CollectionReceipt
 
         If txtAmount.Text <> "" Then
             If Session("AccountCode") <> "" Then
+                AddNewRow(dgvEntry, EventArgs.Empty)
+                txtAmount.Text = CDec(Session("TotalCredit") - Session("TotalDebit")).ToString("N2")
+
                 Dim rowIndex As Integer = 0
                 If Not IsNothing(ViewState("EntryTable")) Then
                     Dim dt As DataTable = ViewState("EntryTable")
@@ -1004,6 +1013,17 @@ Public Class CollectionReceipt
                     txtRemarks.Text = SQL.SQLDR("Remarks").ToString
                     LoadCopyFromEntry(CopyFromID, Type)
                 End If
+            Case "SJ"
+                query = " SELECT   TransID, SJ_No AS TransNo, VCECode, VCEName, Remarks" &
+                        " FROM     View_SJ_Balance " &
+                        " WHERE TransID  ='" & CopyFromID & "' "
+                SQL.ReadQuery(query)
+                If SQL.SQLDR.Read Then
+                    txtCode.Text = SQL.SQLDR("VCECode").ToString
+                    txtName.Text = SQL.SQLDR("VCEName").ToString
+                    txtRemarks.Text = SQL.SQLDR("Remarks").ToString
+                    LoadCopyFromEntry(CopyFromID, Type)
+                End If
         End Select
 
     End Sub
@@ -1012,8 +1032,13 @@ Public Class CollectionReceipt
         Dim query As String
         Select Case Type
             Case "CASHR"
-                query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
+                query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo, Nature " &
                         " FROM  View_CA_Return " &
+                        " WHERE TransID  ='" & CopyFromID & "' "
+                SQL.ReadQuery(query)
+            Case "SJ"
+                query = " SELECT TransID, SJ_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo, Nature " &
+                        " FROM  View_SJ_Balance " &
                         " WHERE TransID  ='" & CopyFromID & "' "
                 SQL.ReadQuery(query)
         End Select
@@ -1037,8 +1062,8 @@ Public Class CollectionReceipt
                 drow("chNo") = ch
                 drow("AccntCode") = SQL.SQLDR("AccountCode").ToString
                 drow("AccntTitle") = SQL.SQLDR("AccountTitle").ToString
-                drow("Debit") = "0.00"
-                drow("Credit") = CDec(SQL.SQLDR("TotalAmount")).ToString("N2")
+                drow("Debit") = IIf(SQL.SQLDR("Nature").ToString = "Debit", CDec(SQL.SQLDR("TotalAmount")).ToString("N2"), "0.00")
+                drow("Credit") = IIf(SQL.SQLDR("Nature").ToString = "Credit", CDec(SQL.SQLDR("TotalAmount")).ToString("N2"), "0.00")
                 drow("Particulars") = SQL.SQLDR("Particulars").ToString
                 drow("Code") = SQL.SQLDR("VCECode").ToString
                 drow("Name") = SQL.SQLDR("VCEName").ToString
@@ -1066,8 +1091,8 @@ Public Class CollectionReceipt
                 dr("chNo") = ch
                 dr("AccntCode") = SQL.SQLDR("AccountCode").ToString
                 dr("AccntTitle") = SQL.SQLDR("AccountTitle").ToString
-                dr("Debit") = "0.00"
-                dr("Credit") = CDec(SQL.SQLDR("TotalAmount")).ToString("N2")
+                dr("Debit") = IIf(SQL.SQLDR("Nature").ToString = "Debit", CDec(SQL.SQLDR("TotalAmount")).ToString("N2"), "0.00")
+                dr("Credit") = IIf(SQL.SQLDR("Nature").ToString = "Credit", CDec(SQL.SQLDR("TotalAmount")).ToString("N2"), "0.00")
                 dr("Particulars") = SQL.SQLDR("Particulars").ToString
                 dr("Code") = SQL.SQLDR("VCECode").ToString
                 dr("Name") = SQL.SQLDR("VCEName").ToString
@@ -1103,4 +1128,24 @@ Public Class CollectionReceipt
         txtTrans_Num.Text = GenerateTransNum(TransAuto, ModuleID, ColumnPK, DBTable)
     End Sub
     'Copy From
+
+    Dim totalDebit, totalCredit As Decimal
+    Private Sub dgvEntry_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgvEntry.RowDataBound
+
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim row As DataRowView = e.Row.DataItem
+            If IsNumeric(row(3)) And IsNumeric(row(4)) Then
+                totalDebit += Convert.ToDouble(row(3))
+                totalCredit += Convert.ToDouble(row(4))
+                Session("TotalDebit") = totalDebit
+                Session("TotalCredit") = totalCredit
+            End If
+            If IsNumeric(row(4)) And IsNumeric(row(5)) Then
+                totalDebit += Convert.ToDouble(row(4))
+                totalCredit += Convert.ToDouble(row(5))
+                Session("TotalDebit") = totalDebit
+                Session("TotalCredit") = totalCredit
+            End If
+        End If
+    End Sub
 End Class

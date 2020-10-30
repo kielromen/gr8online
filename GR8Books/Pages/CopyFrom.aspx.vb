@@ -14,7 +14,9 @@
 
     Public Sub LoadList()
         Dim Type As String = Request.QueryString("ID")
+        Dim Name As String = Request.QueryString("Name")
         Dim query As String
+        txtFilter.Text = Name
         Dim filter As String = txtFilter.Text
         Select Case Type
             Case "APV"
@@ -49,6 +51,7 @@
                         "  LEFT JOIN   " & vbCrLf &
                         "  View_SJ_Balance ON tblSJ.TransID = View_SJ_Balance.TransID   " & vbCrLf &
                         "  WHERE (tblSJ.SJ_No LIKE '%" & filter & "%' OR tblSJ.Remarks LIKE '%" & filter & "%' OR Name LIKE '%" & filter & "%') " & vbCrLf &
+                        "  AND AccountCode NOT IN (SELECT TAX_Deferred FROM tblSystemSetup UNION ALL SELECT AR_OutputVAT FROM tblSystemSetup) " & vbCrLf &
                         "  AND CASE WHEN View_SJ_Balance.TransID IS NOT NULL THEN  'Active'  " & vbCrLf &
                         " 	      WHEN tblSJ.Status ='Active' THEN 'Closed'  " & vbCrLf &
                         " 	 ELSE tblSJ.Status END = 'Active'  " & vbCrLf &
