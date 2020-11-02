@@ -417,7 +417,6 @@ Public Class Reports
                 Dim query As String
                 query = " SELECT * FROM VIEW_GL WHERE Status <> @Status AND Appdate Between @DateFrom AND @DateTo AND Book = @Book AND RefType IN (SELECT RefType FROM tblPrint_BOA)"
                 SQL.FlushParams()
-                SQL.FlushParams()
                 SQL.AddParam("@Status", "Cancelled")
                 SQL.AddParam("@DateFrom", Session("@DateFrom"))
                 SQL.AddParam("@DateTo", Session("@DateTo"))
@@ -526,7 +525,12 @@ Public Class Reports
                 crystalReport.Dispose()
             Case "TRANSREG"
                 Dim query As String
-                query = " SELECT * FROM View_Transactions_Registers WHERE [Doc Type] IN (SELECT Filter FROM tblPrint_REG)"
+                query = " SELECT * FROM View_Transactions_Registers WHERE [Doc Type] IN (SELECT Filter FROM tblPrint_REG)" &
+                        " AND Date Between @DateFrom AND @DateTo"
+                SQL.FlushParams()
+                SQL.AddParam("@DateFrom", Session("@DateFrom"))
+                SQL.AddParam("@DateTo", Session("@DateTo"))
+
                 Dim crystalReport As New ReportDocument()
                 crystalReport.Load(Server.MapPath("~/Reports/rptTRANSREG.rpt"))
 

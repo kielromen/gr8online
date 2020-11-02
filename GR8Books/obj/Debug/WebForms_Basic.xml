@@ -4030,6 +4030,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CollectionReceipt._btnCopyFromSJ">
+<summary>
+btnCopyFromSJ control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CollectionReceipt._btnPrev">
 <summary>
 btnPrev control.
@@ -8836,6 +8845,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.OfficialReceipt._btnCopyFromSJ">
+<summary>
+btnCopyFromSJ control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.OfficialReceipt._btnPrev">
 <summary>
 btnPrev control.
@@ -9424,6 +9442,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.ProvisionalReceipt._btnCopyFromCASHR">
 <summary>
 btnCopyFromCASHR control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ProvisionalReceipt._btnCopyFromSJ">
+<summary>
+btnCopyFromSJ control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -642,6 +642,18 @@ Module ModuleGen
         Return CompanyCode
     End Function
 
+
+    Public Function IfDeferred(ByVal AccntCode As String) As Boolean
+        Dim query As String
+        query = " SELECT TAX_Deferred FROM tblSystemSetup WHERE TAX_Deferred ='" & AccntCode & "'  "
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
 End Module
 
 
