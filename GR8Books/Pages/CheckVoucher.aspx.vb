@@ -56,6 +56,7 @@ Public Class CheckVoucher
         dt.Columns.Add(New DataColumn("Name"))
         dt.Columns.Add(New DataColumn("CostCenter"))
         dt.Columns.Add(New DataColumn("RefID"))
+        dt.Columns.Add(New DataColumn("VATType"))
         Dim dr As DataRow = dt.NewRow
 
         dr("chNo") = 1
@@ -68,6 +69,7 @@ Public Class CheckVoucher
         dr("Name") = Nothing
         dr("CostCenter") = Nothing
         dr("RefID") = Nothing
+        dr("VATType") = Nothing
         dt.Rows.Add(dr)
 
         ViewState("EntryTable") = dt
@@ -124,7 +126,6 @@ Public Class CheckVoucher
             End If
             SetDataTable()
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scrollDown", "setTimeout(function () { window.scrollTo(0,document.body.scrollHeight); }, 25);", True)
-
         End If
     End Sub
 
@@ -143,6 +144,7 @@ Public Class CheckVoucher
                     Dim txtName As TextBox = dgvEntry.Rows(i).Cells(8).FindControl("txtName_Entry")
                     Dim ddlCostCenter As DropDownList = dgvEntry.Rows(i).Cells(9).FindControl("ddlCostCenter")
                     Dim txtRefID As TextBox = dgvEntry.Rows(i).Cells(10).FindControl("txtRefID_Entry")
+                    Dim txtVATType As TextBox = dgvEntry.Rows(i).Cells(11).FindControl("txtVATTYpe")
 
                     ddlCostCenter.Items.Clear()
                     ddlCostCenter.Items.Add("")
@@ -159,6 +161,7 @@ Public Class CheckVoucher
                     txtName.Text = dt.Rows(i)("Name").ToString
                     ddlCostCenter.SelectedValue = dt.Rows(i)("CostCenter").ToString
                     txtRefID.Text = dt.Rows(i)("RefID").ToString
+                    txtVATType.Text = dt.Rows(i)("VATType").ToString
                 Next
             End If
         End If
@@ -298,6 +301,9 @@ Public Class CheckVoucher
         Session("AccountCode") = ""
         Session("AccountTitle") = ""
         Session("Transno") = ""
+        Session("TotalDebit") = 0
+        Session("TotalCredit") = 0
+        txtRow.Style.Add("display", "none")
         'txtRef_Type.Attributes.Add("readonly", "readonly")
         'txtRef_No.Attributes.Add("readonly", "readonly")
         txtBank_CheckStatus.Attributes.Add("readonly", "readonly")
@@ -336,6 +342,33 @@ Public Class CheckVoucher
         ddlDisbursementType.Items.Add("--Select Disbursement Type--")
         ddlDisbursementType.DataSource = LoadDisbursementType().ToArray
         ddlDisbursementType.DataBind()
+
+        'tax
+        txtTNetAmount.Text = "0.00"
+        txtETaxAmount.Text = "0.00"
+        txtTTaxAmount.Text = "0.00"
+        txtTTotalAmount.Text = "0.00"
+        txtTAmount.Text = "0.00"
+
+        txtTNetAmount.Attributes.Add("readonly", "readonly")
+        txtETaxAmount.Attributes.Add("readonly", "readonly")
+        txtTTaxAmount.Attributes.Add("readonly", "readonly")
+        txtTTotalAmount.Attributes.Add("readonly", "readonly")
+        txtTAmount.Attributes.Add("readonly", "readonly")
+        txtTPercent.Attributes.Add("readonly", "readonly")
+        txtEPercent.Attributes.Add("readonly", "readonly")
+
+        ddlTaxType.Items.Clear()
+        ddlTaxType.Items.Add("--Select VAT Rate--")
+        ddlTaxType.DataSource = LoadTaxCode("Purchases", "INPUT VAT").ToArray
+        ddlTaxType.DataBind()
+
+        ddlETaxType.Items.Clear()
+        ddlETaxType.Items.Add("--Select EWT Rate--")
+        ddlETaxType.DataSource = LoadTaxCode("Purchases", "EWT").ToArray
+        ddlETaxType.DataBind()
+        'tax
+
     End Sub
 
     Public Sub EnableControl(ByVal Value As Boolean)
@@ -382,13 +415,17 @@ Public Class CheckVoucher
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Page.Validate()
         If (Page.IsValid) Then
+            Dim count As Integer = 0
             For Each rows As GridViewRow In dgvEntry.Rows
                 Dim AccntCode As TextBox
                 AccntCode = rows.FindControl("txtAccntCode_Entry")
                 If AccntCode.Text = "" Then
-                    Response.Write("<script>alert('Invalid Account Code!');</script>")
-                    Exit Sub
+                    If dgvEntry.Rows.Count - 1 <> count And AccntCode.Text = "" Then
+                        Response.Write("<script>alert('Invalid Account Code!');</script>")
+                        Exit Sub
+                    End If
                 End If
+                count = count + 1
             Next
             If Session("TransID") = "" Then
                 TransID = GenerateTransID(ColumnID, DBTable)
@@ -485,13 +522,14 @@ Public Class CheckVoucher
                     Dim txtName As TextBox = dgvEntry.Rows(i).Cells(8).FindControl("txtName_Entry")
                     Dim ddlCostCenter As DropDownList = dgvEntry.Rows(i).Cells(9).FindControl("ddlCostCenter")
                     Dim txtRefID As TextBox = dgvEntry.Rows(i).Cells(10).FindControl("txtRefID_Entry")
+                    Dim txtVATType As TextBox = dgvEntry.Rows(i).Cells(10).FindControl("txtVATType")
 
                     Dim CostID = GetCostCenterID(ddlCostCenter.SelectedValue)
 
                     If txtAccntCode.Text <> Nothing Then
                         insertSQL = " INSERT INTO " &
-                                " tblJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, CostCenter, RefNo, LineNumber, Status) " &
-                                " VALUES(@JE_No, @AccntCode, @VCECode, @Debit, @Credit, @Particulars, @CostCenter, @RefNo, @LineNumber, @Status)"
+                                " tblJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, CostCenter, RefNo, VatType,  LineNumber, Status) " &
+                                " VALUES(@JE_No, @AccntCode, @VCECode, @Debit, @Credit, @Particulars, @CostCenter, @RefNo, @VatType, @LineNumber, @Status)"
                         SQL.FlushParams()
                         SQL.AddParam("@JE_No", JETransiD)
                         SQL.AddParam("@AccntCode", txtAccntCode.Text)
@@ -529,6 +567,11 @@ Public Class CheckVoucher
                             End If
                         Else
                             SQL.AddParam("@RefNo", "")
+                        End If
+                        If txtVATType.Text <> Nothing AndAlso txtVATType.Text <> "" Then
+                            SQL.AddParam("@VATType", txtVATType.Text)
+                        Else
+                            SQL.AddParam("@VATType", "")
                         End If
                         SQL.AddParam("@LineNumber", line)
                         SQL.AddParam("@Status", "Active")
@@ -659,13 +702,14 @@ Public Class CheckVoucher
                     Dim txtName As TextBox = dgvEntry.Rows(i).Cells(8).FindControl("txtName_Entry")
                     Dim ddlCostCenter As DropDownList = dgvEntry.Rows(i).Cells(9).FindControl("ddlCostCenter")
                     Dim txtRefID As TextBox = dgvEntry.Rows(i).Cells(10).FindControl("txtRefID_Entry")
+                    Dim txtVATType As TextBox = dgvEntry.Rows(i).Cells(11).FindControl("txtVATType")
 
                     Dim CostID = GetCostCenterID(ddlCostCenter.SelectedValue)
 
                     If txtAccntCode.Text <> Nothing Then
                         insertSQL = " INSERT INTO " &
-                                " tblJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, CostCenter, RefNo, LineNumber, Status) " &
-                                " VALUES(@JE_No, @AccntCode, @VCECode, @Debit, @Credit, @Particulars, @CostCenter, @RefNo, @LineNumber, @Status)"
+                                " tblJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, CostCenter, RefNo, VatType, LineNumber, Status) " &
+                                " VALUES(@JE_No, @AccntCode, @VCECode, @Debit, @Credit, @Particulars, @CostCenter, @RefNo, @VatType, @LineNumber, @Status)"
                         SQL.FlushParams()
                         SQL.AddParam("@JE_No", JETransiD)
                         SQL.AddParam("@AccntCode", txtAccntCode.Text)
@@ -703,6 +747,11 @@ Public Class CheckVoucher
                             End If
                         Else
                             SQL.AddParam("@RefNo", "")
+                        End If
+                        If txtVATType.Text <> Nothing AndAlso txtVATType.Text <> "" Then
+                            SQL.AddParam("@VATType", txtVATType.Text)
+                        Else
+                            SQL.AddParam("@VATType", "")
                         End If
                         SQL.AddParam("@LineNumber", line)
                         SQL.AddParam("@Status", "Active")
@@ -780,12 +829,13 @@ Public Class CheckVoucher
         dt.Columns.Add(New DataColumn("Name"))
         dt.Columns.Add(New DataColumn("CostCenter"))
         dt.Columns.Add(New DataColumn("RefID"))
+        dt.Columns.Add(New DataColumn("VATType"))
         ViewState("EntryTable") = dt
         dgvEntry.DataSource = dt
         dgvEntry.DataBind()
 
         Dim query As String
-        query = " SELECT ID, JE_No, View_GL.BranchCode, View_GL.AccntCode, AccountTitle, View_GL.VCECode, View_GL.VCEName, Debit, Credit, Particulars, CostID, RefNo   " &
+        query = " SELECT ID, JE_No, View_GL.BranchCode, View_GL.AccntCode, AccountTitle, View_GL.VCECode, View_GL.VCEName, Debit, Credit, Particulars, CostID, RefNo , VatType  " &
                 " FROM   View_GL INNER JOIN tblCOA " &
                 " ON     View_GL.AccntCode = tblCOA.AccountCode " &
                 " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE RefType = 'CV' AND RefTransID = " & CVNo & ") " &
@@ -807,6 +857,7 @@ Public Class CheckVoucher
             dr("Name") = SQL.SQLDR("VCEName").ToString
             dr("CostCenter") = GetCostCenter(SQL.SQLDR("CostID").ToString)
             dr("RefID") = SQL.SQLDR("RefNo").ToString
+            dr("VATType") = SQL.SQLDR("VATType").ToString
             dt.Rows.Add(dr)
 
             ViewState("EntryTable") = data
@@ -1024,6 +1075,8 @@ Public Class CheckVoucher
         Page.Validate()
         If txtAmount.Text <> "" Then
             If Session("AccountCode") <> "" Then
+                'AddNewRow(dgvEntry, EventArgs.Empty)
+                txtAmount.Text = CDec(Session("TotalDebit") - Session("TotalCredit")).ToString("N2")
                 Dim rowIndex As Integer = 0
                 If Not IsNothing(ViewState("EntryTable")) Then
                     Dim dt As DataTable = ViewState("EntryTable")
@@ -1131,22 +1184,22 @@ Public Class CheckVoucher
         Dim query As String
         Select Case Type
             Case "APV"
-                query = " SELECT TransID, APV_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle, CostID, RefNo" &
+                query = " SELECT TransID, APV_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle, CostID, RefNo, VatType" &
                         " FROM View_APV_Balance " &
                         " WHERE  TransID ='" & CopyFromID & "' "
                 SQL.ReadQuery(query)
             Case "CA"
-                query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
+                query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo, VatType " &
                         " FROM  View_CA_Balance " &
                         " WHERE TransID  ='" & CopyFromID & "' "
                 SQL.ReadQuery(query)
             Case "PC"
-                query = " SELECT TransID, PC_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
+                query = " SELECT TransID, PC_No AS TransNo, Date, VCECode, VCEName, Amount AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo, VatType " &
                         " FROM  View_PC_Balance " &
                         " WHERE TransID  ='" & CopyFromID & "' "
                 SQL.ReadQuery(query)
             Case "CASHL"
-                query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount * -1 AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo " &
+                query = " SELECT TransID, CA_No AS TransNo, Date, VCECode, VCEName, Amount * -1 AS TotalAmount, Remarks, Particulars, AccountCode, AccountTitle,  CostID, RefNo, VatType " &
                         " FROM  View_CA_Return " &
                         " WHERE TransID  ='" & CopyFromID & "' "
                 SQL.ReadQuery(query)
@@ -1178,6 +1231,7 @@ Public Class CheckVoucher
                 drow("Name") = SQL.SQLDR("VCEName").ToString
                 drow("CostCenter") = GetCostCenter(SQL.SQLDR("CostID").ToString)
                 drow("RefID") = SQL.SQLDR("RefNo").ToString
+                drow("VatType") = SQL.SQLDR("VatType").ToString
                 dt.Rows.Add(drow)
 
                 ViewState("EntryTable") = data
@@ -1196,6 +1250,7 @@ Public Class CheckVoucher
                 data.Columns.Add(New DataColumn("Name"))
                 data.Columns.Add(New DataColumn("CostCenter"))
                 data.Columns.Add(New DataColumn("RefID"))
+                data.Columns.Add(New DataColumn("VatType"))
                 Dim dr As DataRow = data.NewRow
                 dr("chNo") = ch
                 dr("AccntCode") = SQL.SQLDR("AccountCode").ToString
@@ -1207,6 +1262,7 @@ Public Class CheckVoucher
                 dr("Name") = SQL.SQLDR("VCEName").ToString
                 dr("CostCenter") = GetCostCenter(SQL.SQLDR("CostID").ToString)
                 dr("RefID") = SQL.SQLDR("RefNo").ToString
+                dr("VatType") = SQL.SQLDR("VatType").ToString
                 data.Rows.Add(dr)
 
                 ViewState("EntryTable") = data
@@ -1240,4 +1296,190 @@ Public Class CheckVoucher
         dtpBank_Date.Value = CDate(Date.Now).ToString("yyyy-MM-dd")
     End Sub
     'Copy From
+
+
+
+    'Tax
+    Public Function LoadTaxCode(ByVal Type As String, ByVal TaxType As String) As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT  TaxDescription " &
+                " FROM    [Main].dbo.tblTax_Maintenance WHERE Type = @Type AND TaxType = @TaxType ORDER BY Sort"
+        SQL.FlushParams()
+        SQL.AddParam("@Type", Type, SqlDbType.NVarChar)
+        SQL.AddParam("@TaxType", TaxType, SqlDbType.NVarChar)
+        SQL.ReadQuery(query)
+        While SQL.SQLDR.Read
+            list.Add(SQL.SQLDR("TaxDescription").ToString)
+        End While
+        Return list
+    End Function
+
+
+    <WebMethod()>
+    Public Shared Function LoadTaxPercent(TaxCode As String, EWTCode As String) As String
+        Dim TaxPercent As String = "0.00%"
+        Dim EWTPercent As String = "0.00%"
+        Dim query As String
+        query = "SELECT TaxRate FROM [Main].dbo.tblTax_Maintenance " & vbCrLf &
+                "WHERE TaxDescription = @TaxDescription"
+        SQL.FlushParams()
+        SQL.AddParam("@TaxDescription", TaxCode, SqlDbType.NVarChar)
+        SQL.ReadQuery(query)
+        If SQL.SQLDR.Read() Then
+            TaxPercent = SQL.SQLDR("TaxRate").ToString & "%"
+        End If
+        query = "SELECT TaxRate FROM [Main].dbo.tblTax_Maintenance " & vbCrLf &
+                "WHERE TaxDescription = @TaxDescription"
+        SQL.FlushParams()
+        SQL.AddParam("@TaxDescription", EWTCode, SqlDbType.NVarChar)
+        SQL.ReadQuery(query)
+        If SQL.SQLDR.Read() Then
+            EWTPercent = SQL.SQLDR("TaxRate").ToString & "%"
+        End If
+        Return TaxPercent & "|" & EWTPercent
+    End Function
+
+    Private Sub btnSaveTax_Click(sender As Object, e As EventArgs) Handles btnSaveTax.Click
+        Dim rowIndex As Integer = 0
+        If Not IsNothing(ViewState("EntryTable")) Then
+            Dim dt As DataTable = ViewState("EntryTable")
+            Dim dr As DataRow = Nothing
+            Dim strAccntCode As String = ""
+            Dim decRow As Decimal = CDec(IIf(IsNumeric(txtRow.Text) = False, 1, txtRow.Text)) - 1
+            If dt.Rows.Count > 0 Then
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    Dim txtAccntCode As TextBox = dgvEntry.Rows(i).Cells(2).FindControl("txtAccntCode_Entry")
+                    Dim txtAccntTitle As TextBox = dgvEntry.Rows(i).Cells(3).FindControl("txtAccntTitle_Entry")
+                    Dim txtDebit As TextBox = dgvEntry.Rows(i).Cells(5).FindControl("txtDebit_Entry")
+                    Dim txtCredit As TextBox = dgvEntry.Rows(i).Cells(6).FindControl("txtCredit_Entry")
+                    Dim txtParticulars As TextBox = dgvEntry.Rows(i).Cells(4).FindControl("txtParticulars_Entry")
+                    Dim txtCode As TextBox = dgvEntry.Rows(i).Cells(7).FindControl("txtCode_Entry")
+                    Dim txtName As TextBox = dgvEntry.Rows(i).Cells(8).FindControl("txtName_Entry")
+                    Dim txtRefID As TextBox = dgvEntry.Rows(i).Cells(9).FindControl("txtRefID_Entry")
+                    Dim txtVATType As TextBox = dgvEntry.Rows(i).Cells(9).FindControl("txtVATType")
+
+                    dt.Rows(i)("AccntCode") = txtAccntCode.Text
+                    dt.Rows(i)("AccntTitle") = txtAccntTitle.Text
+                    dt.Rows(i)("Debit") = txtDebit.Text
+                    dt.Rows(i)("Credit") = txtCredit.Text
+                    dt.Rows(i)("Particulars") = txtParticulars.Text
+                    dt.Rows(i)("Code") = txtCode.Text
+                    dt.Rows(i)("Name") = txtName.Text
+                    dt.Rows(i)("RefID") = txtRefID.Text
+                    dt.Rows(i)("VATType") = txtVATType.Text
+
+                    If decRow = i Then
+                        strAccntCode = txtAccntCode.Text
+                    End If
+
+                    rowIndex = i
+                Next
+                dt.Rows.RemoveAt(decRow)
+                '-------------------COMPUTE TAX------------------------
+                Dim decNetAmount As Decimal = If(IsNumeric(txtTNetAmount.Text), CDec(txtTNetAmount.Text), 0)
+                Dim decVAmount As Decimal = If(IsNumeric(txtTTaxAmount.Text), CDec(txtTTaxAmount.Text), 0)
+                Dim decEAmount As Decimal = If(IsNumeric(txtETaxAmount.Text), CDec(txtETaxAmount.Text), 0)
+                Dim decAmount As Decimal = If(IsNumeric(txtTTotalAmount.Text), CDec(txtTTotalAmount.Text), 0)
+                '-----------------------NET AMOUNT---------------------------
+                If decAmount > 0 Then
+                    dr = dt.NewRow
+                    dr("AccntCode") = strAccntCode
+                    dr("AccntTitle") = GetAccountTitle(strAccntCode)
+                    dr("Debit") = decNetAmount.ToString("N2")
+                    dr("Credit") = "0.00"
+                    dr("VATType") = IIf(ddlTaxType.SelectedIndex > 0, ddlTaxType.SelectedItem, "")
+                    dt.Rows.InsertAt(dr, decRow)
+                    decRow += 1
+                End If
+                '--------------------------VAT-------------------------------
+                If decVAmount > 0 Then
+                    Dim strTaxType As String = ddlTaxType.SelectedValue
+                    Dim query As String
+                    query = " SELECT tblSystemSetup.AP_InputVAT, tblCOA.AccountTitle FROM tblSystemSetup " &
+                            " INNER JOIN tblCOA ON tblSystemSetup.AP_InputVAT = tblCOA.AccountCode "
+                    SQL.FlushParams()
+                    SQL.ReadQuery(query)
+                    If SQL.SQLDR.Read Then
+                        dr = dt.NewRow
+                        dr("AccntCode") = SQL.SQLDR("AP_InputVAT").ToString
+                        dr("AccntTitle") = SQL.SQLDR("AccountTitle").ToString
+                        dr("Debit") = decVAmount.ToString("N2")
+                        dr("Credit") = "0.00"
+                        dr("VATType") = "Input VAT"
+                        dt.Rows.InsertAt(dr, decRow)
+                        decRow += 1
+                    End If
+                End If
+                '--------------------------EWT-------------------------------
+                If decEAmount > 0 Then
+                    Dim strTaxType As String = ddlETaxType.SelectedValue
+                    Dim query As String
+                    query = " SELECT tblSystemSetup.TAX_EWT, tblCOA.AccountTitle FROM tblSystemSetup " &
+                            " INNER JOIN tblCOA ON tblSystemSetup.TAX_EWT = tblCOA.AccountCode "
+                    SQL.ReadQuery(query)
+                    If SQL.SQLDR.Read Then
+                        dr = dt.NewRow
+                        dr("chNo") = rowIndex + 1
+                        dr("AccntCode") = SQL.SQLDR("TAX_EWT").ToString
+                        dr("AccntTitle") = SQL.SQLDR("AccountTitle").ToString
+                        dr("Debit") = "0.00"
+                        dr("Credit") = decEAmount.ToString("N2")
+                        dr("VATType") = "EWT"
+                        dt.Rows.InsertAt(dr, decRow)
+                    End If
+                End If
+                '-----------------------AMOUNT---------------------------
+                'If decAmount > 0 Then
+                '    dr = dt.NewRow
+                '    dr("AccntCode") = Session("AccountCode")
+                '    dr("AccntTitle") = Session("AccountTitle")
+                '    dr("Debit") = "0.00"
+                '    dr("Credit") = decAmount.ToString("N2")
+                '    dt.Rows.Add(dr)
+                '    txtAmount.Text = decAmount.ToString("N2")
+                'End If
+                ViewState("EntryTable") = dt
+
+                dgvEntry.DataSource = dt
+                dgvEntry.DataBind()
+
+            End If
+            SetDataTable()
+        End If
+        txtTNetAmount.Text = "0.00"
+        txtETaxAmount.Text = "0.00"
+        txtTTaxAmount.Text = "0.00"
+        txtTTotalAmount.Text = "0.00"
+        txtTAmount.Text = "0.00"
+
+        ddlTaxType.Items.Clear()
+        ddlTaxType.Items.Add("--Select VAT Rate--")
+        ddlTaxType.DataSource = LoadTaxCode("Purchases", "INPUT VAT").ToArray
+        ddlTaxType.DataBind()
+
+        ddlETaxType.Items.Clear()
+        ddlETaxType.Items.Add("--Select EWT Rate--")
+        ddlETaxType.DataSource = LoadTaxCode("Purchases", "EWT").ToArray
+        ddlETaxType.DataBind()
+    End Sub
+
+    Dim totalDebit, totalCredit As Decimal
+    Private Sub dgvEntry_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgvEntry.RowDataBound
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim row As DataRowView = e.Row.DataItem
+            If IsNumeric(row(3)) And IsNumeric(row(4)) Then
+                totalDebit += Convert.ToDouble(row(3))
+                totalCredit += Convert.ToDouble(row(4))
+                Session("TotalDebit") = totalDebit
+                Session("TotalCredit") = totalCredit
+            End If
+            If IsNumeric(row(4)) And IsNumeric(row(5)) Then
+                totalDebit += Convert.ToDouble(row(4))
+                totalCredit += Convert.ToDouble(row(5))
+                Session("TotalDebit") = totalDebit
+                Session("TotalCredit") = totalCredit
+            End If
+        End If
+    End Sub
 End Class

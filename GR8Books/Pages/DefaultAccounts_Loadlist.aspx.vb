@@ -80,4 +80,9 @@ Public Class DefaultAccounts_Loadlist
             End Using
         End If
     End Sub
+
+    Private Sub gvDefaultAccount_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvDefaultAccount.PageIndexChanging
+        gvDefaultAccount.PageIndex = e.NewPageIndex
+        Loadlist()
+    End Sub
 End Class

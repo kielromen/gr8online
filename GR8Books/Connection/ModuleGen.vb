@@ -654,6 +654,33 @@ Module ModuleGen
         End If
     End Function
 
+    Public Function GetBankID(ByVal Bank As String) As String
+        Dim query As String
+        Dim BankID As String = ""
+        query = " SELECT ID" &
+                " FROM tblBank WHERE Bank = @Bank AND Status = 'Active'"
+        SQL.FlushParams()
+        SQL.AddParam("@Bank", Bank)
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read() Then
+            BankID = SQL.SQLDR2("ID").ToString
+        End If
+        Return BankID
+    End Function
+
+    Public Function GetBank(ByVal BankID As String) As String
+        Dim query As String
+        Dim Bank As String = ""
+        query = " SELECT Bank" &
+                " FROM tblBank WHERE ID = @ID AND Status = 'Active'"
+        SQL.FlushParams()
+        SQL.AddParam("@ID", BankID)
+        SQL.ReadQuery(query, 2)
+        If SQL.SQLDR2.Read() Then
+            Bank = SQL.SQLDR2("Bank").ToString
+        End If
+        Return Bank
+    End Function
 End Module
 
 

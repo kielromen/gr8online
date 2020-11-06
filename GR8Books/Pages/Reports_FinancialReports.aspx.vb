@@ -125,12 +125,28 @@
         dtpFromDate.Attributes.Remove("disabled")
         dtpToDate.Attributes.Remove("disabled")
 
+        ddlMonth.Items.Clear()
+        ddlMonth.Items.Add("January")
+        ddlMonth.Items.Add("February")
+        ddlMonth.Items.Add("March")
+        ddlMonth.Items.Add("April")
+        ddlMonth.Items.Add("May")
+        ddlMonth.Items.Add("June")
+        ddlMonth.Items.Add("July")
+        ddlMonth.Items.Add("August")
+        ddlMonth.Items.Add("September")
+        ddlMonth.Items.Add("October")
+        ddlMonth.Items.Add("November")
+        ddlMonth.Items.Add("December")
+
+
         ddlPeriodType.Items.Clear()
         ddlPeriodType.Items.Add("Yearly")
         ddlPeriodType.Items.Add("Monthly")
         ddlPeriodType.Items.Add("Date Range")
         ddlPeriodType.Items.Add("Daily")
         ddlPeriodType.SelectedIndex = 1
+
 
         If ddlReports.SelectedValue = "Preliminary Trial Balance (TB generated before closing entries)" Then
             ddlReportType.Attributes("disabled") = "disabled"

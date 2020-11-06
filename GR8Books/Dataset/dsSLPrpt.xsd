@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsSLPrpt" targetNamespace="http://tempuri.org/dsSLP.xsd" xmlns:mstns="http://tempuri.org/dsSLP.xsd" xmlns="http://tempuri.org/dsSLP.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="GR8BooksConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GR8BooksConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.GR8BooksConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="view_SLPTableAdapter" GeneratorDataComponentClassName="view_SLPTableAdapter" Name="view_SLP" UserDataComponentName="view_SLPTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GR8BooksConnectionString (Web.config)" DbObjectName="GR8Books.dbo.view_SLP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Year, Quarter, client_TIN, companyName, lastName, firstName, middleName, address1, address2, exempt, zeroRated, services, capitalGoods, otherThancapitalGoods, taxableNetofVat, vatRate, inputVat, totalPurchases FROM dbo.view_SLP</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Year" DataSetColumn="Year" />
+              <Mapping SourceColumn="Quarter" DataSetColumn="Quarter" />
+              <Mapping SourceColumn="client_TIN" DataSetColumn="client_TIN" />
+              <Mapping SourceColumn="companyName" DataSetColumn="companyName" />
+              <Mapping SourceColumn="lastName" DataSetColumn="lastName" />
+              <Mapping SourceColumn="firstName" DataSetColumn="firstName" />
+              <Mapping SourceColumn="middleName" DataSetColumn="middleName" />
+              <Mapping SourceColumn="address1" DataSetColumn="address1" />
+              <Mapping SourceColumn="address2" DataSetColumn="address2" />
+              <Mapping SourceColumn="exempt" DataSetColumn="exempt" />
+              <Mapping SourceColumn="zeroRated" DataSetColumn="zeroRated" />
+              <Mapping SourceColumn="services" DataSetColumn="services" />
+              <Mapping SourceColumn="capitalGoods" DataSetColumn="capitalGoods" />
+              <Mapping SourceColumn="otherThancapitalGoods" DataSetColumn="otherThancapitalGoods" />
+              <Mapping SourceColumn="taxableNetofVat" DataSetColumn="taxableNetofVat" />
+              <Mapping SourceColumn="vatRate" DataSetColumn="vatRate" />
+              <Mapping SourceColumn="inputVat" DataSetColumn="inputVat" />
+              <Mapping SourceColumn="totalPurchases" DataSetColumn="totalPurchases" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsSLPrpt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsSLPrpt" msprop:Generator_UserDSName="dsSLPrpt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="view_SLP" msprop:Generator_TableClassName="view_SLPDataTable" msprop:Generator_TableVarName="tableview_SLP" msprop:Generator_RowChangedName="view_SLPRowChanged" msprop:Generator_TablePropName="view_SLP" msprop:Generator_RowDeletingName="view_SLPRowDeleting" msprop:Generator_RowChangingName="view_SLPRowChanging" msprop:Generator_RowEvHandlerName="view_SLPRowChangeEventHandler" msprop:Generator_RowDeletedName="view_SLPRowDeleted" msprop:Generator_RowClassName="view_SLPRow" msprop:Generator_UserTableName="view_SLP" msprop:Generator_RowEvArgName="view_SLPRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_UserColumnName="Year" type="xs:int" minOccurs="0" />
+              <xs:element name="Quarter" msprop:Generator_ColumnVarNameInTable="columnQuarter" msprop:Generator_ColumnPropNameInRow="Quarter" msprop:Generator_ColumnPropNameInTable="QuarterColumn" msprop:Generator_UserColumnName="Quarter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="client_TIN" msprop:Generator_ColumnVarNameInTable="columnclient_TIN" msprop:Generator_ColumnPropNameInRow="client_TIN" msprop:Generator_ColumnPropNameInTable="client_TINColumn" msprop:Generator_UserColumnName="client_TIN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="companyName" msprop:Generator_ColumnVarNameInTable="columncompanyName" msprop:Generator_ColumnPropNameInRow="companyName" msprop:Generator_ColumnPropNameInTable="companyNameColumn" msprop:Generator_UserColumnName="companyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lastName" msprop:Generator_ColumnVarNameInTable="columnlastName" msprop:Generator_ColumnPropNameInRow="lastName" msprop:Generator_ColumnPropNameInTable="lastNameColumn" msprop:Generator_UserColumnName="lastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="firstName" msprop:Generator_ColumnVarNameInTable="columnfirstName" msprop:Generator_ColumnPropNameInRow="firstName" msprop:Generator_ColumnPropNameInTable="firstNameColumn" msprop:Generator_UserColumnName="firstName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="middleName" msprop:Generator_ColumnVarNameInTable="columnmiddleName" msprop:Generator_ColumnPropNameInRow="middleName" msprop:Generator_ColumnPropNameInTable="middleNameColumn" msprop:Generator_UserColumnName="middleName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="address1" msprop:Generator_ColumnVarNameInTable="columnaddress1" msprop:Generator_ColumnPropNameInRow="address1" msprop:Generator_ColumnPropNameInTable="address1Column" msprop:Generator_UserColumnName="address1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="address2" msprop:Generator_ColumnVarNameInTable="columnaddress2" msprop:Generator_ColumnPropNameInRow="address2" msprop:Generator_ColumnPropNameInTable="address2Column" msprop:Generator_UserColumnName="address2">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="exempt" msprop:Generator_ColumnVarNameInTable="columnexempt" msprop:Generator_ColumnPropNameInRow="exempt" msprop:Generator_ColumnPropNameInTable="exemptColumn" msprop:Generator_UserColumnName="exempt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="zeroRated" msprop:Generator_ColumnVarNameInTable="columnzeroRated" msprop:Generator_ColumnPropNameInRow="zeroRated" msprop:Generator_ColumnPropNameInTable="zeroRatedColumn" msprop:Generator_UserColumnName="zeroRated" type="xs:decimal" minOccurs="0" />
+              <xs:element name="services" msprop:Generator_ColumnVarNameInTable="columnservices" msprop:Generator_ColumnPropNameInRow="services" msprop:Generator_ColumnPropNameInTable="servicesColumn" msprop:Generator_UserColumnName="services" type="xs:decimal" minOccurs="0" />
+              <xs:element name="capitalGoods" msprop:Generator_ColumnVarNameInTable="columncapitalGoods" msprop:Generator_ColumnPropNameInRow="capitalGoods" msprop:Generator_ColumnPropNameInTable="capitalGoodsColumn" msprop:Generator_UserColumnName="capitalGoods" type="xs:decimal" minOccurs="0" />
+              <xs:element name="otherThancapitalGoods" msprop:Generator_ColumnVarNameInTable="columnotherThancapitalGoods" msprop:Generator_ColumnPropNameInRow="otherThancapitalGoods" msprop:Generator_ColumnPropNameInTable="otherThancapitalGoodsColumn" msprop:Generator_UserColumnName="otherThancapitalGoods" type="xs:decimal" minOccurs="0" />
+              <xs:element name="taxableNetofVat" msprop:Generator_ColumnVarNameInTable="columntaxableNetofVat" msprop:Generator_ColumnPropNameInRow="taxableNetofVat" msprop:Generator_ColumnPropNameInTable="taxableNetofVatColumn" msprop:Generator_UserColumnName="taxableNetofVat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="vatRate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnvatRate" msprop:Generator_ColumnPropNameInRow="vatRate" msprop:Generator_ColumnPropNameInTable="vatRateColumn" msprop:Generator_UserColumnName="vatRate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="inputVat" msprop:Generator_ColumnVarNameInTable="columninputVat" msprop:Generator_ColumnPropNameInRow="inputVat" msprop:Generator_ColumnPropNameInTable="inputVatColumn" msprop:Generator_UserColumnName="inputVat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalPurchases" msprop:Generator_ColumnVarNameInTable="columntotalPurchases" msprop:Generator_ColumnPropNameInRow="totalPurchases" msprop:Generator_ColumnPropNameInTable="totalPurchasesColumn" msprop:Generator_UserColumnName="totalPurchases" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -23,7 +23,7 @@ Public Class SalesJournal
                 If Session("ID") <> "" Then
                     LoadTransaction(Session("ID"))
                 Else
-                    txtRow.Style.Add("display", "none")
+
                     btnSearch.Attributes.Remove("disabled")
                     btnNew.Attributes.Remove("disabled")
                     btnEdit.Attributes("disabled") = "disabled"
@@ -247,6 +247,7 @@ Public Class SalesJournal
         Session("AccountTitle") = ""
         Session("TotalDebit") = 0
         Session("TotalCredit") = 0
+        txtRow.Style.Add("display", "none")
         txtStatus.Attributes.Add("readonly", "readonly")
         txtCode.Attributes.Add("readonly", "readonly")
         txtRef_No.Attributes.Add("readonly", "readonly")
