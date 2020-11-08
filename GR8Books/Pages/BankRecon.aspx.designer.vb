@@ -11,16 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class ProvisionalReceipt
-
-    '''<summary>
-    '''panel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents panel1 As Global.System.Web.UI.WebControls.Panel
+Partial Public Class BankRecon
 
     '''<summary>
     '''btnSearch control.
@@ -77,33 +68,6 @@ Partial Public Class ProvisionalReceipt
     Protected WithEvents btnClose As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnCopyFrom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCopyFrom As Global.System.Web.UI.HtmlControls.HtmlButton
-
-    '''<summary>
-    '''btnCopyFromCASHR control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCopyFromCASHR As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnCopyFromSJ control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCopyFromSJ As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''btnPrev control.
     '''</summary>
     '''<remarks>
@@ -122,175 +86,22 @@ Partial Public Class ProvisionalReceipt
     Protected WithEvents btnNext As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''panelConrols control.
+    '''btnPreview control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents panelConrols As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents btnPreview As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''ddlType control.
+    '''panelBR control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlType As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''RequiredFieldValidator9 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''txtCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtCode As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''txtName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnAddNewCustomer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddNewCustomer As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''txtAmount control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAmount As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnTax control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnTax As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''RequiredFieldValidator3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''txtRemarks control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtRemarks As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''ddlCollectionType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlCollectionType As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''ddlBank control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlBank As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''RequiredFieldValidator4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''panelBank control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents panelBank As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''txtBank_Name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtBank_Name As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtBank_CheckNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtBank_CheckNo As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''dtpBank_Date control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dtpBank_Date As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents panelBR As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''txtTrans_Num control.
@@ -302,24 +113,6 @@ Partial Public Class ProvisionalReceipt
     Protected WithEvents txtTrans_Num As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RequiredFieldValidator5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''dtpDoc_Date control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dtpDoc_Date As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
-
-    '''<summary>
     '''txtStatus control.
     '''</summary>
     '''<remarks>
@@ -329,119 +122,245 @@ Partial Public Class ProvisionalReceipt
     Protected WithEvents txtStatus As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''panelEntry control.
+    '''ddlBank control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents panelEntry As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents ddlBank As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''dgvEntry control.
+    '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dgvEntry As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''txtRow control.
+    '''txtAccountCode control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtRow As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtAccountCode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtTAmount control.
+    '''txtAccountTitle control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTAmount As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtAccountTitle As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtTNetAmount control.
+    '''txtBookBalance control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTNetAmount As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtBookBalance As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddlTaxType control.
+    '''txtBankBalance control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlTaxType As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtBankBalance As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtTPercent control.
+    '''dtpDoc_Date control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTPercent As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents dtpDoc_Date As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtTTaxAmount control.
+    '''txtOC control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTTaxAmount As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtOC As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddlETaxType control.
+    '''txtDIT control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlETaxType As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtDIT As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtEPercent control.
+    '''txtAdjustedBookBalance control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtEPercent As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtAdjustedBookBalance As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtETaxAmount control.
+    '''txtAdjustedBankBalance control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtETaxAmount As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtAdjustedBankBalance As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtTTotalAmount control.
+    '''txtVariance control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTTotalAmount As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtVariance As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnSaveTax control.
+    '''navDITtab control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSaveTax As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents navDITtab As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''navOCtab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents navOCtab As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''navCLEAREDtab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents navCLEAREDtab As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''navDIT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents navDIT As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''panelDIT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panelDIT As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnClearDIT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnClearDIT As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''gvDIT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvDIT As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''navOC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents navOC As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''panelOC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panelOC As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnClearOC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnClearOC As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''gvOC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvOC As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''navCLEARED control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents navCLEARED As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''panelCleared control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panelCleared As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnUnclear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUnclear As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''gvCleared control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvCleared As Global.System.Web.UI.WebControls.GridView
 End Class

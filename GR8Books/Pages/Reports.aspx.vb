@@ -584,6 +584,60 @@ Public Class Reports
 
                 crystalReport.Close()
                 crystalReport.Dispose()
+            Case "SLP"
+                Dim query As String
+                query = " SELECT * FROM View_SLP WHERE Year = @YEar AND Quarter = @Quarter"
+                SQL.FlushParams()
+                SQL.AddParam("@Year", Session("@DateFrom").Year)
+                SQL.AddParam("@Quarter", Session("@DateTo"))
+
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptSLP.rpt"))
+
+                Dim dsSLPrpt As dsSLPrpt = GetData(Type, query)
+
+                crystalReport.Database.Tables(0).SetDataSource(dsSLPrpt.Tables("Table"))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptSLP.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptSLP.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptSLP.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptSLP.pdf"))
+                    file = Server.MapPath("~/Reports/rptSLP.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
+            Case "SLS"
+                Dim query As String
+                query = " SELECT * FROM View_SLS WHERE Year = @YEar AND Quarter = @Quarter"
+                SQL.FlushParams()
+                SQL.AddParam("@Year", Session("@DateFrom").Year)
+                SQL.AddParam("@Quarter", Session("@DateTo"))
+
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptSLS.rpt"))
+
+                Dim dsSLSrpt As dsSLSrpt = GetData(Type, query)
+
+                crystalReport.Database.Tables(0).SetDataSource(dsSLSrpt.Tables("Table"))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptSLS.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptSLS.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptSLS.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptSLS.pdf"))
+                    file = Server.MapPath("~/Reports/rptSLS.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
         End Select
 
         If file <> "" Then
@@ -709,6 +763,16 @@ Public Class Reports
                 Using dsCHECKREGrpt As New dsCHECKREGrpt
                     SQL.SQLDA.Fill(dsCHECKREGrpt)
                     Return dsCHECKREGrpt
+                End Using
+            Case "SLP"
+                Using dsSLPrpt As New dsSLPrpt
+                    SQL.SQLDA.Fill(dsSLPrpt)
+                    Return dsSLPrpt
+                End Using
+            Case "SLS"
+                Using dsSLSrpt As New dsSLSrpt
+                    SQL.SQLDA.Fill(dsSLSrpt)
+                    Return dsSLSrpt
                 End Using
         End Select
     End Function

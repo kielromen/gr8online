@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Dashboard1
-
+    
     '''<summary>
     '''alertWelcome control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Dashboard1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents alertWelcome As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblUserCompany control.
     '''</summary>
@@ -30,4 +30,58 @@ Partial Public Class Dashboard1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUserCompany As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''ddlAccntTitleAPV control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlAccntTitleAPV As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''ddlAccntTitleYearAPV control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlAccntTitleYearAPV As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''ddlAccntTitleMonthGM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlAccntTitleMonthGM As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''ddlAccntTitleYearGM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlAccntTitleYearGM As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''ddlAccntTitleSales control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlAccntTitleSales As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''ddlAccntTitleYearSales control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlAccntTitleYearSales As Global.System.Web.UI.WebControls.DropDownList
 End Class

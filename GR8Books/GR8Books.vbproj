@@ -474,6 +474,7 @@
     <Content Include="Pages\AcknowledgementReceipt.aspx" />
     <Content Include="Pages\BankMasterfile_LoadList.aspx" />
     <Content Include="Pages\BankMasterfile_Management.aspx" />
+    <Content Include="Pages\BankRecon.aspx" />
     <Content Include="Pages\Branchcode_Entry.aspx" />
     <Content Include="Pages\Branchcode_Maintenance.aspx" />
     <Content Include="Pages\CashAdvance.aspx" />
@@ -529,6 +530,7 @@
     <Content Include="Pages\ReceivingReport.aspx" />
     <Content Include="Pages\ReceivingReport_Loadlist.aspx" />
     <Content Include="Pages\Reports.aspx" />
+    <Content Include="Pages\Reports_BIRReports.aspx" />
     <Content Include="Pages\Reports_BookofAccounts.aspx" />
     <Content Include="Pages\Reports_FinancialReports.aspx" />
     <Content Include="Pages\Reports_Journals.aspx" />
@@ -553,10 +555,12 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\excanvas.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -791,6 +795,28 @@
     <Content Include="Dataset\dsTBrpt.xsc">
       <DependentUpon>dsTBrpt.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsSLPrpt.xsc">
+      <DependentUpon>dsSLPrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsSLPrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSLPrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsSLPrpt.xss">
+      <DependentUpon>dsSLPrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsSLSrpt.xsc">
+      <DependentUpon>dsSLSrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsSLSrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSLSrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsSLSrpt.xss">
+      <DependentUpon>dsSLSrpt.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsTBrpt.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -992,6 +1018,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPCrpt.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\dsSLPrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSLPrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsSLSrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSLSrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsTBrpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1079,6 +1115,13 @@
     <Compile Include="Pages\BankMasterfile_Management.aspx.vb">
       <DependentUpon>BankMasterfile_Management.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BankRecon.aspx.designer.vb">
+      <DependentUpon>BankRecon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BankRecon.aspx.vb">
+      <DependentUpon>BankRecon.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Branchcode_Entry.aspx.designer.vb">
       <DependentUpon>Branchcode_Entry.aspx</DependentUpon>
@@ -1479,6 +1522,13 @@
       <DependentUpon>Reports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Reports_BIRReports.aspx.designer.vb">
+      <DependentUpon>Reports_BIRReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports_BIRReports.aspx.vb">
+      <DependentUpon>Reports_BIRReports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\Reports_BookofAccounts.aspx.designer.vb">
       <DependentUpon>Reports_BookofAccounts.aspx</DependentUpon>
     </Compile>
@@ -1708,6 +1758,18 @@
       <DependentUpon>rptSBLL.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\rptSLP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSLP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSLS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSLS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptTB_AFTERPEC.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1824,6 +1886,14 @@
     <EmbeddedResource Include="Reports\rptSBLL.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptSBLL.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSLP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSLP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSLS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSLS.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptTB_AFTERPEC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

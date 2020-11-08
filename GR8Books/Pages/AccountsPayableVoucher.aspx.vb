@@ -25,7 +25,6 @@ Public Class AccountsPayableVoucher
                         LoadCopyFrom(item.Key, Session("Type"))
                     Next
                 Else
-                    txtRow.Style.Add("display", "none")
                     btnSearch.Attributes.Remove("disabled")
                     btnNew.Attributes.Remove("disabled")
                     btnEdit.Attributes("disabled") = "disabled"
@@ -247,6 +246,7 @@ Public Class AccountsPayableVoucher
         Session("AccountTitle") = ""
         Session("TotalDebit") = 0
         Session("TotalCredit") = 0
+        txtRow.Style.Add("display", "none")
         'txtRef_Type.Attributes.Add("readonly", "readonly")
         'txtRef_No.Attributes.Add("readonly", "readonly")
         txtStatus.Attributes.Add("readonly", "readonly")
@@ -351,13 +351,17 @@ Public Class AccountsPayableVoucher
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Page.Validate()
         If (Page.IsValid) Then
+            Dim count As Integer = 0
             For Each rows As GridViewRow In dgvEntry.Rows
                 Dim AccntCode As TextBox
                 AccntCode = rows.FindControl("txtAccntCode_Entry")
                 If AccntCode.Text = "" Then
-                    Response.Write("<script>alert('Invalid Account Code!');</script>")
-                    Exit Sub
+                    If dgvEntry.Rows.Count - 1 <> count And AccntCode.Text = "" Then
+                        Response.Write("<script>alert('Invalid Account Code!');</script>")
+                        Exit Sub
+                    End If
                 End If
+                count = count + 1
             Next
             If Session("TransID") = "" Then
                 TransID = GenerateTransID(ColumnID, DBTable)
@@ -935,10 +939,11 @@ Public Class AccountsPayableVoucher
 
 
     Protected Sub ComputeRow(sender As Object, e As EventArgs)
-        txtAmount.Text = CDec(Session("TotalDebit") - Session("TotalCredit")).ToString("N2")
         Page.Validate()
         If txtAmount.Text <> "" Then
             If Session("AccountCode") <> "" Then
+                AddNewRow(dgvEntry, EventArgs.Empty)
+                txtAmount.Text = CDec(Session("TotalDebit") - Session("TotalCredit")).ToString("N2")
                 Dim rowIndex As Integer = 0
                 If Not IsNothing(ViewState("EntryTable")) Then
                     Dim dt As DataTable = ViewState("EntryTable")
