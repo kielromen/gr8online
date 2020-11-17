@@ -1991,6 +1991,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.AcknowledgementReceipt._btnCopyFromSJ">
+<summary>
+btnCopyFromSJ control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.AcknowledgementReceipt._btnPrev">
 <summary>
 btnPrev control.
