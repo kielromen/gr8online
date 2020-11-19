@@ -131,7 +131,7 @@
                     <h5 class="card-title text-center">Sign In</h5>
                     <form class="form-signin">
                         <div class="form-label-group">
-                            <input type="email" id="txtEMail" class="form-control" placeholder="Email address" runat="server" required>
+                            <input type="email" id="txtEMail" class="form-control" placeholder="Email address" runat="server" autofocus required>
                             <label for="inputEmail">Email address</label>
                         </div>
 
