@@ -320,7 +320,7 @@
                         <asp:DropDownList ID="ddlItemType" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
                             <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"    ID="RequiredFieldValidator3" runat="Server" ControlToValidate="ddlItemType" InitialValue="--Select Item Type--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                             <div class="input-group-append">
-                                <button id="tbnAddItemType" runat="server" type="button" class="btn btn-secondary btn-m btn-block" data-toggle="modal" data-target="#modalItemType" data-whatever="@mdo">Add</button>
+                                <button id="tbnAddItemType" runat="server" type="button" class="btn btn-primary btn-m btn-block" data-toggle="modal" data-target="#modalItemType" data-whatever="@mdo">Add</button>
                             </div>
                         </div>
                     </div>
@@ -331,12 +331,14 @@
                     <div class="col-3 my-auto">
                         <asp:Label ID="lblItemCategory" Text="Item category:" runat="server" />
                     </div>
-                    <div class="col-7">
-                        <asp:DropDownList ID="ddlItemCategory" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
-                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"    ID="RequiredFieldValidator4" runat="Server" ControlToValidate="ddlItemCategory" InitialValue="--Select Item Category--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="col-2">
-                        <button id="btnAddItemCategory" runat="server" type="button"  class="btn btn-secondary btn-m btn-block" data-toggle="modal" data-target="#modalItemCategory" data-whatever="@mdo">Add</button>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <asp:DropDownList ID="ddlItemCategory" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
+                            <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"    ID="RequiredFieldValidator4" runat="Server" ControlToValidate="ddlItemCategory" InitialValue="--Select Item Category--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                        <div class="input-group-append">
+                            <button id="btnAddItemCategory" runat="server" type="button"  class="btn btn-primary btn-m btn-block" data-toggle="modal" data-target="#modalItemCategory" data-whatever="@mdo">Add</button>
+                         </div>
+                        </div>   
                     </div>
                 </div>
             </div>
@@ -347,13 +349,20 @@
                     <div class="col-3 my-auto">
                         <asp:Label ID="lblItemUOM" Text="Item UOM:" runat="server" />
                     </div>
-                    <div class="col-7">
+
+
+                     <div class="col">
+                        <div class="input-group mb-3">
                         <asp:DropDownList ID="ddlItemUOM" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
                          <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"    ID="RequiredFieldValidator8" runat="Server" ControlToValidate="ddlItemUOM" InitialValue="--Select Item UOM--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                        <div class="input-group-append">
+                        <button id="btnAddItemUOM" runat="server" type="button"  class="btn btn-primary btn-m btn-block" data-toggle="modal" data-target="#modalItemUom" data-whatever="@mdo">Add</button>
+                         </div>
+                        </div>   
                     </div>
-                     <div class="col-2">
-                        <button id="btnAddItemUOM" runat="server" type="button"  class="btn btn-secondary btn-m btn-block" data-toggle="modal" data-target="#modalItemUom" data-whatever="@mdo">Add</button>
-                    </div>
+
+
+                 
                 </div>
             </div>
             <div class="col-sm">
@@ -408,11 +417,15 @@
                     <div class="col-3 my-auto">
                         <asp:Label ID="Label3" Text="Warehouse:" runat="server" />
                     </div>
-                    <div class="col-7">
-                        <asp:DropDownList ID="ddlWarehouse" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
-                    </div>
-                    <div class="col-2">
-                        <button id="btnAddWarehouse" runat="server" type="button" class="btn btn-secondary btn-m btn-block" data-toggle="modal" data-target="#modalItemWarehouse" data-whatever="@mdo">Add</button>
+
+
+                     <div class="col">
+                        <div class="input-group mb-3">
+                            <asp:DropDownList ID="ddlWarehouse" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
+                        <div class="input-group-append">
+                            <button id="btnAddWarehouse" runat="server" type="button" class="btn btn-primary btn-m btn-block" data-toggle="modal" data-target="#modalItemWarehouse" data-whatever="@mdo">Add</button>
+                         </div>
+                        </div>   
                     </div>
                 </div>
             </div>

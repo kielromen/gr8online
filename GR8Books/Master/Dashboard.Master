@@ -33,8 +33,10 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
+
                 <%--Site Scripts--%>
             </Scripts>
+
         </asp:ScriptManager>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
@@ -43,13 +45,14 @@
                     <img src="/Images/Gr8Books_Logo.png" height="30" class="d-inline-block align-top mr-2">
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-area-chart mr-2" aria-hidden="true"></i>My Dashboard</a>
+                    <a href="../Pages/Dashboard.aspx" class="list-group-item list-group-item-action bg-light"><i class="fa fa-area-chart mr-2" aria-hidden="true"></i>My Dashboard</a>
                     <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseMaintenance" role="button" aria-expanded="false" aria-controls="collapseMaintenance"><i class="fa fa-cog mr-2" aria-hidden="true"></i>Maintenance</a>
                     <div class="collapse" id="collapseMaintenance">
                         <div class="list-group">
                             <a href="../Pages/CompanySetup.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Company Setup</a>
                             <a href="../Pages/ChartofAccount_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Chart of Accounts</a>
                             <a href="../Pages/BankMasterfile_LoadList.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Bank Management</a>
+                             <a href="../Pages/Terms_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Terms Maintenance</a>
                             <%--<a href="../Pages/TaxSetup_Loadlist.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Tax Setup</a>--%>
                             <a href="../Pages/VendorManagement_View.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Vendor Management</a>
                             <a href="../Pages/CustomerManagement_View.aspx" class="list-group-item"><i class="fa fa-caret-right ml-3 mr-1" aria-hidden="true"></i>Customer Management</a>

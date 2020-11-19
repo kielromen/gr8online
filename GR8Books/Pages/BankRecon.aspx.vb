@@ -93,6 +93,7 @@ Public Class BankRecon
         btnPrev.Attributes("disabled") = "disabled"
         btnNext.Attributes("disabled") = "disabled"
         btnPreview.Attributes("disabled") = "disabled"
+        dtpDoc_Date.Attributes.Remove("readonly")
 
         EnableControl(True)
         txtTrans_Num.Text = GenerateTransNum(TransAuto, ModuleID, ColumnPK, DBTable)
@@ -254,9 +255,9 @@ Public Class BankRecon
 
     Private Function GetMinDate(BankID As String) As Date
         Dim query As String
-        query = "SELECT DATEADD(DAY,1,ISNULL(MAX(TransDate),'1900-01-01')) AS TransDate FROM tblBR WHERE Status <> 'Cancelled' AND BankID ='" & BankID & "' "
+        query = "SELECT DATEADD(DAY,1,MAX(TransDate)) AS TransDate FROM tblBR WHERE Status <> 'Cancelled' AND BankID ='" & BankID & "' "
         SQL.ReadQuery(query)
-        If SQL.SQLDR.Read Then
+        If SQL.SQLDR.Read And Not IsDBNull(SQL.SQLDR("TransDate")) Then
             Return SQL.SQLDR("TransDate")
         Else
             Return "1900-01-01"
@@ -400,6 +401,7 @@ Public Class BankRecon
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         EnableControl(True)
+
         btnSearch.Attributes("disabled") = "disabled"
         btnNew.Attributes("disabled") = "disabled"
         btnEdit.Attributes("disabled") = "disabled"
@@ -662,5 +664,15 @@ Public Class BankRecon
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Dim query As String
+        query = " UPDATE  " & DBTable & " SET Status ='Cancelled' WHERE TransID = @TransID "
+        SQL.FlushParams()
+        SQL.AddParam("@TransID", Session("TransID"))
+        SQL.ExecNonQuery(query)
+
+        LoadTransaction(Session("TransID"))
     End Sub
 End Class

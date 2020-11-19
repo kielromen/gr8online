@@ -5,32 +5,50 @@ Public Class ItemMasterfile_LoadList
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            If Session("SessionExists") = True Then
-                If Session("UserRole") = "SystemAdmin" Then
-                    LoadItemList()
-                Else
-                    Response.Redirect("Login.aspx")
-                End If
+        If IsPostBack = False Then
+            If Session("SessionExists") = False Then
+                Response.Redirect("Login.aspx")
+            Else
+                Initialize()
+                Loadlist()
             End If
-
         End If
     End Sub
 
-    Public Sub LoadItemList()
+    Public Sub Initialize()
+        ddlFilter.Items.Clear()
+        ddlFilter.Items.Add("Active")
+        ddlFilter.Items.Add("Inactive")
+    End Sub
+
+    Public Sub Loadlist()
         Dim query As String
         query = " SELECT * from tblItem_Master " &
-                " WHERE tblItem_Master.Status = @Status"
+                " WHERE tblItem_Master.Status = @Status AND ItemName  LIKE '%' + @ItemName + '%'"
         SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
+        SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@ItemName", txtFilter.Text)
         SQL.GetDataTable(query)
         dgvItemList.DataSource = SQL.SQLDT
         dgvItemList.DataBind()
+
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In dgvItemList.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In dgvItemList.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
     Private Sub dgvItemList_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles dgvItemList.PageIndexChanging
         dgvItemList.PageIndex = e.NewPageIndex
-        LoadItemList()
+        Loadlist()
     End Sub
 
     Private Sub dgvItemList_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dgvItemList.RowCommand
@@ -39,9 +57,14 @@ Public Class ItemMasterfile_LoadList
             query = "UPDATE tblItem_Master  SET Status = @Status WHERE ItemCode = @ItemCode"
             SQL.FlushParams()
             SQL.AddParam("@ItemCode", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='ItemMasterfile_Loadlist.aspx';</script>")
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
         End If
     End Sub
 
@@ -61,7 +84,7 @@ Public Class ItemMasterfile_LoadList
         If dgvItemList.Rows.Count > 0 Then
             'To Export all pages
             dgvItemList.AllowPaging = False
-            Me.LoadItemList()
+            Me.Loadlist()
 
             Dim dt As New DataTable("Itemlist")
             For Each cell As TableCell In dgvItemList.HeaderRow.Cells

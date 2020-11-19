@@ -36,12 +36,25 @@ Public Class ChartofAccount_Loadlist
     Public Sub Loadlist()
         Dim query As String
         query = " SELECT    AccountCode, AccountType, AccountTitle , AccountGroup, AccountNature, ReportAlias, Class, withSubsidiary, OrderNo, Status FROM tblCOA " &
-                " WHERE Status = @Status AND AccountType = '" & ddlAccountType.SelectedValue & "'ORDER BY OrderNo"
+                " WHERE Status = @Status AND AccountType = @AccountType ORDER BY OrderNo"
         SQL.FlushParams()
         SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@AccountType", ddlAccountType.SelectedValue)
         SQL.GetQuery(Query)
         gvCOA.DataSource = SQL.SQLDS
         gvCOA.DataBind()
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In gvCOA.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In gvCOA.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
     Private Sub gvCOA_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvCOA.RowCommand
@@ -50,9 +63,16 @@ Public Class ChartofAccount_Loadlist
             query = "UPDATE tblCOA SET Status = @Status WHERE AccountCode = @AccountCode"
             SQL.FlushParams()
             SQL.AddParam("@AccountCode", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');</script>")
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
+
             Loadlist()
         End If
     End Sub
@@ -104,15 +124,6 @@ Public Class ChartofAccount_Loadlist
         SQL.AddParam("@withSubsidiary", IIf(withSubsidiary = "undefined", False, withSubsidiary))
         SQL.AddParam("@OrderNo", IIf(OrderNo = "undefined", 0, OrderNo))
 
-        'SQL.AddParam("@AccountCode", AccountCode)
-        'SQL.AddParam("@AccountTitle", AccountTitle)
-        'SQL.AddParam("@AccountType", AccountType)
-        'SQL.AddParam("@AccountGroup", AccountGroup)
-        'SQL.AddParam("@AccountNature", AccountNature)
-        'SQL.AddParam("@ReportAlias", ReportAlias)
-        'SQL.AddParam("@Class", AccountClass)
-        'SQL.AddParam("@withSubsidiary", withSubsidiary)
-        'SQL.AddParam("@OrderNo", OrderNo)
         If SQL.ExecNonQuery(query) > 0 Then
             Return False
         Else
@@ -157,5 +168,14 @@ Public Class ChartofAccount_Loadlist
 
     Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
         Response.Write("<script>window.location='ChartofAccount_Loadlist.aspx';</script>")
+    End Sub
+
+    Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+        Dim filename As String = "COA.xlsm"
+        Dim filePath As String = (Server.MapPath("~/Templates/") + filename)
+        Response.ContentType = ContentType
+        Response.AppendHeader("Content-Disposition", ("attachment; filename=" + Path.GetFileName(filePath)))
+        Response.WriteFile(filePath)
+        Response.End()
     End Sub
 End Class

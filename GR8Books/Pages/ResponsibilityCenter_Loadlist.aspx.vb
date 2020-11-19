@@ -13,20 +13,40 @@ Public Class ResponsibilityCenter_Loadlist
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
+                Initialize()
                 Loadlist()
             End If
         End If
     End Sub
 
+    Public Sub Initialize()
+        ddlFilter.Items.Clear()
+        ddlFilter.Items.Add("Active")
+        ddlFilter.Items.Add("Inactive")
+    End Sub
+
     Public Sub Loadlist()
         Dim query As String
         query = " SELECT * FROM tblResponsibility_Center " &
-                " WHERE tblResponsibility_Center.Status = @Status"
+                " WHERE tblResponsibility_Center.Status = @Status AND CostCenter LIKE '%' + @CostCenter + '%'"
         SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
+        SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@CostCenter", txtFilter.Text)
         SQL.GetQuery(query)
         gvResCenter.DataSource = SQL.SQLDS
         gvResCenter.DataBind()
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In gvResCenter.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In gvResCenter.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
 
@@ -67,12 +87,19 @@ Public Class ResponsibilityCenter_Loadlist
     Private Sub gvResCenter_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvResCenter.RowCommand
         If (e.CommandName = "btnInactive") Then
             Dim query As String
-            query = "UPDATE tblCollector SET Status = @Status WHERE ID = @ID"
+            query = "UPDATE tblResponsibility_Center SET Status = @Status WHERE CostID = @CostID"
             SQL.FlushParams()
-            SQL.AddParam("@ID", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@CostID", e.CommandArgument)
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='ResponsibilityCenter_Loadlist.aspx';</script>")
+
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
+            Loadlist()
         End If
     End Sub
 

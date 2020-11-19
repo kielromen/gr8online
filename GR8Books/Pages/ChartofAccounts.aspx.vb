@@ -58,10 +58,11 @@ Public Class ChartofAccounts
     Public Sub GetMaxOrderNo()
         Dim query As String
         query = " SELECT Max(ISNULL(OrderNo,0)) + 1 AS OrderNo" &
-                       " FROM  tblCOA  WHERE Status = @Status AND AccountType = @AccountType"
+                       " FROM  tblCOA  WHERE Status = @Status AND AccountType = @AccountType AND AccountCode <= @AccountCode"
         SQL.FlushParams()
         SQL.AddParam("Status", "Active")
         SQL.AddParam("AccountType", ddlType.SelectedValue)
+        SQL.AddParam("AccountCode", txtCode.Text)
         SQL.ReadQuery(query)
         If SQL.SQLDR.Read Then
             txtOrderNo.Text = SQL.SQLDR("OrderNo").ToString
@@ -130,6 +131,7 @@ Public Class ChartofAccounts
 
 
     Public Sub Save()
+        GetMaxOrderNo()
         Dim query As String
         query = " INSERT INTO tblCOA " &
                     " ( AccountCode, AccountType, AccountTitle, AccountGroup, AccountNature, ReportAlias, Class, withSubsidiary, OrderNo, Status, DateCreated, WhoCreated )" &

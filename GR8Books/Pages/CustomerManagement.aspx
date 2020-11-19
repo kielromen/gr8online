@@ -210,8 +210,9 @@
                         <asp:Label Text="Terms:" runat="server" />
                     </div>
                     <div class="col">
-                        <asp:TextBox ID="txtTerms" runat="server" class="form-control"  autocomplete="off" />
-                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"   ID="RequiredFieldValidator4" runat="Server" ControlToValidate="txtTerms" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                        <asp:DropDownList runat="server" ID="ddlTerms" class="form-control" AppendDataBoundItems="true">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small"    Display="Dynamic"  ID="RequiredFieldValidator4" runat="Server" ControlToValidate="ddlTerms" InitialValue="--Select Terms--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>

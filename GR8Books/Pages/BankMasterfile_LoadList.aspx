@@ -26,13 +26,43 @@
 
 
             $(".btnInactive").click(function () {
-                if (confirm("Are you sure you want to remove this?")) {
+                if ($(".btnInactive").val() == "Inactive") {
+                    if (confirm("Are you sure you want to remove this?")) {
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else {
-                    return false;
+                    if (confirm("Are you sure you want to put back this?")) {
+                    }
+                    else {
+                        return false;
+                    }
                 }
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        function Search_Gridview(strKey, strGV) {
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById(strGV);
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }
     </script>
 
         <style type="text/css">
@@ -42,16 +72,29 @@
      }
     </style>
     <asp:Panel runat="server" ID="panelBank">
-        <div class="row mt-4 justify-content-end">
-            <div class="col-2 ">
-                <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
+         <div class="row mb-3 mr-2 justify-content-end">
+                <div class="col">
+                 <div class="input-group">
+                      <asp:TextBox ID="txtFilter" runat="server" class="txtFilter form-control" autocomplete="off" placeholder="Bank"  />
+                      <div class="input-group-append">
+                          <asp:Button Text="Search" ID="btnSearch"  class="btnSearch btn btn-secondary" runat="server" OnClick="loadlist"  />
+                      </div>
+                 </div>
+                 </div>
+                 <div class="col">
+                    <asp:DropDownList ID="ddlFilter" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="Loadlist"></asp:DropDownList>
+                 </div>
+                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                     <div class="btn-group" role="group" aria-label="First group">
+                        <asp:Button ID="btnAdd" Width="100px" Text="Add" class="btnAdd btn btn-primary btn-block" runat="server" />
+                        <asp:Button ID="btnExport" Width="100px" class="btnExport btn btn-success" Text="Export" runat="server" />
+                     </div>
+                 </div>
             </div>
-        </div>
-        <br />
-        <asp:GridView ID="dgvBankList" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
+        <asp:GridView ID="dgvBankList"    PageSize="13" runat ="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID No." />
+                <asp:BoundField DataField="ID" HeaderText="ID" />
                 <asp:BoundField DataField="Type" HeaderText="Type" />
                 <asp:BoundField DataField="Bank" HeaderText="Bank" />
                 <asp:BoundField DataField="Branch" HeaderText="Branch" />
@@ -83,10 +126,6 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        <div class="row justify-content-end mt-4">
-            <div class="col-sm-2">
-                <asp:Button ID="btnAdd" Text="Add" runat="server" class="btnAdd btn btn-primary btn-block" />
-            </div>
-        </div>
+
     </asp:Panel>
 </asp:Content>

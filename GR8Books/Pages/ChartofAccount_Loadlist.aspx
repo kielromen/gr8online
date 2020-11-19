@@ -49,11 +49,21 @@
 
 
             $(".btnInactive").click(function () {
-                if (confirm("Are you sure you want to remove this?")) {
+                if ($(".btnInactive").val() == "Inactive") {
+                    if (confirm("Are you sure you want to remove this?")) {
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else {
-                    return false;
-                }
+                    if (confirm("Are you sure you want to put back this?")) {
+                     }
+                     else {
+                            return false;
+                      }
+                 }
+   
             });
 
             $("#COA_Upload").change(function (e) {
@@ -205,26 +215,29 @@
         }
     </style>
     <asp:Panel runat="server">
-        <div class="row mb-3 justify-content-end">
-            <div class="col-3">
-                <asp:DropDownList ID="ddlAccountType" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="Loadlist"></asp:DropDownList>
+           <div class="row mb-3 mr-2 justify-content-end">
+                <div class="col">
+                    <asp:DropDownList ID="ddlAccountType" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="Loadlist"></asp:DropDownList>
+                </div>
+                <div class="col">
+                    <asp:DropDownList ID="ddlFilter" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="Loadlist"></asp:DropDownList>
+                </div>
+
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                     <div class="btn-group" role="group" aria-label="First group">
+                        <asp:Button ID="btnAdd" Width="100px" Text="Add" class="btnAdd btn btn-primary btn-block" runat="server" />
+                        <asp:Button ID="btnUpload" Width="100px" class="btnUpload btn btn-primary" Text="Upload" runat="server" data-toggle="modal" data-target="#modalCOA" data-whatever="@mdo" />
+                        <asp:Button ID="btnDownload" Width="100px" class="btnDownload btn btn-success" Text="Download" runat="server" />
+                        <asp:Button ID="btnExport" Width="100px" class="btnExport btn btn-success" Text="Export" runat="server" />
+                     </div>
+                 </div>
             </div>
-            <div class="col-3">
-                <asp:DropDownList ID="ddlFilter" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="Loadlist"></asp:DropDownList>
-            </div>
-            <div class="col-4">
-                <asp:Button ID="btnSort"  Display="Dynamic" class="btnSort btn btn-primary btn-block" Text="Update Order" runat="server" OnClick="UpdateSort" />
-            </div>
-            <div class="col-2 ">
-                <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
-            </div>
-        </div>
             <div class="row">
                 <div class="col" id="divCOA">
                     <asp:GridView ID="gvCOA" CssClass="gvCOA" runat="server" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:TemplateField HeaderText="Order" ItemStyle-Width="50">
+                            <asp:TemplateField HeaderText="No" ItemStyle-Width="50">
                                 <ItemTemplate>
                                     <%# Container.DataItemIndex + 1 %>
                                     <input type="hidden" name="Code" value='<%# Eval("AccountCode") %>' />
@@ -238,7 +251,7 @@
                             <asp:BoundField DataField="Class" HeaderText="Class" ItemStyle-Width="100" />
                             <asp:TemplateField HeaderText="Actions" ItemStyle-Width="350">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnView" class="btnView" Text="View" runat="server" title='<%# Eval("AccountCode") %>' />
+                                    <asp:Button  ID="btnView" class="btnView" Text="View" runat="server" title='<%# Eval("AccountCode") %>' />
                                     <asp:Button ID="btnEdit" class="btnEdit" Text="Edit" runat="server" title='<%# Eval("AccountCode") %>' />
                                     <asp:Button ID="btnInactive" class="btnInactive" Text="Inactive" runat="server" CommandName="btnInactive" CommandArgument='<%# Bind("AccountCode") %>' />
                                 </ItemTemplate>
@@ -255,17 +268,12 @@
                         <SortedDescendingCellStyle BackColor="#E9EBEF" />
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
+                     <div class="col">
+                         <asp:Button ID="btnSort"  Display="Dynamic" class="btnSort btn btn-primary btn-block" Text="Update Order" runat="server" OnClick="UpdateSort" />
+                     </div>
                 </div>
             </div>
-        
-        <div class="row mt-4 justify-content-end">
-            <div class="col-2 ">
-                <asp:Button ID="btnAdd" Text="Add" class="btnAdd btn btn-primary btn-block" runat="server" />
-            </div>
-            <div class="col-2 ">
-                    <asp:Button ID="btnUpload" class="btnUpload btn btn-primary btn-block" Text="Upload" runat="server" data-toggle="modal" data-target="#modalCOA" data-whatever="@mdo" />
-             </div>
-        </div>
+
         
         <%-- Upload COA Modal --%>
         <div class="modal fade " id="modalCOA" tabindex="-1" role="dialog" aria-labelledby="modalLabelCOA" aria-hidden="true">

@@ -134,6 +134,15 @@
             $("#ToBottom").click(function () {
                 $("#modalCOA").animate({ scrollTop: $(".modal-dialog").height() }, "fast");
             }); 
+
+
+            $("#ToTop1").click(function () {
+                $("#uploader").animate({ scrollTop: 0 }, "fast");
+            });
+            $("#ToBottom1").click(function () {
+                var _gridheight = $('.gvUploader').height();
+                $("#uploader").animate({ scrollTop: _gridheight }, "fast");
+            }); 
         });
     </script>
     
@@ -191,6 +200,12 @@
             bottom:40px;
             right:40px;
         }
+
+        #scroll1 {
+            position:fixed;
+            bottom:40px;
+            right:40px;
+        }
     </style>
     <asp:Panel runat="server">
         <div class="row">
@@ -204,8 +219,8 @@
                     </div>
                 </div>
                  <br />
-                 <div style="width: 100%; height:760px; overflow-y: scroll;overflow:scroll">
-                <asp:GridView ID="gvUploader" runat="server" AutoGenerateColumns="false"  Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
+                 <div id="uploader" style="width: 100%; height: 500px;overflow-y: scroll;overflow:scroll">
+                <asp:GridView Class="gvUploader" ID="gvUploader" runat="server" AutoGenerateColumns="false"  Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found" ShowFooter="true">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="AppDate" HeaderText="Date"  HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
@@ -232,6 +247,14 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
+                <div id="scroll1">
+                <div class="row p-1">
+                    <a id="ToTop1" class="btn btn-light btn-lg back-to-top"><i class="fa fa-arrow-up"></i></a>
+                </div>
+                <div class="row p-1">
+                    <a id="ToBottom1" class="btn btn-light btn-lg back-to-top"><i class="fa fa-arrow-down"></i></a>
+                </div>
+            </div>
              </div>
             </div>
         </div>
@@ -272,7 +295,7 @@
                         <div class="row">
                             <div class="col">
                                 <div style="overflow-x:scroll;overflow-y:hidden;">
-                                    <asp:GridView ID="gvUpload" CssClass="gvUpload" runat="server" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True">
+                                    <asp:GridView ID="gvUpload" CssClass="gvUpload" runat="server" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" >
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
                                             <asp:BoundField DataField="UDate" HeaderText = "Date" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />

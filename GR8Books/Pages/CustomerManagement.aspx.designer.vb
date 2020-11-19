@@ -167,13 +167,13 @@ Partial Public Class CustomerManagement
     Protected WithEvents txtBranchCode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtTerms control.
+    '''ddlTerms control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTerms As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlTerms As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''RequiredFieldValidator4 control.

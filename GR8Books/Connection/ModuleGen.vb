@@ -351,7 +351,7 @@ Module ModuleGen
                             SQL.FlushParams()
                             SQL.ReadQuery(query)
                             If SQL.SQLDR.Read Then
-                                If SQL.SQLDR("TransID") = 1 Then
+                                If startrecord > SQL.SQLDR("TransID") Then
                                     TransNum = startrecord
                                 Else
                                     TransNum = SQL.SQLDR("TransID")
@@ -680,6 +680,20 @@ Module ModuleGen
             Bank = SQL.SQLDR2("Bank").ToString
         End If
         Return Bank
+    End Function
+
+    Public Function LoadTerms() As List(Of String)
+        Dim list As New List(Of String)
+        Dim query As String
+        query = " SELECT  * " &
+                " FROM   tblTerms WHERE Status = @Status "
+        SQL.FlushParams()
+        SQL.AddParam("@Status", "Active")
+        SQL.ReadQuery(query, 2)
+        While SQL.SQLDR2.Read
+            list.Add(SQL.SQLDR2("Description").ToString)
+        End While
+        Return list
     End Function
 End Module
 

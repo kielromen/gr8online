@@ -32,13 +32,31 @@ Partial Public Class ChartofAccount_Loadlist
     Protected WithEvents ddlFilter As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''btnSort control.
+    '''btnAdd control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSort As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpload As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnDownload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDownload As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnExport control.
@@ -59,22 +77,13 @@ Partial Public Class ChartofAccount_Loadlist
     Protected WithEvents gvCOA As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''btnAdd control.
+    '''btnSort control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnUpload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnUpload As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSort As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''alertUpdate control.

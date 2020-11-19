@@ -29,7 +29,6 @@ Public Class CustomerManagement
         txtCellphone.Text = ""
         txtContactPerson.Text = ""
         txtEmail.Text = ""
-        txtTerms.Text = ""
         txtWebsite.Text = ""
         txtFax.Text = ""
         txtPosition.Text = ""
@@ -83,6 +82,11 @@ Public Class CustomerManagement
         ddlClassification.Items.Add("Individual")
         ddlClassification.Items.Add("Non-Individual")
         ddlClassification.DataBind()
+
+        ddlTerms.Items.Clear()
+        ddlTerms.Items.Add("--Select Terms--")
+        ddlTerms.DataSource = LoadTerms().ToArray
+        ddlTerms.DataBind()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -149,7 +153,7 @@ Public Class CustomerManagement
             txtSuffixName.Text = SQL.SQLDR("Suffix_Name").ToString
             txtTINNO.Text = SQL.SQLDR("TIN_No").ToString
             txtBranchCode.Text = SQL.SQLDR("BranchCode").ToString
-            txtTerms.Text = SQL.SQLDR("Terms").ToString
+            ddlTerms.SelectedValue = SQL.SQLDR("Terms").ToString
             txtCutOff.Text = SQL.SQLDR("CutOff").ToString
             ddlClassification.SelectedValue = SQL.SQLDR("Classification").ToString
             ddlVAT_Type.SelectedValue = SQL.SQLDR("VAT_Type").ToString
@@ -306,7 +310,7 @@ Public Class CustomerManagement
         SQL.AddParam("@Contact_Email", txtEmail.Text)
         SQL.AddParam("@Contact_Fax", txtFax.Text)
         SQL.AddParam("@Contact_Website", txtWebsite.Text)
-        SQL.AddParam("@Terms", txtTerms.Text)
+        SQL.AddParam("@Terms", ddlTerms.SelectedValue)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
         SQL.AddParam("@AccountNo", txtAccountNo.Text)
@@ -362,7 +366,7 @@ Public Class CustomerManagement
         SQL.AddParam("@Contact_Email", txtEmail.Text)
         SQL.AddParam("@Contact_Fax", txtFax.Text)
         SQL.AddParam("@Contact_Website", txtWebsite.Text)
-        SQL.AddParam("@Terms", txtTerms.Text)
+        SQL.AddParam("@Terms", ddlTerms.SelectedValue)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
         SQL.AddParam("@AccountNo", txtAccountNo.Text)

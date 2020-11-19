@@ -12,25 +12,34 @@ Option Explicit On
 
 
 Partial Public Class CustomerManagement_View
-    
+
     '''<summary>
-    '''btnExport control.
+    '''txtFilter control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnExport As Global.System.Web.UI.WebControls.Button
-    
+    Protected WithEvents txtFilter As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
-    '''gvCustomer control.
+    '''btnSearch control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvCustomer As Global.System.Web.UI.WebControls.GridView
-    
+    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''ddlFilter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlFilter As Global.System.Web.UI.WebControls.DropDownList
+
     '''<summary>
     '''btnAdd control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class CustomerManagement_View
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnUpload control.
     '''</summary>
@@ -48,7 +57,34 @@ Partial Public Class CustomerManagement_View
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUpload As Global.System.Web.UI.WebControls.Button
-    
+
+    '''<summary>
+    '''btnDownload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDownload As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnExport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExport As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''gvCustomer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvCustomer As Global.System.Web.UI.WebControls.GridView
+
     '''<summary>
     '''alertUpdate control.
     '''</summary>
@@ -57,7 +93,7 @@ Partial Public Class CustomerManagement_View
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents alertUpdate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''gvUpload control.
     '''</summary>
@@ -66,7 +102,7 @@ Partial Public Class CustomerManagement_View
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvUpload As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''btnUploadSave control.
     '''</summary>

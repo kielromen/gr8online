@@ -254,13 +254,18 @@ Public Class SalesJournal
         txtStatus.Text = ""
         txtCode.Text = ""
         txtName.Text = ""
-        txtAmount.Text = "0.00"
+        'txtAmount.Text = "0.00"
         txtRemarks.Text = ""
         txtRef_No.Text = ""
         txtTrans_Num.Text = ""
         dtpDoc_Date.Value = Now.Date
         dtpDueDate.Value = Now.Date
         LoadDatagrid()
+
+        ddlTerms.Items.Clear()
+        ddlTerms.Items.Add("--Select Terms--")
+        ddlTerms.DataSource = LoadTerms().ToArray
+        ddlTerms.DataBind()
 
         'tax
         txtTNetAmount.Text = "0.00"
@@ -400,8 +405,8 @@ Public Class SalesJournal
         activityStatus = True
         SQL.FlushParams()
         insertSQL = " INSERT INTO " &
-                        " tblSJ (TransID, SJ_No, VCECode, TransDate, DueDate,  TotalAmount, Reference,  Remarks, WhoCreated, TransAuto ) " &
-                        " VALUES (@TransID, @SJ_No, @VCECode, @TransDate, @DueDate, @TotalAmount, @Reference, @Remarks,  @WhoCreated, @TransAuto)"
+                        " tblSJ (TransID, SJ_No, VCECode, TransDate, Terms,  DueDate, Reference,  Remarks, WhoCreated, TransAuto ) " &
+                        " VALUES (@TransID, @SJ_No, @VCECode, @TransDate, @Terms, @DueDate, @Reference, @Remarks,  @WhoCreated, @TransAuto)"
         SQL.FlushParams()
         SQL.AddParam("@TransID", TransID)
         SQL.AddParam("@SJ_No", SJNO)
@@ -409,7 +414,7 @@ Public Class SalesJournal
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@DueDate", dtpDueDate.Value)
         SQL.AddParam("@Reference", txtRef_No.Text)
-        SQL.AddParam("@TotalAmount", CDec(txtAmount.Text))
+        SQL.AddParam("@Terms", ddlTerms.SelectedValue)
         SQL.AddParam("@Remarks", txtRemarks.Text)
         SQL.AddParam("@TransAuto", TransAuto)
         SQL.AddParam("@WhoCreated", Session("EmailAddress"))
@@ -423,7 +428,7 @@ Public Class SalesJournal
         SQL.AddParam("@RefType", "SJ")
         SQL.AddParam("@RefTransID", TransID)
         SQL.AddParam("@Book", "Sales Book")
-        SQL.AddParam("@TotalDBCR", CDec(txtAmount.Text))
+        SQL.AddParam("@TotalDBCR", "0.00")
         SQL.AddParam("@Remarks", txtRemarks.Text)
         SQL.AddParam("@WhoCreated", Session("EmailAddress"))
         SQL.ExecNonQuery(insertSQL)
@@ -510,7 +515,7 @@ Public Class SalesJournal
         activityStatus = True
         updateSQL = " UPDATE tblSJ  " &
                         " SET    SJ_No = @SJ_No, Reference = @Reference, VCECode = @VCECode, TransDate = @TransDate, DueDate = @DueDate, " &
-                        "        TotalAmount = @TotalAmount, Remarks = @Remarks, WhoModified = @WhoModified, DateModified = GETDATE() " &
+                        "        Terms = @Terms, Remarks = @Remarks, WhoModified = @WhoModified, DateModified = GETDATE() " &
                         " WHERE TransID = @TransID "
         SQL.FlushParams()
         SQL.AddParam("@TransID", Session("TransID").ToString)
@@ -519,7 +524,7 @@ Public Class SalesJournal
         SQL.AddParam("@VCECode", txtCode.Text)
         SQL.AddParam("@TransDate", dtpDoc_Date.Value)
         SQL.AddParam("@DueDate", dtpDueDate.Value)
-        SQL.AddParam("@TotalAmount", CDec(txtAmount.Text))
+        SQL.AddParam("@Terms", ddlTerms.SelectedValue)
         SQL.AddParam("@Remarks", txtRemarks.Text)
         SQL.AddParam("@TransAuto", TransAuto)
         SQL.AddParam("@WhoModified", Session("EmailAddress"))
@@ -535,7 +540,7 @@ Public Class SalesJournal
             SQL.AddParam("@RefType", "SJ")
             SQL.AddParam("@RefTransID", Session("TransID"))
             SQL.AddParam("@Book", "Sales Book")
-            SQL.AddParam("@TotalDBCR", CDec(txtAmount.Text))
+            SQL.AddParam("@TotalDBCR", "0.00")
             SQL.AddParam("@Remarks", txtRemarks.Text)
             SQL.AddParam("@WhoCreated", Session("EmailAddress"))
             SQL.ExecNonQuery(insertSQL)
@@ -553,7 +558,7 @@ Public Class SalesJournal
             SQL.AddParam("@RefType", "SJ")
             SQL.AddParam("@RefTransID", Session("TransID").ToString)
             SQL.AddParam("@Book", "Sales Book")
-            SQL.AddParam("@TotalDBCR", CDec(txtAmount.Text))
+            SQL.AddParam("@TotalDBCR", "0.00")
             SQL.AddParam("@Remarks", txtRemarks.Text)
             SQL.AddParam("@WhoModified", Session("EmailAddress"))
             SQL.ExecNonQuery(updateSQL)
@@ -653,7 +658,7 @@ Public Class SalesJournal
 
     Private Sub LoadTransaction(ByVal ID As String)
         Dim query As String
-        query = " SELECT  TransID, SJ_No, tblSJ.VCECode, Name, TransDate,  DueDate, TotalAmount, Remarks, " &
+        query = " SELECT  TransID, SJ_No, tblSJ.VCECode, Name, Terms, TransDate,  DueDate, Remarks, " &
                 "         ISNULL(Reference,0) as Reference, tblSJ.Status " &
                 " FROM    tblSJ LEFT JOIN View_VCEMMaster " &
                 " ON      tblSJ.VCECode = View_VCEMMaster.Code " &
@@ -670,7 +675,7 @@ Public Class SalesJournal
             txtName.Text = SQL.SQLDR("Name").ToString
             dtpDoc_Date.Value = CDate(SQL.SQLDR("TransDate")).ToString("yyyy-MM-dd")
             dtpDueDate.Value = CDate(SQL.SQLDR("DueDate")).ToString("yyyy-MM-dd")
-            txtAmount.Text = SQL.SQLDR("TotalAmount").ToString
+            ddlTerms.Text = SQL.SQLDR("Terms").ToString
             txtRemarks.Text = SQL.SQLDR("Remarks").ToString
             txtStatus.Text = SQL.SQLDR("Status").ToString
             LoadEntry(TransID)
@@ -722,7 +727,7 @@ Public Class SalesJournal
         query = " SELECT ID, JE_No, View_GL.BranchCode, View_GL.AccntCode, AccountTitle, View_GL.VCECode, View_GL.VCEName, Debit, Credit, Particulars, RefNo ,CostID, VATType  " &
                 " FROM   View_GL INNER JOIN tblCOA " &
                 " ON     View_GL.AccntCode = tblCOA.AccountCode " &
-                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE RefType = 'SJ' AND RefTransID = " & SJNO & ") " &
+                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE Upload = 0 AND RefType = 'SJ' AND RefTransID = " & SJNO & ") " &
                 " ORDER BY LineNumber "
         SQL.ReadQuery(query)
         Dim ch As Integer = 1
@@ -904,7 +909,7 @@ Public Class SalesJournal
                     dr("Credit") = "0.00"
                     dt.Rows.InsertAt(dr, decRow)
 
-                    txtAmount.Text = decAmount.ToString("N2")
+                    'txtAmount.Text = decAmount.ToString("N2")
                     decRow += 1
                 End If
 

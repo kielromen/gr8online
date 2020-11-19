@@ -638,6 +638,69 @@ Public Class Reports
 
                 crystalReport.Close()
                 crystalReport.Dispose()
+            Case "BR"
+                Dim AccountCode As String = Request.QueryString("AccntCode")
+                Dim TransDate As Date = Request.QueryString("TransDate")
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptBR.rpt"))
+
+
+                Dim query As String
+                query = " SELECT * FROM View_BR_Printout WHERE TransID = @TransID "
+                SQL.FlushParams()
+                SQL.AddParam("@TransID", Session("TransID"))
+                Dim dsBRrpt As dsBRrpt = GetData(Type, query)
+
+                crystalReport.Database.Tables(0).SetDataSource(dsBRrpt.Tables("Table"))
+                crystalReport.Subreports(1).SetDataSource(dsHEADERrpt.Tables("Table"))
+
+                query = " SELECT * FROM View_GL"
+                SQL.FlushParams()
+                Dim dsDIT As dsDIT = GetData("DIT", query)
+
+                crystalReport.Subreports(0).SetDataSource(dsDIT.Tables("Table"))
+
+                query = " SELECT * FROM View_GL"
+                SQL.FlushParams()
+                Dim dsOC As dsOC = GetData("OC", query)
+
+                crystalReport.Subreports(2).SetDataSource(dsOC.Tables("Table"))
+
+
+                crystalReport.SetParameterValue("AccountCode", AccountCode, crystalReport.Subreports(0).Name.ToString)
+                crystalReport.SetParameterValue("TransDate", TransDate, crystalReport.Subreports(0).Name.ToString)
+                crystalReport.SetParameterValue("AccountCode1", AccountCode, crystalReport.Subreports(2).Name.ToString)
+                crystalReport.SetParameterValue("TransDate1", TransDate, crystalReport.Subreports(2).Name.ToString)
+
+                CrystalReportViewer1.ReportSource = crystalReport
+                crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptBR.pdf"))
+                file = Server.MapPath("~/Reports/rptBR.pdf")
+
+                crystalReport.Close()
+            Case "SAWT"
+                Dim query As String
+                query = " SELECT * FROM view_SAWT"
+
+                Dim crystalReport As New ReportDocument()
+                crystalReport.Load(Server.MapPath("~/Reports/rptSAWT.rpt"))
+
+                Dim dsSAWTrpt As dsSAWTrpt = GetData(Type, query)
+
+                crystalReport.Database.Tables(0).SetDataSource(dsSAWTrpt.Tables("Table"))
+                CrystalReportViewer1.ReportSource = crystalReport
+
+                If Session("@FileType") = "Excel" Then
+                    crystalReport.ExportToDisk(ExportFormatType.ExcelRecord, Server.MapPath("~/Reports/rptSAWT.xls"))
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=rptSAWT.xls")
+                    Response.TransmitFile(Server.MapPath("~/Reports/rptSAWT.xls"))
+                    Response.End()
+                Else
+                    crystalReport.ExportToDisk(ExportFormatType.PortableDocFormat, Server.MapPath("~/Reports/rptSAWT.pdf"))
+                    file = Server.MapPath("~/Reports/rptSAWT.pdf")
+                End If
+
+                crystalReport.Close()
+                crystalReport.Dispose()
         End Select
 
         If file <> "" Then
@@ -773,6 +836,26 @@ Public Class Reports
                 Using dsSLSrpt As New dsSLSrpt
                     SQL.SQLDA.Fill(dsSLSrpt)
                     Return dsSLSrpt
+                End Using
+            Case "BR"
+                Using dsBRrpt As New dsBRrpt
+                    SQL.SQLDA.Fill(dsBRrpt)
+                    Return dsBRrpt
+                End Using
+            Case "DIT"
+                Using dsDIT As New dsDIT
+                    SQL.SQLDA.Fill(dsDIT)
+                    Return dsDIT
+                End Using
+            Case "OC"
+                Using dsOC As New dsOC
+                    SQL.SQLDA.Fill(dsOC)
+                    Return dsOC
+                End Using
+            Case "SAWT"
+                Using dsSAWTrpt As New dsSAWTrpt
+                    SQL.SQLDA.Fill(dsSAWTrpt)
+                    Return dsSAWTrpt
                 End Using
         End Select
     End Function

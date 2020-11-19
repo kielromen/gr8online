@@ -13,6 +13,7 @@ Public Class CustomerManagement_View
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
+                Initialize()
                 Dim dt As New DataTable
                 dt.Columns.Add("")
                 gvUpload.DataSource = dt
@@ -22,18 +23,38 @@ Public Class CustomerManagement_View
         End If
     End Sub
 
+    Public Sub Initialize()
+        ddlFilter.Items.Clear()
+        ddlFilter.Items.Add("Active")
+        ddlFilter.Items.Add("Inactive")
+    End Sub
+
     Public Sub Loadlist()
         Dim query As String
-        query = " SELECT        Customer_Code, TIN_No, BranchCode, Billing_Lot_Unit, Billing_Blk_Bldg, Billing_Street, Billing_Subd, Billing_Brgy, Billing_Town_City, Billing_Province, Billing_Region, Billing_ZipCode, Delivery_Lot_Unit, 
+        query = " SELECT Customer_Code, TIN_No, BranchCode, Billing_Lot_Unit, Billing_Blk_Bldg, Billing_Street, Billing_Subd, Billing_Brgy, Billing_Town_City, Billing_Province, Billing_Region, Billing_ZipCode, Delivery_Lot_Unit, 
                          Delivery_Blk_Bldg, Delivery_Street, Delivery_Subd, Delivery_Brgy, Delivery_Town_City, Delivery_Province, Delivery_Region, Delivery_ZipCode, SameAddress, Contact_Person, Contact_Position, Contact_Telephone, 
                          Contact_Cellphone, Contact_Fax, Contact_Email, Contact_Website, Terms, CutOff, VAT_Type, AccountNo, Status, DateCreated, DateModified, WhoCreated, WhoModified, TransAuto, Classification, First_Name, Last_Name, Middle_Name, Suffix_Name, 
 						 CASE WHEN Classification = 'Individual' THEN CONCAT(Last_Name, ', ', First_name, ' ', Middle_Name,' ', Suffix_Name) ELSE Customer_Name END AS Customer_Name
-                  FROM dbo.tblCustomer_Master WHERE Status = @Status"
+                  FROM dbo.tblCustomer_Master WHERE Status = @Status AND CASE WHEN Classification = 'Individual' THEN CONCAT(Last_Name, ', ', First_name, ' ', Middle_Name,' ', Suffix_Name) ELSE Customer_Name END LIKE '%' + @Customer_Name + '%'"
         SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
+        SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@Customer_Name", txtFilter.Text)
         SQL.GetQuery(query)
         gvCustomer.DataSource = SQL.SQLDS
         gvCustomer.DataBind()
+
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In gvCustomer.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In gvCustomer.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
     Private Sub gvCustomer_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvCustomer.PageIndexChanging
@@ -47,9 +68,15 @@ Public Class CustomerManagement_View
             query = "UPDATE tblCustomer_Master SET Status = @Status WHERE Customer_Code = @Customer_Code"
             SQL.FlushParams()
             SQL.AddParam("@Customer_Code", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='CustomerManagement_View.aspx';</script>")
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
+            Loadlist()
         End If
     End Sub
 
@@ -146,5 +173,14 @@ Public Class CustomerManagement_View
 
     Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
         Response.Write("<script>window.location='CustomerManagement_View.aspx';</script>")
+    End Sub
+
+    Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+        Dim filename As String = "Customer.xlsm"
+        Dim filePath As String = (Server.MapPath("~/Templates/") + filename)
+        Response.ContentType = ContentType
+        Response.AppendHeader("Content-Disposition", ("attachment; filename=" + Path.GetFileName(filePath)))
+        Response.WriteFile(filePath)
+        Response.End()
     End Sub
 End Class

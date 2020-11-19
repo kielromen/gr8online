@@ -13,6 +13,7 @@ Public Class Employee_Loadlist
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
+                Initialize()
                 Dim dt As New DataTable
                 dt.Columns.Add("")
                 gvUpload.DataSource = dt
@@ -22,15 +23,35 @@ Public Class Employee_Loadlist
         End If
     End Sub
 
+    Public Sub Initialize()
+        ddlFilter.Items.Clear()
+        ddlFilter.Items.Add("Active")
+        ddlFilter.Items.Add("Inactive")
+    End Sub
+
     Public Sub Loadlist()
         Dim query As String
         query = " SELECT  CASE WHEN Last_Name IS NULL AND First_Name IS NULL THEN Employee_Name ELSE CONCAT(ISNULL(Last_Name, ''), ', ', ISNULL(First_Name, ''), ' ', ISNULL(Middle_Name, ''), ' ', ISNULL(Suffix_Name, '')) END AS Employee_Name, * FROM tblEmployee_Master " & vbCrLf &
-                " WHERE Status = @Status"
+                " WHERE Status = @Status AND CASE WHEN Last_Name IS NULL AND First_Name IS NULL THEN Employee_Name ELSE CONCAT(ISNULL(Last_Name, ''), ', ', ISNULL(First_Name, ''), ' ', ISNULL(Middle_Name, ''), ' ', ISNULL(Suffix_Name, '')) END LIKE '%' + @Employee_Name + '%'"
         SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
+        SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@Employee_Name", txtFilter.Text)
         SQL.GetQuery(query)
         gvEmployee.DataSource = SQL.SQLDS
         gvEmployee.DataBind()
+
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In gvEmployee.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In gvEmployee.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
     Private Sub gvEmployee_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvEmployee.PageIndexChanging
@@ -44,9 +65,15 @@ Public Class Employee_Loadlist
             query = "UPDATE tblEmployee_Master SET Status = @Status WHERE Employee_Code = @Employee_Code"
             SQL.FlushParams()
             SQL.AddParam("@Employee_Code", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='Employee_Loadlist.aspx';</script>")
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
+            Loadlist()
         End If
     End Sub
 
@@ -124,5 +151,14 @@ Public Class Employee_Loadlist
 
     Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
         Response.Write("<script>window.location='Employee_Loadlist.aspx';</script>")
+    End Sub
+
+    Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+        Dim filename As String = "Employee.xlsm"
+        Dim filePath As String = (Server.MapPath("~/Templates/") + filename)
+        Response.ContentType = ContentType
+        Response.AppendHeader("Content-Disposition", ("attachment; filename=" + Path.GetFileName(filePath)))
+        Response.WriteFile(filePath)
+        Response.End()
     End Sub
 End Class

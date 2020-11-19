@@ -13,9 +13,16 @@ Public Class DisbursementPaymentType_Loadlist
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
+                Initialize()
                 Loadlist()
             End If
         End If
+    End Sub
+
+    Public Sub Initialize()
+        ddlFilter.Items.Clear()
+        ddlFilter.Items.Add("Active")
+        ddlFilter.Items.Add("Inactive")
     End Sub
 
     Public Sub Loadlist()
@@ -23,12 +30,25 @@ Public Class DisbursementPaymentType_Loadlist
         query = " SELECT  ID, PaymentType, WithBank , tblDV_PaymentType.AccountCode, AccountTitle, Status, DateCreated, DateModified, WhoCreated, WhoModified " &
                 " FROM tblDV_PaymentType  " &
                 " LEFT JOIN (SELECT AccountCode, AccountTitle FROM tblCOA) AS tblCOA ON tblDV_PaymentType.AccountCode = tblCOA.AccountCode " &
-                " WHERE tblDV_PaymentType.Status = @Status"
+                " WHERE tblDV_PaymentType.Status = @Status AND PaymentType LIKE '%' + @PaymentType + '%'"
         SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
+        SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@PaymentType", txtFilter.Text)
         SQL.GetQuery(query)
         gvPaymentType.DataSource = SQL.SQLDS
         gvPaymentType.DataBind()
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In gvPaymentType.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In gvPaymentType.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
     Private Sub gvPaymentType_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvPaymentType.PageIndexChanging
@@ -42,9 +62,16 @@ Public Class DisbursementPaymentType_Loadlist
             query = "UPDATE tblDV_PaymentType SET Status = @Status WHERE ID = @ID"
             SQL.FlushParams()
             SQL.AddParam("@ID", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='DisbursementPaymentType_Loadlist.aspx';</script>")
+
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
+            Loadlist()
         End If
     End Sub
 

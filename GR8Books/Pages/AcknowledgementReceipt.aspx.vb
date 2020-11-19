@@ -488,7 +488,7 @@ Public Class AcknowledgementReceipt
         query = " SELECT ID, JE_No, View_GL.BranchCode, View_GL.AccntCode, AccountTitle, View_GL.VCECode, View_GL.VCEName, Debit, Credit, Particulars,CostID, RefNo,VATType   " &
                 " FROM   View_GL INNER JOIN tblCOA " &
                 " ON     View_GL.AccntCode = tblCOA.AccountCode " &
-                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE RefType = 'AR' AND RefTransID = " & ARNo & ") " &
+                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE Upload = 0 AND RefType = 'AR' AND RefTransID = " & ARNo & ") " &
                 " ORDER BY Debit DESC, AccntCode ASC "
         SQL.ReadQuery(query)
         Dim ch As Integer = 1

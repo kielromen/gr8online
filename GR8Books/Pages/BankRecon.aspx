@@ -155,6 +155,22 @@
                 });
             });
 
+            $("#<%=btnPreview.ClientID%>").click(function (e) {
+                e.preventDefault();
+                var Type = "BR";
+                var AccntCode = $("#<%=txtAccountCode.ClientID%>").val();
+                var TransDate = $("#<%=dtpDoc_Date.ClientID%>").val();
+                var win = window.open("Reports.aspx?id=" + Type + '&AccntCode=' + AccntCode + '&TransDate=' + TransDate, "_blank");
+            });
+
+            $(".btnCancel").click(function () {
+                if (confirm("Are you sure you want to cancel this transaction?")) {
+
+                }
+                else {
+                    return false;
+                }
+            });
 
         });
 

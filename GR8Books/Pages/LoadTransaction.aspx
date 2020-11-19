@@ -38,6 +38,7 @@
                 <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount"  ItemStyle-HorizontalAlign="Right" ItemStyle-Width="120px" />
                 <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
                 <asp:BoundField DataField="Status" HeaderText="Status" />
+                <asp:BoundField DataField="DateCreated" HeaderText="Date Created"  ItemStyle-Width="200px" />
            </Columns>
              <EditRowStyle BackColor="#2461BF" />
                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

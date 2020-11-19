@@ -317,6 +317,71 @@ Update Order Option
 Used to sort self-referenced table's rows
 </summary>
 </member>
+<member name="T:GR8Books.dsBRrpt">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:GR8Books.dsBRrpt.View_BR_PrintoutDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:GR8Books.dsBRrpt.View_BR_PrintoutRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:GR8Books.dsBRrpt.View_BR_PrintoutRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:GR8Books.dsBRrptTableAdapters.View_BR_PrintoutTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:GR8Books.dsBRrptTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:GR8Books.dsBRrptTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsBRrpt,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsBRrptTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsBRrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsBRrptTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsBRrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:GR8Books.dsBRrptTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:GR8Books.dsBRrptTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsBRrpt)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:GR8Books.dsBRrptTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:GR8Books.dsBRrptTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
 <member name="T:GR8Books.dsCArpt">
 <summary>
 Represents a strongly typed in-memory cache of data.
@@ -658,6 +723,71 @@ Update Order Option
 </summary>
 </member>
 <member name="T:GR8Books.dsCVrptTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+<member name="T:GR8Books.dsDIT">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:GR8Books.dsDIT.View_GLDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:GR8Books.dsDIT.View_GLRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:GR8Books.dsDIT.View_GLRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:GR8Books.dsDITTableAdapters.View_GLTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:GR8Books.dsDITTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:GR8Books.dsDITTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsDIT,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsDITTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsDIT,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsDITTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsDIT,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:GR8Books.dsDITTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:GR8Books.dsDITTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsDIT)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:GR8Books.dsDITTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:GR8Books.dsDITTableAdapters.TableAdapterManager.SelfReferenceComparer">
 <summary>
 Used to sort self-referenced table's rows
 </summary>
@@ -1072,6 +1202,71 @@ Update Order Option
 Used to sort self-referenced table's rows
 </summary>
 </member>
+<member name="T:GR8Books.dsOC">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:GR8Books.dsOC.View_GLDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:GR8Books.dsOC.View_GLRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:GR8Books.dsOC.View_GLRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:GR8Books.dsOCTableAdapters.View_GLTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:GR8Books.dsOCTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:GR8Books.dsOCTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsOC,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsOCTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsOC,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsOCTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsOC,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:GR8Books.dsOCTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:GR8Books.dsOCTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsOC)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:GR8Books.dsOCTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:GR8Books.dsOCTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
 <member name="T:GR8Books.dsPCrpt">
 <summary>
 Represents a strongly typed in-memory cache of data.
@@ -1133,6 +1328,71 @@ Update Order Option
 </summary>
 </member>
 <member name="T:GR8Books.dsPCrptTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrpt">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrpt.View_SAWTDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrpt.View_SAWTRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrpt.View_SAWTRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrptTableAdapters.View_SAWTTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager.UpdateUpdatedRows(GR8Books.dsSAWTrpt,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager.UpdateInsertedRows(GR8Books.dsSAWTrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager.UpdateDeletedRows(GR8Books.dsSAWTrpt,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager.UpdateAll(GR8Books.dsSAWTrpt)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:GR8Books.dsSAWTrptTableAdapters.TableAdapterManager.SelfReferenceComparer">
 <summary>
 Used to sort self-referenced table's rows
 </summary>
@@ -2351,6 +2611,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.BankMasterfile_LoadList._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.BankMasterfile_LoadList._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.BankMasterfile_LoadList._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.BankMasterfile_LoadList._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.BankMasterfile_LoadList._btnExport">
 <summary>
 btnExport control.
@@ -2363,15 +2659,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.BankMasterfile_LoadList._dgvBankList">
 <summary>
 dgvBankList control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.BankMasterfile_LoadList._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3350,6 +3637,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CashReceiptType_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CashReceiptType_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CashReceiptType_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CashReceiptType_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CashReceiptType_Loadlist._btnExport">
 <summary>
 btnExport control.
@@ -3362,15 +3685,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CashReceiptType_Loadlist._gvCollectionType">
 <summary>
 gvCollectionType control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CashReceiptType_Loadlist._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4052,9 +4366,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.ChartofAccount_Loadlist._btnSort">
+<member name="F:GR8Books.ChartofAccount_Loadlist._btnAdd">
 <summary>
-btnSort control.
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ChartofAccount_Loadlist._btnUpload">
+<summary>
+btnUpload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ChartofAccount_Loadlist._btnDownload">
+<summary>
+btnDownload control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4079,18 +4411,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.ChartofAccount_Loadlist._btnAdd">
+<member name="F:GR8Books.ChartofAccount_Loadlist._btnSort">
 <summary>
-btnAdd control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.ChartofAccount_Loadlist._btnUpload">
-<summary>
-btnUpload control.
+btnSort control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4646,6 +4969,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.CollectionPaymentType_LoadList._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CollectionPaymentType_LoadList._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CollectionPaymentType_LoadList._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CollectionPaymentType_LoadList._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.CollectionPaymentType_LoadList._btnExport">
 <summary>
 btnExport control.
@@ -4658,15 +5017,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CollectionPaymentType_LoadList._gvPaymentType">
 <summary>
 gvPaymentType control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.CollectionPaymentType_LoadList._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -5159,6 +5509,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.Collector_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Collector_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Collector_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Collector_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.Collector_Loadlist._btnExport">
 <summary>
 btnExport control.
@@ -5171,15 +5557,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.Collector_Loadlist._gvCollector">
 <summary>
 gvCollector control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.Collector_Loadlist._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6140,9 +6517,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.CustomerManagement._txtTerms">
+<member name="F:GR8Books.CustomerManagement._ddlTerms">
 <summary>
-txtTerms control.
+ddlTerms control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6572,18 +6949,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.CustomerManagement_View._btnExport">
+<member name="F:GR8Books.CustomerManagement_View._txtFilter">
 <summary>
-btnExport control.
+txtFilter control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.CustomerManagement_View._gvCustomer">
+<member name="F:GR8Books.CustomerManagement_View._btnSearch">
 <summary>
-gvCustomer control.
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement_View._ddlFilter">
+<summary>
+ddlFilter control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6602,6 +6988,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.CustomerManagement_View._btnUpload">
 <summary>
 btnUpload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement_View._btnDownload">
+<summary>
+btnDownload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement_View._btnExport">
+<summary>
+btnExport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.CustomerManagement_View._gvCustomer">
+<summary>
+gvCustomer control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7058,6 +7471,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.DefaultAccounts_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DefaultAccounts_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DefaultAccounts_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DefaultAccounts_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.DefaultAccounts_Loadlist._btnExport">
 <summary>
 btnExport control.
@@ -7070,15 +7519,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.DefaultAccounts_Loadlist._gvDefaultAccount">
 <summary>
 gvDefaultAccount control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.DefaultAccounts_Loadlist._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7346,6 +7786,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.DisbursementPaymentType_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementPaymentType_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.DisbursementPaymentType_Loadlist._btnExport">
 <summary>
 btnExport control.
@@ -7358,15 +7834,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.DisbursementPaymentType_Loadlist._gvPaymentType">
 <summary>
 gvPaymentType control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.DisbursementPaymentType_Loadlist._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7481,6 +7948,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.DisbursementType_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementType_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementType_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.DisbursementType_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.DisbursementType_Loadlist._btnExport">
 <summary>
 btnExport control.
@@ -7493,15 +7996,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.DisbursementType_Loadlist._gvDisbursementType">
 <summary>
 gvDisbursementType control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.DisbursementType_Loadlist._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7625,18 +8119,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.Employee_Loadlist._btnExport">
+<member name="F:GR8Books.Employee_Loadlist._txtFilter">
 <summary>
-btnExport control.
+txtFilter control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.Employee_Loadlist._gvEmployee">
+<member name="F:GR8Books.Employee_Loadlist._btnSearch">
 <summary>
-gvEmployee control.
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7655,6 +8158,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.Employee_Loadlist._btnUpload">
 <summary>
 btnUpload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Loadlist._btnDownload">
+<summary>
+btnDownload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Loadlist._btnExport">
+<summary>
+btnExport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Loadlist._gvEmployee">
+<summary>
+gvEmployee control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7814,18 +8344,36 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.Employee_Management._txtCellphoneNo">
+<member name="F:GR8Books.Employee_Management._txtAddress_Lot_Unit">
 <summary>
-txtCellphoneNo control.
+txtAddress_Lot_Unit control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.Employee_Management._RequiredFieldValidator3">
+<member name="F:GR8Books.Employee_Management._txtAddress_Blk_Bldg">
 <summary>
-RequiredFieldValidator3 control.
+txtAddress_Blk_Bldg control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Management._txtStreet">
+<summary>
+txtStreet control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Management._txtSubdivision">
+<summary>
+txtSubdivision control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7904,42 +8452,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.Employee_Management._txtAddress_Lot_Unit">
-<summary>
-txtAddress_Lot_Unit control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.Employee_Management._txtAddress_Blk_Bldg">
-<summary>
-txtAddress_Blk_Bldg control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.Employee_Management._txtStreet">
-<summary>
-txtStreet control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.Employee_Management._txtSubdivision">
-<summary>
-txtSubdivision control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:GR8Books.Employee_Management._txtZipCode">
 <summary>
 txtZipCode control.
@@ -7952,6 +8464,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.Employee_Management._RequiredFieldValidator16">
 <summary>
 RequiredFieldValidator16 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Management._txtCellphoneNo">
+<summary>
+txtCellphoneNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Employee_Management._RequiredFieldValidator3">
+<summary>
+RequiredFieldValidator3 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8012,6 +8542,60 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.ItemMasterfile_LoadList._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ItemMasterfile_LoadList._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ItemMasterfile_LoadList._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ItemMasterfile_LoadList._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ItemMasterfile_LoadList._btnUpload">
+<summary>
+btnUpload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ItemMasterfile_LoadList._btnDownload">
+<summary>
+btnDownload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.ItemMasterfile_LoadList._btnExport">
 <summary>
 btnExport control.
@@ -8024,15 +8608,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.ItemMasterfile_LoadList._dgvItemList">
 <summary>
 dgvItemList control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.ItemMasterfile_LoadList._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -9686,6 +10261,60 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.MemberManagement_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.MemberManagement_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.MemberManagement_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.MemberManagement_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.MemberManagement_Loadlist._btnUpload">
+<summary>
+btnUpload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.MemberManagement_Loadlist._btnDownload">
+<summary>
+btnDownload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.MemberManagement_Loadlist._btnExport">
 <summary>
 btnExport control.
@@ -9698,15 +10327,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.MemberManagement_Loadlist._gvMember">
 <summary>
 gvMember control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.MemberManagement_Loadlist._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -12620,6 +13240,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.ResponsibilityCenter_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ResponsibilityCenter_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ResponsibilityCenter_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.ResponsibilityCenter_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.ResponsibilityCenter_Loadlist._btnExport">
 <summary>
 btnExport control.
@@ -12632,15 +13288,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.ResponsibilityCenter_Loadlist._gvResCenter">
 <summary>
 gvResCenter control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.ResponsibilityCenter_Loadlist._btnAdd">
-<summary>
-btnAdd control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -13124,36 +13771,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.SalesJournal._txtAmount">
-<summary>
-txtAmount control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.SalesJournal._btnTax">
-<summary>
-btnTax control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:GR8Books.SalesJournal._RequiredFieldValidator3">
-<summary>
-RequiredFieldValidator3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:GR8Books.SalesJournal._txtRemarks">
 <summary>
 txtRemarks control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.SalesJournal._ddlTerms">
+<summary>
+ddlTerms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.SalesJournal._RequiredFieldValidator9">
+<summary>
+RequiredFieldValidator9 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -13172,6 +13810,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.SalesJournal._txtTrans_Num">
 <summary>
 txtTrans_Num control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.SalesJournal._RequiredFieldValidator2">
+<summary>
+RequiredFieldValidator2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -13494,6 +14141,204 @@ To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:GR8Books.Settings_Tax._btnSave">
+<summary>
+btnSave control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._panelDefaultAccount">
+<summary>
+panelDefaultAccount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtAP_InputVAT">
+<summary>
+txtAP_InputVAT control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator3">
+<summary>
+RequiredFieldValidator3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtAP_InputVAT_Title">
+<summary>
+txtAP_InputVAT_Title control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtAR_OutputVAT">
+<summary>
+txtAR_OutputVAT control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator1">
+<summary>
+RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtAR_OutputVAT_Title">
+<summary>
+txtAR_OutputVAT_Title control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator2">
+<summary>
+RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtTAX_Deferred">
+<summary>
+txtTAX_Deferred control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator9">
+<summary>
+RequiredFieldValidator9 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtTAX_Deferred_Title">
+<summary>
+txtTAX_Deferred_Title control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator10">
+<summary>
+RequiredFieldValidator10 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtTAX_EWT">
+<summary>
+txtTAX_EWT control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator5">
+<summary>
+RequiredFieldValidator5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtTAX_EWT_Title">
+<summary>
+txtTAX_EWT_Title control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator6">
+<summary>
+RequiredFieldValidator6 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtTAX_CWT">
+<summary>
+txtTAX_CWT control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator7">
+<summary>
+RequiredFieldValidator7 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._txtTAX_CWT_Title">
+<summary>
+txtTAX_CWT_Title control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._RequiredFieldValidator8">
+<summary>
+RequiredFieldValidator8 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Settings_TaxSetup._btnSave">
 <summary>
 btnSave control.
 </summary>
@@ -14141,6 +14986,141 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:GR8Books.Terms_Loadlist._txtFilter">
+<summary>
+txtFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Loadlist._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Loadlist._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Loadlist._btnAdd">
+<summary>
+btnAdd control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Loadlist._btnExport">
+<summary>
+btnExport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Loadlist._gvTerms">
+<summary>
+gvTerms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._panelCollector">
+<summary>
+panelCollector control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._txtDescription">
+<summary>
+txtDescription control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._RequiredFieldValidator2">
+<summary>
+RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._ddlDateMode">
+<summary>
+ddlDateMode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._RequiredFieldValidator9">
+<summary>
+RequiredFieldValidator9 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._txtPeriod">
+<summary>
+txtPeriod control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._RequiredFieldValidator1">
+<summary>
+RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._btnSave">
+<summary>
+btnSave control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.Terms_Management._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:GR8Books.Transaction_Uploader._btnSearch">
 <summary>
 btnSearch control.
@@ -14375,9 +15355,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.VendorManagement._txtTerms">
+<member name="F:GR8Books.VendorManagement._ddlTerms">
 <summary>
-txtTerms control.
+ddlTerms control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -14672,18 +15652,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.VendorManagement_View._btnExport">
+<member name="F:GR8Books.VendorManagement_View._txtFilter">
 <summary>
-btnExport control.
+txtFilter control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:GR8Books.VendorManagement_View._gvVendor">
+<member name="F:GR8Books.VendorManagement_View._btnSearch">
 <summary>
-gvVendor control.
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement_View._ddlFilter">
+<summary>
+ddlFilter control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -14702,6 +15691,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:GR8Books.VendorManagement_View._btnUpload">
 <summary>
 btnUpload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement_View._btnDownload">
+<summary>
+btnDownload control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement_View._btnExport">
+<summary>
+btnExport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:GR8Books.VendorManagement_View._gvVendor">
+<summary>
+gvVendor control.
 </summary>
 <remarks>
 Auto-generated field.

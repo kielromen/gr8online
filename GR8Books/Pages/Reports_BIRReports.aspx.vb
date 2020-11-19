@@ -166,6 +166,8 @@
             ddlMonth.Items.Add("2nd Quarter")
             ddlMonth.Items.Add("3rd Quarter")
             ddlMonth.Items.Add("4th Quarter")
+        ElseIf ddlReports.SelectedValue = "Summary Alphalist of Withholding Tax" Then
+
         End If
         LoadPeriod()
     End Sub
@@ -191,6 +193,8 @@
         ElseIf ddlReports.SelectedValue = "Summary Lists of Purchases" Then
             Session("@DateTo") = ddlMonth.SelectedValue
             Response.Write("<script>window.open('Reports.aspx?id=' + 'SLP', '_blank');</script>")
+        ElseIf ddlReports.SelectedValue = "Summary Alphalist of Withholding Tax" Then
+            Response.Write("<script>window.open('Reports.aspx?id=' + 'SAWT', '_blank');</script>")
         End If
     End Sub
 

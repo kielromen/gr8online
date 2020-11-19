@@ -544,10 +544,13 @@
     <Content Include="Pages\Settings.aspx" />
     <Content Include="Pages\Settings_DefaultAccount.aspx" />
     <Content Include="Pages\Settings_Tax.aspx" />
+    <Content Include="Pages\Settings_TaxSetup.aspx" />
     <Content Include="Pages\Settings_TransactionID.aspx" />
     <Content Include="Pages\SO_Entry.aspx" />
     <Content Include="Pages\TaxSetup_Loadlist.aspx" />
     <Content Include="Pages\TaxSetup_Management.aspx" />
+    <Content Include="Pages\Terms_Loadlist.aspx" />
+    <Content Include="Pages\Terms_Management.aspx" />
     <Content Include="Pages\Transaction_Uploader.aspx" />
     <Content Include="Pages\VendorManagement.aspx" />
     <Content Include="Pages\VendorManagement_View.aspx" />
@@ -670,6 +673,17 @@
     <Content Include="Dataset\dsBOASUMrpt.xss">
       <DependentUpon>dsBOASUMrpt.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsBRrpt.xsc">
+      <DependentUpon>dsBRrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsBRrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBRrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsBRrpt.xss">
+      <DependentUpon>dsBRrpt.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsCArpt.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -734,6 +748,17 @@
     <Content Include="Dataset\dsCVrpt.xss">
       <DependentUpon>dsCVrpt.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsDIT.xsc">
+      <DependentUpon>dsDIT.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsDIT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsDIT.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsDIT.xss">
+      <DependentUpon>dsDIT.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsFSCErpt.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -784,6 +809,17 @@
     <Content Include="Dataset\dsPCrpt.xsc">
       <DependentUpon>dsPCrpt.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsOC.xsc">
+      <DependentUpon>dsOC.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsOC.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsOC.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsOC.xss">
+      <DependentUpon>dsOC.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsPCrpt.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -797,6 +833,17 @@
     </Content>
     <Content Include="Dataset\dsSLPrpt.xsc">
       <DependentUpon>dsSLPrpt.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\dsSAWTrpt.xsc">
+      <DependentUpon>dsSAWTrpt.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsSAWTrpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSAWTrpt.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsSAWTrpt.xss">
+      <DependentUpon>dsSAWTrpt.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\dsSLPrpt.xsd">
       <SubType>Designer</SubType>
@@ -966,6 +1013,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsBOASUMrpt.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\dsBRrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBRrpt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsCArpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -991,6 +1043,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCVrpt.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\dsDIT.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsDIT.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsFSCErpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1013,10 +1070,20 @@
     </Compile>
     <Compile Include="Dataset\dsHEADERrpt.Designer.vb" />
     <Compile Include="Dataset\dsJVrpt.Designer.vb" />
+    <Compile Include="Dataset\dsOC.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsOC.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsPCrpt.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPCrpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\dsSAWTrpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSAWTrpt.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dataset\dsSLPrpt.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -1620,6 +1687,13 @@
       <DependentUpon>Settings_Tax.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Pages\Settings_TaxSetup.aspx.designer.vb">
+      <DependentUpon>Settings_TaxSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings_TaxSetup.aspx.vb">
+      <DependentUpon>Settings_TaxSetup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\Settings_TransactionID.aspx.designer.vb">
       <DependentUpon>Settings_TransactionID.aspx</DependentUpon>
     </Compile>
@@ -1647,6 +1721,20 @@
     <Compile Include="Pages\TaxSetup_Management.aspx.vb">
       <DependentUpon>TaxSetup_Management.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Terms_Loadlist.aspx.designer.vb">
+      <DependentUpon>Terms_Loadlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Terms_Loadlist.aspx.vb">
+      <DependentUpon>Terms_Loadlist.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Terms_Management.aspx.designer.vb">
+      <DependentUpon>Terms_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Terms_Management.aspx.vb">
+      <DependentUpon>Terms_Management.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Transaction_Uploader.aspx.designer.vb">
       <DependentUpon>Transaction_Uploader.aspx</DependentUpon>
@@ -1684,6 +1772,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptBOASUM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptBR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBR.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptCA.vb">
@@ -1750,6 +1844,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptGENLGRS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSAWT.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSAWT.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptSBLL.vb">
@@ -1839,6 +1939,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptBOASUM.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBR.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptCA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCA.vb</LastGenOutput>
@@ -1882,6 +1986,10 @@
     <EmbeddedResource Include="Reports\rptGENLGRS.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptGENLGRS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSAWT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSAWT.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptSBLL.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1948,6 +2056,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
+    <Content Include="Templates\COA.xlsm" />
+    <Content Include="Templates\Customer.xlsm" />
+    <Content Include="Templates\Employee.xlsm" />
+    <Content Include="Templates\Vendor.xlsm" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

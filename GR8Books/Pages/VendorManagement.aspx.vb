@@ -70,7 +70,7 @@ Public Class VendorManagement
         SQL.AddParam("@Contact_Email", txtEmail.Text)
         SQL.AddParam("@Contact_Fax", txtFax.Text)
         SQL.AddParam("@Contact_Website", txtWebsite.Text)
-        SQL.AddParam("@Terms", txtTerms.Text)
+        SQL.AddParam("@Terms", ddlTerms.SelectedValue)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
         SQL.AddParam("@AccountNo", txtAccountNo.Text)
@@ -117,7 +117,7 @@ Public Class VendorManagement
         SQL.AddParam("@Contact_Email", txtEmail.Text)
         SQL.AddParam("@Contact_Fax", txtFax.Text)
         SQL.AddParam("@Contact_Website", txtWebsite.Text)
-        SQL.AddParam("@Terms", txtTerms.Text)
+        SQL.AddParam("@Terms", ddlTerms.SelectedValue)
         SQL.AddParam("@CutOff", txtCutOff.Text)
         SQL.AddParam("@VAT_Type", ddlVAT_Type.SelectedValue)
         SQL.AddParam("@AccountNo", txtAccountNo.Text)
@@ -173,11 +173,15 @@ Public Class VendorManagement
         txtLot_Unit.Text = ""
         txtStreet.Text = ""
         txtSubd.Text = ""
-        txtTerms.Text = ""
         txtWebsite.Text = ""
         txtZipCode.Text = ""
         txtPosition.Text = ""
         txtAccountNo.Text = ""
+
+        ddlTerms.Items.Clear()
+        ddlTerms.Items.Add("--Select Terms--")
+        ddlTerms.DataSource = LoadTerms().ToArray
+        ddlTerms.DataBind()
 
         ddlVAT_Type.Items.Clear()
         ddlVAT_Type.Items.Add("--Select VAT Type--")
@@ -276,7 +280,7 @@ Public Class VendorManagement
             txtCellphone.Text = SQL.SQLDR("Contact_Cellphone").ToString
             txtFax.Text = SQL.SQLDR("Contact_Fax").ToString
             txtWebsite.Text = SQL.SQLDR("Contact_Website").ToString
-            txtTerms.Text = SQL.SQLDR("Terms").ToString
+            ddlTerms.SelectedValue = SQL.SQLDR("Terms").ToString
             txtCutOff.Text = SQL.SQLDR("CutOff").ToString
             ddlVAT_Type.SelectedValue = SQL.SQLDR("VAT_Type").ToString
             txtAccountNo.Text = SQL.SQLDR("AccountNo").ToString

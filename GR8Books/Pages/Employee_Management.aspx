@@ -121,13 +121,57 @@
                 </div>
             </div>
             <div class="col-sm">
+                
+            </div>
+        </div>
+         <%--Address--%>
+        <div class="row mt-4">
+            <div class="col">
+                <h6>
+                    <asp:Label Text="Address" runat="server" Style="color: #808080" /></h6>
+                <hr />
+            </div>
+        </div>
+         <div class="row mb-2">
+            <div class="col-sm">
                 <div class="row mb-2">
                     <div class="col-3">
-                        <asp:Label Text="Cellphone no.:" runat="server" />
+                        <asp:Label Text="Lot / Unit:" runat="server" />
                     </div>
                     <div class="col">
-                        <asp:TextBox ID="txtCellphoneNo" class="txtCellphoneNo form-control" runat="server" autocomplete="off" />
-                        <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtCellphoneNo" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtAddress_Lot_Unit" class="txtAddress_Lot_Unit form-control" runat="server" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <asp:Label Text="Blk / Bldg:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtAddress_Blk_Bldg" class="txtAddress_Blk_Bldg form-control" runat="server" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm">
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <asp:Label Text="Street:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtStreet" class="txtStreet form-control" runat="server" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <asp:Label Text="Subdivision:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtSubdivision" class="txtSubdivision form-control" runat="server" autocomplete="off" />
                     </div>
                 </div>
             </div>
@@ -184,50 +228,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-2">
-            <div class="col-sm">
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <asp:Label Text="Lot / Unit:" runat="server" />
-                    </div>
-                    <div class="col">
-                        <asp:TextBox ID="txtAddress_Lot_Unit" class="txtAddress_Lot_Unit form-control" runat="server" autocomplete="off" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <asp:Label Text="Blk / Bldg:" runat="server" />
-                    </div>
-                    <div class="col">
-                        <asp:TextBox ID="txtAddress_Blk_Bldg" class="txtAddress_Blk_Bldg form-control" runat="server" autocomplete="off" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-sm">
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <asp:Label Text="Street:" runat="server" />
-                    </div>
-                    <div class="col">
-                        <asp:TextBox ID="txtStreet" class="txtStreet form-control" runat="server" autocomplete="off" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <asp:Label Text="Subdivision:" runat="server" />
-                    </div>
-                    <div class="col">
-                        <asp:TextBox ID="txtSubdivision" class="txtSubdivision form-control" runat="server" autocomplete="off" />
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <div class="row mb-2">
             <div class="col-sm">
                 <div class="row mb-2">
@@ -237,6 +238,31 @@
                     <div class="col">
                         <asp:TextBox ID="txtZipCode" class="txtZipCode form-control" runat="server" autocomplete="off" />
                         <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator16" runat="Server" ControlToValidate="txtZipCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                
+            </div>
+        </div>
+         <%--Contact Details--%>
+        <div class="row mt-4">
+            <div class="col">
+                <h6>
+                    <asp:Label Text="Contact Details" runat="server" Style="color: #808080" /></h6>
+                <hr />
+            </div>
+        </div>
+
+          <div class="row mb-2">
+            <div class="col-sm">
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <asp:Label Text="Cellphone no.:" runat="server" />
+                    </div>
+                    <div class="col">
+                        <asp:TextBox ID="txtCellphoneNo" class="txtCellphoneNo form-control" runat="server" autocomplete="off" />
+                        <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtCellphoneNo" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>
@@ -252,6 +278,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="row justify-content-end">
             <div class="col-sm-2">
                 <asp:Button Text="Save" ID="btnSave" class="btnSave btn btn-primary btn-block" runat="server" ValidationGroup="g" />

@@ -13,28 +13,49 @@ Public Class BankMasterfile_LoadList
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
-                LoadBankList()
+                Initialize()
+                Loadlist()
+
             End If
         End If
     End Sub
 
-    Public Sub LoadBankList()
+    Public Sub Initialize()
+        ddlFilter.Items.Clear()
+        ddlFilter.Items.Add("Active")
+        ddlFilter.Items.Add("Inactive")
+    End Sub
+
+    Public Sub Loadlist()
         Dim query As String
         query = " SELECT * FROM tblBank" &
                               " LEFT JOIN" &
                               " (SELECT AccountCode,AccountTitle FROM tblCOA) AS tblCOA  ON" &
                               " tblCOA.AccountCode = tblBank.AccountCode " &
-                              " WHERE tblBank.Status = @Status"
+                              " WHERE tblBank.Status = @Status AND Bank LIKE '%' + @Bank + '%'"
         SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
+        SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@Bank", txtFilter.Text)
         SQL.GetQuery(query)
         dgvBankList.DataSource = SQL.SQLDS
         dgvBankList.DataBind()
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In dgvBankList.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In dgvBankList.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
     Private Sub dgvBankList_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles dgvBankList.PageIndexChanging
         dgvBankList.PageIndex = e.NewPageIndex
-        LoadBankList()
+        Loadlist()
     End Sub
 
     Private Sub dgvBankList_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dgvBankList.RowCommand
@@ -43,9 +64,16 @@ Public Class BankMasterfile_LoadList
             query = "UPDATE tblBank SET Status = @Status WHERE ID = @ID"
             SQL.FlushParams()
             SQL.AddParam("@ID", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='BankMasterfile_Loadlist.aspx';</script>")
+
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
+            Loadlist()
         End If
     End Sub
 
@@ -53,7 +81,7 @@ Public Class BankMasterfile_LoadList
         If dgvBankList.Rows.Count > 0 Then
             'To Export all pages
             dgvBankList.AllowPaging = False
-            Me.LoadBankList()
+            Me.Loadlist()
 
             Dim dt As New DataTable("Banklist")
             For Each cell As TableCell In dgvBankList.HeaderRow.Cells

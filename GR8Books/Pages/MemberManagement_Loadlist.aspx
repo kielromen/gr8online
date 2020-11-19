@@ -23,10 +23,19 @@
             });
 
             $(".btnInactive").click(function () {
-                if (confirm("Are you sure you want to remove this?")) {
+                if ($(".btnInactive").val() == "Inactive") {
+                    if (confirm("Are you sure you want to remove this?")) {
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else {
-                    return false;
+                    if (confirm("Are you sure you want to put back this?")) {
+                    }
+                    else {
+                        return false;
+                    }
                 }
             });
         });
@@ -38,13 +47,28 @@
      }
     </style>
     <asp:Panel runat="server">
-         <div class="row mt-4 justify-content-end">
-            <div class="col-2 ">
-                <asp:Button ID="btnExport" class="btnExport btn btn-success btn-block" Text="Export" runat="server" />
+          <div class="row mb-3 mr-2 justify-content-end">
+                <div class="col">
+                 <div class="input-group">
+                      <asp:TextBox ID="txtFilter" runat="server" class="txtFilter form-control" autocomplete="off" placeholder="Member Name"  />
+                      <div class="input-group-append">
+                          <asp:Button Text="Search" ID="btnSearch"  class="btnSearch btn btn-secondary" runat="server" OnClick="loadlist"  />
+                      </div>
+                 </div>
+                 </div>
+                 <div class="col">
+                    <asp:DropDownList ID="ddlFilter" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="Loadlist"></asp:DropDownList>
+                 </div>
+                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                     <div class="btn-group" role="group" aria-label="First group">
+                        <asp:Button ID="btnAdd" Width="100px" Text="Add" class="btnAdd btn btn-primary btn-block" runat="server" />
+                        <asp:Button ID="btnUpload" Width="100px" class="btnUpload btn btn-primary" Text="Upload" runat="server" data-toggle="modal" data-target="#modalCOA" data-whatever="@mdo" />
+                        <asp:Button ID="btnDownload" Width="100px" class="btnDownload btn btn-success" Text="Download" runat="server" />
+                        <asp:Button ID="btnExport" Width="100px" class="btnExport btn btn-success" Text="Export" runat="server" />
+                     </div>
+                 </div>
             </div>
-        </div>
-        <br />
-        <asp:GridView ID="gvMember" runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
+        <asp:GridView ID="gvMember"  PageSize="13"  runat="server" AutoGenerateColumns="false" AllowPaging="True" Width="100%" GridLines="None" ShowHeaderWhenEmpty="True" EmptyDataText="No Records Found">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="Member_Code" HeaderText="Member Code" />
@@ -94,11 +118,6 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        <div class="row justify-content-end mt-4">
-                <div class="col-sm-2">
-                    <asp:Button ID="btnAdd" class="btnAdd btn btn-primary btn-block" Text="Add" runat="server" />
-                </div>
-        </div>
 
     </asp:Panel>
 </asp:Content>

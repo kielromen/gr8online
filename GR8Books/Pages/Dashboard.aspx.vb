@@ -65,6 +65,9 @@ Public Class Dashboard1
         While SQL.SQLDR.Read
             list.Add(SQL.SQLDR("Year").ToString)
         End While
+        If list.Count = 0 Then
+            list.Add(Now.Year)
+        End If
         Return list
     End Function
 

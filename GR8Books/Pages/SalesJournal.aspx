@@ -7,14 +7,14 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../Scripts/jquery.formatCurrency-1.4.0.js"></script>
 
-    <script type="text/javascript">  
+<%--    <script type="text/javascript">  
         $(document).ready(function () {
             $('.txtAmount').focusout(function () {
                 $('.txtAmount').formatCurrency();
                 $('.txtAmounttxtAmount').toNumber().formatCurrency('.txtAmount');
             });
         });
-    </script>
+    </script>--%>
 
     <script type='text/javascript'>
         $(document).ready(function () {
@@ -193,7 +193,7 @@
 
             //-------------NEW
 
-            $("#<%=btnTax.ClientID%>").click(function (e) {
+            <%--$("#<%=btnTax.ClientID%>").click(function (e) {
                 e.preventDefault();
                 var id = $(this).attr("id");
                 var amount = parseFloat($("#<%=txtAmount.ClientID%>").val().replace(/,/g, ""));
@@ -206,7 +206,7 @@
                 $("#<%=txtTPercent.ClientID%>").val("0.00%");
                 $("#<%=txtETaxAmount.ClientID%>").val("0.00");
                 $("#<%=txtEPercent.ClientID%>").val("0.00%");
-            });
+            });--%>
 
             $(".btnTax_Entry").click(function (e) {
                 e.preventDefault();
@@ -315,26 +315,26 @@
                         <div class="col-2 my-auto">
                             <asp:Label Text="Code:" runat="server" />
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-10">
                             <asp:TextBox ID="txtCode" runat="server" class="form-control" autocomplete="off" />
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator4" runat="Server" ControlToValidate="txtCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator4" runat="Server" ControlToValidate="txtCode" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-2 my-auto">
                             <asp:Label Text="Name:" runat="server" />
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-10">
                               <div class="input-group">
                             <asp:TextBox ID="txtName" runat="server" class="form-control" autocomplete="off" />
                                <div class="input-group-append">
                                     <asp:Button Text="Add New" ID="btnAddNewCustomer" runat="server" class="btn btn-primary" />
                                 </div>
                             </div>
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator1" runat="Server" ControlToValidate="txtName" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <div class="row mb-2">
+                  <%--  <div class="row mb-2">
                         <div class="col-2 my-auto">
                             <asp:Label Text="Amount:" runat="server" />
                         </div>
@@ -347,22 +347,30 @@
                             </div>
                             <asp:RequiredFieldValidator ForeColor="Red" Font-Size="Small" Display="Dynamic" ID="RequiredFieldValidator3" runat="Server" ControlToValidate="txtAmount" InitialValue="0.00" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="row mb-2">
                         <div class="col-2 my-auto">
                             <asp:Label Text="Remarks:" runat="server" autocomplete="off" />
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-10">
                             <asp:TextBox ID="txtRemarks" runat="server" class="form-control" autocomplete="off" />
                         </div>
                     </div>
                     <div class="row mb-2">
+                         <div class="col-2 my-auto">
+                            <asp:Label Text="Terms:" runat="server" />
+                        </div>
+                        <div class="col-4">
+                            <asp:DropDownList ID="ddlTerms" runat="server" EnableViewState="true" AppendDataBoundItems="true" class="form-control"></asp:DropDownList>
+                            <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator9" runat="Server" ControlToValidate="ddlTerms" InitialValue="--Select Terms--" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
+                        </div>
                         <div class="col-2 my-auto">
                             <asp:Label Text="Due Date:" runat="server" />
                         </div>
-                        <div class="col-9">
+                        <div class="col-4">
                             <input type="date" runat="server" id="dtpDueDate" class="form-control">
                         </div>
+
                     </div>
                 </div>
 
@@ -374,6 +382,7 @@
                         </div>
                         <div class="col">
                             <asp:TextBox ID="txtTrans_Num" runat="server" class="form-control" autocomplete="off" />
+                            <asp:RequiredFieldValidator Forecolor="Red" Font-size="Small" Display="Dynamic" ID="RequiredFieldValidator2" runat="Server" ControlToValidate="txtTrans_Num" ErrorMessage="Field is required." ValidationGroup="g"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -393,7 +402,7 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-sm-5 my-auto">
+                        <div class="col-5 my-auto">
                              <asp:Label Text="Status:" runat="server" />
                         </div>
                         <div class="col">

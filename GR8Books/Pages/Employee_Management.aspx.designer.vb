@@ -140,22 +140,40 @@ Partial Public Class Employee_Management
     Protected WithEvents txtUnit As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtCellphoneNo control.
+    '''txtAddress_Lot_Unit control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCellphoneNo As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtAddress_Lot_Unit As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RequiredFieldValidator3 control.
+    '''txtAddress_Blk_Bldg control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txtAddress_Blk_Bldg As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtStreet control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtStreet As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtSubdivision control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSubdivision As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ddlRegion control.
@@ -230,42 +248,6 @@ Partial Public Class Employee_Management
     Protected WithEvents RequiredFieldValidator11 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''txtAddress_Lot_Unit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAddress_Lot_Unit As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtAddress_Blk_Bldg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAddress_Blk_Bldg As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtStreet control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtStreet As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtSubdivision control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSubdivision As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''txtZipCode control.
     '''</summary>
     '''<remarks>
@@ -282,6 +264,24 @@ Partial Public Class Employee_Management
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtCellphoneNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCellphoneNo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtEmail control.

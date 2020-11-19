@@ -38,6 +38,14 @@ Public Class Transaction_Uploader
             SQL.AddParam("@RefTransID", Session("ID"))
             SQL.AddParam("@Upload", True)
             SQL.GetQuery(query)
+
+            gvUploader.Columns(5).FooterText = "Total"
+            gvUploader.Columns(5).FooterStyle.HorizontalAlign = HorizontalAlign.Right
+            gvUploader.Columns(7).FooterStyle.HorizontalAlign = HorizontalAlign.Right
+            gvUploader.Columns(8).FooterStyle.HorizontalAlign = HorizontalAlign.Right
+            totalDebit1 = 0
+            totalCredit1 = 0
+
             gvUploader.DataSource = SQL.SQLDS
             gvUploader.DataBind()
         End If
@@ -80,16 +88,16 @@ Public Class Transaction_Uploader
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Dim i As String = gvUploader.Rows(0).Cells(0).Text
 
-        'Dim query As String
-        'query = " UPDATE  " & DBTable & " SET Status ='Cancelled' WHERE TransID = @TransID "
-        'SQL.FlushParams()
-        'SQL.AddParam("@TransID", Session("ID"))
-        'SQL.ExecNonQuery(query)
+        Dim query As String
+        query = " UPDATE  " & DBTable & " SET Status ='Cancelled' WHERE TransID = @TransID "
+        SQL.FlushParams()
+        SQL.AddParam("@TransID", Session("ID"))
+        SQL.ExecNonQuery(query)
 
-        'query = " UPDATE  tblJE_Header SET Status ='Cancelled' WHERE RefTransID = @RefTransID  AND Upload = 1 "
-        'SQL.FlushParams()
-        'SQL.AddParam("@RefTransID", Session("ID"))
-        'SQL.ExecNonQuery(query)
+        query = " UPDATE  tblJE_Header SET Status ='Cancelled' WHERE RefTransID = @RefTransID  AND Upload = 1 "
+        SQL.FlushParams()
+        SQL.AddParam("@RefTransID", Session("ID"))
+        SQL.ExecNonQuery(query)
     End Sub
 
     Private Sub btnUploadSave_Click(sender As Object, e As EventArgs) Handles btnUploadSave.Click
@@ -114,29 +122,33 @@ Public Class Transaction_Uploader
                 TransID = SaveTransID()
                 While dr.Read
                     'HEADER
-                    Dim JE_No As String = ""
-                    Dim RefType As String = "U" & dr("Doc_Type").ToString
-                    Dim RefTransID As String = dr("Doc_No").ToString
-                    Dim AppDate As String = dr("Date").ToString
-                    Dim Book As String = dr("Book").ToString
+                    If dr("Doc_Type").ToString <> "" Then
 
-                    'DETAILS
-                    Dim AccntCode As String = dr("AccntCode").ToString
-                    Dim VCECode As String = dr("VCECode").ToString
-                    Dim Debit As Decimal = CDec(IIf(IsNumeric(dr("Debit").ToString), dr("Debit").ToString, 0))
-                    Dim Credit As Decimal = CDec(IIf(IsNumeric(dr("Credit").ToString), dr("Credit").ToString, 0))
-                    Dim Particulars As String = dr("Particulars").ToString
-                    Dim RefNo As String = dr("RefNo").ToString
-                    Dim CostCenter As String = dr("CostCenter").ToString
 
-                    If CheckDuplicateRef(RefType, RefTransID) Then
-                        JE_No = GetJE_No(RefType, RefTransID)
-                    Else
-                        SaveJE_Header(TransID, RefType, RefTransID, AppDate, Book)
-                        JE_No = GetJE_No(RefType, RefTransID)
+                        Dim JE_No As String = ""
+                        Dim RefType As String = dr("Doc_Type").ToString
+                        Dim RefTransID As String = dr("Doc_No").ToString
+                        Dim AppDate As String = dr("Date").ToString
+                        Dim Book As String = dr("Book").ToString
+
+                        'DETAILS
+                        Dim AccntCode As String = dr("AccntCode").ToString
+                        Dim VCECode As String = dr("VCECode").ToString
+                        Dim Debit As Decimal = CDec(IIf(IsNumeric(dr("Debit").ToString), dr("Debit").ToString, 0))
+                        Dim Credit As Decimal = CDec(IIf(IsNumeric(dr("Credit").ToString), dr("Credit").ToString, 0))
+                        Dim Particulars As String = dr("Particulars").ToString
+                        Dim RefNo As String = dr("RefNo").ToString
+                        Dim CostCenter As String = dr("CostCenter").ToString
+
+                        If CheckDuplicateRef(RefType, RefTransID, TransID) Then
+                            JE_No = GetJE_No(RefType, RefTransID, TransID)
+                        Else
+                            SaveJE_Header(TransID, RefType, RefTransID, AppDate, Book)
+                            JE_No = GetJE_No(RefType, RefTransID, TransID)
+                        End If
+
+                        SaveJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, RefNo)
                     End If
-
-                    SaveJE_Details(JE_No, AccntCode, VCECode, Debit, Credit, Particulars, RefNo)
                 End While
             End If
             cn.Close()
@@ -154,13 +166,14 @@ Public Class Transaction_Uploader
 
     End Sub
 
-    Private Function CheckDuplicateRef(ByVal strRefType As String, ByVal strRefTransID As String) As Boolean
+    Private Function CheckDuplicateRef(ByVal strRefType As String, ByVal strRefTransID As String, ByVal strTransID As String) As Boolean
         Dim selectSQL As String = ""
         selectSQL = " SELECT JE_No FROM tblJE_Header " & vbCrLf &
-                    " WHERE RefType = @RefType AND Remarks = @Remarks AND Upload = 1 "
+                    " WHERE RefType = @RefType AND  RefTransID = @RefTransID AND Remarks = @Remarks AND Upload = 1 "
         SQL.FlushParams()
         SQL.AddParam("@RefType", strRefType)
         SQL.AddParam("@Remarks", strRefTransID)
+        SQL.AddParam("@RefTransID", strTransID)
         SQL.ReadQuery(selectSQL)
         If SQL.SQLDR.Read Then
             Return True
@@ -169,13 +182,14 @@ Public Class Transaction_Uploader
         End If
     End Function
 
-    Private Function GetJE_No(ByVal strRefType As String, ByVal strRefTransID As String) As Integer
+    Private Function GetJE_No(ByVal strRefType As String, ByVal strRefTransID As String, ByVal strTransID As String) As Integer
         Dim selectSQL As String = ""
         selectSQL = " SELECT JE_No FROM tblJE_Header " & vbCrLf &
-                    " WHERE RefType = @RefType AND Remarks = @Remarks AND Upload = 1 "
+                    " WHERE RefType = @RefType AND Remarks = @Remarks AND Upload = 1 AND RefTransID = @RefTransID  "
         SQL.FlushParams()
         SQL.AddParam("@RefType", strRefType)
         SQL.AddParam("@Remarks", strRefTransID)
+        SQL.AddParam("@RefTransID", strTransID)
         SQL.ReadQuery(selectSQL)
         If SQL.SQLDR.Read Then
             Return CInt(SQL.SQLDR("JE_No").ToString)
@@ -235,5 +249,17 @@ Public Class Transaction_Uploader
         SQL.AddParam("@RefNo", RefNo)
         SQL.ExecNonQuery(insertSQL)
     End Sub
+
+    Dim totalDebit1, totalCredit1 As Decimal
+    Private Sub gvUploader_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles gvUploader.RowDataBound
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim row As DataRowView = e.Row.DataItem
+            totalDebit1 += Convert.ToDouble(row(7))
+            totalCredit1 += Convert.ToDouble(row(8))
+            gvUploader.Columns(7).FooterText = totalDebit1.ToString("N2")
+            gvUploader.Columns(8).FooterText = totalCredit1.ToString("N2")
+        End If
+    End Sub
+
 
 End Class

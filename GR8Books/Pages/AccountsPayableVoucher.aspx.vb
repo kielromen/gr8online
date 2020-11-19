@@ -744,7 +744,7 @@ Public Class AccountsPayableVoucher
         query = " SELECT ID, JE_No, View_GL.BranchCode, View_GL.AccntCode, AccountTitle, View_GL.VCECode, View_GL.VCEName, Debit, Credit, Particulars, CostID, RefNo, VATType   " &
                 " FROM   View_GL INNER JOIN tblCOA " &
                 " ON     View_GL.AccntCode = tblCOA.AccountCode " &
-                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE RefType = 'APV' AND RefTransID = " & APVNo & ") " &
+                " WHERE JE_No = (SELECT  JE_No FROM tblJE_Header WHERE Upload = 0 AND RefType = 'APV' AND RefTransID = " & APVNo & ") " &
                 " ORDER BY LineNumber "
         SQL.ReadQuery(query)
         Dim ch As Integer = 1
@@ -942,7 +942,6 @@ Public Class AccountsPayableVoucher
         Page.Validate()
         If txtAmount.Text <> "" Then
             If Session("AccountCode") <> "" Then
-                AddNewRow(dgvEntry, EventArgs.Empty)
                 txtAmount.Text = CDec(Session("TotalDebit") - Session("TotalCredit")).ToString("N2")
                 Dim rowIndex As Integer = 0
                 If Not IsNothing(ViewState("EntryTable")) Then

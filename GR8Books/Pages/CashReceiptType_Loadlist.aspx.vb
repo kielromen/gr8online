@@ -13,9 +13,16 @@ Public Class CashReceiptType_Loadlist
             If Session("SessionExists") = False Then
                 Response.Redirect("Login.aspx")
             Else
+                Initialize()
                 Loadlist()
             End If
         End If
+    End Sub
+
+    Public Sub Initialize()
+        ddlFilter.Items.Clear()
+        ddlFilter.Items.Add("Active")
+        ddlFilter.Items.Add("Inactive")
     End Sub
 
     Public Sub Loadlist()
@@ -23,12 +30,26 @@ Public Class CashReceiptType_Loadlist
         query = " SELECT * FROM tblCollection_Type " &
                 " LEFT JOIN " &
                 " tblCOA ON tblCollection_Type.AccountCode = tblCOA.AccountCode " &
-                " WHERE tblCollection_Type.Status = @Status"
+                " WHERE tblCollection_Type.Status = @Status AND Description LIKE '%' + @Description + '%'"
         SQL.FlushParams()
-        SQL.AddParam("@Status", "Active")
+        SQL.AddParam("@Status", ddlFilter.SelectedValue)
+        SQL.AddParam("@Description", txtFilter.Text)
         SQL.GetQuery(query)
         gvCollectionType.DataSource = SQL.SQLDS
         gvCollectionType.DataBind()
+
+
+        If ddlFilter.SelectedValue = "Active" Then
+            For Each row As GridViewRow In gvCollectionType.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Inactive"
+            Next row
+        Else
+            For Each row As GridViewRow In gvCollectionType.Rows
+                Dim Inactive As Button = CType(row.FindControl("btnInactive"), Button)
+                Inactive.Text = "Active"
+            Next row
+        End If
     End Sub
 
     Private Sub gvCollectionType_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvCollectionType.PageIndexChanging
@@ -42,9 +63,15 @@ Public Class CashReceiptType_Loadlist
             query = "UPDATE tblCollection_Type SET Status = @Status WHERE ID = @ID"
             SQL.FlushParams()
             SQL.AddParam("@ID", e.CommandArgument)
-            SQL.AddParam("@Status", "Inactive")
+            SQL.AddParam("@Status", IIf(ddlFilter.SelectedValue = "Active", "Inactive", "Active"))
             SQL.ExecNonQuery(query)
-            Response.Write("<script>alert('Removed successfully');window.location='CollectionType_Loadlist.aspx';</script>")
+
+            If ddlFilter.SelectedValue = "Active" Then
+                Response.Write("<script>alert('Removed successfully');</script>")
+            Else
+                Response.Write("<script>alert('Put Back successfully');</script>")
+            End If
+            Loadlist()
         End If
     End Sub
 
